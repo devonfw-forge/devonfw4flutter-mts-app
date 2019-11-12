@@ -22,8 +22,15 @@ class Home extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
-      leading: IconButton(icon: Icon(Icons.dehaze, color: Colors.white)),
-      title: Text("My Thai Star"),
+      titleSpacing: 0.0,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          IconButton(icon: Icon(Icons.dehaze, color: Colors.white)),
+          IconButton(icon: Icon(Icons.star_border, color: Colors.white)),
+          Text("My Thai Star"),
+        ],
+      ),
       elevation: 20,
       actions: <Widget>[
         IconButton(icon: Icon(Icons.person, color: Colors.white)),

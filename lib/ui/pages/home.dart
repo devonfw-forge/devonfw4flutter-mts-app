@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/widgets/asset_container.dart';
 import 'package:my_thai_star_flutter/ui/widgets/landing_page_card.dart';
 
@@ -9,6 +10,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
+      drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
@@ -26,7 +28,6 @@ class Home extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          IconButton(icon: Icon(Icons.dehaze, color: Colors.white)),
           IconButton(icon: Icon(Icons.star_border, color: Colors.white)),
           Text("My Thai Star"),
         ],

@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
-      leading: IconButton(icon: Icon(Icons.list, color: Colors.white)),
+      leading: IconButton(icon: Icon(Icons.dehaze, color: Colors.white)),
       title: Text("My Thai Star"),
       elevation: 20,
       actions: <Widget>[

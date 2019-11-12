@@ -27,10 +27,21 @@ class Home extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              child: Text(
-                "MY THAI STAR",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline,
+              child: Column(
+                children: <Widget>[
+                  Spacer(),
+                  Text(
+                    "MY THAI STAR",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                  Text(
+                    "More then just delicious food",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
+                  Spacer(flex: 2,),
+                ],
               ),
             )
           ],

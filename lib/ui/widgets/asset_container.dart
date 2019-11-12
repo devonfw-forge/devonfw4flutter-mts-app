@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+///A [Container] with a background Asset
+///
+///Removes some of the boilerplate when using multiple
+///[Container]s in a [Stack].
 class AssetContainer extends StatelessWidget {
   final double height;
   final String assetLocation;

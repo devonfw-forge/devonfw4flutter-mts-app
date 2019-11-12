@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/widgets/asset_container.dart';
+import 'package:my_thai_star_flutter/ui/widgets/landing_page_card.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
@@ -57,71 +58,21 @@ class _CardDisplay extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
-            ),
-            clipBehavior: Clip.antiAlias,
-            elevation: 2,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Image(image: AssetImage('assets/images/thai-restaurant.jpg')),
-                Container(
-                  margin: EdgeInsets.all(30),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "OUR RESTAURANT",
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                      Text("this is some text"),
-                      RaisedButton(
-                        child: Text(
-                          "BOOK TABLE",
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        color: Theme.of(context).accentColor,
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
+          LandingPageCard(
+            imageLocation: 'assets/images/thai-restaurant.jpg',
+            text:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.',
+            headline: 'OUR RESTAURANT',
+            buttonLable: 'BOOK TABLE',
+            onPressed: () {},
           ),
-          Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6),
-            ),
-            clipBehavior: Clip.antiAlias,
-            elevation: 2,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Image(image: AssetImage('assets/images/thai-restaurant.jpg')),
-                Container(
-                  margin: EdgeInsets.all(30),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        "OUR RESTAURANT",
-                        style: Theme.of(context).textTheme.title,
-                      ),
-                      Text("this is some text"),
-                      RaisedButton(
-                        child: Text(
-                          "BOOK TABLE",
-                          style: Theme.of(context).textTheme.button,
-                        ),
-                        color: Theme.of(context).accentColor,
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
+          LandingPageCard(
+            imageLocation: 'assets/images/thai-restaurant-dish.jpg',
+            text:
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.',
+            headline: 'OUR MENU',
+            buttonLable: 'VIEW MENU',
+            onPressed: () {},
           ),
         ],
       ),
@@ -168,9 +119,7 @@ class _ImageBanner extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle,
                 ),
-                Spacer(
-                  flex: 2,
-                ),
+                Spacer(flex: 2),
               ],
             ),
           )

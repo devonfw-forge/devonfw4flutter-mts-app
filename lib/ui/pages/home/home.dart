@@ -8,6 +8,7 @@ import 'image_banner.dart';
 ///
 ///Gives navigation to menu and booking-page
 class Home extends StatelessWidget {
+  static const double cardDisplayTopPadding = 180;
   const Home({Key key}) : super(key: key);
 
   @override
@@ -19,7 +20,9 @@ class Home extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             ImageBanner(),
-            CardDisplay(),
+            Padding(
+                child: CardDisplay(),
+                padding: EdgeInsets.only(top: cardDisplayTopPadding)),
           ],
         ),
       ),
@@ -32,9 +35,13 @@ class Home extends StatelessWidget {
       title: Text("My Thai Star"),
       elevation: 20,
       actions: <Widget>[
-        IconButton(icon: Icon(Icons.person, color: Colors.white), onPressed: (){}),
-        IconButton(icon: Icon(Icons.shopping_basket, color: Colors.white), onPressed: (){}),
-        IconButton(icon: Icon(Icons.flag, color: Colors.white), onPressed: (){}),
+        IconButton(
+            icon: Icon(Icons.person, color: Colors.white), onPressed: () {}),
+        IconButton(
+            icon: Icon(Icons.shopping_basket, color: Colors.white),
+            onPressed: () {}),
+        IconButton(
+            icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
       ],
     );
   }

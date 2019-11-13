@@ -7,7 +7,6 @@ import 'home_card.dart';
 class CardDisplay extends StatelessWidget {
   static const double margin = 10;
   static const double padding = 10;
-  static const double topMargin = 10;
 
   //Content
   static const String restaurantImg = 'assets/images/thai-restaurant.jpg';
@@ -34,7 +33,6 @@ class CardDisplay extends StatelessWidget {
         left: margin,
         right: margin,
         bottom: margin,
-        top: topMargin,
       ),
       padding: EdgeInsets.all(padding),
       decoration: new BoxDecoration(

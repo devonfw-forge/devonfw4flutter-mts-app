@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/pages/home/home.dart';
 
-import 'ui/pages/home.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MyThaiStar());
 
-class MyApp extends StatelessWidget {
+class MyThaiStar extends StatelessWidget {
   final ThemeData themeData = ThemeData(
     primaryColor: Color.fromRGBO(62, 39, 35, 1),
     accentColor: Color.fromRGBO(0, 102, 51, 1),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-class LandingPageCard extends StatelessWidget {
-  static const double _borderRadius = 6;
-  static const double _textDistance = 10;
-  static const double _contentMargin = 20;
+///[Card] in the [home]-page [CardDisplay]
+///
+///holds and image, title and button that navigates to a
+///different part of the app
+class HomeCard extends StatelessWidget {
+  static const double textDistance = 10;
+  static const double contentMargin = 20;
 
   final String headline;
   final String text;
@@ -11,7 +15,7 @@ class LandingPageCard extends StatelessWidget {
   final String buttonLable;
   final VoidCallback onPressed;
 
-  const LandingPageCard({
+  const HomeCard({
     @required this.headline,
     @required this.text,
     @required this.imageLocation,
@@ -23,7 +27,7 @@ class LandingPageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(_borderRadius),
+        borderRadius: BorderRadius.circular(UiHelper.borderRadius),
       ),
       clipBehavior: Clip.antiAlias,
       elevation: 2,
@@ -32,19 +36,19 @@ class LandingPageCard extends StatelessWidget {
         children: <Widget>[
           Image(image: AssetImage(imageLocation)),
           Container(
-            margin: EdgeInsets.all(_contentMargin),
+            margin: EdgeInsets.all(contentMargin),
             child: Column(
               children: <Widget>[
                 Text(
                   headline,
                   style: Theme.of(context).textTheme.title,
                 ),
-                SizedBox(height: _textDistance),
+                SizedBox(height: textDistance),
                 Text(
                   text,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: _textDistance),
+                SizedBox(height: textDistance),
                 RaisedButton(
                   child: Text(
                     buttonLable,

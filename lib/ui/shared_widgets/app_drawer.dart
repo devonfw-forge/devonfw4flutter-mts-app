@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///Global [Drawer] that helps navigate to the 3 main pages of the App.
+///
+///Navigation to: Home, Menu and Book Table - Pages
 class AppDrawer extends StatelessWidget {
   static const double topMargin = 30;
   const AppDrawer();
@@ -32,11 +35,13 @@ class AppDrawer extends StatelessWidget {
   }
 }
 
+///One item in the [AppDrawer]
 class _DrawerObject extends StatelessWidget {
   static const double iconSize = 30;
   final String title;
   final IconData icon;
   final VoidCallback onTap;
+
   const _DrawerObject({
     this.title = "EMPTY",
     this.icon = Icons.error,

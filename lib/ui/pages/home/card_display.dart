@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'home_card.dart';
@@ -53,7 +54,7 @@ class CardDisplay extends StatelessWidget {
             text: placeHolderText,
             headline: 'OUR RESTAURANT',
             buttonLable: 'BOOK TABLE',
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
             imageLocation: menuImg,

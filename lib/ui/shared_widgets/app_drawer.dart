@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/router.dart';
 
 ///Global [Drawer] that helps navigate to the 3 main pages of the App.
 ///
@@ -17,17 +18,17 @@ class AppDrawer extends StatelessWidget {
           _DrawerObject(
             title: 'HOME',
             icon: Icons.home,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Router.home),
           ),
           _DrawerObject(
             title: 'MENU',
             icon: Icons.restaurant_menu,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Router.home),
           ),
           _DrawerObject(
             title: 'BOOK TABLE',
             icon: Icons.bookmark,
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Router.booking),
           ),
         ],
       ),

@@ -10,6 +10,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String currentRoute = ModalRoute.of(context).settings.name;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -18,16 +19,19 @@ class AppDrawer extends StatelessWidget {
           _DrawerObject(
             title: 'HOME',
             icon: Icons.home,
+            selected: currentRoute == Router.home,
             onTap: () => Navigator.pushNamed(context, Router.home),
           ),
           _DrawerObject(
             title: 'MENU',
             icon: Icons.restaurant_menu,
+            //selected: currentRoute == Router.home,
             onTap: () => Navigator.pushNamed(context, Router.home),
           ),
           _DrawerObject(
             title: 'BOOK TABLE',
             icon: Icons.bookmark,
+            selected: currentRoute == Router.booking,
             onTap: () => Navigator.pushNamed(context, Router.booking),
           ),
         ],
@@ -40,6 +44,7 @@ class AppDrawer extends StatelessWidget {
 class _DrawerObject extends StatelessWidget {
   static const double iconSize = 30;
   final String title;
+  final bool selected;
   final IconData icon;
   final VoidCallback onTap;
 
@@ -47,11 +52,13 @@ class _DrawerObject extends StatelessWidget {
     this.title = "EMPTY",
     this.icon = Icons.error,
     this.onTap,
+    this.selected = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      selected: selected,
       leading: Icon(icon, size: iconSize),
       title: Text(title, style: Theme.of(context).textTheme.title),
       onTap: onTap,

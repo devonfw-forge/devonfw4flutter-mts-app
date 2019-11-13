@@ -4,15 +4,16 @@ import 'package:my_thai_star_flutter/ui/pages/booking/invite_form.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class TabCard extends StatefulWidget {
-  const TabCard({
-    Key key,
-  }) : super(key: key);
+  const TabCard({Key key}) : super(key: key);
 
   @override
   _TabCardState createState() => _TabCardState();
 }
 
 class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
+  static const double padding = 10;
+  static const double maxHeight = 2000;
+
   final List<Tab> tabs = <Tab>[
     Tab(text: 'Book a Table'),
     Tab(text: 'Invite Friends'),
@@ -29,7 +30,7 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(padding),
       child: Card(
         elevation: UiHelper.elevation,
         child: Column(
@@ -41,8 +42,8 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
               labelColor: Colors.grey,
               labelStyle: Theme.of(context).textTheme.title,
             ),
-            Container(
-              height: 4000,
+            LimitedBox(
+              maxHeight: maxHeight,
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[

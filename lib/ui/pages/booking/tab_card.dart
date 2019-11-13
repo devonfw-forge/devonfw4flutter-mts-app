@@ -12,7 +12,7 @@ class TabCard extends StatefulWidget {
 
 class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
   static const double padding = 10;
-  static const double maxHeight = 2000;
+  static const double maxHeight = 800;
 
   final List<Tab> tabs = <Tab>[
     Tab(text: 'Book a Table'),

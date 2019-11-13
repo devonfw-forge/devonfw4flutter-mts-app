@@ -8,6 +8,7 @@ class MyThaiStar extends StatelessWidget {
   final ThemeData themeData = ThemeData(
     primaryColor: Color.fromRGBO(62, 39, 35, 1),
     accentColor: Color.fromRGBO(0, 102, 51, 1),
+    backgroundColor: Color.fromRGBO(224, 224, 224, 1),
     textTheme: TextTheme(
       headline: TextStyle(
         fontSize: 30,

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/pages/home/home.dart';
-
-
+import 'package:my_thai_star_flutter/router.dart';
 void main() => runApp(MyThaiStar());
 
 class MyThaiStar extends StatelessWidget {
@@ -31,7 +29,8 @@ class MyThaiStar extends StatelessWidget {
     return MaterialApp(
       title: 'My Thai Star',
       theme: themeData,
-      home: Home(),
+      initialRoute: Router.home,
+      routes: Router.routeMap,
     );
   }
 }

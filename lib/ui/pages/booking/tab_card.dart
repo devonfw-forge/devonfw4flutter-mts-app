@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/booking_form.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/invite_form.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class TabCard extends StatefulWidget {
@@ -39,12 +41,13 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
               labelColor: Colors.grey,
               labelStyle: Theme.of(context).textTheme.title,
             ),
-            Expanded(
+            Container(
+              height: 1000,
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  Text("data"),
-                  Text("data"),
+                  BookingFrom(),
+                  InviteFrom(),
                 ],
               ),
             )

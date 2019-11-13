@@ -26,11 +26,8 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(UiHelper.borderRadius),
-      ),
       clipBehavior: Clip.antiAlias,
-      elevation: 2,
+      elevation: UiHelper.elevation,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

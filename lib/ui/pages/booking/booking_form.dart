@@ -7,8 +7,16 @@ class BookingFrom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Image(image: AssetImage(imageLocation)),
+        Container(
+          height: 400,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(imageLocation),
+          )),
+        ),
       ],
     );
   }

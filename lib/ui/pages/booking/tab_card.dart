@@ -42,7 +42,7 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
               labelStyle: Theme.of(context).textTheme.title,
             ),
             Container(
-              height: 1000,
+              height: 4000,
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[

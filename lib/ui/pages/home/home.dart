@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 
 import 'card_display.dart';
 import 'image_banner.dart';
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: CustomAppBar(),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Stack(
@@ -26,23 +27,6 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  AppBar _appBar() {
-    return AppBar(
-      titleSpacing: 0.0,
-      title: Text("My Thai Star"),
-      elevation: 20,
-      actions: <Widget>[
-        IconButton(
-            icon: Icon(Icons.person, color: Colors.white), onPressed: () {}),
-        IconButton(
-            icon: Icon(Icons.shopping_basket, color: Colors.white),
-            onPressed: () {}),
-        IconButton(
-            icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
-      ],
     );
   }
 }

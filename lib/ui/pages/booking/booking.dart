@@ -1,36 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/pages/booking/tab_card.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/booking_tab.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-///Gives the option to book a table and invite friends to
-///a booked reservation
-///
-///Holds Headline and the [TabCard]
+import 'invite_tab.dart';
+
 class Booking extends StatelessWidget {
-  const Booking({Key key}) : super(key: key);
+  Booking({Key key}) : super(key: key);
+
+  final List<Tab> tabs = <Tab>[
+    Tab(text: 'Book a Table'),
+    Tab(text: 'Invite Friends'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppBar(),
-        backgroundColor: Theme.of(context).backgroundColor,
-        drawer: AppDrawer(),
-        body: SingleChildScrollView(
-          child: Column(
+    return DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
+          appBar: CustomAppBar(
+            height: 110,
+            bottom: TabBar(
+              tabs: tabs,
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              labelStyle: Theme.of(context).textTheme.title,
+            ),
+          ),
+          backgroundColor: Theme.of(context).backgroundColor,
+          drawer: AppDrawer(),
+          body: TabBarView(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(UiHelper.standart_padding),
-                child: Text(
-                  "You can invite your friends to lunch or book a table",
-                  style: Theme.of(context).textTheme.title,
-                  textAlign: TextAlign.center,
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(UiHelper.standart_padding),
+                      child: Card(
+                        clipBehavior: Clip.antiAlias,
+                        elevation: UiHelper.elevation,
+                        child: BookingTab(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              TabCard(),
+              SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(UiHelper.standart_padding),
+                      child: Card(
+                        clipBehavior: Clip.antiAlias,
+                        elevation: UiHelper.elevation,
+                        child: InviteTab(),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ));
+          )),
+    );
   }
 }

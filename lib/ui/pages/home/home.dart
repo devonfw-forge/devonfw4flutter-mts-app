@@ -9,7 +9,7 @@ import 'image_banner.dart';
 ///
 ///Gives navigation to menu and booking-page
 class Home extends StatelessWidget {
-  static const double cardDisplayTopPadding = 180;
+  static const double cardDisplayTopPadding = 170;
   const Home({Key key}) : super(key: key);
 
   @override

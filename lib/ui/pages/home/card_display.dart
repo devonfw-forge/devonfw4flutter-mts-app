@@ -6,9 +6,6 @@ import 'home_card.dart';
 
 ///Column tht holds 2 [HomeCard]s
 class CardDisplay extends StatelessWidget {
-  static const double margin = 10;
-  static const double padding = 10;
-
   //Content
   static const String restaurantImg = 'assets/images/thai-restaurant.jpg';
   static const String menuImg = 'assets/images/thai-restaurant-dish.jpg';
@@ -30,12 +27,8 @@ class CardDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(
-        left: margin,
-        right: margin,
-        bottom: margin,
-      ),
-      padding: EdgeInsets.all(padding),
+      margin: EdgeInsets.all(UiHelper.standart_padding),
+      padding: EdgeInsets.all(UiHelper.standart_padding),
       decoration: new BoxDecoration(
         boxShadow: [
           BoxShadow(

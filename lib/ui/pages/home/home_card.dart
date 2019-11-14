@@ -6,7 +6,6 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///holds and image, title and button that navigates to a
 ///different part of the app
 class HomeCard extends StatelessWidget {
-  static const double textDistance = 10;
   static const double contentMargin = 20;
 
   final String headline;
@@ -40,12 +39,12 @@ class HomeCard extends StatelessWidget {
                   headline,
                   style: Theme.of(context).textTheme.title,
                 ),
-                SizedBox(height: textDistance),
+                SizedBox(height: UiHelper.standart_padding),
                 Text(
                   text,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: textDistance),
+                SizedBox(height: UiHelper.standart_padding),
                 RaisedButton(
                   child: Text(
                     buttonLable,

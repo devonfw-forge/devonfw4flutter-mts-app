@@ -6,8 +6,6 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///holds and image, title and button that navigates to a
 ///different part of the app
 class HomeCard extends StatelessWidget {
-  static const double contentMargin = 20;
-
   final String headline;
   final String text;
   final String imageLocation;
@@ -32,7 +30,7 @@ class HomeCard extends StatelessWidget {
         children: <Widget>[
           Image(image: AssetImage(imageLocation)),
           Container(
-            margin: EdgeInsets.all(contentMargin),
+            margin: EdgeInsets.all(UiHelper.card_margin),
             child: Column(
               children: <Widget>[
                 Text(

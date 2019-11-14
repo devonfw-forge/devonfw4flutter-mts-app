@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/pages/booking/booking_form.dart';
-import 'package:my_thai_star_flutter/ui/pages/booking/invite_form.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/booking_tab.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
+
+import 'invite_tab.dart';
 
 ///[Card] with a [TabBar] that enables the switch between the [BookingForm] &
 ///the [InviteForm].
@@ -21,7 +22,7 @@ class TabCard extends StatefulWidget {
 
 class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
   static const double padding = 10;
-  static const double maxHeight = 800;
+  static const double maxHeight = 860;
 
   final List<Tab> tabs = <Tab>[
     Tab(text: 'Book a Table'),
@@ -57,8 +58,8 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  BookingFrom(),
-                  InviteFrom(),
+                  BookingTab(),
+                  InviteTab(),
                 ],
               ),
             )

@@ -20,7 +20,7 @@ class MyThaiStar extends StatelessWidget {
       ),
       body1: TextStyle(fontSize: 14),
       caption: TextStyle(fontSize: 12),
-      button: TextStyle(fontSize: 12, color: Colors.white),
+      button: TextStyle(fontSize: 14, color: Colors.white),
     ),
   );
 

@@ -11,6 +11,7 @@ dependencies:
   flutter_bloc: ^0.21.0
   equatable: ^0.6.1
   http: ^0.12.0+2
+  datetime_picker_formfield: ^0.4.3
   flutter:
     sdk: flutter
     

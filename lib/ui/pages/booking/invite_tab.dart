@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/custom_form_card.dart';
 
-import '../../ui_helper.dart';
 import 'invite_form.dart';
 
 class InviteTab extends StatefulWidget {
@@ -16,41 +15,19 @@ class _InviteFromState extends State<InviteTab> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(UiHelper.standart_padding),
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              elevation: UiHelper.elevation,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  CropImage(
-                    imageLocation: imageLocation,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.all(UiHelper.card_margin),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "ADD YOUR INFORMATION AND FRIENDS",
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.title.copyWith(
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal),
-                          ),
-                          InviteForm(),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+    return CustomFormCard(
+      headerImageLocation: imageLocation,
+      children: <Widget>[
+        Text(
+          "ADD YOUR INFORMATION AND FRIENDS",
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .title
+              .copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+        ),
+        InviteForm(),
+      ],
     );
   }
 }

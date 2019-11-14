@@ -4,7 +4,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'home_card.dart';
 
-///Column tht holds 2 [HomeCard]s
+///Column that holds 2 [HomeCard]s
 class CardDisplay extends StatelessWidget {
   //Content
   static const String restaurantImg = 'assets/images/thai-restaurant.jpg';

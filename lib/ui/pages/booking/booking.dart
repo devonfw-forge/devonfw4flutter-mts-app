@@ -4,6 +4,10 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Gives the option to book a table and invite friends to
+///a booked reservation
+///
+///Holds Headline and the [TabCard]
 class Booking extends StatelessWidget {
   const Booking({Key key}) : super(key: key);
 

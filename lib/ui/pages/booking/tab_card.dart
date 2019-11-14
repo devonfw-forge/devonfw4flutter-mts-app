@@ -3,6 +3,15 @@ import 'package:my_thai_star_flutter/ui/pages/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/pages/booking/invite_form.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///[Card] with a [TabBar] that enables the switch between the [BookingForm] &
+///the [InviteForm].
+///
+///Flutter does not have an optimal way to handle [Column]s inside a
+///[SingleChildScrollView]. This is because calculating the height of
+///child widgets during the rendering of a parent is very work intensive.
+///Because of this, it was decided to limit the height of the Forms to
+///a fixed value [_TabCardState.maxHeight]. This takes away from the 
+///Responsiveness but massively boosts performance.
 class TabCard extends StatefulWidget {
   const TabCard({Key key}) : super(key: key);
 
@@ -43,6 +52,7 @@ class _TabCardState extends State<TabCard> with SingleTickerProviderStateMixin {
               labelStyle: Theme.of(context).textTheme.title,
             ),
             LimitedBox(
+              //This is where we limit the Form height
               maxHeight: maxHeight,
               child: TabBarView(
                 controller: _tabController,

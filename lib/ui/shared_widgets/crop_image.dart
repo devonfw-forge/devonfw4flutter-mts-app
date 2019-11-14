@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-class FormHead extends StatelessWidget {
+///Crops Image from assets to cover a given height 
+///
+///Default [CropImage.imageHeight] is 400
+class CropImage extends StatelessWidget {
   final String imageLocation;
   final double imageHeight;
-  const FormHead({
+  const CropImage({
     Key key,
     @required this.imageLocation,
     this.imageHeight = 400,

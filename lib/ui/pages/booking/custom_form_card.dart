@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-
 class CustomFormCard extends StatelessWidget {
   final String headerImageLocation;
   final List<Widget> children;
   const CustomFormCard({
     Key key,
-    this.headerImageLocation,
+    @required this.headerImageLocation,
     @required this.children,
   }) : super(key: key);
 
@@ -22,30 +21,20 @@ class CustomFormCard extends StatelessWidget {
           elevation: UiHelper.elevation,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: contentBuilder(),
+            children: <Widget>[
+              CropImage(
+                imageLocation: headerImageLocation,
+              ),
+              Padding(
+                  padding: EdgeInsets.all(UiHelper.card_margin),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: children,
+                  )),
+            ],
           ),
         ),
       ),
     );
-  }
-
-  List<Widget> contentBuilder() {
-    List<Widget> builder = List();
-    if (headerImageLocation != null) {
-      builder.add(
-        CropImage(
-          imageLocation: headerImageLocation,
-        ),
-      );
-    }
-    builder.add(
-      Padding(
-          padding: EdgeInsets.all(UiHelper.card_margin),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: children,
-          )),
-    );
-    return builder;
   }
 }

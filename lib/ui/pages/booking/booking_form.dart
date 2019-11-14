@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/form_head.dart';
 
 class BookingFrom extends StatelessWidget {
   static const imageLocation = "assets/images/slider-1.jpg";
-  static const double imageHeight = 400;
 
   const BookingFrom({Key key}) : super(key: key);
 
@@ -11,14 +11,7 @@ class BookingFrom extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
-          height: imageHeight,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage(imageLocation),
-          )),
-        ),
+        FormHead(imageLocation: imageLocation,)
       ],
     );
   }

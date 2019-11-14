@@ -23,16 +23,16 @@ class AppDrawer extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, Router.home),
           ),
           _DrawerObject(
-            title: 'MENU',
-            icon: Icons.restaurant_menu,
-            selected: currentRoute == Router.menu,
-            onTap: () => Navigator.pushNamed(context, Router.menu),
-          ),
-          _DrawerObject(
             title: 'BOOK TABLE',
             icon: Icons.bookmark,
             selected: currentRoute == Router.booking,
             onTap: () => Navigator.pushNamed(context, Router.booking),
+          ),
+          _DrawerObject(
+            title: 'MENU',
+            icon: Icons.restaurant_menu,
+            selected: currentRoute == Router.menu,
+            onTap: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],
       ),

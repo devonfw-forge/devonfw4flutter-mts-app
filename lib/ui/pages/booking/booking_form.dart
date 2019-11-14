@@ -13,22 +13,10 @@ class BookingForm extends StatefulWidget {
 
 class _BookingFormState extends State<BookingForm> {
   final _formKey = GlobalKey<FormState>();
-  bool accepted = false;
   final format = DateFormat("dd-MM-yyyy HH:mm");
+  bool conditionsAccepted = false;
 
   DateTime selectedDate = DateTime.now();
-
-  Future<Null> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +28,14 @@ class _BookingFormState extends State<BookingForm> {
         children: <Widget>[
           DateTimeField(
             format: format,
-            decoration: const InputDecoration(labelText: 'Date and Time'),
+            decoration: InputDecoration(labelText: 'Date and Time'),
             onShowPicker: (context, currentValue) => onShowPicker(context, currentValue),
           ),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Name'),
+            decoration: InputDecoration(labelText: 'Name'),
           ),
           TextFormField(
-            decoration: const InputDecoration(labelText: 'Email'),
+            decoration: InputDecoration(labelText: 'Email'),
             keyboardType: TextInputType.emailAddress,
             validator: validateEmail,
           ),
@@ -62,10 +50,10 @@ class _BookingFormState extends State<BookingForm> {
             title: Text("Accept terms"),
             onChanged: (bool) {
               setState(() {
-                accepted = !accepted;
+                conditionsAccepted = !conditionsAccepted;
               });
             },
-            value: accepted,
+            value: conditionsAccepted,
           ),
           RaisedButton(
             color: Theme.of(context).accentColor,

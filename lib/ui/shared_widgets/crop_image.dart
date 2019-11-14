@@ -9,7 +9,7 @@ class CropImage extends StatelessWidget {
   const CropImage({
     Key key,
     @required this.imageLocation,
-    this.imageHeight = 400,
+    this.imageHeight = 300,
   }) : super(key: key);
 
   @override

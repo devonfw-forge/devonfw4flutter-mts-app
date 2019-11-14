@@ -5,10 +5,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const String title = "My Thai Star";
   static const double elevation = 20;
   final double height;
+  final Widget bottom;
 
   const CustomAppBar({
     Key key,
     this.height = 50,
+    this.bottom,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
             icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
       ],
+      bottom: bottom,
     );
   }
 

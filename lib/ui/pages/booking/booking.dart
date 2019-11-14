@@ -9,7 +9,8 @@ import 'invite_tab.dart';
 class Booking extends StatelessWidget {
   Booking({Key key}) : super(key: key);
 
-  final List<Tab> tabs = <Tab>[
+  static const double appBarHeight = 110;
+  static const List<Tab> tabs = <Tab>[
     Tab(text: 'Book a Table'),
     Tab(text: 'Invite Friends'),
   ];
@@ -20,7 +21,7 @@ class Booking extends StatelessWidget {
       length: tabs.length,
       child: Scaffold(
           appBar: CustomAppBar(
-            height: 110,
+            height: appBarHeight,
             bottom: TabBar(
               tabs: tabs,
               indicatorColor: Colors.white,
@@ -32,34 +33,8 @@ class Booking extends StatelessWidget {
           drawer: AppDrawer(),
           body: TabBarView(
             children: <Widget>[
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(UiHelper.standart_padding),
-                      child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        elevation: UiHelper.elevation,
-                        child: BookingTab(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(UiHelper.standart_padding),
-                      child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        elevation: UiHelper.elevation,
-                        child: InviteTab(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              BookingTab(),
+              InviteTab()
             ],
           )),
     );

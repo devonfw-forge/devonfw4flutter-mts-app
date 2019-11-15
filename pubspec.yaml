@@ -1,5 +1,5 @@
 name: my_thai_star_flutter
-description: A new Flutter project.
+description: The Flutter version of the Capgemini reference project My Thai Star.
 version: 1.0.0+1
 
 #for release:       flutter build apk --release
@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  flutter_launcher_icons: ^0.7.4
   flutter_bloc: ^0.21.0
   equatable: ^0.6.1
   http: ^0.12.0+2
@@ -23,11 +24,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
   uses-material-design: true
   assets:

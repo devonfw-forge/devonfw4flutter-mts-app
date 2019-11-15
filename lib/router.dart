@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/pages/booking/booking.dart';
 import 'package:my_thai_star_flutter/ui/pages/home/home.dart';
+import 'package:my_thai_star_flutter/ui/pages/menu/menu.dart';
 
 class Router {
   static const String home = '/';
@@ -10,6 +11,6 @@ class Router {
   static Map<String, WidgetBuilder> routeMap = {
     home: (context) => Home(),
     booking: (context) => Booking(),
-    //menu: (context) => AltTabCard(),
+    menu: (context) => Menu(),
   };
 }

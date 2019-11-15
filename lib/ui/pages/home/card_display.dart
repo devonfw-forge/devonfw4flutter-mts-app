@@ -54,7 +54,7 @@ class CardDisplay extends StatelessWidget {
             text: placeHolderText,
             headline: 'OUR MENU',
             buttonLable: 'VIEW MENU',
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],
       ),

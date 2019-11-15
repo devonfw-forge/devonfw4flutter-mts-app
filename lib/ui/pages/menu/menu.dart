@@ -47,66 +47,61 @@ class Menu extends StatelessWidget {
             floating: true,
             backgroundColor: Colors.white,
             leading: new Container(),
-            expandedHeight: 150,
+            expandedHeight: 120,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 color: Colors.white,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: UiHelper.card_margin, right: UiHelper.card_margin),
-                  child: Column(
-                    children: <Widget>[
-                      TextField(
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          labelText: "Search our Dishes",
+                child: Column(
+                  children: <Widget>[
+                    TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.search),
+                        labelText: "Search our Dishes",
+                      ),
+                    ),
+                    
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Icon(
+                            Icons.sort,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Icon(
-                              Icons.sort,
-                              color: Colors.grey,
-                            ),
+                        Text(
+                          "Sort by",
+                          style: Theme.of(context).textTheme.subhead,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          child: DropdownButton<String>(
+                            isExpanded: true,
+                            value: "Name",
+                            items: <String>['Price', 'Likes', 'Name']
+                                .map((String value) {
+                              return new DropdownMenuItem<String>(
+                                value: value,
+                                child: new Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (_) {},
                           ),
-                          Text(
-                            "Sort by",
-                            style: Theme.of(context).textTheme.subhead,
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            Icons.vertical_align_top,
+                            color: Theme.of(context).accentColor,
                           ),
-                          SizedBox(
-                            width: 18,
-                          ),
-                          Expanded(
-                            child: DropdownButton<String>(
-                              isExpanded: true,
-                              value: "Name",
-                              items: <String>['Price', 'Likes', 'Name']
-                                  .map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: new Text(value),
-                                );
-                              }).toList(),
-                              onChanged: (_) {},
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.vertical_align_top,
-                              color: Theme.of(context).accentColor,
-                            ),
-                            onPressed: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

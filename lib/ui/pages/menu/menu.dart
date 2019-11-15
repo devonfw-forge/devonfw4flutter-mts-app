@@ -112,12 +112,14 @@ class Menu extends StatelessWidget {
             ),
           ),
           SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return DishCard(
-                dish: dishes[index],
-              );
-            }),
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return DishCard(
+                  dish: dishes[index],
+                );
+              },
+              childCount: dishes.length,
+            ),
           ),
         ],
       ),

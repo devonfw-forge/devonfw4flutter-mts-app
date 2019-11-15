@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/authentication_alert.dart';
 
 ///common [AppBar] throughout the App
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,7 +22,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.person, color: Colors.white), onPressed: () {}),
+            icon: Icon(Icons.person_outline, color: Colors.white),
+            onPressed: () {
+              showDialog(context: context, builder: (BuildContext context) {
+                return AuthenticationAlert();
+              },);
+            }),
         IconButton(
             icon: Icon(Icons.shopping_basket, color: Colors.white),
             onPressed: () {}),

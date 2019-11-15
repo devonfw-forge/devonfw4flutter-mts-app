@@ -55,7 +55,9 @@ class Menu extends StatelessWidget {
                       labelText: "Search our Dishes",
                     ),
                   ),
-                  SizedBox(height: 12,),
+                  SizedBox(
+                    height: 12,
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -93,47 +95,6 @@ class Menu extends StatelessWidget {
                           color: Theme.of(context).accentColor,
                         ),
                         onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    title: Text("Filters"),
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                            value: false,
-                            onChanged: (bool) {},
-                          ),
-                          Text("Option"),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                            value: false,
-                            onChanged: (bool) {},
-                          ),
-                          Text("Option"),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                            value: false,
-                            onChanged: (bool) {},
-                          ),
-                          Text("Option"),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Checkbox(
-                            value: false,
-                            onChanged: (bool) {},
-                          ),
-                          Text("Option"),
-                        ],
                       ),
                     ],
                   ),

@@ -16,11 +16,15 @@ class Menu extends StatelessWidget {
         extras: ["Tofu", "Extra Curry",]),
     Dish(
         name: "THAI SPICY BASIL FRIED RICE",
-        description: "Master this aromatic, creamy & extremely tasty" +
-            " chicken Thai green curry recipe from Jamie Oliver & treat" +
-            " yourself to an authentic taste of South East Asia.",
+        description: "This is a staple of Thai cooking. "+
+        "Adjust the spices to your own tastes for a really "+
+        "great use for leftover rice!! I get the basil from a "+
+        "local Asian market. It has a different flavor than "+
+        "that of regular basil and makes all the difference "+
+        "in this recipe. It is fast and fairly easy to make, "+
+        "but requires constant stirring",
         price: 12.99,
-        imageLocation: "assets/images/green-curry.jpg",
+        imageLocation: "assets/images/basil-fried.jpg",
         extras: ["Tofu", "Extra Curry"]),
   ];
 

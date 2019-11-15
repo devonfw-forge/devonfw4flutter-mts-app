@@ -40,78 +40,84 @@ class Menu extends StatelessWidget {
       appBar: CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: AppDrawer(),
-      body: Column(
-        children: <Widget>[
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.only(
-                  left: UiHelper.card_margin, right: UiHelper.card_margin),
-              child: Column(
-                children: <Widget>[
-                  TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      labelText: "Search our Dishes",
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            elevation: UiHelper.elevation,
+            floating: true,
+            backgroundColor: Colors.white,
+            leading: new Container(),
+            expandedHeight: 150,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: UiHelper.card_margin, right: UiHelper.card_margin),
+                  child: Column(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Icon(
-                          Icons.sort,
-                          color: Colors.grey,
+                      TextField(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          labelText: "Search our Dishes",
                         ),
-                      ),
-                      Text(
-                        "Sort by",
-                        style: Theme.of(context).textTheme.subhead,
                       ),
                       SizedBox(
-                        width: 18,
+                        height: 12,
                       ),
-                      Expanded(
-                        child: DropdownButton<String>(
-                          isExpanded: true,
-                          value: "Name",
-                          items: <String>['Price', 'Likes', 'Name']
-                              .map((String value) {
-                            return new DropdownMenuItem<String>(
-                              value: value,
-                              child: new Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (_) {},
-                        ),
-                      ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.vertical_align_top,
-                          color: Theme.of(context).accentColor,
-                        ),
-                        onPressed: () {},
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Icon(
+                              Icons.sort,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Text(
+                            "Sort by",
+                            style: Theme.of(context).textTheme.subhead,
+                          ),
+                          SizedBox(
+                            width: 18,
+                          ),
+                          Expanded(
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: "Name",
+                              items: <String>['Price', 'Likes', 'Name']
+                                  .map((String value) {
+                                return new DropdownMenuItem<String>(
+                                  value: value,
+                                  child: new Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (_) {},
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.vertical_align_top,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: dishes.length,
-              itemBuilder: (context, index) {
-                return DishCard(
-                  dish: dishes[index],
-                );
-              },
-            ),
+          SliverList(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return DishCard(
+                dish: dishes[index],
+              );
+            }),
           ),
         ],
       ),

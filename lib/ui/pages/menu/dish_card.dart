@@ -6,6 +6,8 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import '../../ui_helper.dart';
 
 class DishCard extends StatelessWidget {
+  static const double imageHeight = 200;
+  static const double outerPadding = 8;
   final Dish dish;
 
   const DishCard({Key key, @required this.dish}) : super(key: key);
@@ -13,7 +15,11 @@ class DishCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
+      padding: const EdgeInsets.only(
+        left: outerPadding,
+        right: outerPadding,
+        top: outerPadding,
+      ),
       child: Card(
         clipBehavior: Clip.antiAlias,
         elevation: UiHelper.elevation,
@@ -22,7 +28,7 @@ class DishCard extends StatelessWidget {
           children: <Widget>[
             CropImage(
               imageLocation: dish.imageLocation,
-              imageHeight: 200,
+              imageHeight: imageHeight,
             ),
             Padding(
               padding: const EdgeInsets.all(UiHelper.card_margin),

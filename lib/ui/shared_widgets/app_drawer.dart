@@ -34,6 +34,12 @@ class AppDrawer extends StatelessWidget {
             selected: currentRoute == Router.menu,
             onTap: () => Navigator.pushNamed(context, Router.menu),
           ),
+          _DrawerObject(
+            title: 'TEMP',
+            icon: Icons.watch,
+            selected: currentRoute == Router.temp,
+            onTap: () => Navigator.pushNamed(context, Router.temp),
+          ),
         ],
       ),
     );

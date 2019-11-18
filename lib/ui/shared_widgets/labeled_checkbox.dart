@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class ExtraCheckBox extends StatefulWidget {
-  final String extraName;
+class LabeledCheckBox extends StatefulWidget {
+  final String label;
 
-  const ExtraCheckBox({
+  const LabeledCheckBox({
     Key key,
-    @required this.extraName,
+    @required this.label,
   }) : super(key: key);
 
   @override
-  _ExtraCheckBoxState createState() => _ExtraCheckBoxState();
+  _LabeledCheckBoxState createState() => _LabeledCheckBoxState();
 }
 
-class _ExtraCheckBoxState extends State<ExtraCheckBox> {
+class _LabeledCheckBoxState extends State<LabeledCheckBox> {
   bool checked = false;
 
   @override
@@ -28,7 +28,7 @@ class _ExtraCheckBoxState extends State<ExtraCheckBox> {
             });
           },
         ),
-        Text(widget.extraName)
+        Text(widget.label)
       ],
     );
   }

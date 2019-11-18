@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/ui/pages/menu/extra_checkbox.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
 
 import '../../ui_helper.dart';
 
@@ -54,7 +54,7 @@ class DishCard extends StatelessWidget {
                   SizedBox(height: UiHelper.standart_padding),
                   Wrap(
                     children: dish.extras
-                        .map((e) => new ExtraCheckBox(extraName: e))
+                        .map((e) => new LabeledCheckBox(label: e))
                         .toList(),
                   ),
                   SizedBox(height: UiHelper.standart_padding),

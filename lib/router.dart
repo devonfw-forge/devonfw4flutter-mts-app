@@ -8,12 +8,14 @@ class Router {
   static const String home = '/';
   static const String booking = '/booking';
   static const String menu = '/menu';
+  static const String currentOrder = '/currentOrder';
   static const String temp = '/temp';
 
   static Map<String, WidgetBuilder> routeMap = {
     home: (context) => Home(),
     booking: (context) => Booking(),
     menu: (context) => Menu(),
+    currentOrder: (context) => Menu(),
     temp: (context) => Example1(),
   };
 }

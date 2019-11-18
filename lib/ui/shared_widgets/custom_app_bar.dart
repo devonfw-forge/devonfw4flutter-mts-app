@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/authentication_alert.dart';
 
+import '../../router.dart';
+
 ///common [AppBar] throughout the App
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   static const String title = "My Thai Star";
@@ -24,13 +26,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
             icon: Icon(Icons.person_outline, color: Colors.white),
             onPressed: () {
-              showDialog(context: context, builder: (BuildContext context) {
-                return AuthenticationAlert();
-              },);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AuthenticationAlert(),
+              );
             }),
         IconButton(
-            icon: Icon(Icons.shopping_basket, color: Colors.white),
-            onPressed: () {}),
+          icon: Icon(Icons.shopping_basket, color: Colors.white),
+          onPressed: () => Navigator.pushNamed(context, Router.menu),
+        ),
         IconButton(
             icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
       ],

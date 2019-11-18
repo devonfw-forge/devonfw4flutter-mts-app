@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             }),
         IconButton(
           icon: Icon(Icons.shopping_basket, color: Colors.white),
-          onPressed: () => Navigator.pushNamed(context, Router.menu),
+          onPressed: () => Navigator.pushNamed(context, Router.currentOrder),
         ),
         IconButton(
             icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),

@@ -19,55 +19,86 @@ class DishSlip extends StatelessWidget {
             icon: Icon(Icons.cancel),
             onPressed: () {},
           ),
-          Expanded(
-            flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  dish.name,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: Colors.black),
-                ),
-                SizedBox(height: textDistance),
-                Text(
-                  "${dish.extras}".replaceAll(RegExp(r"[\[\]]"), ""),
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: textDistance),
-                Text(
-                  "Add Comment",
-                  style: TextStyle(color: Theme.of(context).accentColor),
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: () {},
-          ),
-          Text(
-            "1",
-            style: Theme.of(context)
-                .textTheme
-                .subtitle
-                .copyWith(color: Colors.grey),
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.add,
-              color: Theme.of(context).accentColor,
-            ),
-            onPressed: () {},
-          ),
+          _Content(dish: dish, textDistance: textDistance),
+          _Amount(),
           Text(
             "${dish.price} €",
             style: Theme.of(context)
                 .textTheme
                 .subtitle
                 .copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Amount extends StatelessWidget {
+  const _Amount({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        IconButton(
+          icon: Icon(Icons.remove),
+          onPressed: () {},
+        ),
+        Text(
+          "1",
+          style: Theme.of(context)
+              .textTheme
+              .subtitle
+              .copyWith(color: Colors.grey),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.add,
+            color: Theme.of(context).accentColor,
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
+}
+
+class _Content extends StatelessWidget {
+  const _Content({
+    Key key,
+    @required this.dish,
+    @required this.textDistance,
+  }) : super(key: key);
+
+  final Dish dish;
+  final double textDistance;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            dish.name,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle
+                .copyWith(color: Colors.black),
+          ),
+          SizedBox(height: textDistance),
+          Text(
+            "${dish.extras}".replaceAll(RegExp(r"[\[\]]"), ""),
+            style: TextStyle(color: Colors.grey),
+          ),
+          SizedBox(height: textDistance),
+          Text(
+            "Add Comment",
+            style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],
       ),

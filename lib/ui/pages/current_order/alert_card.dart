@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class AlertCard extends StatelessWidget {
+  static const double padding = 20;
+  static const Color backgroundColor = Color(0xffffe4c4);
+
+  static const String message =
+      "To order a menu it is necessary to obtain a booking id" +
+          ". Either you enter your already known booking id or you book a table";
+
   const AlertCard({
     Key key,
   }) : super(key: key);
@@ -9,21 +16,17 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 20, left: 20),
+      padding: EdgeInsets.only(right: padding, left: padding),
       child: Card(
         elevation: UiHelper.elevation,
-        color: Color(0xffffe4c4),
+        color: backgroundColor,
         child: Padding(
-          padding: const EdgeInsets.all(UiHelper.standart_padding),
+          padding: EdgeInsets.all(UiHelper.standart_padding),
           child: Row(
             children: <Widget>[
               Icon(Icons.report_problem),
               SizedBox(width: UiHelper.standart_padding),
-              Expanded(
-                child: Text(
-                    "To order a menu it is necessary to obtain a booking id" +
-                        ". Either you enter your already known booking id or you book a table"),
-              ),
+              Expanded(child: Text(message)),
               SizedBox(width: UiHelper.standart_padding),
               FlatButton(
                 child: Text(

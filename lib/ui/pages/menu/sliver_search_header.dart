@@ -15,7 +15,7 @@ class SliverSearchHeader extends StatelessWidget {
       elevation: UiHelper.elevation,
       floating: true,
       backgroundColor: Colors.white,
-      leading: new Container(),
+      leading: Container(),
       expandedHeight: height,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(

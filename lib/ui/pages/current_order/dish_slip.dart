@@ -17,6 +17,7 @@ class DishSlip extends StatelessWidget {
         children: <Widget>[
           IconButton(
             icon: Icon(Icons.cancel),
+            onPressed: () {},
           ),
           Expanded(
             flex: 2,
@@ -45,6 +46,7 @@ class DishSlip extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.remove),
+            onPressed: () {},
           ),
           Text(
             "1",
@@ -58,6 +60,7 @@ class DishSlip extends StatelessWidget {
               Icons.add,
               color: Theme.of(context).accentColor,
             ),
+            onPressed: () {},
           ),
           Text(
             "${dish.price} €",

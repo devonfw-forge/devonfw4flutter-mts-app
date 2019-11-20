@@ -36,7 +36,7 @@ class OrderConfirmation extends StatelessWidget {
                       color: Colors.grey,
                     ),
               ),
-              onPressed: () {},
+              onPressed: () => Navigator.pop(context),
             ),
             SizedBox(width: UiHelper.standart_padding),
             FlatButton(

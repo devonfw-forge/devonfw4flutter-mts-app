@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/ui/pages/current_order/alert_card.dart';
-import 'package:my_thai_star_flutter/ui/pages/current_order/dish_slip.dart';
-import 'package:my_thai_star_flutter/ui/pages/current_order/dish_slip_list.dart';
+import 'package:my_thai_star_flutter/models/dish.dart';import 'package:my_thai_star_flutter/ui/pages/current_order/dish_slip.dart';
+import 'package:my_thai_star_flutter/ui/pages/current_order/order_confirmation.dart';
+import 'package:my_thai_star_flutter/ui/pages/current_order/order_list_header.dart';
 import 'package:my_thai_star_flutter/ui/pages/current_order/resume_header.dart';
+import 'package:my_thai_star_flutter/ui/pages/current_order/total_price_display.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
-import 'package:my_thai_star_flutter/ui/ui_helper.dart';
+
 
 class CurrentOrder extends StatelessWidget {
   final List<Dish> dishes = [
@@ -44,50 +43,30 @@ class CurrentOrder extends StatelessWidget {
       appBar: CustomAppBar(),
       backgroundColor: Colors.white,
       drawer: AppDrawer(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ResumeHeader(),
-          DishSlipList(dishes: dishes),
-          AlertCard(),
-          Padding(
-            padding: const EdgeInsets.only(
-              right: UiHelper.standart_padding,
-              left: UiHelper.standart_padding,
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "Booking ID",
-              ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                ResumeHeader(),
+                OrderListHeader(),
+              ],
             ),
           ),
-          LabeledCheckBox(
-            label: "Accept Terms",
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) =>
+                    DishSlip(dish: dishes[index]),
+                childCount: dishes.length),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                child: Text(
-                  "CANCEL",
-                  style: Theme.of(context).textTheme.button.copyWith(
-                        color: Colors.grey,
-                      ),
-                ),
-                onPressed: () {},
-              ),
-              SizedBox(width: UiHelper.standart_padding),
-              FlatButton(
-                child: Text(
-                  "SEND",
-                  style: Theme.of(context).textTheme.button.copyWith(
-                        color: Theme.of(context).accentColor,
-                      ),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          )
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                TotalPriceDisplay(),
+                OrderConfirmation(),
+              ],
+            ),
+          ),
         ],
       ),
     );

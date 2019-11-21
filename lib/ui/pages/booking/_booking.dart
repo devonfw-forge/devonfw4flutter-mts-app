@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/pages/booking/custom_form_card.dart';
 import 'package:my_thai_star_flutter/ui/pages/booking/invite_form.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
@@ -37,7 +38,7 @@ class Booking extends StatelessWidget {
                 title: "BOOK YOUR TABLE",
                 subTitle: "You can book a table and an order menu",
                 headerImageLocation: bookingImage,
-                form: InviteForm(),
+                form: BookingForm(),
               ),
               CustomFormCard(
                 title: "ADD YOUR INFORMATION AND FRIENDS",

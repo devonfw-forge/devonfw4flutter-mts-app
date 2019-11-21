@@ -13,6 +13,8 @@ import 'package:my_thai_star_flutter/blocs/form_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/guest_number_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/name_validation_bloc.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/bloc_date_picker.dart';
+import 'package:my_thai_star_flutter/ui/pages/booking/bloc_form_field.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);
@@ -48,64 +50,35 @@ class _BookingFormState extends State<BookingForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          BlocBuilder(
+          BlocDatePicker(
             bloc: _dateValidationBloc,
-            builder: (context, ValidationState state) {
-              return DateTimeField(
-                readOnly: true,
-                controller: _dateController,
-                format: format,
-                decoration: InputDecoration(labelText: 'Date and Time'),
-                validator: (_) => _validateDate(state),
-                onChanged: (DateTime input) {
-                  _dateValidationBloc
-                      .dispatch(input == null ? "" : input.toString());
-                },
-                onShowPicker: (context, currentValue) =>
-                    onShowPicker(context, currentValue),
-              );
-            },
+            controller: _dateController,
+            lable: 'Date and Time',
+            errorHint: "Please select a Date",
+            format: format,
           ),
-          BlocBuilder(
+          BlocFormField(
             bloc: _nameValidationBloc,
-            builder: (context, ValidationState state) {
-              return TextFormField(
-                decoration: InputDecoration(labelText: 'Name'),
-                controller: _nameController,
-                onChanged: (String input) =>
-                    _nameValidationBloc.dispatch(input),
-                validator: (_) => _validateName(state),
-              );
-            },
+            controller: _nameController,
+            lable: "Name",
+            errorHint: 'Please enter your Name.',
           ),
-          BlocBuilder(
+          BlocFormField(
             bloc: _emailValidationBloc,
-            builder: (context, ValidationState state) {
-              return TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (String input) =>
-                    _emailValidationBloc.dispatch(input),
-                validator: (_) => _validateEmail(state),
-              );
-            },
+            controller: _emailController,
+            lable: "Email",
+            errorHint: "Enter valid Email",
+            keyboardType: TextInputType.emailAddress,
           ),
-          BlocBuilder(
+          BlocFormField(
             bloc: _guestNumberValidationBloc,
-            builder: (context, ValidationState state) {
-              return TextFormField(
-                decoration: InputDecoration(labelText: 'Table Guests'),
-                controller: _guestController,
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  WhitelistingTextInputFormatter.digitsOnly
-                ],
-                onChanged: (String input) =>
-                    _guestNumberValidationBloc.dispatch(input),
-                validator: (_) => _validateGuests(state),
-              );
-            },
+            controller: _guestController,
+            lable: 'Table Guests',
+            errorHint: 'Please enter the Number of Guests.',
+            inputFormatters: <TextInputFormatter>[
+              WhitelistingTextInputFormatter.digitsOnly
+            ],
+            keyboardType: TextInputType.number,
           ),
           CheckboxListTile(
             title: Text("Accept terms"),
@@ -155,27 +128,6 @@ class _BookingFormState extends State<BookingForm> {
       return "Please select a Date";
   }
 
-  String _validateEmail(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
-      return "Enter valid Email";
-  }
-
-  String _validateName(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
-      return 'Please enter your Name.';
-  }
-
-  String _validateGuests(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
-      return 'Please enter the Number of Guests.';
-  }
-
   //CallBacks ------------
 
   void _sendBooking() {
@@ -188,24 +140,6 @@ class _BookingFormState extends State<BookingForm> {
       );
 
       _bookingBloc.dispatch(booking);
-    }
-  }
-
-  Future<DateTime> onShowPicker(
-      BuildContext context, DateTime currentValue) async {
-    final date = await showDatePicker(
-        context: context,
-        firstDate: DateTime.now(),
-        initialDate: currentValue ?? DateTime.now(),
-        lastDate: DateTime(2100));
-    if (date != null) {
-      final time = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-      );
-      return DateTimeField.combine(date, time);
-    } else {
-      return currentValue;
     }
   }
 }

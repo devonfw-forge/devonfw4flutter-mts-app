@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/date_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/email_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/form_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/guest_number_validation_bloc.dart';
@@ -24,13 +25,12 @@ class _BookingFormState extends State<BookingForm> {
   final format = DateFormat("dd-MM-yyyy HH:mm");
   bool conditionsAccepted = false;
 
-  DateTime selectedDate = DateTime.now();
-
   EmailValidationBloc _emailValidationBloc = EmailValidationBloc();
+  DateValidationBloc _dateValidationBloc = DateValidationBloc();
   NameValidationBloc _nameValidationBloc = NameValidationBloc();
+  BookingBloc _bookingBloc = BookingBloc();
   GuestNumberValidationBloc _guestNumberValidationBloc =
       GuestNumberValidationBloc();
-  BookingBloc _bookingBloc = BookingBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +39,22 @@ class _BookingFormState extends State<BookingForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          DateTimeField(
-            format: format,
-            decoration: InputDecoration(labelText: 'Date and Time'),
-            onShowPicker: (context, currentValue) =>
-                onShowPicker(context, currentValue),
+          BlocBuilder(
+            bloc: _dateValidationBloc,
+            builder: (context, ValidationState state) {
+              return DateTimeField(
+                readOnly: true,
+                format: format,
+                decoration: InputDecoration(labelText: 'Date and Time'),
+                validator: (_) => _validateDate(state),
+                onChanged: (DateTime input) {
+                  _dateValidationBloc
+                      .dispatch(input == null ? "" : input.toString());
+                },
+                onShowPicker: (context, currentValue) =>
+                    onShowPicker(context, currentValue),
+              );
+            },
           ),
           BlocBuilder(
             bloc: _nameValidationBloc,
@@ -85,7 +96,7 @@ class _BookingFormState extends State<BookingForm> {
           ),
           CheckboxListTile(
             title: Text("Accept terms"),
-            onChanged: (bool) {
+            onChanged: (_) {
               setState(() {
                 conditionsAccepted = !conditionsAccepted;
               });
@@ -110,9 +121,20 @@ class _BookingFormState extends State<BookingForm> {
   @override
   void dispose() {
     _emailValidationBloc.dispose();
+    _nameValidationBloc.dispose();
     _bookingBloc.dispose();
+    _guestNumberValidationBloc.dispose();
+    _dateValidationBloc.dispose();
 
     super.dispose();
+  }
+
+  String _validateDate(ValidationState state) {
+    if (state == ValidationState.valid) {
+      return "null";
+    } else {
+      return "Please select a Date";
+    }
   }
 
   String _validateEmail(ValidationState state) {
@@ -130,7 +152,7 @@ class _BookingFormState extends State<BookingForm> {
   }
 
   _validateGuests(ValidationState state) {
-     if (state == ValidationState.valid)
+    if (state == ValidationState.valid)
       return null;
     else
       return 'Please enter the Number of Guests.';

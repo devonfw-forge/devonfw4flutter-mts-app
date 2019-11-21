@@ -1,14 +1,17 @@
-
 class Booking {
-  String name;
   DateTime date;
+  String name;
   String organizerEmail;
+  int guests;
+  bool termsAccepted;
   List<String> inviteEmails;
 
-  Booking(
-    this.name,
+  Booking({
     this.date,
+    this.name,
     this.organizerEmail,
+    this.guests,
+    this.termsAccepted,
     this.inviteEmails,
-  );
+  });
 }

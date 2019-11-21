@@ -122,18 +122,7 @@ class _BookingFormState extends State<BookingForm> {
               "Book Table",
               style: Theme.of(context).textTheme.button,
             ),
-            onPressed: () {
-              if (_formKey.currentState.validate()) {
-                Booking booking = Booking(
-                  organizerEmail: _emailController.text,
-                  date: _dateController.text,
-                  name: _nameController.text,
-                  guests: int.parse(_guestController.text),
-                );
-
-                _bookingBloc.dispatch(booking);
-              }
-            },
+            onPressed: () => _sendBooking(),
           )
         ],
       ),
@@ -157,6 +146,8 @@ class _BookingFormState extends State<BookingForm> {
     super.dispose();
   }
 
+  //Validation ------------
+
   String _validateDate(ValidationState state) {
     if (state == ValidationState.valid)
       return null;
@@ -178,11 +169,26 @@ class _BookingFormState extends State<BookingForm> {
       return 'Please enter your Name.';
   }
 
-  _validateGuests(ValidationState state) {
+  String _validateGuests(ValidationState state) {
     if (state == ValidationState.valid)
       return null;
     else
       return 'Please enter the Number of Guests.';
+  }
+
+  //CallBacks ------------
+
+  void _sendBooking() {
+    if (_formKey.currentState.validate()) {
+      Booking booking = Booking(
+        organizerEmail: _emailController.text,
+        date: _dateController.text,
+        name: _nameController.text,
+        guests: int.parse(_guestController.text),
+      );
+
+      _bookingBloc.dispatch(booking);
+    }
   }
 
   Future<DateTime> onShowPicker(

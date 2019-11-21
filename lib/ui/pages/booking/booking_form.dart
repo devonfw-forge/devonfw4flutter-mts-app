@@ -1,12 +1,10 @@
-import 'dart:developer';
-
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/checkbox_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/date_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/email_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/form_validation_bloc.dart';
@@ -26,7 +24,6 @@ class BookingForm extends StatefulWidget {
 class _BookingFormState extends State<BookingForm> {
   final _formKey = GlobalKey<FormState>();
   final format = DateFormat("dd-MM-yyyy HH:mm");
-  bool conditionsAccepted = false;
 
   //Text Controllers
   TextEditingController _emailController = TextEditingController();
@@ -36,10 +33,10 @@ class _BookingFormState extends State<BookingForm> {
 
   //BLoCs
   BookingBloc _bookingBloc = BookingBloc();
-
   EmailValidationBloc _emailValidationBloc = EmailValidationBloc();
   DateValidationBloc _dateValidationBloc = DateValidationBloc();
   NameValidationBloc _nameValidationBloc = NameValidationBloc();
+  CheckboxBloc _termsBloc = CheckboxBloc();
   GuestNumberValidationBloc _guestNumberValidationBloc =
       GuestNumberValidationBloc();
 
@@ -80,22 +77,29 @@ class _BookingFormState extends State<BookingForm> {
             ],
             keyboardType: TextInputType.number,
           ),
-          CheckboxListTile(
-            title: Text("Accept terms"),
-            onChanged: (_) {
-              setState(() {
-                conditionsAccepted = !conditionsAccepted;
-              });
+          BlocBuilder(
+            bloc: _termsBloc,
+            builder: (context, bool state) {
+              return Row(
+                children: <Widget>[
+                  CheckboxListTile(
+                    title: Text("Accept terms"),
+                    onChanged: (_) => _termsBloc.dispatch(CheckboxActions.tap),
+                    value: state,
+                  ),
+                  RaisedButton(
+                    color: Theme.of(context).accentColor,
+                    disabledColor: Colors.grey,
+                    disabledTextColor: Colors.grey,
+                    child: Text(
+                      "Book Table",
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                    onPressed: () => state ? _sendBooking() : null,
+                  ),
+                ],
+              );
             },
-            value: conditionsAccepted,
-          ),
-          RaisedButton(
-            color: Theme.of(context).accentColor,
-            child: Text(
-              "Book Table",
-              style: Theme.of(context).textTheme.button,
-            ),
-            onPressed: () => _sendBooking(),
           )
         ],
       ),
@@ -110,6 +114,7 @@ class _BookingFormState extends State<BookingForm> {
     _nameValidationBloc.dispose();
     _guestNumberValidationBloc.dispose();
     _dateValidationBloc.dispose();
+    _termsBloc.dispose();
 
     _emailController.dispose();
     _nameController.dispose();
@@ -118,17 +123,6 @@ class _BookingFormState extends State<BookingForm> {
 
     super.dispose();
   }
-
-  //Validation ------------
-
-  String _validateDate(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
-      return "Please select a Date";
-  }
-
-  //CallBacks ------------
 
   void _sendBooking() {
     if (_formKey.currentState.validate()) {

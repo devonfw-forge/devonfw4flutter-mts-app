@@ -6,8 +6,7 @@ class BookingService extends ExchangePoint<Booking, BookingResponse> {
   static const String endPoint = 'bookingmanagement/v1/booking';
 
   @override
-  Future<BookingResponse> post(Booking input) {
-    // TODO: implement get
-    return null;
+  Future<BookingResponse> post(Booking input) async {
+    return BookingResponse();
   }
 }

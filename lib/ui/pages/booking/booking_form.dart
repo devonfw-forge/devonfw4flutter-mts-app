@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/blocs/checkbox_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/date_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/email_validation_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/form_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/guest_number_validation_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/name_validation_bloc.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
@@ -39,6 +39,27 @@ class _BookingFormState extends State<BookingForm> {
   CheckboxBloc _termsBloc = CheckboxBloc();
   GuestNumberValidationBloc _guestNumberValidationBloc =
       GuestNumberValidationBloc();
+
+  @override
+  void initState() {
+    _bookingBloc.state.listen((BookingState state) {
+      if (state is ConfirmedBookingState) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          duration: Duration(seconds: 3),
+          content: Text("Booking Confirmed!\n" +
+              "Booking Number: " +
+              state.bookingNumber),
+        ));
+      } else if (state is DeclinedBookingState) {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          duration: Duration(seconds: 3),
+          content: Text("Booking Declined\n" + "Error Code: " + state.error),
+        ));
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +101,9 @@ class _BookingFormState extends State<BookingForm> {
           BlocBuilder(
             bloc: _termsBloc,
             builder: (context, bool state) {
-              return Row(
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   CheckboxListTile(
                     title: Text("Accept terms"),
@@ -95,7 +118,7 @@ class _BookingFormState extends State<BookingForm> {
                       "Book Table",
                       style: Theme.of(context).textTheme.button,
                     ),
-                    onPressed: () => state ? _sendBooking() : null,
+                    onPressed: state ? () => _sendBooking() : null,
                   ),
                 ],
               );
@@ -134,6 +157,11 @@ class _BookingFormState extends State<BookingForm> {
       );
 
       _bookingBloc.dispatch(booking);
+    } else {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        duration: Duration(seconds: 1, microseconds: 50),
+        content: Text("Please fill out the Form"),
+      ));
     }
   }
 }

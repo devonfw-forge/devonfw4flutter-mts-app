@@ -1,5 +1,5 @@
 class BookingResponse{
-  bool accepted = false;
+  bool accepted = true;
   String bookingNumber = "1";
   String statusCode = "1";
 }

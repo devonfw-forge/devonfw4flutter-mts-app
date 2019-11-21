@@ -1,5 +1,5 @@
 class Booking {
-  DateTime date;
+  String date;
   String name;
   String organizerEmail;
   int guests;

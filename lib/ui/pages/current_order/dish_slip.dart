@@ -33,13 +33,16 @@ class DishSlip extends StatelessWidget {
             amount: amount,
             order: dish,
           ),
-          Text(
-            "${dish.price} €",
-            style: Theme.of(context)
-                .textTheme
-                .subtitle
-                .copyWith(color: Colors.grey),
-          ),
+          BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+              builder: (context, order) {
+            return Text(
+              "${calcPrice(dish, order).toStringAsFixed(2)} €",
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle
+                  .copyWith(color: Colors.grey),
+            );
+          }),
         ],
       ),
     );
@@ -120,4 +123,8 @@ class _Content extends StatelessWidget {
       ),
     );
   }
+}
+
+double calcPrice(Dish dish, Map<Dish, int> order) {
+  return order[dish] * dish.price;
 }

@@ -5,13 +5,15 @@ class Dish {
   final String description;
   final double price;
   final String imageLocation;
-  final List<String> extras;
+  String comment;
+  List<String> extras;
 
   Dish({
     @required this.name,
     @required this.description,
     @required this.price,
     @required this.imageLocation,
-    @required this.extras,
+    this.extras,
+    this.comment,
   });
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
@@ -64,7 +67,8 @@ class DishCard extends StatelessWidget {
                       "ADD TO ORDER",
                       style: Theme.of(context).textTheme.button,
                     ),
-                    onPressed: () {},
+                    onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
+                        .dispatch(AddOrderEvent(dish)),
                   )
                 ],
               ),

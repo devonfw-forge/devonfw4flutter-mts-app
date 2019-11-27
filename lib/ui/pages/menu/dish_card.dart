@@ -56,7 +56,7 @@ class DishCard extends StatelessWidget {
                           )),
                   SizedBox(height: UiHelper.standart_padding),
                   Wrap(
-                    children: dish.extras
+                    children: dish.extras.keys
                         .map((e) => LabeledCheckBox(label: e))
                         .toList(),
                   ),

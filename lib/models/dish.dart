@@ -6,7 +6,7 @@ class Dish {
   final double price;
   final String imageLocation;
   String comment;
-  List<String> extras;
+  Map<String, bool> extras;
 
   Dish({
     @required this.name,

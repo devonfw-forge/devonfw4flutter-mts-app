@@ -111,7 +111,7 @@ class _Content extends StatelessWidget {
           ),
           SizedBox(height: textDistance),
           Text(
-            "${dish.extras}".replaceAll(RegExp(r"[\[\]]"), ""),
+            "${getExtras(dish)}",
             style: TextStyle(color: Colors.grey),
           ),
           SizedBox(height: textDistance),
@@ -123,6 +123,12 @@ class _Content extends StatelessWidget {
       ),
     );
   }
+}
+
+String getExtras(Dish dish) {
+  String res = "";
+  dish.extras.forEach((extra, choice) => res += choice ? extra + ", " : "");
+  return res;
 }
 
 double calcPrice(Dish dish, Map<Dish, int> order) {

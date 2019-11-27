@@ -3,7 +3,6 @@ class Booking {
   String name;
   String organizerEmail;
   int guests;
-  bool termsAccepted;
   List<String> inviteEmails;
 
   Booking({
@@ -11,7 +10,15 @@ class Booking {
     this.name,
     this.organizerEmail,
     this.guests,
-    this.termsAccepted,
     this.inviteEmails,
   });
+
+  Map<String, dynamic> toJson() => {
+        'booking': {
+          'assistants' : guests + 1,
+          'bookingDate' : date.toString(),
+          'email' : organizerEmail,
+          'name' : name
+        }
+      };
 }

@@ -1,4 +1,8 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/authentication_alert.dart';
 
 import '../../router.dart';
@@ -31,9 +35,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 builder: (BuildContext context) => AuthenticationAlert(),
               );
             }),
-        IconButton(
-          icon: Icon(Icons.shopping_basket, color: Colors.white),
-          onPressed: () => Navigator.pushNamed(context, Router.currentOrder),
+        BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+          builder: (context, dishes) => _buildBasketIcon(dishes, context),
         ),
         IconButton(
             icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
@@ -42,6 +45,35 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
+  Widget _buildBasketIcon(Map<Dish, int> dishes, BuildContext context) {
+    int amount = getOrderAmount(dishes);
+
+    Widget iconButton = IconButton(
+      icon: Icon(Icons.shopping_basket, color: Colors.white),
+      onPressed: () => Navigator.pushNamed(context, Router.currentOrder),
+    );
+    
+    if (amount == 0) {
+      return iconButton;
+    } else {
+      return Badge(
+        badgeContent: Text(
+          "$amount",
+          style: TextStyle(color: Colors.white),
+        ),
+        position: BadgePosition.topRight(top: 1, right: 1),
+        badgeColor: Theme.of(context).accentColor,
+        child: iconButton,
+      );
+    }
+  }
+
   @override
   Size get preferredSize => Size.fromHeight(height);
+
+  int getOrderAmount(Map<Dish, int> dishes) {
+    int amount = 0;
+    dishes.forEach((d, i) => amount += i);
+    return amount;
+  }
 }

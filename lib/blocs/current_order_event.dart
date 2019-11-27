@@ -9,7 +9,7 @@ abstract class CurrentOrderEvent extends Equatable {
 class AddOrderEvent extends CurrentOrderEvent {
   final Dish order;
 
-  AddOrderEvent({this.order});
+  AddOrderEvent(this.order);
 
   @override
   List<Object> get props => [order];
@@ -17,7 +17,15 @@ class AddOrderEvent extends CurrentOrderEvent {
 class RemoveOrderEvent extends CurrentOrderEvent {
   final Dish order;
 
-  RemoveOrderEvent({this.order});
+  RemoveOrderEvent(this.order);
+
+  @override
+  List<Object> get props => [order];
+}
+class DeleteOrderPositionEvent extends CurrentOrderEvent {
+  final Dish order;
+
+  DeleteOrderPositionEvent(this.order);
 
   @override
   List<Object> get props => [order];

@@ -29,12 +29,17 @@ class CurrentOrder extends StatelessWidget {
               ],
             ),
           ),
-          BlocBuilder<CurrentOrderBloc, List<Dish>>(
+          BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
             builder: (context, dishes) => SliverList(
               delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) =>
-                      DishSlip(dish: dishes[index]),
-                  childCount: dishes.length),
+                (BuildContext context, int index) {
+                  Dish dish = dishes.keys.toList()[index];
+                  int amount = dishes[dish];
+
+                  return DishSlip(dish: dish, amount: amount);
+                },
+                childCount: dishes.length,
+              ),
             ),
           ),
           SliverList(

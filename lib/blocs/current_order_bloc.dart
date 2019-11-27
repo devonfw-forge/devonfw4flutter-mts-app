@@ -4,8 +4,8 @@ import 'package:my_thai_star_flutter/models/dish.dart';
 
 import 'current_order_event.dart';
 
-class CurrentOrderBloc extends Bloc<CurrentOrderEvent, List<Dish>> {
-final List<Dish> dishes = [
+class CurrentOrderBloc extends Bloc<CurrentOrderEvent, Map<Dish, int>> {
+  Map<Dish, int> dishes = {
     Dish(
         name: "THAI GREEN CHICKEN CURRY",
         description: "Master this aromatic, creamy & extremely tasty" +
@@ -16,7 +16,7 @@ final List<Dish> dishes = [
         extras: [
           "Tofu",
           "Extra Curry",
-        ]),
+        ]): 1,
     Dish(
         name: "THAI SPICY BASIL FRIED RICE",
         description: "This is a staple of Thai cooking. " +
@@ -28,21 +28,40 @@ final List<Dish> dishes = [
             "but requires constant stirring",
         price: 12.99,
         imageLocation: "assets/images/basil-fried.jpg",
-        extras: ["Tofu", "Extra Curry"]),
-  ];
+        extras: ["Tofu", "Extra Curry"]): 2
+  };
 
   @override
-  List<Dish> get initialState => dishes;
+  Map<Dish, int> get initialState => dishes;
 
   @override
-  Stream<List<Dish>> mapEventToState(CurrentOrderEvent event) async* {
-    yield dishes;
+  Stream<Map<Dish, int>> mapEventToState(CurrentOrderEvent event) async* {
+    Map<Dish, int> newOrder = Map()..addAll(currentState);
 
-    //List<Dish> newFavorites = List()..addAll(currentState);
+    if (event is AddOrderEvent) {
+      if (newOrder.containsKey(event.order)) {
+        newOrder[event.order]++;
+      } else {
+        newOrder[event.order] = 1;
+      }
+    }
 
-    //if (event is AddOrderEvent) newFavorites.add(event.order);
-    //if (event is RemoveOrderEvent) newFavorites.remove(event.order);
+    if (event is RemoveOrderEvent) {
+      if (newOrder.containsKey(event.order)) {
+        if (newOrder[event.order] > 1) {
+          newOrder[event.order]--;
+        }else{
+          newOrder.remove(event.order);
+        }
+      }
+    }
 
-    //yield newFavorites;
+    if(event is DeleteOrderPositionEvent){
+      if (newOrder.containsKey(event.order)) {
+        newOrder.remove(event.order);
+      }
+    }
+
+    yield newOrder;
   }
 }

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class DishSlip extends StatelessWidget {
   static const double textDistance = 3;
   final Dish dish;
+  final int amount;
 
-  const DishSlip({Key key, @required this.dish}) : super(key: key);
+  const DishSlip({
+    Key key,
+    @required this.dish,
+    @required this.amount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +25,14 @@ class DishSlip extends StatelessWidget {
         children: <Widget>[
           IconButton(
             icon: Icon(Icons.cancel),
-            onPressed: () {},
+            onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
+                .dispatch(DeleteOrderPositionEvent(dish)),
           ),
           _Content(dish: dish, textDistance: textDistance),
-          _Amount(),
+          _Amount(
+            amount: amount,
+            order: dish,
+          ),
           Text(
             "${dish.price} €",
             style: Theme.of(context)
@@ -35,8 +47,12 @@ class DishSlip extends StatelessWidget {
 }
 
 class _Amount extends StatelessWidget {
+  final int amount;
+  final Dish order;
   const _Amount({
     Key key,
+    @required this.amount,
+    @required this.order,
   }) : super(key: key);
 
   @override
@@ -45,21 +61,21 @@ class _Amount extends StatelessWidget {
       children: <Widget>[
         IconButton(
           icon: Icon(Icons.remove),
-          onPressed: () {},
+          onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
+              .dispatch(RemoveOrderEvent(order)),
         ),
         Text(
-          "1",
-          style: Theme.of(context)
-              .textTheme
-              .subtitle
-              .copyWith(color: Colors.grey),
+          "$amount",
+          style:
+              Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
         ),
         IconButton(
           icon: Icon(
             Icons.add,
             color: Theme.of(context).accentColor,
           ),
-          onPressed: () {},
+          onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
+              .dispatch(AddOrderEvent(order)),
         ),
       ],
     );

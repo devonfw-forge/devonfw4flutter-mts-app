@@ -11,7 +11,7 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, LinkedHashMap<Dish, int>>
 
   @override
   Stream<LinkedHashMap<Dish, int>> mapEventToState(CurrentOrderEvent event) async* {
-    LinkedHashMap<Dish, int> newOrder = LinkedHashMap(equals: dishComparison)..addAll(currentState);
+    LinkedHashMap<Dish, int> newOrder = LinkedHashMap()..addAll(currentState);
 
     if (event is AddOrderEvent) {
       if (newOrder.containsKey(event.order)) {
@@ -40,8 +40,4 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, LinkedHashMap<Dish, int>>
     yield newOrder;
   }
 
-  bool dishComparison(Dish a, Dish b){
-    return a == b;
-  }
- 
 }

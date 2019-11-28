@@ -72,10 +72,11 @@ class _DishCardState extends State<DishCard> {
                             state: dish.extras[extra],
                             onStateChange: (bool b) {
                               setState(() {
-                                Map<String, bool> newextras =
+                                Map<String, bool> newExtras =
                                     Map.from(dish.extras);
-                                newextras[extra] = b;
-                                dish = Dish.cloneWithExtras(dish, newextras);
+                                newExtras[extra] = b;
+                                
+                                dish = dish.copyWith(extras: newExtras);
                               });
                             },
                           ),

@@ -1,45 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_state.dart';
+import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/pages/menu/dish_card.dart';
 import 'package:my_thai_star_flutter/ui/pages/menu/sliver_search_header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 
-class Menu extends StatelessWidget {
-  final List<Dish> dishes = [
-    Dish(
-      name: "THAI GREEN CHICKEN CURRY",
-      description: "Master this aromatic, creamy & extremely tasty" +
-          " chicken Thai green curry recipe from Jamie Oliver & treat" +
-          " yourself to an authentic taste of South East Asia.",
-      price: 14.75,
-      imageLocation: "assets/images/green-curry.jpg",
-      extras: {
-        "Tofu": false,
-        "Extra Curry": false,
-      },
-      comment: "",
-    ),
-    Dish(
-      name: "THAI SPICY BASIL FRIED RICE",
-      description: "This is a staple of Thai cooking. " +
-          "Adjust the spices to your own tastes for a really " +
-          "great use for leftover rice!! I get the basil from a " +
-          "local Asian market. It has a different flavor than " +
-          "that of regular basil and makes all the difference " +
-          "in this recipe. It is fast and fairly easy to make, " +
-          "but requires constant stirring",
-      price: 12.99,
-      imageLocation: "assets/images/basil-fried.jpg",
-      extras: {
-        "Tofu": false,
-        "Extra Curry": false,
-      },
-      comment: "",
-    ),
-  ];
-
+class Menu extends StatefulWidget {
   Menu({Key key}) : super(key: key);
+
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  DishBloc dishBloc = DishBloc();
+
+  @override
+  void initState() {
+    dishBloc.dispatch(Search(query: "", sortBy: "", descending: true));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +33,34 @@ class Menu extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverSearchHeader(),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return DishCard(
-                  dish: dishes[index],
+          BlocBuilder(
+            bloc: dishBloc,
+            builder: (context, DishState state) {
+              //This is where we determine the State of the Wisdom BLoC
+              if (state is ErrorDishState) return Text(state.error);
+              if (state is IdleDishState) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return DishCard(
+                        dish: state.dishes[index],
+                      );
+                    },
+                    childCount: state.dishes.length,
+                  ),
                 );
-              },
-              childCount: dishes.length,
-            ),
+              }
+              return CircularProgressIndicator();
+            },
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    dishBloc.dispose();
+    super.dispose();
   }
 }

@@ -1,4 +1,4 @@
-class Booking {
+class Booking{
   String date;
   String name;
   String organizerEmail;

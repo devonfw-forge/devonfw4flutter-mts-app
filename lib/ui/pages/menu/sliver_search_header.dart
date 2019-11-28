@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_state.dart';
+import 'package:my_thai_star_flutter/models/search.dart';
 
 import '../../ui_helper.dart';
 
@@ -33,9 +37,7 @@ class SliverSearchHeader extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-  const _SearchBar({
-    Key key,
-  }) : super(key: key);
+  const _SearchBar({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +52,10 @@ class _SearchBar extends StatelessWidget {
 }
 
 class _Sort extends StatelessWidget {
-  const _Sort({
-    Key key,
-  }) : super(key: key);
+  const _Sort({Key key}) : super(key: key);
 
   static const double iconPadding = 12.0;
   static const double dropDownPadding = 5;
-  static const List<String> sortCriteria = ['Name', 'Price', 'Likes'];
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +77,21 @@ class _Sort extends StatelessWidget {
           width: dropDownPadding,
         ),
         Expanded(
-          child: DropdownButton<String>(
-            isExpanded: true,
-            value: sortCriteria[0],
-            items: sortCriteria.map((String value) {
-              return new DropdownMenuItem<String>(
-                value: value,
-                child: new Text(value),
-              );
-            }).toList(),
-            onChanged: (_) {},
+          child: BlocBuilder<DishBloc, DishState>(
+            builder: (context, state) => DropdownButton<String>(
+              isExpanded: true,
+              value: state.lastSearch.sortBy,
+              items: Search.sortCriteria.map(
+                (String value) {
+                  return new DropdownMenuItem<String>(
+                    value: value,
+                    child: new Text(value),
+                  );
+                },
+              ).toList(),
+              onChanged: (String sortBy) => BlocProvider.of<DishBloc>(context)
+                  .dispatch(state.lastSearch.copyWith(sortBy: sortBy)),
+            ),
           ),
         ),
         IconButton(

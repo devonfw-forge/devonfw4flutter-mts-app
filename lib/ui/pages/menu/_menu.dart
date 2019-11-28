@@ -20,7 +20,7 @@ class _MenuState extends State<Menu> {
 
   @override
   void initState() {
-    dishBloc.dispatch(Search(query: "", sortBy: "", descending: true));
+    dishBloc.dispatch(Search());
     super.initState();
   }
 
@@ -30,30 +30,33 @@ class _MenuState extends State<Menu> {
       appBar: CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: AppDrawer(),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverSearchHeader(),
-          BlocBuilder(
-            bloc: dishBloc,
-            builder: (context, DishState state) {
-              //This is where we determine the State of the Wisdom BLoC
-              if (state is ErrorDishState) return Text(state.error);
-              if (state is IdleDishState) {
-                return SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      return DishCard(
-                        dish: state.dishes[index],
-                      );
-                    },
-                    childCount: state.dishes.length,
-                  ),
-                );
-              }
-              return CircularProgressIndicator();
-            },
-          ),
-        ],
+      body: BlocProvider(
+        builder: (BuildContext context) => dishBloc,
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverSearchHeader(),
+            BlocBuilder(
+              bloc: dishBloc,
+              builder: (context, DishState state) {
+                //This is where we determine the State of the Wisdom BLoC
+                if (state is ErrorDishState) return Text(state.error);
+                if (state is IdleDishState) {
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index) {
+                        return DishCard(
+                          dish: state.dishes[index],
+                        );
+                      },
+                      childCount: state.dishes.length,
+                    ),
+                  );
+                }
+                return CircularProgressIndicator();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

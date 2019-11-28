@@ -24,11 +24,13 @@ class SliverSearchHeader extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           color: Colors.white,
-          child: Column(
-            children: <Widget>[
-              _SearchBar(),
-              _Sort(),
-            ],
+          child: BlocBuilder<DishBloc, DishState>(
+            builder: (context, state) => Column(
+              children: <Widget>[
+                _SearchBar(state: state),
+                _Sort(state: state),
+              ],
+            ),
           ),
         ),
       ),
@@ -37,7 +39,8 @@ class SliverSearchHeader extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-  const _SearchBar({Key key}) : super(key: key);
+  final DishState state;
+  const _SearchBar({Key key, this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,65 +50,67 @@ class _SearchBar extends StatelessWidget {
         prefixIcon: Icon(Icons.search),
         labelText: "Search our Dishes",
       ),
+      onChanged: (String query) => BlocProvider.of<DishBloc>(context)
+          .dispatch(state.lastSearch.copyWith(query: query)),
     );
   }
 }
 
 class _Sort extends StatelessWidget {
-  const _Sort({Key key}) : super(key: key);
-
   static const double iconPadding = 12.0;
   static const double dropDownPadding = 5;
 
+  final DishState state;
+
+  const _Sort({Key key, this.state}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DishBloc, DishState>(
-      builder: (context, state) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(iconPadding),
-            child: Icon(
-              Icons.sort,
-              color: Colors.grey,
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(iconPadding),
+          child: Icon(
+            Icons.sort,
+            color: Colors.grey,
           ),
-          Text(
-            "Sort by",
-            style: Theme.of(context).textTheme.subhead,
+        ),
+        Text(
+          "Sort by",
+          style: Theme.of(context).textTheme.subhead,
+        ),
+        SizedBox(
+          width: dropDownPadding,
+        ),
+        Expanded(
+          child: DropdownButton<String>(
+            isExpanded: true,
+            value: state.lastSearch.sortBy,
+            items: Search.sortCriteria.map(
+              (String value) {
+                return new DropdownMenuItem<String>(
+                  value: value,
+                  child: new Text(value),
+                );
+              },
+            ).toList(),
+            onChanged: (String sortBy) => BlocProvider.of<DishBloc>(context)
+                .dispatch(state.lastSearch.copyWith(sortBy: sortBy)),
           ),
-          SizedBox(
-            width: dropDownPadding,
+        ),
+        IconButton(
+          icon: Icon(
+            state.lastSearch.descending
+                ? Icons.vertical_align_bottom
+                : Icons.vertical_align_top,
+            color: Theme.of(context).accentColor,
           ),
-          Expanded(
-            child: DropdownButton<String>(
-              isExpanded: true,
-              value: state.lastSearch.sortBy,
-              items: Search.sortCriteria.map(
-                (String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                },
-              ).toList(),
-              onChanged: (String sortBy) => BlocProvider.of<DishBloc>(context)
-                  .dispatch(state.lastSearch.copyWith(sortBy: sortBy)),
-            ),
-          ),
-          IconButton(
-            icon: Icon(
-              state.lastSearch.descending
-                  ? Icons.vertical_align_bottom
-                  : Icons.vertical_align_top,
-              color: Theme.of(context).accentColor,
-            ),
-            onPressed: () => BlocProvider.of<DishBloc>(context).dispatch(state
-                .lastSearch
-                .copyWith(descending: !state.lastSearch.descending)),
-          ),
-        ],
-      ),
+          onPressed: () => BlocProvider.of<DishBloc>(context).dispatch(state
+              .lastSearch
+              .copyWith(descending: !state.lastSearch.descending)),
+        ),
+      ],
     );
   }
 }

@@ -9,7 +9,7 @@ class Search implements Copyable<Search> {
 
   Search({
     this.query,
-    this.sortBy = "Name",
+    this.sortBy = 'Name',
     this.descending = false,
   });
 

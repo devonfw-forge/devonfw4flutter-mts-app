@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
-
 abstract class CurrentOrderEvent extends Equatable {
   const CurrentOrderEvent();
 }
@@ -14,6 +13,7 @@ class AddOrderEvent extends CurrentOrderEvent {
   @override
   List<Object> get props => [order];
 }
+
 class RemoveOrderEvent extends CurrentOrderEvent {
   final Dish order;
 
@@ -22,6 +22,7 @@ class RemoveOrderEvent extends CurrentOrderEvent {
   @override
   List<Object> get props => [order];
 }
+
 class DeleteOrderPositionEvent extends CurrentOrderEvent {
   final Dish order;
 

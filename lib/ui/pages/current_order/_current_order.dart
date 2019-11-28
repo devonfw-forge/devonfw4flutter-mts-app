@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
@@ -29,7 +31,7 @@ class CurrentOrder extends StatelessWidget {
               ],
             ),
           ),
-          BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
             builder: (context, dishes) => SliverList(
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {

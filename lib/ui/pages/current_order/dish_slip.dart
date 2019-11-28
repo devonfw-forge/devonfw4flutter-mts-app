@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
@@ -33,7 +35,7 @@ class DishSlip extends StatelessWidget {
             amount: amount,
             order: dish,
           ),
-          BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
               builder: (context, order) {
             return Text(
               "${calcPrice(dish, order).toStringAsFixed(2)} €",
@@ -111,7 +113,7 @@ class _Content extends StatelessWidget {
           ),
           SizedBox(height: textDistance),
           Text(
-            "${getExtras(dish)}",
+            "${dish.selectedExtras()}",
             style: TextStyle(color: Colors.grey),
           ),
           SizedBox(height: textDistance),
@@ -123,12 +125,6 @@ class _Content extends StatelessWidget {
       ),
     );
   }
-}
-
-String getExtras(Dish dish) {
-  String res = "";
-  dish.extras.forEach((extra, choice) => res += choice ? extra + ", " : "");
-  return res;
 }
 
 double calcPrice(Dish dish, Map<Dish, int> order) {

@@ -18,6 +18,7 @@ class Menu extends StatelessWidget {
         "Tofu": false,
         "Extra Curry": false,
       },
+      comment: "",
     ),
     Dish(
       name: "THAI SPICY BASIL FRIED RICE",
@@ -34,6 +35,7 @@ class Menu extends StatelessWidget {
         "Tofu": false,
         "Extra Curry": false,
       },
+      comment: "",
     ),
   ];
 

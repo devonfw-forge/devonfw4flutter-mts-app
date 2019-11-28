@@ -25,7 +25,11 @@ class OrderConfirmation extends StatelessWidget {
             ),
           ),
         ),
-        LabeledCheckBox(label: "Accept Terms"),
+        LabeledCheckBox(
+          label: "Accept Terms",
+          state: false,
+          onStateChange: (bool) {},
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[

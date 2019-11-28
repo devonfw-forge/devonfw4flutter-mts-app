@@ -1,17 +1,17 @@
 import 'dart:async';
+import 'dart:collection';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
 import 'current_order_event.dart';
 
-class CurrentOrderBloc extends Bloc<CurrentOrderEvent, Map<Dish, int>> {
+class CurrentOrderBloc extends Bloc<CurrentOrderEvent, LinkedHashMap<Dish, int>> {
+  @override
+  LinkedHashMap<Dish, int> get initialState => LinkedHashMap();
 
   @override
-  Map<Dish, int> get initialState => Map();
-
-  @override
-  Stream<Map<Dish, int>> mapEventToState(CurrentOrderEvent event) async* {
-    Map<Dish, int> newOrder = Map()..addAll(currentState);
+  Stream<LinkedHashMap<Dish, int>> mapEventToState(CurrentOrderEvent event) async* {
+    LinkedHashMap<Dish, int> newOrder = LinkedHashMap(equals: dishComparison)..addAll(currentState);
 
     if (event is AddOrderEvent) {
       if (newOrder.containsKey(event.order)) {
@@ -25,13 +25,13 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, Map<Dish, int>> {
       if (newOrder.containsKey(event.order)) {
         if (newOrder[event.order] > 1) {
           newOrder[event.order]--;
-        }else{
+        } else {
           newOrder.remove(event.order);
         }
       }
     }
 
-    if(event is DeleteOrderPositionEvent){
+    if (event is DeleteOrderPositionEvent) {
       if (newOrder.containsKey(event.order)) {
         newOrder.remove(event.order);
       }
@@ -39,4 +39,9 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, Map<Dish, int>> {
 
     yield newOrder;
   }
+
+  bool dishComparison(Dish a, Dish b){
+    return a == b;
+  }
+ 
 }

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
@@ -22,7 +24,7 @@ class TotalPriceDisplay extends StatelessWidget {
             style:
                 Theme.of(context).textTheme.title.copyWith(color: Colors.black),
           ),
-          BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
               builder: (context, order) {
             return Text(
               "${calcPrice(order).toStringAsFixed(2)} €",

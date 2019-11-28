@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 builder: (BuildContext context) => AuthenticationAlert(),
               );
             }),
-        BlocBuilder<CurrentOrderBloc, Map<Dish, int>>(
+        BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
           builder: (context, dishes) => _buildBasketIcon(dishes, context),
         ),
         IconButton(
@@ -52,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       icon: Icon(Icons.shopping_basket, color: Colors.white),
       onPressed: () => Navigator.pushNamed(context, Router.currentOrder),
     );
-    
+
     if (amount == 0) {
       return iconButton;
     } else {

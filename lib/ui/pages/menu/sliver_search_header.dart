@@ -59,26 +59,26 @@ class _Sort extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(iconPadding),
-          child: Icon(
-            Icons.sort,
-            color: Colors.grey,
+    return BlocBuilder<DishBloc, DishState>(
+      builder: (context, state) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(iconPadding),
+            child: Icon(
+              Icons.sort,
+              color: Colors.grey,
+            ),
           ),
-        ),
-        Text(
-          "Sort by",
-          style: Theme.of(context).textTheme.subhead,
-        ),
-        SizedBox(
-          width: dropDownPadding,
-        ),
-        Expanded(
-          child: BlocBuilder<DishBloc, DishState>(
-            builder: (context, state) => DropdownButton<String>(
+          Text(
+            "Sort by",
+            style: Theme.of(context).textTheme.subhead,
+          ),
+          SizedBox(
+            width: dropDownPadding,
+          ),
+          Expanded(
+            child: DropdownButton<String>(
               isExpanded: true,
               value: state.lastSearch.sortBy,
               items: Search.sortCriteria.map(
@@ -93,15 +93,19 @@ class _Sort extends StatelessWidget {
                   .dispatch(state.lastSearch.copyWith(sortBy: sortBy)),
             ),
           ),
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.vertical_align_top,
-            color: Theme.of(context).accentColor,
+          IconButton(
+            icon: Icon(
+              state.lastSearch.descending
+                  ? Icons.vertical_align_bottom
+                  : Icons.vertical_align_top,
+              color: Theme.of(context).accentColor,
+            ),
+            onPressed: () => BlocProvider.of<DishBloc>(context).dispatch(state
+                .lastSearch
+                .copyWith(descending: !state.lastSearch.descending)),
           ),
-          onPressed: () {},
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

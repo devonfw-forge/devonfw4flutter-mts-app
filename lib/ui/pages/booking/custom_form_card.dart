@@ -29,7 +29,7 @@ class CustomFormCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               CropImage(
-                imageLocation: headerImageLocation,
+                assetImage: headerImageLocation,
               ),
               Padding(
                   padding: EdgeInsets.all(UiHelper.card_margin),

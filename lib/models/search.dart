@@ -1,7 +1,7 @@
 import 'package:copyable/copyable.dart';
 
 class Search implements Copyable<Search> {
-  static const List<String> sortCriteria = ['Name', 'Price', 'Likes'];
+  static const List<String> sortCriteria = ['Name', 'Price', 'Description'];
 
   String query;
   String sortBy;

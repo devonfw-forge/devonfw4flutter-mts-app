@@ -1,3 +1,5 @@
+import 'package:my_thai_star_flutter/models/search.dart';
+
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class SearchRequest {
   List<Categories> categories;
@@ -12,6 +14,21 @@ class SearchRequest {
       this.pageable,
       this.maxPrice,
       this.minLikes});
+
+  SearchRequest.fromSearch(Search search) {
+    categories = [];
+    searchBy = search.query;
+    pageable = Pageable(
+      pageNumber: 0,
+      pageSize: 8,
+      sort: [
+        Sort(
+          property: search.sortBy.toLowerCase(),
+          direction: search.descending ? "DESC" : "ASC",
+        )
+      ],
+    );
+  }
 
   SearchRequest.fromJson(Map<String, dynamic> json) {
     if (json['categories'] != null) {

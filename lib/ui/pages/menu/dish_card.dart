@@ -39,7 +39,7 @@ class _DishCardState extends State<DishCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             CropImage(
-              imageLocation: dish.imageLocation,
+              encodedImage: dish.encodedImage,
               imageHeight: DishCard.imageHeight,
             ),
             Padding(

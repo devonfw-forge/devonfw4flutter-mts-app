@@ -39,7 +39,12 @@ class _MenuState extends State<Menu> {
               bloc: dishBloc,
               builder: (context, DishState state) {
                 //This is where we determine the State of the Wisdom BLoC
-                if (state is ErrorDishState) return Text(state.error);
+                if (state is ErrorDishState)
+                  return SliverToBoxAdapter(
+                    child: Center(
+                      child: Text(state.error),
+                    ),
+                  );
                 if (state is IdleDishState) {
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(

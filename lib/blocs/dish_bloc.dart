@@ -21,10 +21,14 @@ class DishBloc extends Bloc<Search, DishState> {
     try {
       if (currentState is IdleDishState) {
         List<Dish> newState = await dishService.post(event);
-        yield IdleDishState(newState, event);
+
+        if (newState == null)
+          yield ErrorDishState("The Response was Empty", event);
+        else
+          yield IdleDishState(newState, event);
       }
     } catch (e) {
-      yield ErrorDishState(e, event);
+      yield ErrorDishState(e.toString(), event);
     }
   }
 }

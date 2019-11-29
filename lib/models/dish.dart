@@ -1,6 +1,6 @@
 import 'package:copyable/copyable.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:quiver/core.dart';
 
 @immutable
@@ -8,7 +8,7 @@ class Dish extends Equatable implements Copyable<Dish> {
   final String name;
   final String description;
   final double price;
-  final String imageLocation;
+  final String encodedImage;
   final String comment;
   final Map<String, bool> extras;
 
@@ -16,9 +16,9 @@ class Dish extends Equatable implements Copyable<Dish> {
     @required this.name,
     @required this.description,
     @required this.price,
-    @required this.imageLocation,
+    @required this.encodedImage,
     @required this.extras,
-    @required this.comment,
+    this.comment,
   });
 
   @override
@@ -44,7 +44,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String name,
     String description,
     double price,
-    String imageLocation,
+    String encodedImage,
     String comment,
     Map<String, bool> extras,
   }) =>
@@ -53,7 +53,7 @@ class Dish extends Equatable implements Copyable<Dish> {
         name: name,
         description: description,
         price: price,
-        imageLocation: imageLocation,
+        encodedImage: encodedImage,
         extras: extras,
         comment: comment,
       );
@@ -63,7 +63,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String name,
     String description,
     double price,
-    String imageLocation,
+    String encodedImage,
     String comment,
     Map<String, bool> extras,
   }) {
@@ -71,7 +71,7 @@ class Dish extends Equatable implements Copyable<Dish> {
       name: name ?? master?.name,
       description: description ?? master?.description,
       price: price ?? master?.price,
-      imageLocation: imageLocation ?? master?.imageLocation,
+      encodedImage: encodedImage ?? master?.encodedImage,
       extras: extras ?? master?.extras,
       comment: comment ?? master?.comment,
     );

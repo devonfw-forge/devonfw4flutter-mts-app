@@ -1,11 +1,22 @@
+import 'dart:convert';
+
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/generated/search_request.dart';
+import 'package:my_thai_star_flutter/models/generated/search_response.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:http/http.dart' as http;
 
 class DishService extends ExchangePoint<Search, List<Dish>> {
-  static const String endPoint = '/mythaistar/services/rest/dishmanagement/v1/dish/search';
+  Map<String, String> requestHeaders = {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+  static const String endPoint =
+      'http://10.0.2.2:8082/mythaistar/services/rest/dishmanagement/v1/dish/search';
 
-   final List<Dish> dishes = [
+/** 
+  final List<Dish> dishes = [
     Dish(
       name: "THAI GREEN CHICKEN CURRY",
       description: "Master this aromatic, creamy & extremely tasty" +
@@ -37,10 +48,25 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
       comment: "",
     ),
   ];
+*/
 
   @override
   Future<List<Dish>> post(Search input) async {
+    SearchRequest requestBody = SearchRequest.fromSearch(input);
+
+    http.Response response = await http.post(
+      endPoint,
+      headers: requestHeaders,
+      body: jsonEncode(requestBody.toJson()),
+    );
+
+    Map<dynamic, dynamic> respJson = json.decode(response.body);
+    SearchResponse searchResponse = SearchResponse.fromJson(respJson);
+    List<Dish> dishes = List();
+    searchResponse.content.forEach((content) {
+      dishes.add(content.toDish());
+    });
+
     return dishes;
   }
-
 }

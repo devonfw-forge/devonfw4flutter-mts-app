@@ -1,3 +1,5 @@
+import 'package:my_thai_star_flutter/models/dish.dart';
+
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class SearchResponse {
   List<Content> content;
@@ -35,7 +37,7 @@ class SearchResponse {
 class Content {
   DishData dish;
   Image image;
-  List<String> extras;
+  List<Extras> extras;
   List<Categories> categories;
 
   Content({this.dish, this.image, this.extras, this.categories});
@@ -44,9 +46,9 @@ class Content {
     dish = json['dish'] != null ? new DishData.fromJson(json['dish']) : null;
     image = json['image'] != null ? new Image.fromJson(json['image']) : null;
     if (json['extras'] != null) {
-      extras = new List<String>();
+      extras = new List<Extras>();
       json['extras'].forEach((v) {
-        extras.add(v);
+        extras.add(new Extras.fromJson(v));
       });
     }
     if (json['categories'] != null) {
@@ -66,12 +68,25 @@ class Content {
       data['image'] = this.image.toJson();
     }
     if (this.extras != null) {
-      data['extras'] = this.extras.map((v) => v).toList();
+      data['extras'] = this.extras.map((v) => v.toJson()).toList();
     }
     if (this.categories != null) {
       data['categories'] = this.categories.map((v) => v.toJson()).toList();
     }
     return data;
+  }
+
+  Dish toDish() {
+    Map<String, bool> formatedExtras = Map();
+    extras.forEach((extra) => formatedExtras[extra.name] = false);
+
+    return Dish(
+      name: dish.name,
+      description: dish.description,
+      price: dish.price,
+      encodedImage: image.content,
+      extras: formatedExtras,
+    );
   }
 }
 
@@ -80,7 +95,7 @@ class DishData {
   int modificationCounter;
   String name;
   String description;
-  int price;
+  double price;
   int imageId;
 
   DishData(
@@ -96,7 +111,7 @@ class DishData {
     modificationCounter = json['modificationCounter'];
     name = json['name'];
     description = json['description'];
-    price = json['price'];
+    price = json['price'].toDouble();
     imageId = json['imageId'];
   }
 
@@ -149,6 +164,39 @@ class Image {
   }
 }
 
+class Extras {
+  int id;
+  int modificationCounter;
+  String name;
+  String description;
+  double price;
+
+  Extras(
+      {this.id,
+      this.modificationCounter,
+      this.name,
+      this.description,
+      this.price});
+
+  Extras.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    modificationCounter = json['modificationCounter'];
+    name = json['name'];
+    description = json['description'];
+    price = json['price'].toDouble();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['modificationCounter'] = this.modificationCounter;
+    data['name'] = this.name;
+    data['description'] = this.description;
+    data['price'] = this.price;
+    return data;
+  }
+}
+
 class Categories {
   int id;
   int modificationCounter;
@@ -185,7 +233,7 @@ class Categories {
 class Pageable {
   int pageNumber;
   int pageSize;
-  List<String> sort;
+  List sort;
 
   Pageable({this.pageNumber, this.pageSize, this.sort});
 
@@ -193,9 +241,9 @@ class Pageable {
     pageNumber = json['pageNumber'];
     pageSize = json['pageSize'];
     if (json['sort'] != null) {
-      sort = new List<String>();
+      sort = new List();
       json['sort'].forEach((v) {
-        sort.add(v);
+        sort.add(null);
       });
     }
   }
@@ -205,7 +253,7 @@ class Pageable {
     data['pageNumber'] = this.pageNumber;
     data['pageSize'] = this.pageSize;
     if (this.sort != null) {
-      data['sort'] = this.sort.map((v) => v).toList();
+      data['sort'] = this.sort.map((v) => v.toJson()).toList();
     }
     return data;
   }

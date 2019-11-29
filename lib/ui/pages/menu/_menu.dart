@@ -45,6 +45,7 @@ class _MenuState extends State<Menu> {
                       child: Text(state.error),
                     ),
                   );
+                  
                 if (state is IdleDishState) {
                   return SliverList(
                     delegate: SliverChildBuilderDelegate(

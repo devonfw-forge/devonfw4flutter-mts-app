@@ -15,15 +15,14 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
   static const String endPoint =
       'http://10.0.2.2:8082/mythaistar/services/rest/dishmanagement/v1/dish/search';
 
-/** 
-  final List<Dish> dishes = [
+  final List<Dish> dummyDishes = [
     Dish(
       name: "THAI GREEN CHICKEN CURRY",
       description: "Master this aromatic, creamy & extremely tasty" +
           " chicken Thai green curry recipe from Jamie Oliver & treat" +
           " yourself to an authentic taste of South East Asia.",
       price: 14.75,
-      imageLocation: "assets/images/green-curry.jpg",
+      assetImage: "assets/images/green-curry.jpg",
       extras: {
         "Tofu": false,
         "Extra Curry": false,
@@ -40,7 +39,7 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
           "in this recipe. It is fast and fairly easy to make, " +
           "but requires constant stirring",
       price: 12.99,
-      imageLocation: "assets/images/basil-fried.jpg",
+      assetImage: "assets/images/basil-fried.jpg",
       extras: {
         "Tofu": false,
         "Extra Curry": false,
@@ -48,17 +47,21 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
       comment: "",
     ),
   ];
-*/
 
   @override
   Future<List<Dish>> post(Search input) async {
     SearchRequest requestBody = SearchRequest.fromSearch(input);
+    http.Response response;
 
-    http.Response response = await http.post(
-      endPoint,
-      headers: requestHeaders,
-      body: jsonEncode(requestBody.toJson()),
-    );
+    try {
+      response = await http.post(
+        endPoint,
+        headers: requestHeaders,
+        body: jsonEncode(requestBody.toJson()),
+      );
+    } catch (e) {
+      return dummyDishes;
+    }
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     SearchResponse searchResponse = SearchResponse.fromJson(respJson);

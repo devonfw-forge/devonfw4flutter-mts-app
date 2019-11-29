@@ -11,21 +11,17 @@ class DishBloc extends Bloc<Search, DishState> {
   ExchangePoint dishService = DishService();
 
   @override
-  DishState get initialState => IdleDishState(
-        List(),
-        Search(),
-      );
+  DishState get initialState => IdleDishState(List(), Search());
 
   @override
   Stream<DishState> mapEventToState(Search event) async* {
     try {
-      if (currentState is IdleDishState) {
-        List<Dish> newState = await dishService.post(event);
+      List<Dish> newState = await dishService.post(event);
 
-        if (newState == null)
-          yield ErrorDishState("The Response was Empty", event);
-        else
-          yield IdleDishState(newState, event);
+      if (newState == null) {
+        yield ErrorDishState("The Response was Empty", event);
+      } else {
+        yield IdleDishState(newState, event);
       }
     } catch (e) {
       yield ErrorDishState(e.toString(), event);

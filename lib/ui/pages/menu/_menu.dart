@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_state.dart';
-import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/pages/menu/dish_card.dart';
 import 'package:my_thai_star_flutter/ui/pages/menu/sliver_search_header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
@@ -65,15 +64,15 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  SliverToBoxAdapter _loading() {
-    return SliverToBoxAdapter(
+  Widget _loading() {
+    return SliverFillRemaining(
       child: Center(
         child: CircularProgressIndicator(),
       ),
     );
   }
 
-  SliverToBoxAdapter _error(ErrorDishState state) {
+  Widget _error(ErrorDishState state) {
     return SliverToBoxAdapter(
       child: Center(
         child: Text(state.errorMessage),
@@ -81,7 +80,7 @@ class _MenuState extends State<Menu> {
     );
   }
 
-  SliverList _list(ReceivedDishState state) {
+  Widget _list(ReceivedDishState state) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {

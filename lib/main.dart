@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 
 void main() => runApp(MyThaiStar());

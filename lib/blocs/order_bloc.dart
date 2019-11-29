@@ -38,6 +38,10 @@ class CurrentOrderBloc extends Bloc<OrderEvent, LinkedHashMap<Dish, int>> {
       }
     }
 
+    if (event is ConfirmOrderEvent) {
+      
+    }
+
     yield newOrder;
   }
 

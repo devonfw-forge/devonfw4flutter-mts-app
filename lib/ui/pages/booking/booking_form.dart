@@ -53,7 +53,7 @@ class _BookingFormState extends State<BookingForm> {
       } else if (state is DeclinedBookingState) {
         Scaffold.of(context).showSnackBar(SnackBar(
           duration: Duration(seconds: 3),
-          content: Text("Booking Declined\n" + "Error Code: " + state.error),
+          content: Text("Booking Declined"),
         ));
       }
     });

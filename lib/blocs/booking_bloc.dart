@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/data/booking_service.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
-import 'package:my_thai_star_flutter/models/booking_response.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
 class BookingBloc extends Bloc<Booking, BookingState> {
@@ -14,17 +13,15 @@ class BookingBloc extends Bloc<Booking, BookingState> {
 
   @override
   Stream<BookingState> mapEventToState(Booking event) async* {
-    BookingResponse response = await _exchangePoint.post(event);
-    if (response.accepted) {
+    String bookingNumber = await _exchangePoint.post(event);
+
+    if (bookingNumber != null) {
       yield ConfirmedBookingState(
-        bookingNumber: response.bookingNumber,
+        bookingNumber: bookingNumber,
         currentBooking: event,
       );
     } else {
-      yield DeclinedBookingState(
-        currentBooking: event,
-        error: response.statusCode,
-      );
+      yield DeclinedBookingState(currentBooking: event);
     }
   }
 }

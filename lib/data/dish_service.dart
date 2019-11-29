@@ -1,7 +1,5 @@
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
-import 'package:my_thai_star_flutter/models/search_request.dart';
-import 'package:my_thai_star_flutter/models/search_response.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
 class DishService extends ExchangePoint<Search, List<Dish>> {

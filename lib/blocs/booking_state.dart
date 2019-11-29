@@ -17,8 +17,7 @@ class ConfirmedBookingState extends BookingState {
 }
 
 class DeclinedBookingState extends BookingState {
-  final String error;
-  DeclinedBookingState({this.error, currentBooking}) : super(currentBooking);
+  DeclinedBookingState({currentBooking}) : super(currentBooking);
 
   @override
   List<Object> get props => [currentBooking];

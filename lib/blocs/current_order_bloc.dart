@@ -39,6 +39,10 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, LinkedHashMap<Dish, int>>
       }
     }
 
+    if (event is ClearOrderEvent) {
+      newOrder = LinkedHashMap();
+    }
+
     yield newOrder;
   }
 

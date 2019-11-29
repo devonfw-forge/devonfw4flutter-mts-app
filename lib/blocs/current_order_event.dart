@@ -31,3 +31,8 @@ class DeleteOrderPositionEvent extends CurrentOrderEvent {
   @override
   List<Object> get props => [order];
 }
+class ClearOrderEvent extends CurrentOrderEvent {
+
+  @override
+  List<Object> get props => ["clear"];
+}

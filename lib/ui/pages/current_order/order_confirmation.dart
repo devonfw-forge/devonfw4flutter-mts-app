@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/checkbox_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/ui/pages/current_order/alert_card.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
@@ -29,6 +30,9 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
       (OrderState state) {
         log("data!");
         if (state == OrderState.confirmed) {
+          BlocProvider.of<CurrentOrderBloc>(context)
+              .dispatch(ClearOrderEvent());
+              
           Scaffold.of(context).showSnackBar(SnackBar(
             duration: Duration(seconds: 3),
             content: Text("Order Confirmed!"),

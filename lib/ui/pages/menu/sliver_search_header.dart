@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/dish_state.dart';
+import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 
 import '../../ui_helper.dart';
@@ -24,7 +24,7 @@ class SliverSearchHeader extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           color: Colors.white,
-          child: BlocBuilder<DishBloc, DishState>(
+          child: BlocBuilder<CurrentSearchBloc, Search>(
             builder: (context, state) => Column(
               children: <Widget>[
                 _SearchBar(state: state),
@@ -39,7 +39,7 @@ class SliverSearchHeader extends StatelessWidget {
 }
 
 class _SearchBar extends StatelessWidget {
-  final DishState state;
+  final Search state;
   const _SearchBar({Key key, this.state}) : super(key: key);
 
   @override
@@ -50,8 +50,8 @@ class _SearchBar extends StatelessWidget {
         prefixIcon: Icon(Icons.search),
         labelText: "Search our Dishes",
       ),
-      onChanged: (String query) => BlocProvider.of<DishBloc>(context)
-          .dispatch(state.lastSearch.copyWith(query: query)),
+      onChanged: (String query) => BlocProvider.of<CurrentSearchBloc>(context)
+          .dispatch(SetQueryEvent(query)),
     );
   }
 }
@@ -60,7 +60,7 @@ class _Sort extends StatelessWidget {
   static const double iconPadding = 12.0;
   static const double dropDownPadding = 5;
 
-  final DishState state;
+  final Search state;
 
   const _Sort({Key key, this.state}) : super(key: key);
 
@@ -86,7 +86,7 @@ class _Sort extends StatelessWidget {
         Expanded(
           child: DropdownButton<String>(
             isExpanded: true,
-            value: state.lastSearch.sortBy,
+            value: state.sortBy,
             items: Search.sortCriteria.map(
               (String value) {
                 return new DropdownMenuItem<String>(
@@ -95,22 +95,23 @@ class _Sort extends StatelessWidget {
                 );
               },
             ).toList(),
-            onChanged: (String sortBy) => BlocProvider.of<DishBloc>(context)
-                .dispatch(state.lastSearch.copyWith(sortBy: sortBy)),
+            onChanged: (String sortBy) =>
+                BlocProvider.of<CurrentSearchBloc>(context)
+                    .dispatch(SetSortEvent(sortBy)),
           ),
         ),
         IconButton(
           icon: Icon(
-            state.lastSearch.descending
+            state.descending
                 ? Icons.vertical_align_bottom
                 : Icons.vertical_align_top,
             color: Theme.of(context).accentColor,
           ),
-          onPressed: () => BlocProvider.of<DishBloc>(context).dispatch(state
-              .lastSearch
-              .copyWith(descending: !state.lastSearch.descending)),
+          onPressed: () => BlocProvider.of<CurrentSearchBloc>(context)
+              .dispatch(FlipDirectionEvent()),
         ),
       ],
     );
   }
 }
+

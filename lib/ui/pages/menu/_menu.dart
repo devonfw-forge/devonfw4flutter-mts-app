@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_state.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
@@ -16,11 +17,15 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  DishBloc dishBloc = DishBloc();
+  DishBloc dishBloc;
+  CurrentSearchBloc searchBloc;
 
   @override
   void initState() {
-    dishBloc.dispatch(Search());
+    searchBloc = CurrentSearchBloc();
+    dishBloc = DishBloc(searchBloc);
+
+    dishBloc.dispatch(DishEvents.request);
     super.initState();
   }
 
@@ -30,35 +35,28 @@ class _MenuState extends State<Menu> {
       appBar: CustomAppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: AppDrawer(),
-      body: BlocProvider(
-        builder: (BuildContext context) => dishBloc,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<CurrentSearchBloc>(
+            builder: (BuildContext context) => searchBloc,
+          ),
+          BlocProvider<DishBloc>(
+            builder: (BuildContext context) => dishBloc,
+          ),
+        ],
         child: CustomScrollView(
           slivers: <Widget>[
             SliverSearchHeader(),
             BlocBuilder(
               bloc: dishBloc,
               builder: (context, DishState state) {
-                //This is where we determine the State of the Wisdom BLoC
-                if (state is ErrorDishState)
-                  return SliverToBoxAdapter(
-                    child: Center(
-                      child: Text(state.error),
-                    ),
-                  );
-                  
-                if (state is IdleDishState) {
-                  return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        return DishCard(
-                          dish: state.dishes[index],
-                        );
-                      },
-                      childCount: state.dishes.length,
-                    ),
-                  );
+                if (state is ErrorDishState) {
+                  return _error(state);
+                } else if (state is ReceivedDishState) {
+                  return _list(state);
+                } else {
+                  return _loading();
                 }
-                return CircularProgressIndicator();
               },
             ),
           ],
@@ -67,9 +65,39 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  SliverToBoxAdapter _loading() {
+    return SliverToBoxAdapter(
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _error(ErrorDishState state) {
+    return SliverToBoxAdapter(
+      child: Center(
+        child: Text(state.errorMessage),
+      ),
+    );
+  }
+
+  SliverList _list(ReceivedDishState state) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return DishCard(
+            dish: state.dishes[index],
+          );
+        },
+        childCount: state.dishes.length,
+      ),
+    );
+  }
+
   @override
   void dispose() {
     dishBloc.dispose();
+    searchBloc.dispose();
     super.dispose();
   }
 }

@@ -1,26 +1,27 @@
 import 'package:equatable/equatable.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/models/search.dart';
 
-abstract class DishState extends Equatable {
-  final Search lastSearch;
-  const DishState(this.lastSearch);
-}
+abstract class DishState extends Equatable {}
 
-class IdleDishState extends DishState {
+class ReceivedDishState extends DishState {
   final List<Dish> dishes;
 
-  IdleDishState(this.dishes, lastSearch) : super(lastSearch);
+  ReceivedDishState(this.dishes);
 
   @override
-  List<Object> get props => [dishes, lastSearch];
+  List<Object> get props => [dishes];
 }
 
 class ErrorDishState extends DishState {
-  final String error;
+  final String errorMessage;
 
-  ErrorDishState(this.error, lastSearch) : super(lastSearch);
+  ErrorDishState(this.errorMessage);
 
   @override
-  List<Object> get props => [error, lastSearch];
+  List<Object> get props => [errorMessage];
+}
+
+class LoadingDishState extends DishState {
+  @override
+  List<Object> get props => ["loading"];
 }

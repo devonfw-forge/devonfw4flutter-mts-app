@@ -2,8 +2,8 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
+import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -67,7 +67,7 @@ class _Amount extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.remove),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(RemoveOrderEvent(order)),
+              .dispatch(RemoveDishFromOrderEvent(order)),
         ),
         Text(
           "$amount",
@@ -80,7 +80,7 @@ class _Amount extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(AddOrderEvent(order)),
+              .dispatch(AddDishToOrderEvent(order)),
         ),
       ],
     );

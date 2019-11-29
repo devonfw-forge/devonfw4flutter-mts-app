@@ -1,33 +1,42 @@
 import 'package:equatable/equatable.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
-abstract class CurrentOrderEvent extends Equatable {
-  const CurrentOrderEvent();
+abstract class OrderEvent extends Equatable {
+  const OrderEvent();
 }
 
-class AddOrderEvent extends CurrentOrderEvent {
+class AddDishToOrderEvent extends OrderEvent {
   final Dish order;
 
-  AddOrderEvent(this.order);
+  AddDishToOrderEvent(this.order);
 
   @override
   List<Object> get props => [order];
 }
 
-class RemoveOrderEvent extends CurrentOrderEvent {
+class RemoveDishFromOrderEvent extends OrderEvent {
   final Dish order;
 
-  RemoveOrderEvent(this.order);
+  RemoveDishFromOrderEvent(this.order);
 
   @override
   List<Object> get props => [order];
 }
 
-class DeleteOrderPositionEvent extends CurrentOrderEvent {
+class DeleteOrderPositionEvent extends OrderEvent {
   final Dish order;
 
   DeleteOrderPositionEvent(this.order);
 
   @override
   List<Object> get props => [order];
+}
+
+class ConfirmOrderEvent extends OrderEvent {
+  final String bookingNumber;
+
+  ConfirmOrderEvent(this.bookingNumber);
+
+  @override
+  List<Object> get props => [bookingNumber];
 }

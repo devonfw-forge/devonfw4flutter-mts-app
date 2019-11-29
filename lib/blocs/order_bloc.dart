@@ -27,8 +27,6 @@ class OrderBloc extends Bloc<String, OrderState> {
       dishes: order,
     ));
 
-    log(event);
-
     if (accepted)
       yield OrderState.confirmed;
     else

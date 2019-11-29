@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/data/order_service.dart';
@@ -25,7 +26,9 @@ class OrderBloc extends Bloc<String, OrderState> {
       bookingCode: event,
       dishes: order,
     ));
-    
+
+    log(event);
+
     if (accepted)
       yield OrderState.confirmed;
     else

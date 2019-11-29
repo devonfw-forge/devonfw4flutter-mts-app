@@ -42,21 +42,23 @@ class _BookingFormState extends State<BookingForm> {
 
   @override
   void initState() {
-    _bookingBloc.state.listen((BookingState state) {
-      if (state is ConfirmedBookingState) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text("Booking Confirmed!\n" +
-              "Booking Number: " +
-              state.bookingNumber),
-        ));
-      } else if (state is DeclinedBookingState) {
-        Scaffold.of(context).showSnackBar(SnackBar(
-          duration: Duration(seconds: 3),
-          content: Text("Booking Declined"),
-        ));
-      }
-    });
+    _bookingBloc.state.listen(
+      (BookingState state) {
+        if (state is ConfirmedBookingState) {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            duration: Duration(seconds: 3),
+            content: Text("Booking Confirmed!\n" +
+                "Booking Number: " +
+                state.bookingNumber),
+          ));
+        } else if (state is DeclinedBookingState) {
+          Scaffold.of(context).showSnackBar(SnackBar(
+            duration: Duration(seconds: 3),
+            content: Text("Booking Declined"),
+          ));
+        }
+      },
+    );
 
     super.initState();
   }
@@ -107,7 +109,7 @@ class _BookingFormState extends State<BookingForm> {
                 children: <Widget>[
                   CheckboxListTile(
                     title: Text("Accept terms"),
-                    onChanged: (_) => _termsBloc.dispatch(CheckboxActions.tap),
+                    onChanged: (_) => _termsBloc.dispatch(CheckboxEvent.tap),
                     value: state,
                   ),
                   RaisedButton(

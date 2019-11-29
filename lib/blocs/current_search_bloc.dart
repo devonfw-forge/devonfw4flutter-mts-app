@@ -20,6 +20,9 @@ class CurrentSearchBloc extends Bloc<CurrentSearchEvent, Search> {
     if (event is FlipDirectionEvent) {
       newSearch = currentState.copyWith(descending: !currentState.descending);
     }
+    if (event is ClearSearchEvent) {
+      newSearch = Search();
+    }
 
     yield newSearch;
   }

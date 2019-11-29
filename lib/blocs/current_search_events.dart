@@ -26,4 +26,9 @@ class FlipDirectionEvent extends CurrentSearchEvent {
   @override
   List<Object> get props => ["flip"];
 }
+class ClearSearchEvent extends CurrentSearchEvent {
+
+  @override
+  List<Object> get props => ["clear"];
+}
 

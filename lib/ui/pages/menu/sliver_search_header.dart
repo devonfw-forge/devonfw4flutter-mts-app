@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
+import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 
 import '../../ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
-  static const double height = 120;
+  static const double height = 160;
 
   const SliverSearchHeader({
     Key key,
@@ -29,11 +30,48 @@ class SliverSearchHeader extends StatelessWidget {
               children: <Widget>[
                 _SearchBar(state: state),
                 _Sort(state: state),
+                _Buttons(),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Buttons extends StatelessWidget {
+  const _Buttons({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        FlatButton(
+            child: Text(
+              "CLEAR FILTERS",
+              style: Theme.of(context).textTheme.button.copyWith(
+                    color: Colors.grey,
+                  ),
+            ),
+            onPressed: () {
+              BlocProvider.of<CurrentSearchBloc>(context)
+                  .dispatch(ClearSearchEvent());
+
+              BlocProvider.of<DishBloc>(context).dispatch(DishEvents.request);
+            }),
+        FlatButton(
+          child: Text(
+            "APPLY FILTERS",
+            style: Theme.of(context).textTheme.button.copyWith(
+                  color: Theme.of(context).accentColor,
+                ),
+          ),
+          onPressed: () =>
+              BlocProvider.of<DishBloc>(context).dispatch(DishEvents.request),
+        ),
+      ],
     );
   }
 }
@@ -114,4 +152,3 @@ class _Sort extends StatelessWidget {
     );
   }
 }
-

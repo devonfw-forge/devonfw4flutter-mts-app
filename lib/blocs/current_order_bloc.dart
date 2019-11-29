@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'dart:collection';
 import 'package:bloc/bloc.dart';
+import 'package:my_thai_star_flutter/data/order_service.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/order.dart';
+import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
 import 'order_event.dart';
 
 
 class CurrentOrderBloc extends Bloc<OrderEvent, LinkedHashMap<Dish, int>> {
+  ExchangePoint orderService = OrderService();
+
   @override
   LinkedHashMap<Dish, int> get initialState => LinkedHashMap();
 
@@ -39,7 +44,7 @@ class CurrentOrderBloc extends Bloc<OrderEvent, LinkedHashMap<Dish, int>> {
     }
 
     if (event is ConfirmOrderEvent) {
-      
+      Order order = Order(bookingCode: event.bookingNumber, dishes: currentState);
     }
 
     yield newOrder;

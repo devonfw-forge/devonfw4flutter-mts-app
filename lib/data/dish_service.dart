@@ -7,6 +7,10 @@ import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:http/http.dart' as http;
 
+class NoSuchEntriesException implements Exception {
+  String toString() => "We did not find any dishes matching your search.";
+}
+
 class DishService extends ExchangePoint<Search, List<Dish>> {
   Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
@@ -62,6 +66,8 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
     } catch (e) {
       return dummyDishes;
     }
+
+    if (response.body == "") throw NoSuchEntriesException();
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     SearchResponse searchResponse = SearchResponse.fromJson(respJson);

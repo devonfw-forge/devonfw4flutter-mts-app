@@ -73,7 +73,7 @@ class _MenuState extends State<Menu> {
   }
 
   Widget _error(ErrorDishState state) {
-    return SliverToBoxAdapter(
+    return SliverFillRemaining(
       child: Center(
         child: Text(state.errorMessage),
       ),

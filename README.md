@@ -2,8 +2,11 @@
 
 This is a Flutter Front-End for Capgemini's [My Thai Star](https://github.com/devonfw/my-thai-star) reference application.
 
-## Layered Architecture
+## Layered Architecture (without Repository Layer)
 ![Architecture Image](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/mts-architecture-v2.png)
+
+## Layered Architecture (with Repository Layer)
+![Architecture Image](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/mts-architecture-v201.png)
 
 ## Screens Side-by-Side
 ### Angular

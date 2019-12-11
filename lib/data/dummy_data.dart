@@ -34,5 +34,5 @@ class DummyData {
     ),
   ];
 
-  static String bookingNumber = "CB_20191129_ffcc0c387c07db666026a1c218a8479a";
+  static String bookingNumber = "CB_DATE_ThisIsAMockToken";
 }

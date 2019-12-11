@@ -1,3 +1,5 @@
+import 'package:my_thai_star_flutter/models/booking.dart';
+
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class BookingRequest {
   BookingRequestPayload booking;
@@ -5,8 +7,17 @@ class BookingRequest {
   BookingRequest({this.booking});
 
   BookingRequest.fromJson(Map<String, dynamic> json) {
-    booking =
-        json['booking'] != null ? new BookingRequestPayload.fromJson(json['booking']) : null;
+    booking = json['booking'] != null
+        ? new BookingRequestPayload.fromJson(json['booking'])
+        : null;
+  }
+  BookingRequest.fromBooking(Booking b) {
+    booking = BookingRequestPayload(
+      bookingDate: b.date,
+      name: b.name,
+      email: b.organizerEmail,
+      assistants: b.guests,
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -24,7 +35,8 @@ class BookingRequestPayload {
   String email;
   int assistants;
 
-  BookingRequestPayload({this.bookingDate, this.name, this.email, this.assistants});
+  BookingRequestPayload(
+      {this.bookingDate, this.name, this.email, this.assistants});
 
   BookingRequestPayload.fromJson(Map<String, dynamic> json) {
     bookingDate = json['bookingDate'];

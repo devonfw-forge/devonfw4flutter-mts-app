@@ -1,4 +1,8 @@
+import 'package:intl/intl.dart';
+
 class Booking{
+  static final DateFormat dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+  
   String date;
   String name;
   String organizerEmail;

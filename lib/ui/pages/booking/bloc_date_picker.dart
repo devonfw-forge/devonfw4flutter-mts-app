@@ -2,6 +2,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/form_validation/form_validation_bloc.dart';
+import 'package:my_thai_star_flutter/models/booking.dart';
 
 class BlocDatePicker extends StatelessWidget {
   final FormValidationBloc bloc;
@@ -31,7 +32,7 @@ class BlocDatePicker extends StatelessWidget {
           decoration: InputDecoration(labelText: lable),
           validator: (_) => validate(state),
           onChanged: (DateTime input) {
-            bloc.dispatch(input == null ? "" : input.toString());
+            bloc.dispatch(input == null ? "" : Booking.dateFormat.format(input).toString());
           },
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),

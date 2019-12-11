@@ -5,8 +5,8 @@ class BookingResponse {
   String name;
   String bookingToken;
   String comment;
-  int bookingDate;
-  int expirationDate;
+  double bookingDate;
+  double expirationDate;
   double creationDate;
   String email;
   bool canceled;

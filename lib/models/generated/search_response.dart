@@ -1,4 +1,5 @@
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/extra.dart';
 
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class SearchResponse {
@@ -77,8 +78,13 @@ class Content {
   }
 
   Dish toDish() {
-    Map<String, bool> formatedExtras = Map();
-    extras.forEach((extra) => formatedExtras[extra.name] = false);
+    Map<Extra, bool> formatedExtras = Map();
+    extras.forEach(
+      (extra) => formatedExtras[Extra(
+        name: extra.name,
+        id: extra.id,
+      )] = false,
+    );
 
     return Dish(
       name: dish.name,

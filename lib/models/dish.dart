@@ -1,6 +1,7 @@
 import 'package:copyable/copyable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:quiver/core.dart';
 
 @immutable
@@ -12,7 +13,7 @@ class Dish extends Equatable implements Copyable<Dish> {
   final String assetImage;
   final String comment;
   final int id;
-  final Map<String, bool> extras;
+  final Map<Extra, bool> extras;
 
   Dish({
     @required this.name,
@@ -32,7 +33,7 @@ class Dish extends Equatable implements Copyable<Dish> {
 
   String selectedExtras() {
     String res = "";
-    extras.forEach((extra, picked) => res += picked ? extra + ", " : "");
+    extras.forEach((extra, picked) => res += picked ? extra.name + ", " : "");
     return res;
   }
 
@@ -52,7 +53,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String comment,
     String assetImage,
     int id,
-    Map<String, bool> extras,
+    Map<Extra, bool> extras,
   }) =>
       _copy(
         this,
@@ -75,7 +76,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String comment,
     String assetImage,
     int id,
-    Map<String, bool> extras,
+    Map<Extra, bool> extras,
   }) {
     return Dish(
       name: name ?? master?.name,

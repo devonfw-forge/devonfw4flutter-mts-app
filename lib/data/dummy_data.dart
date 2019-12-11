@@ -1,4 +1,5 @@
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/extra.dart';
 
 class DummyData {
   static final List<Dish> dishes = [
@@ -10,8 +11,8 @@ class DummyData {
       price: 14.75,
       assetImage: "assets/images/green-curry.jpg",
       extras: {
-        "Tofu": false,
-        "Extra Curry": false,
+        Extra(id: 1, name: "Tofu"): false,
+        Extra(id: 1, name: "Extra Curry"): false,
       },
       comment: "",
     ),
@@ -27,8 +28,8 @@ class DummyData {
       price: 12.99,
       assetImage: "assets/images/basil-fried.jpg",
       extras: {
-        "Tofu": false,
-        "Extra Curry": false,
+        Extra(id: 1, name: "Tofu"): false,
+        Extra(id: 1, name: "Extra Curry"): false,
       },
       comment: "",
     ),

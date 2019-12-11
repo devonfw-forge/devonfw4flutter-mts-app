@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
 
@@ -69,11 +70,11 @@ class _DishCardState extends State<DishCard> {
                     children: dish.extras.keys
                         .map(
                           (extra) => LabeledCheckBox(
-                            label: extra,
+                            label: extra.name,
                             state: dish.extras[extra],
                             onStateChange: (bool b) {
                               setState(() {
-                                Map<String, bool> newExtras =
+                                Map<Extra, bool> newExtras =
                                     Map.from(dish.extras);
                                 newExtras[extra] = b;
                                 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/checkbox_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
@@ -22,8 +23,18 @@ class DishCard extends StatefulWidget {
 
 class _DishCardState extends State<DishCard> {
   Dish dish;
+  Map<int, CheckboxBloc> checkboxBlocs = Map();
 
   _DishCardState(this.dish);
+
+  @override
+  void initState() {
+    dish.extras.forEach((Extra extra, bool picked) {
+      checkboxBlocs[extra.id] = CheckboxBloc();
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,17 +80,22 @@ class _DishCardState extends State<DishCard> {
                   Wrap(
                     children: dish.extras.keys
                         .map(
-                          (extra) => LabeledCheckBox(
-                            label: extra.name,
-                            state: dish.extras[extra],
-                            onStateChange: (bool b) {
-                              setState(() {
-                                Map<Extra, bool> newExtras =
-                                    Map.from(dish.extras);
-                                newExtras[extra] = b;
-                                
-                                dish = dish.copyWith(extras: newExtras);
-                              });
+                          (extra) => BlocBuilder<CheckboxBloc, bool>(
+                            bloc: checkboxBlocs[extra.id],
+                            builder: (context, state) {
+                              return LabeledCheckBox(
+                                label: extra.name,
+                                state: state,
+                                onStateChange: (bool b) {
+                                  checkboxBlocs[extra.id].dispatch(CheckboxEvent.tap);
+                                  
+                                  Map<Extra, bool> newExtras =
+                                      Map.from(dish.extras);
+                                  newExtras[extra] = b;
+
+                                  dish = dish.copyWith(extras: newExtras);
+                                },
+                              );
                             },
                           ),
                         )
@@ -102,5 +118,11 @@ class _DishCardState extends State<DishCard> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    checkboxBlocs.forEach((id, bloc) => bloc.dispose());
+    super.dispose();
   }
 }

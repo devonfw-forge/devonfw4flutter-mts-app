@@ -86,6 +86,7 @@ class Content {
       price: dish.price,
       encodedImage: image.content,
       extras: formatedExtras,
+      id: dish.id,
     );
   }
 }

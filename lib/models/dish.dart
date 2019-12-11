@@ -11,6 +11,7 @@ class Dish extends Equatable implements Copyable<Dish> {
   final String encodedImage;
   final String assetImage;
   final String comment;
+  final int id;
   final Map<String, bool> extras;
 
   Dish({
@@ -21,6 +22,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     @required this.extras,
     this.assetImage,
     this.comment,
+    this.id,
   });
 
   @override
@@ -49,6 +51,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String encodedImage,
     String comment,
     String assetImage,
+    int id,
     Map<String, bool> extras,
   }) =>
       _copy(
@@ -60,6 +63,7 @@ class Dish extends Equatable implements Copyable<Dish> {
         extras: extras,
         assetImage: assetImage,
         comment: comment,
+        id: id,
       );
 
   static Dish _copy(
@@ -70,6 +74,7 @@ class Dish extends Equatable implements Copyable<Dish> {
     String encodedImage,
     String comment,
     String assetImage,
+    int id,
     Map<String, bool> extras,
   }) {
     return Dish(
@@ -80,6 +85,7 @@ class Dish extends Equatable implements Copyable<Dish> {
       extras: extras ?? master?.extras,
       comment: comment ?? master?.comment,
       assetImage: assetImage ?? master?.assetImage,
+      id: id ?? master?.id,
     );
   }
 }

@@ -13,7 +13,6 @@ enum OrderState { confirmed, rejected }
 class OrderBloc extends Bloc<String, OrderState> {
   final ExchangePoint orderService = OrderService();
   final CurrentOrderBloc currentOrderBloc;
-  LinkedHashMap<Dish, int> order;
 
   OrderBloc(this.currentOrderBloc);
 
@@ -22,11 +21,16 @@ class OrderBloc extends Bloc<String, OrderState> {
 
   @override
   Stream<OrderState> mapEventToState(String event) async* {
-    bool accepted = await orderService.post(Order(
+    bool accepted;
+    try{
+      accepted = await orderService.post(Order(
       bookingCode: event,
-      dishes: order,
+      dishes: currentOrderBloc.currentState,
     ));
-
+    }catch(e){
+      accepted = false;
+    }
+     
     if (accepted)
       yield OrderState.confirmed;
     else

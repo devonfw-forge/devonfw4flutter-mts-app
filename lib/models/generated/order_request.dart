@@ -1,19 +1,39 @@
+import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/order.dart';
+
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class OrderRequest {
   BookingNumber booking;
-  List<OrderLines> orderLines;
+  List<OrderLine> orderLines;
 
   OrderRequest({this.booking, this.orderLines});
 
   OrderRequest.fromJson(Map<String, dynamic> json) {
-    booking =
-        json['booking'] != null ? new BookingNumber.fromJson(json['booking']) : null;
+    booking = json['booking'] != null
+        ? new BookingNumber.fromJson(json['booking'])
+        : null;
     if (json['orderLines'] != null) {
-      orderLines = new List<OrderLines>();
+      orderLines = new List<OrderLine>();
       json['orderLines'].forEach((v) {
-        orderLines.add(new OrderLines.fromJson(v));
+        orderLines.add(new OrderLine.fromJson(v));
       });
     }
+  }
+  OrderRequest.fromOrder(Order order) {
+    booking = BookingNumber(bookingToken: order.bookingCode);
+    orderLines = List();
+    order.dishes.forEach((Dish dish, int amount) {
+      OrderDishData dishData = OrderDishData(amount: amount, dishId: dish.id);
+      List<Extras> extras = List();
+
+      dish.extras.forEach((extra, picked) {
+        if (picked) {
+          extras.add(Extras(id: extra.id));
+        }
+      });
+
+      orderLines.add(OrderLine(dishData: dishData, extras: extras));
+    });
   }
 
   Map<String, dynamic> toJson() {
@@ -44,15 +64,15 @@ class BookingNumber {
   }
 }
 
-class OrderLines {
-  OrderLine orderLine;
+class OrderLine {
+  OrderDishData dishData;
   List<Extras> extras;
 
-  OrderLines({this.orderLine, this.extras});
+  OrderLine({this.dishData, this.extras});
 
-  OrderLines.fromJson(Map<String, dynamic> json) {
-    orderLine = json['orderLine'] != null
-        ? new OrderLine.fromJson(json['orderLine'])
+  OrderLine.fromJson(Map<String, dynamic> json) {
+    dishData = json['orderLine'] != null
+        ? new OrderDishData.fromJson(json['orderLine'])
         : null;
     if (json['extras'] != null) {
       extras = new List<Extras>();
@@ -64,8 +84,8 @@ class OrderLines {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.orderLine != null) {
-      data['orderLine'] = this.orderLine.toJson();
+    if (this.dishData != null) {
+      data['orderLine'] = this.dishData.toJson();
     }
     if (this.extras != null) {
       data['extras'] = this.extras.map((v) => v.toJson()).toList();
@@ -74,14 +94,14 @@ class OrderLines {
   }
 }
 
-class OrderLine {
+class OrderDishData {
   int dishId;
   int amount;
   String comment;
 
-  OrderLine({this.dishId, this.amount, this.comment});
+  OrderDishData({this.dishId, this.amount, this.comment});
 
-  OrderLine.fromJson(Map<String, dynamic> json) {
+  OrderDishData.fromJson(Map<String, dynamic> json) {
     dishId = json['dishId'];
     amount = json['amount'];
     comment = json['comment'];

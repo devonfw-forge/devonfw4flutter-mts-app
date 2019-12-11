@@ -28,7 +28,6 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 
     orderBloc.state.listen(
       (OrderState state) {
-        log("data!");
         if (state == OrderState.confirmed) {
           BlocProvider.of<CurrentOrderBloc>(context)
               .dispatch(ClearOrderEvent());

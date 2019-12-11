@@ -19,11 +19,11 @@ class Dish extends Equatable implements Copyable<Dish> {
     @required this.name,
     @required this.description,
     @required this.price,
-    this.encodedImage,
     @required this.extras,
+    @required this.id,
+    this.encodedImage,
     this.assetImage,
     this.comment,
-    this.id,
   });
 
   @override

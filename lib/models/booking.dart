@@ -19,7 +19,7 @@ class Booking{
 
   Map<String, dynamic> toJson() => {
         'booking': {
-          'assistants' : guests + 1,
+          'assistants' : guests,
           'bookingDate' : date.toString(),
           'email' : organizerEmail,
           'name' : name

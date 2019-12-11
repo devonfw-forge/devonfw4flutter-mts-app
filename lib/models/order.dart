@@ -1,10 +1,14 @@
 import 'dart:collection';
 
+import 'package:flutter/cupertino.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
-class Order{
+class Order {
   final LinkedHashMap<Dish, int> dishes;
   final String bookingCode;
 
-  Order({this.dishes, this.bookingCode});
+  Order({
+    @required this.dishes,
+    @required this.bookingCode,
+  });
 }

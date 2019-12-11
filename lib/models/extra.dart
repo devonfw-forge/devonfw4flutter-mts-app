@@ -1,6 +1,11 @@
-class Extra{
-  int id;
-  String name;
+import 'package:flutter/cupertino.dart';
 
-  Extra({this.name, this.id});
+class Extra {
+  final int id;
+  final String name;
+
+  Extra({
+    @required this.name,
+    @required this.id,
+  });
 }

@@ -57,8 +57,6 @@ class _Buttons extends StatelessWidget {
             onPressed: () {
               BlocProvider.of<CurrentSearchBloc>(context)
                   .dispatch(ClearSearchEvent());
-
-              BlocProvider.of<DishBloc>(context).dispatch(DishEvents.request);
             }),
         FlatButton(
           child: Text(

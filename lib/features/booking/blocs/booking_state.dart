@@ -6,6 +6,13 @@ abstract class BookingState extends Equatable {
   const BookingState(this.currentBooking);
 }
 
+class InitialBookingState extends BookingState {
+  InitialBookingState({currentBooking}) : super(currentBooking);
+
+  @override
+  List<Object> get props => ["initial"];
+}
+
 class ConfirmedBookingState extends BookingState {
   final String bookingNumber;
 

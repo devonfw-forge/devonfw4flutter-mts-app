@@ -8,8 +8,8 @@ import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
-import 'package:my_thai_star_flutter/features/booking/blocs/bloc_date_picker.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
+import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_validation_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_validation_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/guest_number_validation_bloc.dart';

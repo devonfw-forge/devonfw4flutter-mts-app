@@ -9,7 +9,7 @@ class BookingBloc extends Bloc<Booking, BookingState> {
   final ExchangePoint _exchangePoint = BookingService();
 
   @override
-  BookingState get initialState => DeclinedBookingState();
+  BookingState get initialState => InitialBookingState();
 
   @override
   Stream<BookingState> mapEventToState(Booking event) async* {

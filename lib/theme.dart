@@ -7,11 +7,6 @@ ThemeData _buildDefaultTheme() {
   final Color accent = Color.fromRGBO(0, 102, 51, 1);
   final Color lightGray = Color.fromRGBO(224, 224, 224, 1);
 
-  final Map<TargetPlatform, PageTransitionsBuilder> transitionMap = {
-    TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-    TargetPlatform.iOS: CupertinoPageTransitionsBuilder()
-  };
-
   return ThemeData(
     //Text
     textTheme: _buildDefaultTextTheme(),
@@ -29,8 +24,6 @@ ThemeData _buildDefaultTheme() {
       elevation: 2.0,
       clipBehavior: Clip.antiAlias,
     ),
-    //Animation
-    pageTransitionsTheme: PageTransitionsTheme(builders: transitionMap),
   );
 }
 

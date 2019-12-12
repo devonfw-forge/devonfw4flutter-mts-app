@@ -12,7 +12,7 @@ class DummyData {
       assetImage: "assets/images/green-curry.jpg",
       extras: {
         Extra(id: 1, name: "Tofu"): false,
-        Extra(id: 1, name: "Extra Curry"): false,
+        Extra(id: 2, name: "Extra Curry"): false,
       },
       comment: "",
     ),
@@ -29,7 +29,7 @@ class DummyData {
       assetImage: "assets/images/basil-fried.jpg",
       extras: {
         Extra(id: 1, name: "Tofu"): false,
-        Extra(id: 1, name: "Extra Curry"): false,
+        Extra(id: 2, name: "Extra Curry"): false,
       },
       comment: "",
     ),

@@ -22,39 +22,42 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: UiHelper.elevation,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Image(image: AssetImage(imageLocation)),
-          Container(
-            margin: EdgeInsets.all(UiHelper.card_margin),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  headline,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                SizedBox(height: UiHelper.standart_padding),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: UiHelper.standart_padding),
-                RaisedButton(
-                  child: Text(
-                    buttonLable,
-                    style: Theme.of(context).textTheme.button,
+    return Padding(
+      padding: const EdgeInsets.all(UiHelper.standart_padding),
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        elevation: UiHelper.elevation,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Image(image: AssetImage(imageLocation)),
+            Container(
+              margin: EdgeInsets.all(UiHelper.card_margin),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    headline,
+                    style: Theme.of(context).textTheme.title,
                   ),
-                  color: Theme.of(context).accentColor,
-                  onPressed: onPressed,
-                )
-              ],
-            ),
-          )
-        ],
+                  SizedBox(height: UiHelper.standart_padding),
+                  Text(
+                    text,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: UiHelper.standart_padding),
+                  RaisedButton(
+                    child: Text(
+                      buttonLable,
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                    color: Theme.of(context).accentColor,
+                    onPressed: onPressed,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

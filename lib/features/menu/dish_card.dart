@@ -39,13 +39,11 @@ class _DishCardState extends State<DishCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: DishCard.outerPadding,
-        right: DishCard.outerPadding,
-        top: DishCard.outerPadding,
+        top: UiHelper.standart_padding,
+        right: UiHelper.standart_padding,
+        left: UiHelper.standart_padding,
       ),
       child: Card(
-        clipBehavior: Clip.antiAlias,
-        elevation: UiHelper.elevation,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -86,8 +84,9 @@ class _DishCardState extends State<DishCard> {
                                 label: extra.name,
                                 state: state,
                                 onStateChange: (bool b) {
-                                  checkboxBlocs[extra.id].dispatch(BoolBlocEvent.swap);
-                                  
+                                  checkboxBlocs[extra.id]
+                                      .dispatch(BoolBlocEvent.swap);
+
                                   Map<Extra, bool> newExtras =
                                       Map.from(dish.extras);
                                   newExtras[extra] = b;

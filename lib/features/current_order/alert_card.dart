@@ -17,9 +17,8 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: padding, left: padding),
+      padding: const EdgeInsets.all(UiHelper.standart_padding),
       child: Card(
-        elevation: UiHelper.elevation,
         color: backgroundColor,
         child: Padding(
           padding: EdgeInsets.all(UiHelper.standart_padding),

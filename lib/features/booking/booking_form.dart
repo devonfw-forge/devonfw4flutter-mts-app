@@ -114,13 +114,11 @@ class _BookingFormState extends State<BookingForm> {
                     value: state,
                   ),
                   RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.grey,
                     child: Text(
                       "Book Table",
-                      style: Theme.of(context).textTheme.button,
                     ),
+                    textColor: Colors.white,
+                    disabledTextColor: Colors.white,
                     onPressed: state ? () => _sendBooking() : null,
                   ),
                 ],

@@ -32,7 +32,6 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
-      backgroundColor: Theme.of(context).backgroundColor,
       drawer: AppDrawer(),
       body: MultiBlocProvider(
         providers: [

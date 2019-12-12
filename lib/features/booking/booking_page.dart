@@ -26,11 +26,9 @@ class BookingPage extends StatelessWidget {
             bottom: TabBar(
               tabs: tabs,
               indicatorColor: Colors.white,
-              labelColor: Colors.white,
               labelStyle: Theme.of(context).textTheme.title,
             ),
           ),
-          backgroundColor: Theme.of(context).backgroundColor,
           drawer: AppDrawer(),
           body: TabBarView(
             children: <Widget>[

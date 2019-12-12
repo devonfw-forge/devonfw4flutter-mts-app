@@ -28,11 +28,10 @@ class CardDisplay extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.all(UiHelper.standart_padding),
-      padding: EdgeInsets.all(UiHelper.standart_padding),
       decoration: new BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
+            color: Colors.black54,
             blurRadius: blur, // has the effect of softening the shadow
             spreadRadius: spread, // has the effect of extending the shadow
           )

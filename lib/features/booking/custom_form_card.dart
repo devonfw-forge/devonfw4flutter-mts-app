@@ -21,10 +21,8 @@ class CustomFormCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.all(UiHelper.standart_padding),
+        padding: const EdgeInsets.all(UiHelper.standart_padding),
         child: Card(
-          clipBehavior: Clip.antiAlias,
-          elevation: UiHelper.elevation,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[

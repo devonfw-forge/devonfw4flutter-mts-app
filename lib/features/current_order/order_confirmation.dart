@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/order_bloc.dart';
+import 'package:my_thai_star_flutter/features/current_order/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/shared_widgets/labeled_checkbox.dart';
 import 'package:my_thai_star_flutter/ui_helper.dart';
 
@@ -29,18 +30,19 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 
     orderBloc.state.listen(
       (OrderState state) {
-        if (state == OrderState.confirmed) {
+        if (state is ConfirmedOrderState) {
           BlocProvider.of<CurrentOrderBloc>(context)
               .dispatch(ClearOrderEvent());
-              
+
           Scaffold.of(context).showSnackBar(SnackBar(
             duration: Duration(seconds: 3),
-            content: Text("Order Confirmed!"),
+            content:
+                Text("Order Confirmed with following ID:\n${state.bookingId}"),
           ));
-        } else if (state == OrderState.rejected) {
+        } else if (state is RejectedOrderState) {
           Scaffold.of(context).showSnackBar(SnackBar(
             duration: Duration(seconds: 3),
-            content: Text("Order Declined"),
+            content: Text("Order Declined:\n${state.reason}"),
           ));
         }
       },

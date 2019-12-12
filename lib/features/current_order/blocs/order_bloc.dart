@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:collection';
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/features/current_order/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/features/current_order/data/order_service.dart';
 import 'package:my_thai_star_flutter/features/current_order/models/order.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
-
-enum OrderState { confirmed, rejected }
 
 class OrderBloc extends Bloc<String, OrderState> {
   final ExchangePoint orderService = OrderService();
@@ -16,23 +13,27 @@ class OrderBloc extends Bloc<String, OrderState> {
   OrderBloc(this.currentOrderBloc);
 
   @override
-  OrderState get initialState => OrderState.rejected;
+  OrderState get initialState => InitialOrderState();
 
   @override
   Stream<OrderState> mapEventToState(String event) async* {
-    bool accepted;
-    try{
-      accepted = await orderService.post(Order(
-      bookingCode: event,
-      dishes: currentOrderBloc.currentState,
-    ));
-    }catch(e){
-      accepted = false;
+    if (event == null || event == "") {
+      yield RejectedOrderState("Please enter a booking ID");
+    } else {
+      try {
+        int bookingId = await orderService.post(Order(
+          bookingCode: event,
+          dishes: currentOrderBloc.currentState,
+        ));
+
+        if (bookingId == 0 || bookingId == null) {
+          yield RejectedOrderState("Your booking was Denied");
+        } else {
+          yield ConfirmedOrderState(bookingId);
+        }
+      } catch (e) {
+        yield RejectedOrderState("Error connecting to the service");
+      }
     }
-     
-    if (accepted)
-      yield OrderState.confirmed;
-    else
-      yield OrderState.rejected;
   }
 }

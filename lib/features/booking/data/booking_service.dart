@@ -29,11 +29,13 @@ class BookingService extends ExchangePoint<Booking, String> {
     http.Response response;
 
     try {
-      response = await http.post(
-        endPoint,
-        headers: requestHeaders,
-        body: jsonEncode(requestBody.toJson()),
-      );
+      response = await http
+          .post(
+            endPoint,
+            headers: requestHeaders,
+            body: jsonEncode(requestBody.toJson()),
+          )
+          .timeout(const Duration(seconds: 4));
     } catch (e) {
       return dummyBookingNumber;
     }

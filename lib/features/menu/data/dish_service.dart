@@ -20,7 +20,6 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
   static const String endPoint =
       'http://10.0.2.2:8082/mythaistar/services/rest/dishmanagement/v1/dish/search';
 
-
   @override
   Future<List<Dish>> post(Search input) async {
     //return DummyData.dishes;
@@ -28,11 +27,13 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
     http.Response response;
 
     try {
-      response = await http.post(
-        endPoint,
-        headers: requestHeaders,
-        body: jsonEncode(requestBody.toJson()),
-      );
+      response = await http
+          .post(
+            endPoint,
+            headers: requestHeaders,
+            body: jsonEncode(requestBody.toJson()),
+          )
+          .timeout(const Duration(seconds: 4));
     } catch (e) {
       return DummyData.dishes;
     }

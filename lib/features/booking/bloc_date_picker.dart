@@ -8,6 +8,7 @@ typedef DateCallback = void Function(DateTime);
 
 class BlocDatePicker extends StatelessWidget {
   final FormFieldValidationBloc validationBloc;
+  final TextEditingController controller;
   final DateCallback onChange;
   final format;
   final String lable;
@@ -20,6 +21,7 @@ class BlocDatePicker extends StatelessWidget {
     @required this.lable,
     @required this.errorHint,
     this.onChange,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -28,11 +30,12 @@ class BlocDatePicker extends StatelessWidget {
       bloc: validationBloc,
       builder: (context, ValidationState state) {
         return DateTimeField(
+          autovalidate: true,
           readOnly: true,
           format: format,
+          controller: controller,
           decoration: InputDecoration(
             labelText: lable,
-            errorText: validate(state),
           ),
           onChanged: (DateTime input) {
             validationBloc.dispatch(input == null
@@ -41,6 +44,7 @@ class BlocDatePicker extends StatelessWidget {
 
             onChange(input);
           },
+          validator: (_) => validate(state),
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
         );

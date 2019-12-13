@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validation_bloc/barrel.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/order_bloc.dart';
@@ -24,18 +25,27 @@ class OrderConfirmation extends StatefulWidget {
 class _OrderConfirmationState extends State<OrderConfirmation> {
   OrderBloc orderBloc;
   FormValidationBloc _formValidationBloc;
-  CheckboxValidationBloc _termsBloc;
-  NameValidationBloc _bookingIdBloc;
+  CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
+  NameValidationBloc _bookingIdBloc = NameValidationBloc();
+  TextEditingController _bookingIdController = TextEditingController();
 
   @override
   void initState() {
     //Validation
-    _termsBloc = CheckboxValidationBloc();
-    _bookingIdBloc = NameValidationBloc();
     _formValidationBloc = FormValidationBloc([
       _termsBloc,
       _bookingIdBloc,
     ]);
+
+    String currentBookingId = BlocProvider.of<BookingBloc>(context)
+        .currentState
+        .booking
+        .bookingNumber;
+
+    if (currentBookingId != null) {
+      _bookingIdController.text = currentBookingId;
+      _bookingIdBloc.dispatch(currentBookingId);
+    }
 
     orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
 
@@ -73,7 +83,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
               state == ValidationState.valid ? SizedBox() : AlertCard(),
         ),
         Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             right: UiHelper.standart_padding,
             left: UiHelper.standart_padding,
           ),
@@ -81,6 +91,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
             label: "Booking ID",
             errorHint: "Please enter a Booking ID",
             validationBloc: _bookingIdBloc,
+            controller: _bookingIdController,
           ),
         ),
         BlocBuilder<CheckboxValidationBloc, ValidationState>(
@@ -120,7 +131,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                   style: Theme.of(context).textTheme.button,
                 ),
                 onPressed: state == ValidationState.valid
-                    ? () => orderBloc.dispatch("")
+                    ? () => orderBloc.dispatch(_bookingIdController.text)
                     : null,
               ),
             ),

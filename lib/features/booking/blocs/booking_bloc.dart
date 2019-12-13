@@ -26,12 +26,13 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
       yield* mapSetTermsToState(event);
     } else if (event is RequestBookingEvent) {
       yield* mapRequestBookingToState(event);
+    } else if (event is ClearBookingContentsEvent) {
+      yield* mapClearToState(event);
     }
   }
 
   Stream<BookingState> mapSetDateToState(SetDateEvent event) async* {
-    Booking newBooking = currentState.booking
-        .copyWith(date: event.date);
+    Booking newBooking = currentState.booking.copyWith(date: event.date);
     yield InProgressBookingState(newBooking);
   }
 
@@ -57,6 +58,12 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
     yield InProgressBookingState(newBooking);
   }
 
+  Stream<BookingState> mapClearToState(ClearBookingContentsEvent event) async* {
+    Booking newBooking =
+        Booking(bookingNumber: currentState.booking.bookingNumber);
+    yield InitialBookingState(newBooking);
+  }
+
   Stream<BookingState> mapRequestBookingToState(
       RequestBookingEvent event) async* {
     yield LoadingBookingState(currentState.booking);
@@ -70,7 +77,8 @@ class BookingBloc extends Bloc<BookingEvent, BookingState> {
             currentState.booking.copyWith(bookingNumber: bookingNumber);
         yield ConfirmedBookingState(newBooking);
       } else {
-        yield DeclinedBookingState(currentState.booking, "Did not receive a valid booking ID");
+        yield DeclinedBookingState(
+            currentState.booking, "Did not receive a valid booking ID");
       }
     } catch (e) {
       yield DeclinedBookingState(currentState.booking, e.toString());

@@ -54,3 +54,8 @@ class RequestBookingEvent extends BookingEvent {
   @override
   List<Object> get props => ["request"];
 }
+class ClearBookingContentsEvent extends BookingEvent {
+
+  @override
+  List<Object> get props => ["clear"];
+}

@@ -14,6 +14,7 @@ class BlocFormField extends StatelessWidget {
   //Optional
   final TextInputType keyboardType;
   final List<TextInputFormatter> inputFormatters;
+  final TextEditingController controller;
 
   const BlocFormField({
     Key key,
@@ -23,6 +24,7 @@ class BlocFormField extends StatelessWidget {
     this.keyboardType,
     this.inputFormatters,
     this.onChange,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -31,17 +33,16 @@ class BlocFormField extends StatelessWidget {
       bloc: validationBloc,
       builder: (context, ValidationState state) {
         return TextFormField(
-          decoration: InputDecoration(
-            labelText: label,
-            errorText: validate(state),
-          ),
+          autovalidate: true,
+          decoration: InputDecoration(labelText: label),
           keyboardType: keyboardType,
           onChanged: (String input) {
-            
             validationBloc.dispatch(input);
             onChange(input);
           },
+          validator: (_) => validate(state),
           inputFormatters: inputFormatters,
+          controller: controller,
         );
       },
     );

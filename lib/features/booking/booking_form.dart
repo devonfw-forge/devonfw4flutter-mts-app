@@ -20,8 +20,6 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
-  BookingBloc _bookingBloc = BookingBloc();
-
   //Validation
   EmailValidationBloc _emailBloc = EmailValidationBloc();
   DateValidationBloc _dateBloc = DateValidationBloc();
@@ -29,6 +27,12 @@ class _BookingFormState extends State<BookingForm> {
   NumberValidationBloc _guestBloc = NumberValidationBloc();
   CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
   FormValidationBloc _formValidationBloc;
+
+  //TextEditController
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _guestController = TextEditingController();
 
   @override
   void initState() {
@@ -40,9 +44,23 @@ class _BookingFormState extends State<BookingForm> {
       _termsBloc,
     ]);
 
-    _bookingBloc.state.listen(
+    BookingBloc bookingBloc = BlocProvider.of<BookingBloc>(context);
+
+    _emailController.text =
+        bookingBloc.currentState.booking?.organizerEmail ?? "";
+    _nameController.text = bookingBloc.currentState.booking?.name ?? "";
+    _guestController.text = bookingBloc.currentState.booking?.guests ?? "";
+
+    if (bookingBloc.currentState.booking.date != null) {
+      _dateController.text =
+          Booking.dateFormat.format(bookingBloc.currentState.booking.date);
+    }
+
+    bookingBloc.state.listen(
       (BookingState state) {
         if (state is ConfirmedBookingState) {
+          BlocProvider.of<BookingBloc>(context)
+              .dispatch(ClearBookingContentsEvent());
           Scaffold.of(context).showSnackBar(SnackBar(
             duration: Duration(seconds: 3),
             content: Text("Booking Confirmed!\n" +
@@ -72,23 +90,26 @@ class _BookingFormState extends State<BookingForm> {
             lable: 'Date and Time',
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
-            onChange: (DateTime date) =>
-                _bookingBloc.dispatch(SetDateEvent(date)),
+            controller: _dateController,
+            onChange: (DateTime date) => BlocProvider.of<BookingBloc>(context)
+                .dispatch(SetDateEvent(date)),
           ),
           BlocFormField(
             validationBloc: _nameBloc,
             label: "Name",
             errorHint: 'Please enter your Name.',
-            onChange: (String name) =>
-                _bookingBloc.dispatch(SetNameEvent(name)),
+            controller: _nameController,
+            onChange: (String name) => BlocProvider.of<BookingBloc>(context)
+                .dispatch(SetNameEvent(name)),
           ),
           BlocFormField(
             validationBloc: _emailBloc,
             label: "Email",
             errorHint: "Enter valid Email",
             keyboardType: TextInputType.emailAddress,
-            onChange: (String email) =>
-                _bookingBloc.dispatch(SetEmailEvent(email)),
+            controller: _emailController,
+            onChange: (String email) => BlocProvider.of<BookingBloc>(context)
+                .dispatch(SetEmailEvent(email)),
           ),
           BlocFormField(
             validationBloc: _guestBloc,
@@ -98,26 +119,24 @@ class _BookingFormState extends State<BookingForm> {
               WhitelistingTextInputFormatter.digitsOnly
             ],
             keyboardType: TextInputType.number,
-            onChange: (String guests) =>
-                _bookingBloc.dispatch(SetGuestsEvent(int.parse(guests))),
+            controller: _guestController,
+            onChange: (String guests) => BlocProvider.of<BookingBloc>(context)
+                .dispatch(SetGuestsEvent(int.parse(guests))),
           ),
           BlocBuilder<CheckboxValidationBloc, ValidationState>(
             bloc: _termsBloc,
             builder: (context, ValidationState state) => _TermsCheckbox(
               state: state,
               termsBloc: _termsBloc,
-              bookingBloc: _bookingBloc,
             ),
           ),
           BlocBuilder<BookingBloc, BookingState>(
-            bloc: _bookingBloc,
             builder: (context, BookingState state) {
               if (state is LoadingBookingState) {
                 return _Loading();
               } else {
                 return _Button(
                   formValidationBloc: _formValidationBloc,
-                  bookingBloc: _bookingBloc,
                 );
               }
             },
@@ -129,8 +148,6 @@ class _BookingFormState extends State<BookingForm> {
 
   @override
   void dispose() {
-    _bookingBloc.dispose();
-
     _emailBloc.dispose();
     _nameBloc.dispose();
     _guestBloc.dispose();
@@ -138,6 +155,11 @@ class _BookingFormState extends State<BookingForm> {
     _termsBloc.dispose();
 
     _formValidationBloc.dispose();
+
+    _emailController.dispose();
+    _dateController.dispose();
+    _nameController.dispose();
+    _guestController.dispose();
 
     super.dispose();
   }
@@ -147,15 +169,12 @@ class _TermsCheckbox extends StatelessWidget {
   const _TermsCheckbox({
     Key key,
     @required CheckboxValidationBloc termsBloc,
-    @required BookingBloc bookingBloc,
     @required ValidationState state,
   })  : _termsBloc = termsBloc,
-        _bookingBloc = bookingBloc,
         _state = state,
         super(key: key);
 
   final CheckboxValidationBloc _termsBloc;
-  final BookingBloc _bookingBloc;
   final ValidationState _state;
 
   @override
@@ -168,7 +187,8 @@ class _TermsCheckbox extends StatelessWidget {
           title: Text("Accept terms"),
           onChanged: (bool value) {
             _termsBloc.dispatch(value);
-            _bookingBloc.dispatch(SetTermsAcceptedEvent(value));
+            BlocProvider.of<BookingBloc>(context)
+                .dispatch(SetTermsAcceptedEvent(value));
           },
           value: _state == ValidationState.valid,
         ),
@@ -198,13 +218,10 @@ class _Button extends StatelessWidget {
   const _Button({
     Key key,
     @required FormValidationBloc formValidationBloc,
-    @required BookingBloc bookingBloc,
   })  : _formValidationBloc = formValidationBloc,
-        _bookingBloc = bookingBloc,
         super(key: key);
 
   final FormValidationBloc _formValidationBloc;
-  final BookingBloc _bookingBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -218,7 +235,8 @@ class _Button extends StatelessWidget {
           textColor: Colors.white,
           disabledTextColor: Colors.white,
           onPressed: state == ValidationState.valid
-              ? () => _bookingBloc.dispatch(RequestBookingEvent())
+              ? () => BlocProvider.of<BookingBloc>(context)
+                  .dispatch(RequestBookingEvent())
               : null,
         );
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/simple_bloc_delegate.dart';
@@ -14,8 +15,15 @@ void main() {
 class MyThaiStar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      builder: (BuildContext context) => CurrentOrderBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CurrentOrderBloc>(
+          builder: (BuildContext context) => CurrentOrderBloc(),
+        ),
+        BlocProvider<BookingBloc>(
+          builder: (BuildContext context) => BookingBloc(),
+        ),
+      ],
       child: MaterialApp(
         title: 'My Thai Star',
         theme: themeData,
@@ -25,4 +33,3 @@ class MyThaiStar extends StatelessWidget {
     );
   }
 }
-

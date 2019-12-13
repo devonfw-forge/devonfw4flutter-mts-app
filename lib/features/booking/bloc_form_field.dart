@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
+import '../../../packages/form_validation_bloc/lib/form_field_validation_bloc.dart';
 
 class BlocFormField extends StatelessWidget {
   final FormFieldValidationBloc bloc;

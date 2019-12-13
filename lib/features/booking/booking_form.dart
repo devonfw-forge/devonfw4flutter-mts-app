@@ -6,17 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/checkbox_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_validation_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
+import 'package:form_validation_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/number_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/name_validation_bloc.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);

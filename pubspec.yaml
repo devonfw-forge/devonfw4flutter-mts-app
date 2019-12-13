@@ -15,8 +15,12 @@ dependencies:
   badges: ^1.1.0
   copyable: ^0.0.1
   datetime_picker_formfield: ^0.4.3
+  # Own Packages
   bool_bloc:
     path: ./packages/bool_bloc
+  form_validation_bloc:
+    path: ./packages/form_validation_bloc
+  # SDK
   flutter:
     sdk: flutter
     

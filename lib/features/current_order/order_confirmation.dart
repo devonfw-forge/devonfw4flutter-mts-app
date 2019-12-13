@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validation_bloc/barrel.dart';
@@ -24,21 +22,20 @@ class OrderConfirmation extends StatefulWidget {
 
 class _OrderConfirmationState extends State<OrderConfirmation> {
   OrderBloc orderBloc;
-  FormBloc _formValidationBloc;
+  FormValidationBloc _formValidationBloc;
   CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
   NonEmptyValidationBloc _bookingIdBloc = NonEmptyValidationBloc();
   TextEditingController _bookingIdController = TextEditingController();
 
   @override
   void initState() {
-    //Validation
-    //_formValidationBloc = FormBloc([
-    //  _termsBloc,
-    //  _bookingIdBloc,
-    //]);
+    _formValidationBloc = FormValidationBloc([
+      _termsBloc,
+      _bookingIdBloc,
+    ]);
 
-    BookingState bookingState = BlocProvider.of<BookingBloc>(context)
-        .currentState;
+    BookingState bookingState =
+        BlocProvider.of<BookingBloc>(context).currentState;
 
     if (bookingState is ConfirmedBookingState) {
       _bookingIdController.text = bookingState.bookingId;
@@ -118,21 +115,21 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
               onPressed: () => Navigator.pop(context),
             ),
             SizedBox(width: UiHelper.standart_padding),
-            //BlocBuilder<FormValidationBloc, ValidationState>(
-            //  bloc: _formValidationBloc,
-            //  builder: (context, ValidationState state) => RaisedButton(
-            //    color: Theme.of(context).accentColor,
-            //    disabledColor: Colors.grey,
-            //    disabledTextColor: Colors.grey,
-            //    child: Text(
-            //      "SEND ORDER",
-            //      style: Theme.of(context).textTheme.button,
-            //    ),
-            //    onPressed: state == ValidationState.valid
-            //        ? () => orderBloc.dispatch(_bookingIdController.text)
-            //        : null,
-            //  ),
-            //),
+            BlocBuilder<FormValidationBloc, ValidationState>(
+              bloc: _formValidationBloc,
+              builder: (context, ValidationState state) => RaisedButton(
+                color: Theme.of(context).accentColor,
+                disabledColor: Colors.grey,
+                disabledTextColor: Colors.grey,
+                child: Text(
+                  "SEND ORDER",
+                  style: Theme.of(context).textTheme.button,
+                ),
+                onPressed: state is ValidState
+                    ? () => orderBloc.dispatch(_bookingIdController.text)
+                    : null,
+              ),
+            ),
             SizedBox(width: UiHelper.standart_padding),
           ],
         )

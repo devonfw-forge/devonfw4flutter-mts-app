@@ -2,30 +2,42 @@ import 'package:equatable/equatable.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
 abstract class BookingState extends Equatable {
-  final Booking currentBooking;
-  const BookingState(this.currentBooking);
+  final Booking booking;
+  const BookingState(this.booking);
 }
 
 class InitialBookingState extends BookingState {
-  InitialBookingState({currentBooking}) : super(currentBooking);
+  InitialBookingState(booking) : super(booking);
 
   @override
-  List<Object> get props => ["initial"];
+  List<Object> get props => [booking];
 }
 
 class ConfirmedBookingState extends BookingState {
-  final String bookingNumber;
-
-  ConfirmedBookingState({this.bookingNumber, currentBooking})
-      : super(currentBooking);
+  ConfirmedBookingState(booking) : super(booking);
 
   @override
-  List<Object> get props => [bookingNumber, currentBooking];
+  List<Object> get props => [booking];
+}
+
+class LoadingBookingState extends BookingState {
+  LoadingBookingState(booking) : super(booking);
+
+  @override
+  List<Object> get props => [booking];
 }
 
 class DeclinedBookingState extends BookingState {
-  DeclinedBookingState({currentBooking}) : super(currentBooking);
+  final String reason;
+  DeclinedBookingState(booking, this.reason) : super(booking);
 
   @override
-  List<Object> get props => [currentBooking];
+  List<Object> get props => [booking, reason];
+}
+
+class InProgressBookingState extends BookingState {
+  InProgressBookingState(booking) : super(booking);
+
+  @override
+  List<Object> get props => [booking];
 }

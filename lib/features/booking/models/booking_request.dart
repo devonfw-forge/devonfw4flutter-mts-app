@@ -1,5 +1,7 @@
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
+import 'package:intl/intl.dart';
+
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class BookingRequest {
   BookingRequestPayload booking;
@@ -13,7 +15,7 @@ class BookingRequest {
   }
   BookingRequest.fromBooking(Booking b) {
     booking = BookingRequestPayload(
-      bookingDate: b.date,
+      bookingDate: formatDate(b.date),
       name: b.name,
       email: b.organizerEmail,
       assistants: b.guests,
@@ -53,4 +55,9 @@ class BookingRequestPayload {
     data['assistants'] = this.assistants;
     return data;
   }
+}
+
+String formatDate(DateTime original) {
+  DateFormat newFormat = DateFormat("yyyy-MM-ddTHH:mm:ss.SSS'Z'");
+  return newFormat.format(original);
 }

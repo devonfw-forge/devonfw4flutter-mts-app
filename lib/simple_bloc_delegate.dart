@@ -15,7 +15,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 
   @override
   void onError(Bloc bloc, Object error, StackTrace stacktrace) {
-    print(bloc.runtimeType.toString() + ":\t" + error);
+    print(bloc.runtimeType.toString() + ":\t" + error.toString());
     super.onError(bloc, error, stacktrace);
   }
 }

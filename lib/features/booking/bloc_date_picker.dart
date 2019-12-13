@@ -4,25 +4,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 import 'package:form_validation_bloc/barrel.dart';
 
+typedef DateCallback = void Function(DateTime);
 
 class BlocDatePicker extends StatelessWidget {
-  final FormFieldValidationBloc bloc;
+  final FormFieldValidationBloc validationBloc;
+  final DateCallback onChange;
   final format;
   final String lable;
   final String errorHint;
 
   const BlocDatePicker({
     Key key,
-    @required this.bloc,
+    @required this.validationBloc,
     @required this.format,
     @required this.lable,
     @required this.errorHint,
+    this.onChange,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FormFieldValidationBloc, ValidationState>(
-      bloc: bloc,
+      bloc: validationBloc,
       builder: (context, ValidationState state) {
         return DateTimeField(
           readOnly: true,
@@ -32,9 +35,11 @@ class BlocDatePicker extends StatelessWidget {
             errorText: validate(state),
           ),
           onChanged: (DateTime input) {
-            bloc.dispatch(input == null
+            validationBloc.dispatch(input == null
                 ? ""
                 : Booking.dateFormat.format(input).toString());
+
+                onChange(input);
           },
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
@@ -54,7 +59,7 @@ class BlocDatePicker extends StatelessWidget {
       BuildContext context, DateTime currentValue) async {
     final date = await showDatePicker(
         context: context,
-        firstDate: DateTime.now(),
+        firstDate: DateTime(2010) ,
         initialDate: currentValue ?? DateTime.now(),
         lastDate: DateTime(2100));
     if (date != null) {

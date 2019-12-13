@@ -1,10 +1,9 @@
-import 'package:bool_bloc/bool_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/booking_events.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 import 'package:form_validation_bloc/barrel.dart';
@@ -48,12 +47,12 @@ class _BookingFormState extends State<BookingForm> {
             duration: Duration(seconds: 3),
             content: Text("Booking Confirmed!\n" +
                 "Booking Number: " +
-                state.bookingNumber),
+                state.booking.bookingNumber),
           ));
         } else if (state is DeclinedBookingState) {
           Scaffold.of(context).showSnackBar(SnackBar(
             duration: Duration(seconds: 3),
-            content: Text("Booking Declined"),
+            content: Text("Booking Declined\nReason: " + state.reason),
           ));
         }
       },
@@ -69,30 +68,38 @@ class _BookingFormState extends State<BookingForm> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           BlocDatePicker(
-            bloc: _dateBloc,
+            validationBloc: _dateBloc,
             lable: 'Date and Time',
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
+            onChange: (DateTime date) =>
+                _bookingBloc.dispatch(SetDateEvent(date)),
           ),
           BlocFormField(
-            bloc: _nameBloc,
+            validationBloc: _nameBloc,
             label: "Name",
             errorHint: 'Please enter your Name.',
+            onChange: (String name) =>
+                _bookingBloc.dispatch(SetNameEvent(name)),
           ),
           BlocFormField(
-            bloc: _emailBloc,
+            validationBloc: _emailBloc,
             label: "Email",
             errorHint: "Enter valid Email",
             keyboardType: TextInputType.emailAddress,
+            onChange: (String email) =>
+                _bookingBloc.dispatch(SetEmailEvent(email)),
           ),
           BlocFormField(
-            bloc: _guestBloc,
+            validationBloc: _guestBloc,
             label: 'Table Guests',
             errorHint: 'Please enter the Number of Guests.',
             inputFormatters: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
             ],
             keyboardType: TextInputType.number,
+            onChange: (String guests) =>
+                _bookingBloc.dispatch(SetGuestsEvent(int.parse(guests))),
           ),
           BlocBuilder<CheckboxValidationBloc, ValidationState>(
             bloc: _termsBloc,
@@ -103,7 +110,10 @@ class _BookingFormState extends State<BookingForm> {
                 children: <Widget>[
                   CheckboxListTile(
                     title: Text("Accept terms"),
-                    onChanged: (bool value) => _termsBloc.dispatch(value),
+                    onChanged: (bool value) {
+                      _termsBloc.dispatch(value);
+                      _bookingBloc.dispatch(SetTermsAcceptedEvent(value));
+                    },
                     value: state == ValidationState.valid,
                   ),
                 ],
@@ -120,7 +130,7 @@ class _BookingFormState extends State<BookingForm> {
                 textColor: Colors.white,
                 disabledTextColor: Colors.white,
                 onPressed: state == ValidationState.valid
-                    ? () => _bookingBloc.dispatch(Booking())
+                    ? () => _bookingBloc.dispatch(RequestBookingEvent())
                     : null,
               );
             },

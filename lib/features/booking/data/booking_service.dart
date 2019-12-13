@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking_request.dart';
-import 'package:my_thai_star_flutter/features/menu/data/dummy_data.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking_response.dart';
@@ -20,9 +18,8 @@ class BookingService extends ExchangePoint<Booking, String> {
 
   @override
   Future<String> post(Booking input) async {
-    input.date = formatDate(input.date);
-
-    BookingRequest requestBody = BookingRequest.fromBooking(input);
+    BookingRequest requestBody =
+        BookingRequest.fromBooking(input);
     http.Response response;
 
     try {
@@ -39,12 +36,5 @@ class BookingService extends ExchangePoint<Booking, String> {
     BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
 
     return bookingResponse.bookingToken;
-  }
-
-  String formatDate(String original) {
-    DateFormat newFormat = DateFormat("yyyy-MM-ddTHH:mm:ss.SSS'Z'");
-    
-    DateTime date = Booking.dateFormat.parse(original);
-    return newFormat.format(date);
   }
 }

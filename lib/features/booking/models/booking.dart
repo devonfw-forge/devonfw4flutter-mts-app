@@ -1,28 +1,38 @@
 import 'package:intl/intl.dart';
 
-class Booking{
+class Booking {
   static final DateFormat dateFormat = DateFormat("dd-MM-yyyy HH:mm");
-  
-  String bookingId;
-  String date;
+
+  String bookingNumber;
+  DateTime date;
   String name;
   String organizerEmail;
   int guests;
+  bool termsAccepted;
 
   Booking({
-    this.bookingId,
+    this.bookingNumber,
     this.date,
     this.name,
     this.organizerEmail,
     this.guests,
+    this.termsAccepted
   });
 
-  Map<String, dynamic> toJson() => {
-        'booking': {
-          'assistants' : guests,
-          'bookingDate' : date.toString(),
-          'email' : organizerEmail,
-          'name' : name
-        }
-      };
+  Booking copyWith({
+    String bookingNumber,
+    DateTime date,
+    String name,
+    String organizerEmail,
+    int guests,
+    bool termsAccepted,
+  }) =>
+      Booking(
+        bookingNumber: bookingNumber ?? this.bookingNumber,
+        date: date ?? this.date,
+        name: name ?? this.name,
+        organizerEmail: organizerEmail ?? this.organizerEmail,
+        guests: guests ?? this.guests,
+        termsAccepted: termsAccepted ?? this.termsAccepted,
+      );
 }

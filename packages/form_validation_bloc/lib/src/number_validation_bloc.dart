@@ -1,25 +1,24 @@
 import 'dart:async';
 
+import 'package:form_validation_bloc/src/validation_state.dart';
+
 import 'form_field_validation_bloc.dart';
 
 class NumberValidationBloc extends FormFieldValidationBloc<String> {
   @override
-  Stream<ValidationState> mapEventToState(String event) async* {
-    if (event.isEmpty) {
-      yield ValidationState.invalid;
-      return;
-    }
+  ValidationState<String> get initialState => InitialState(null);
 
-    int guests;
+  @override
+  Stream<ValidationState<String>> mapEventToState(String event) async* {
     try {
-      guests = int.parse(event);
-      if (guests > 0) {
-        yield ValidationState.valid;
+      int number = int.parse(event);
+      if (number < 1) {
+        yield InvalidState(event);
       } else {
-        yield ValidationState.invalid;
+        yield ValidState(event);
       }
     } catch (e) {
-      yield ValidationState.invalid;
+      yield InvalidState(event);
     }
   }
 }

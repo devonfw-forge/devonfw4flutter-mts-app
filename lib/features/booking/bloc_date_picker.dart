@@ -1,16 +1,13 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 import 'package:form_validation_bloc/barrel.dart';
-
-typedef DateCallback = void Function(DateTime);
+import 'package:intl/intl.dart';
 
 class BlocDatePicker extends StatelessWidget {
   final FormFieldValidationBloc validationBloc;
   final TextEditingController controller;
-  final DateCallback onChange;
-  final format;
+  final DateFormat format;
   final String lable;
   final String errorHint;
 
@@ -20,7 +17,6 @@ class BlocDatePicker extends StatelessWidget {
     @required this.format,
     @required this.lable,
     @required this.errorHint,
-    this.onChange,
     this.controller,
   }) : super(key: key);
 
@@ -30,21 +26,16 @@ class BlocDatePicker extends StatelessWidget {
       bloc: validationBloc,
       builder: (context, ValidationState state) {
         return DateTimeField(
-          autovalidate: true,
           readOnly: true,
           format: format,
           controller: controller,
           decoration: InputDecoration(
             labelText: lable,
+            errorText: validate(state),
           ),
           onChanged: (DateTime input) {
-            validationBloc.dispatch(input == null
-                ? ""
-                : Booking.dateFormat.format(input).toString());
-
-            onChange(input);
+            validationBloc.dispatch(input != null ? format.format(input) : "");
           },
-          validator: (_) => validate(state),
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
         );
@@ -53,7 +44,7 @@ class BlocDatePicker extends StatelessWidget {
   }
 
   String validate(ValidationState state) {
-    if (state == ValidationState.invalid)
+    if (state is InvalidState)
       return errorHint;
     else
       return null;

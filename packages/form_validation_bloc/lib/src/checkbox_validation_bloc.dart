@@ -1,14 +1,18 @@
 import 'dart:async';
 
-import 'form_field_validation_bloc.dart';
+import 'package:form_validation_bloc/src/validation_state.dart';
 
+import 'form_field_validation_bloc.dart';
 
 class CheckboxValidationBloc extends FormFieldValidationBloc<bool> {
   @override
-  Stream<ValidationState> mapEventToState(bool event) async* {
+  ValidationState<bool> get initialState => InitialState(false);
+
+  @override
+  Stream<ValidationState<bool>> mapEventToState(bool event) async* {
     if (event)
-      yield ValidationState.valid;
+      yield ValidState(event);
     else
-      yield ValidationState.invalid;
+      yield InvalidState(event);
   }
 }

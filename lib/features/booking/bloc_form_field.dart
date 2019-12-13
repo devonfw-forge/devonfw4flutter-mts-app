@@ -7,7 +7,6 @@ typedef StringCallback = void Function(String);
 
 class BlocFormField extends StatelessWidget {
   final FormFieldValidationBloc validationBloc;
-  final StringCallback onChange;
   final String label;
   final String errorHint;
 
@@ -23,7 +22,6 @@ class BlocFormField extends StatelessWidget {
     @required this.errorHint,
     this.keyboardType,
     this.inputFormatters,
-    this.onChange,
     this.controller,
   }) : super(key: key);
 
@@ -33,14 +31,12 @@ class BlocFormField extends StatelessWidget {
       bloc: validationBloc,
       builder: (context, ValidationState state) {
         return TextFormField(
-          autovalidate: true,
-          decoration: InputDecoration(labelText: label),
+          decoration: InputDecoration(
+            labelText: label,
+            errorText: validate(state),
+          ),
           keyboardType: keyboardType,
-          onChanged: (String input) {
-            validationBloc.dispatch(input);
-            onChange(input);
-          },
-          validator: (_) => validate(state),
+          onChanged: (String input) => validationBloc.dispatch(input),
           inputFormatters: inputFormatters,
           controller: controller,
         );
@@ -49,7 +45,7 @@ class BlocFormField extends StatelessWidget {
   }
 
   String validate(ValidationState state) {
-    if (state == ValidationState.invalid)
+    if (state is InvalidState)
       return errorHint;
     else
       return null;

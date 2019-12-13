@@ -30,10 +30,10 @@ class _BookingFormState extends State<BookingForm> {
   BookingBloc _bookingBloc = BookingBloc();
 
   //Validation
-  EmailFieldBloc _emailBloc = EmailFieldBloc();
-  DateFieldBloc _dateBloc = DateFieldBloc();
-  NameFieldBloc _nameBloc = NameFieldBloc();
-  NumberFieldBloc _guestBloc = NumberFieldBloc();
+  EmailValidationBloc _emailBloc = EmailValidationBloc();
+  DateValidationBloc _dateBloc = DateValidationBloc();
+  NameValidationBloc _nameBloc = NameValidationBloc();
+  NumberValidationBloc _guestBloc = NumberValidationBloc();
   CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
   FormValidationBloc _formValidationBloc;
 

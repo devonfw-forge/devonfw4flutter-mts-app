@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
 
 class BlocFormField extends StatelessWidget {
-  final FormFieldBloc bloc;
+  final FormFieldValidationBloc bloc;
   final String label;
   final String errorHint;
 
@@ -24,7 +24,7 @@ class BlocFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormFieldBloc, ValidationState>(
+    return BlocBuilder<FormFieldValidationBloc, ValidationState>(
       bloc: bloc,
       builder: (context, ValidationState state) {
         return TextFormField(

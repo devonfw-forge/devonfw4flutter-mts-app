@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
 
 class FormValidationBloc extends Bloc<ValidationState, ValidationState> {
-  final List<FormFieldBloc> fieldBlocs;
+  final List<FormFieldValidationBloc> fieldBlocs;
 
   FormValidationBloc(this.fieldBlocs) {
     fieldBlocs.forEach((bloc) {

@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
 
 class BlocDatePicker extends StatelessWidget {
-  final FormFieldBloc bloc;
+  final FormFieldValidationBloc bloc;
   final format;
   final String lable;
   final String errorHint;
@@ -21,7 +21,7 @@ class BlocDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormFieldBloc, ValidationState>(
+    return BlocBuilder<FormFieldValidationBloc, ValidationState>(
       bloc: bloc,
       builder: (context, ValidationState state) {
         return DateTimeField(

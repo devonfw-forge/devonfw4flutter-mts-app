@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
 
-class NumberFieldBloc extends FormFieldBloc<String> {
+class NumberValidationBloc extends FormFieldValidationBloc<String> {
   @override
   Stream<ValidationState> mapEventToState(String event) async* {
     if (event.isEmpty) {

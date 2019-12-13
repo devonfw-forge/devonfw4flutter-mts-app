@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_state.dart' as formBloc;
 
 class BlocFormField extends StatelessWidget {
-  final FormValidationBloc bloc;
-  final TextEditingController controller;
-  final String lable;
+  final FormFieldBloc bloc;
+  final String label;
   final String errorHint;
 
   //Optional
@@ -17,8 +17,7 @@ class BlocFormField extends StatelessWidget {
   const BlocFormField({
     Key key,
     @required this.bloc,
-    @required this.controller,
-    @required this.lable,
+    @required this.label,
     @required this.errorHint,
     this.keyboardType,
     this.inputFormatters,
@@ -26,25 +25,26 @@ class BlocFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<FormFieldBloc, formBloc.FormFieldState>(
       bloc: bloc,
-      builder: (context, ValidationState state) {
+      builder: (context, formBloc.FormFieldState state) {
         return TextFormField(
-          controller: controller,
-          decoration: InputDecoration(labelText: lable),
+          decoration: InputDecoration(
+            labelText: label,
+            errorText: validate(state),
+          ),
           keyboardType: keyboardType,
           onChanged: (String input) => bloc.dispatch(input),
-          validator: (_) => validate(state),
           inputFormatters: inputFormatters,
         );
       },
     );
   }
 
-  String validate(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
+  String validate(formBloc.FormFieldState state) {
+    if (state is formBloc.InvalidFieldState)
       return errorHint;
+    else
+      return null;
   }
 }

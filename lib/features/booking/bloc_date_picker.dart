@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_validation_bloc.dart';
-
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_state.dart' as formBloc;
 
 class BlocDatePicker extends StatelessWidget {
-  final FormValidationBloc bloc;
-  final TextEditingController controller;
+  final FormFieldBloc bloc;
   final format;
   final String lable;
   final String errorHint;
@@ -16,7 +15,6 @@ class BlocDatePicker extends StatelessWidget {
   const BlocDatePicker({
     Key key,
     @required this.bloc,
-    @required this.controller,
     @required this.format,
     @required this.lable,
     @required this.errorHint,
@@ -24,17 +22,20 @@ class BlocDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<FormFieldBloc, formBloc.FormFieldState>(
       bloc: bloc,
-      builder: (context, ValidationState state) {
+      builder: (context, formBloc.FormFieldState state) {
         return DateTimeField(
           readOnly: true,
-          controller: controller,
           format: format,
-          decoration: InputDecoration(labelText: lable),
-          validator: (_) => validate(state),
+          decoration: InputDecoration(
+            labelText: lable,
+            errorText: validate(state),
+          ),
           onChanged: (DateTime input) {
-            bloc.dispatch(input == null ? "" : Booking.dateFormat.format(input).toString());
+            bloc.dispatch(input == null
+                ? ""
+                : Booking.dateFormat.format(input).toString());
           },
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
@@ -43,11 +44,11 @@ class BlocDatePicker extends StatelessWidget {
     );
   }
 
-  String validate(ValidationState state) {
-    if (state == ValidationState.valid)
-      return null;
-    else
+  String validate(formBloc.FormFieldState state) {
+    if (state is formBloc.InvalidFieldState)
       return errorHint;
+    else
+      return null;
   }
 
   Future<DateTime> onShowPicker(

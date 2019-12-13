@@ -6,14 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/booking_form_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_bloc.dart'
+    as formBloc;
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
 import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/guest_number_validation_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/name_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/number_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/name_field_bloc.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);
@@ -23,26 +26,27 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
-  final _formKey = GlobalKey<FormState>();
-  final format = DateFormat("dd-MM-yyyy HH:mm");
-
-  //Text Controllers
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _guestController = TextEditingController();
-
   //BLoCs
   BookingBloc _bookingBloc = BookingBloc();
-  EmailValidationBloc _emailValidationBloc = EmailValidationBloc();
-  DateValidationBloc _dateValidationBloc = DateValidationBloc();
-  NameValidationBloc _nameValidationBloc = NameValidationBloc();
+
+  //Validation
+  EmailFieldBloc _emailBloc = EmailFieldBloc();
+  DateFieldBloc _dateBloc = DateFieldBloc();
+  NameFieldBloc _nameBloc = NameFieldBloc();
+  NumberFieldBloc _guestBloc = NumberFieldBloc();
   BoolBloc _termsBloc = BoolBloc();
-  GuestNumberValidationBloc _guestNumberValidationBloc =
-      GuestNumberValidationBloc();
+  BookingFormBloc _formBloc;
 
   @override
   void initState() {
+    _formBloc = BookingFormBloc(
+      emailBloc: _emailBloc,
+      dateBloc: _dateBloc,
+      nameBloc: _nameBloc,
+      guestBloc: _guestBloc,
+      termsBloc: _termsBloc,
+    );
+
     _bookingBloc.state.listen(
       (BookingState state) {
         if (state is ConfirmedBookingState) {
@@ -67,34 +71,29 @@ class _BookingFormState extends State<BookingForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           BlocDatePicker(
-            bloc: _dateValidationBloc,
-            controller: _dateController,
+            bloc: _dateBloc,
             lable: 'Date and Time',
             errorHint: "Please select a Date",
-            format: format,
+            format: Booking.dateFormat,
           ),
           BlocFormField(
-            bloc: _nameValidationBloc,
-            controller: _nameController,
-            lable: "Name",
+            bloc: _nameBloc,
+            label: "Name",
             errorHint: 'Please enter your Name.',
           ),
           BlocFormField(
-            bloc: _emailValidationBloc,
-            controller: _emailController,
-            lable: "Email",
+            bloc: _emailBloc,
+            label: "Email",
             errorHint: "Enter valid Email",
             keyboardType: TextInputType.emailAddress,
           ),
           BlocFormField(
-            bloc: _guestNumberValidationBloc,
-            controller: _guestController,
-            lable: 'Table Guests',
+            bloc: _guestBloc,
+            label: 'Table Guests',
             errorHint: 'Please enter the Number of Guests.',
             inputFormatters: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
@@ -113,18 +112,25 @@ class _BookingFormState extends State<BookingForm> {
                     onChanged: (_) => _termsBloc.dispatch(BoolBlocEvent.swap),
                     value: state,
                   ),
-                  RaisedButton(
-                    child: Text(
-                      "Book Table",
-                    ),
-                    textColor: Colors.white,
-                    disabledTextColor: Colors.white,
-                    onPressed: state ? () => _sendBooking() : null,
-                  ),
                 ],
               );
             },
-          )
+          ),
+          BlocBuilder<BookingFormBloc, formBloc.FormState<Booking>>(
+            bloc: _formBloc,
+            builder: (context, formBloc.FormState<Booking> state) {
+              return RaisedButton(
+                child: Text(
+                  "Book Table",
+                ),
+                textColor: Colors.white,
+                disabledTextColor: Colors.white,
+                onPressed: state.formIsValid
+                    ? () => _bookingBloc.dispatch(_formBloc.currentState.data)
+                    : null,
+              );
+            },
+          ),
         ],
       ),
     );
@@ -134,35 +140,14 @@ class _BookingFormState extends State<BookingForm> {
   void dispose() {
     _bookingBloc.dispose();
 
-    _emailValidationBloc.dispose();
-    _nameValidationBloc.dispose();
-    _guestNumberValidationBloc.dispose();
-    _dateValidationBloc.dispose();
+    _emailBloc.dispose();
+    _nameBloc.dispose();
+    _guestBloc.dispose();
+    _dateBloc.dispose();
     _termsBloc.dispose();
 
-    _emailController.dispose();
-    _nameController.dispose();
-    _guestController.dispose();
-    _dateController.dispose();
+    _formBloc.dispose();
 
     super.dispose();
-  }
-
-  void _sendBooking() {
-    if (_formKey.currentState.validate()) {
-      Booking booking = Booking(
-        organizerEmail: _emailController.text,
-        date: _dateController.text,
-        name: _nameController.text,
-        guests: int.parse(_guestController.text),
-      );
-
-      _bookingBloc.dispatch(booking);
-    } else {
-      Scaffold.of(context).showSnackBar(SnackBar(
-        duration: Duration(seconds: 1, microseconds: 50),
-        content: Text("Please fill out the Form"),
-      ));
-    }
   }
 }

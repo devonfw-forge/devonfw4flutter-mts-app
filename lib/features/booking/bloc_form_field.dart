@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_state.dart' as formBloc;
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
 
 class BlocFormField extends StatelessWidget {
   final FormFieldBloc bloc;
@@ -25,9 +24,9 @@ class BlocFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormFieldBloc, formBloc.FormFieldState>(
+    return BlocBuilder<FormFieldBloc, ValidationState>(
       bloc: bloc,
-      builder: (context, formBloc.FormFieldState state) {
+      builder: (context, ValidationState state) {
         return TextFormField(
           decoration: InputDecoration(
             labelText: label,
@@ -41,8 +40,8 @@ class BlocFormField extends StatelessWidget {
     );
   }
 
-  String validate(formBloc.FormFieldState state) {
-    if (state is formBloc.InvalidFieldState)
+  String validate(ValidationState state) {
+    if (state == ValidationState.invalid)
       return errorHint;
     else
       return null;

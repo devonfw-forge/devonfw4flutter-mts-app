@@ -6,17 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/booking_form_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_bloc.dart'
-    as formBloc;
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/checkbox_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_field_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/form_validation_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
 import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_field_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_field_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/number_field_bloc.dart';
-import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/name_field_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/date_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/email_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/number_validation_bloc.dart';
+import 'package:my_thai_star_flutter/features/booking/blocs/form_validation/name_validation_bloc.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);
@@ -34,18 +34,18 @@ class _BookingFormState extends State<BookingForm> {
   DateFieldBloc _dateBloc = DateFieldBloc();
   NameFieldBloc _nameBloc = NameFieldBloc();
   NumberFieldBloc _guestBloc = NumberFieldBloc();
-  BoolBloc _termsBloc = BoolBloc();
-  BookingFormBloc _formBloc;
+  CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
+  FormValidationBloc _formValidationBloc;
 
   @override
   void initState() {
-    _formBloc = BookingFormBloc(
-      emailBloc: _emailBloc,
-      dateBloc: _dateBloc,
-      nameBloc: _nameBloc,
-      guestBloc: _guestBloc,
-      termsBloc: _termsBloc,
-    );
+    _formValidationBloc = FormValidationBloc([
+      _emailBloc,
+      _dateBloc,
+      _nameBloc,
+      _guestBloc,
+      _termsBloc,
+    ]);
 
     _bookingBloc.state.listen(
       (BookingState state) {
@@ -100,33 +100,33 @@ class _BookingFormState extends State<BookingForm> {
             ],
             keyboardType: TextInputType.number,
           ),
-          BlocBuilder(
+          BlocBuilder<CheckboxValidationBloc, ValidationState>(
             bloc: _termsBloc,
-            builder: (context, bool state) {
+            builder: (context, ValidationState state) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   CheckboxListTile(
                     title: Text("Accept terms"),
-                    onChanged: (_) => _termsBloc.dispatch(BoolBlocEvent.swap),
-                    value: state,
+                    onChanged: (bool value) => _termsBloc.dispatch(!value),
+                    value: state == ValidationState.valid,
                   ),
                 ],
               );
             },
           ),
-          BlocBuilder<BookingFormBloc, formBloc.FormState<Booking>>(
-            bloc: _formBloc,
-            builder: (context, formBloc.FormState<Booking> state) {
+          BlocBuilder<FormValidationBloc, ValidationState>(
+            bloc: _formValidationBloc,
+            builder: (context, ValidationState state) {
               return RaisedButton(
                 child: Text(
                   "Book Table",
                 ),
                 textColor: Colors.white,
                 disabledTextColor: Colors.white,
-                onPressed: state.formIsValid
-                    ? () => _bookingBloc.dispatch(_formBloc.currentState.data)
+                onPressed: state == ValidationState.valid
+                    ? () => _bookingBloc.dispatch(Booking())
                     : null,
               );
             },
@@ -146,7 +146,7 @@ class _BookingFormState extends State<BookingForm> {
     _dateBloc.dispose();
     _termsBloc.dispose();
 
-    _formBloc.dispose();
+    _formValidationBloc.dispose();
 
     super.dispose();
   }

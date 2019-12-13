@@ -3,18 +3,18 @@ import 'package:intl/intl.dart';
 class Booking{
   static final DateFormat dateFormat = DateFormat("dd-MM-yyyy HH:mm");
   
+  String bookingId;
   String date;
   String name;
   String organizerEmail;
   int guests;
-  List<String> inviteEmails;
 
   Booking({
+    this.bookingId,
     this.date,
     this.name,
     this.organizerEmail,
     this.guests,
-    this.inviteEmails,
   });
 
   Map<String, dynamic> toJson() => {

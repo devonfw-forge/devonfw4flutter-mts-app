@@ -1,11 +1,10 @@
-import 'package:copyable/copyable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/features/menu/models/extra.dart';
 import 'package:quiver/core.dart';
 
 @immutable
-class Dish extends Equatable implements Copyable<Dish> {
+class Dish extends Equatable{
   final String name;
   final String description;
   final double price;
@@ -37,14 +36,6 @@ class Dish extends Equatable implements Copyable<Dish> {
     return res;
   }
 
-  // Copyable Implementation
-  @override
-  Dish copy() => _copy(this);
-
-  @override
-  Dish copyWithMaster(Dish master) => _copy(master);
-
-  @override
   Dish copyWith({
     String name,
     String description,
@@ -55,38 +46,16 @@ class Dish extends Equatable implements Copyable<Dish> {
     int id,
     Map<Extra, bool> extras,
   }) =>
-      _copy(
-        this,
-        name: name,
-        description: description,
-        price: price,
-        encodedImage: encodedImage,
-        extras: extras,
-        assetImage: assetImage,
-        comment: comment,
-        id: id,
-      );
-
-  static Dish _copy(
-    Dish master, {
-    String name,
-    String description,
-    double price,
-    String encodedImage,
-    String comment,
-    String assetImage,
-    int id,
-    Map<Extra, bool> extras,
-  }) {
-    return Dish(
-      name: name ?? master?.name,
-      description: description ?? master?.description,
-      price: price ?? master?.price,
-      encodedImage: encodedImage ?? master?.encodedImage,
-      extras: extras ?? master?.extras,
-      comment: comment ?? master?.comment,
-      assetImage: assetImage ?? master?.assetImage,
-      id: id ?? master?.id,
+     Dish(
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      encodedImage: encodedImage ?? this.encodedImage,
+      extras: extras ?? this.extras,
+      comment: comment ?? this.comment,
+      assetImage: assetImage ?? this.assetImage,
+      id: id ?? this.id,
     );
-  }
+
+
 }

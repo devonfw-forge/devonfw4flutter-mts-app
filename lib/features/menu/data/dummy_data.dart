@@ -5,10 +5,8 @@ class DummyData {
   static final List<Dish> dishes = [
     Dish(
       id: 1,
-      name: "THAI GREEN CHICKEN CURRY",
-      description: "Master this aromatic, creamy & extremely tasty" +
-          " chicken Thai green curry recipe from Jamie Oliver & treat" +
-          " yourself to an authentic taste of South East Asia.",
+      name: "MOCK CHICKEN CURRY",
+      description: "Master this aromatic, creamy & extremely fake.",
       price: 14.75,
       assetImage: "assets/images/green-curry.jpg",
       extras: {
@@ -19,14 +17,9 @@ class DummyData {
     ),
     Dish(
       id: 2,
-      name: "THAI SPICY BASIL FRIED RICE",
-      description: "This is a staple of Thai cooking. " +
-          "Adjust the spices to your own tastes for a really " +
-          "great use for leftover rice!! I get the basil from a " +
-          "local Asian market. It has a different flavor than " +
-          "that of regular basil and makes all the difference " +
-          "in this recipe. It is fast and fairly easy to make, " +
-          "but requires constant stirring",
+      name: "MOCK SPICY BASIL FRIED RICE",
+      description: "This would be a staple of Thai cooking. " +
+          "If only this wasn't a fake dish.",
       price: 12.99,
       assetImage: "assets/images/basil-fried.jpg",
       extras: {

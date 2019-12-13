@@ -44,7 +44,7 @@ class BookingService extends ExchangePoint<Booking, String> {
     if (bookingError.message != null) {
       throw ServerException(bookingError.message);
     }
-    
+
     BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
 
     return bookingResponse.bookingToken;

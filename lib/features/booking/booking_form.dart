@@ -10,6 +10,7 @@ import 'package:form_validation_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/ui_helper.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);
@@ -19,7 +20,6 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
-  //BLoCs
   BookingBloc _bookingBloc = BookingBloc();
 
   //Validation
@@ -103,36 +103,23 @@ class _BookingFormState extends State<BookingForm> {
           ),
           BlocBuilder<CheckboxValidationBloc, ValidationState>(
             bloc: _termsBloc,
-            builder: (context, ValidationState state) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  CheckboxListTile(
-                    title: Text("Accept terms"),
-                    onChanged: (bool value) {
-                      _termsBloc.dispatch(value);
-                      _bookingBloc.dispatch(SetTermsAcceptedEvent(value));
-                    },
-                    value: state == ValidationState.valid,
-                  ),
-                ],
-              );
-            },
+            builder: (context, ValidationState state) => _TermsCheckbox(
+              state: state,
+              termsBloc: _termsBloc,
+              bookingBloc: _bookingBloc,
+            ),
           ),
-          BlocBuilder<FormValidationBloc, ValidationState>(
-            bloc: _formValidationBloc,
-            builder: (context, ValidationState state) {
-              return RaisedButton(
-                child: Text(
-                  "Book Table",
-                ),
-                textColor: Colors.white,
-                disabledTextColor: Colors.white,
-                onPressed: state == ValidationState.valid
-                    ? () => _bookingBloc.dispatch(RequestBookingEvent())
-                    : null,
-              );
+          BlocBuilder<BookingBloc, BookingState>(
+            bloc: _bookingBloc,
+            builder: (context, BookingState state) {
+              if (state is LoadingBookingState) {
+                return _Loading();
+              } else {
+                return _Button(
+                  formValidationBloc: _formValidationBloc,
+                  bookingBloc: _bookingBloc,
+                );
+              }
             },
           ),
         ],
@@ -153,5 +140,88 @@ class _BookingFormState extends State<BookingForm> {
     _formValidationBloc.dispose();
 
     super.dispose();
+  }
+}
+
+class _TermsCheckbox extends StatelessWidget {
+  const _TermsCheckbox({
+    Key key,
+    @required CheckboxValidationBloc termsBloc,
+    @required BookingBloc bookingBloc,
+    @required ValidationState state,
+  })  : _termsBloc = termsBloc,
+        _bookingBloc = bookingBloc,
+        _state = state,
+        super(key: key);
+
+  final CheckboxValidationBloc _termsBloc;
+  final BookingBloc _bookingBloc;
+  final ValidationState _state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        CheckboxListTile(
+          title: Text("Accept terms"),
+          onChanged: (bool value) {
+            _termsBloc.dispatch(value);
+            _bookingBloc.dispatch(SetTermsAcceptedEvent(value));
+          },
+          value: _state == ValidationState.valid,
+        ),
+      ],
+    );
+  }
+}
+
+class _Loading extends StatelessWidget {
+  const _Loading({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: CircularProgressIndicator(),
+      padding: EdgeInsets.only(
+        right: UiHelper.card_margin,
+        top: UiHelper.standart_padding,
+      ),
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  const _Button({
+    Key key,
+    @required FormValidationBloc formValidationBloc,
+    @required BookingBloc bookingBloc,
+  })  : _formValidationBloc = formValidationBloc,
+        _bookingBloc = bookingBloc,
+        super(key: key);
+
+  final FormValidationBloc _formValidationBloc;
+  final BookingBloc _bookingBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FormValidationBloc, ValidationState>(
+      bloc: _formValidationBloc,
+      builder: (context, ValidationState state) {
+        return RaisedButton(
+          child: Text(
+            "Book Table",
+          ),
+          textColor: Colors.white,
+          disabledTextColor: Colors.white,
+          onPressed: state == ValidationState.valid
+              ? () => _bookingBloc.dispatch(RequestBookingEvent())
+              : null,
+        );
+      },
+    );
   }
 }

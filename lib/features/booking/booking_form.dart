@@ -103,7 +103,7 @@ class _BookingFormState extends State<BookingForm> {
                 children: <Widget>[
                   CheckboxListTile(
                     title: Text("Accept terms"),
-                    onChanged: (bool value) => _termsBloc.dispatch(!value),
+                    onChanged: (bool value) => _termsBloc.dispatch(value),
                     value: state == ValidationState.valid,
                   ),
                 ],

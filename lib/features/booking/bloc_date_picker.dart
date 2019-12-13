@@ -39,7 +39,7 @@ class BlocDatePicker extends StatelessWidget {
                 ? ""
                 : Booking.dateFormat.format(input).toString());
 
-                onChange(input);
+            onChange(input);
           },
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
@@ -59,8 +59,8 @@ class BlocDatePicker extends StatelessWidget {
       BuildContext context, DateTime currentValue) async {
     final date = await showDatePicker(
         context: context,
-        firstDate: DateTime(2010) ,
-        initialDate: currentValue ?? DateTime.now(),
+        firstDate: DateTime.now(),
+        initialDate: getInitialDate(currentValue),
         lastDate: DateTime(2100));
     if (date != null) {
       final time = await showTimePicker(
@@ -71,5 +71,14 @@ class BlocDatePicker extends StatelessWidget {
     } else {
       return currentValue;
     }
+  }
+
+  getInitialDate(DateTime currentValue) {
+    if (currentValue == null)
+      return DateTime.now();
+    else if (currentValue.isBefore(DateTime.now()))
+      return DateTime.now();
+    else
+      return currentValue;
   }
 }

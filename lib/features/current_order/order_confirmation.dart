@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:bool_bloc/bool_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_validation_bloc/barrel.dart';
+import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/features/current_order/blocs/order_bloc.dart';
@@ -21,11 +23,20 @@ class OrderConfirmation extends StatefulWidget {
 
 class _OrderConfirmationState extends State<OrderConfirmation> {
   OrderBloc orderBloc;
-  BoolBloc conditionsBloc = BoolBloc();
-  TextEditingController _bookingIdController = TextEditingController();
+  FormValidationBloc _formValidationBloc;
+  CheckboxValidationBloc _termsBloc;
+  NameValidationBloc _bookingIdBloc;
 
   @override
   void initState() {
+    //Validation
+    _termsBloc = CheckboxValidationBloc();
+    _bookingIdBloc = NameValidationBloc();
+    _formValidationBloc = FormValidationBloc([
+      _termsBloc,
+      _bookingIdBloc,
+    ]);
+
     orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
 
     orderBloc.state.listen(
@@ -54,62 +65,68 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _bookingIdController.text == "" ? AlertCard() : SizedBox(),
+        BlocBuilder<NameValidationBloc, ValidationState>(
+          bloc: _bookingIdBloc,
+          builder: (context, ValidationState state) =>
+              state == ValidationState.valid ? SizedBox() : AlertCard(),
+        ),
         Padding(
           padding: const EdgeInsets.only(
             right: UiHelper.standart_padding,
             left: UiHelper.standart_padding,
           ),
-          child: TextField(
-            controller: _bookingIdController,
-            decoration: InputDecoration(
-              labelText: "Booking ID",
-            ),
+          child: BlocFormField(
+            label: "Booking ID",
+            errorHint: "Please enter a Booking ID",
+            validationBloc: _bookingIdBloc,
           ),
         ),
-        BlocBuilder(
-          bloc: conditionsBloc,
-          builder: (context, bool state) => Column(
+        BlocBuilder<CheckboxValidationBloc, ValidationState>(
+          bloc: _termsBloc,
+          builder: (context, ValidationState state) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               LabeledCheckBox(
                 label: "Accept Terms",
-                state: state,
-                onStateChange: (_) =>
-                    conditionsBloc.dispatch(BoolBlocEvent.swap),
+                state: state == ValidationState.valid,
+                onStateChange: (bool val) => _termsBloc.dispatch(val),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  FlatButton(
-                    child: Text(
-                      "CANCEL",
-                      style: Theme.of(context).textTheme.button.copyWith(
-                            color: Colors.grey,
-                          ),
-                    ),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                  SizedBox(width: UiHelper.standart_padding),
-                  RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    disabledColor: Colors.grey,
-                    disabledTextColor: Colors.grey,
-                    child: Text(
-                      "SEND ORDER",
-                      style: Theme.of(context).textTheme.button,
-                    ),
-                    onPressed: state
-                        ? () => orderBloc.dispatch(_bookingIdController.text)
-                        : null,
-                  ),
-                  SizedBox(width: UiHelper.standart_padding),
-                ],
-              )
             ],
           ),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FlatButton(
+              child: Text(
+                "CANCEL",
+                style: Theme.of(context).textTheme.button.copyWith(
+                      color: Colors.grey,
+                    ),
+              ),
+              onPressed: () => Navigator.pop(context),
+            ),
+            SizedBox(width: UiHelper.standart_padding),
+            BlocBuilder<FormValidationBloc, ValidationState>(
+              bloc: _formValidationBloc,
+              builder: (context, ValidationState state) => RaisedButton(
+                color: Theme.of(context).accentColor,
+                disabledColor: Colors.grey,
+                disabledTextColor: Colors.grey,
+                child: Text(
+                  "SEND ORDER",
+                  style: Theme.of(context).textTheme.button,
+                ),
+                onPressed: state == ValidationState.valid
+                    ? () => orderBloc.dispatch("")
+                    : null,
+              ),
+            ),
+            SizedBox(width: UiHelper.standart_padding),
+          ],
+        )
       ],
     );
   }
@@ -117,7 +134,9 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
   @override
   void dispose() {
     orderBloc.dispose();
-    _bookingIdController.dispose();
+    _termsBloc.dispose();
+    _formValidationBloc.dispose();
+    _bookingIdBloc.dispose();
 
     super.dispose();
   }

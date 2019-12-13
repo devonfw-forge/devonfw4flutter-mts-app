@@ -4,6 +4,7 @@ import 'package:my_thai_star_flutter/features/menu/models/extra.dart';
 class DummyData {
   static final List<Dish> dishes = [
     Dish(
+      id: 1,
       name: "THAI GREEN CHICKEN CURRY",
       description: "Master this aromatic, creamy & extremely tasty" +
           " chicken Thai green curry recipe from Jamie Oliver & treat" +
@@ -17,6 +18,7 @@ class DummyData {
       comment: "",
     ),
     Dish(
+      id: 2,
       name: "THAI SPICY BASIL FRIED RICE",
       description: "This is a staple of Thai cooking. " +
           "Adjust the spices to your own tastes for a really " +

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/features/menu/blocs/current_search_bloc.dart';
@@ -14,6 +13,17 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   TextEditingController _queryController = TextEditingController();
+
+  @override
+  void initState() {
+    String currentQuery =
+        BlocProvider.of<CurrentSearchBloc>(context).currentState.query;
+    if (currentQuery != null) {
+      _queryController.text = currentQuery;
+    }
+    
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:form_validation_bloc/src/validation_state.dart';
+import 'package:form_bloc/src/validation_state.dart';
 
-import 'form_field_validation_bloc.dart';
+import 'package:form_bloc/src/field_blocs/field_bloc.dart';
 
-class EmailValidationBloc extends FormFieldValidationBloc<String> {
+class EmailFieldBloc extends FieldBloc<String> {
   final RegExp emailPattern = new RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
   

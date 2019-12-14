@@ -123,10 +123,10 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  form_validation_bloc:
+  form_bloc:
     dependency: "direct main"
     description:
-      path: "packages\\form_validation_bloc"
+      path: "packages\\form_bloc"
       relative: true
     source: path
     version: "0.0.1"

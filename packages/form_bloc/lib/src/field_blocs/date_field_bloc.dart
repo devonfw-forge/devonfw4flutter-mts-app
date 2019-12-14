@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:form_validation_bloc/barrel.dart';
-import 'package:form_validation_bloc/src/validation_state.dart';
+import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/src/validation_state.dart';
 import 'package:intl/intl.dart';
 
-import 'form_field_validation_bloc.dart';
+import 'field_bloc.dart';
 
-class DateValidationBloc extends FormFieldValidationBloc<String> {
+class DateFieldBloc extends FieldBloc<String> {
   final DateFormat format;
 
-  DateValidationBloc(this.format);
+  DateFieldBloc(this.format);
 
   @override
   ValidationState<String> get initialState => InitialState("");

@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:form_validation_bloc/src/validation_state.dart';
+import 'package:form_bloc/src/validation_state.dart';
 
-import 'form_field_validation_bloc.dart';
+import 'package:form_bloc/src/field_blocs/field_bloc.dart';
 
-class CheckboxValidationBloc extends FormFieldValidationBloc<bool> {
+class CheckboxFieldBloc extends FieldBloc<bool> {
   @override
   ValidationState<bool> get initialState => InitialState(false);
 

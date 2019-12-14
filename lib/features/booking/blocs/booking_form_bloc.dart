@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:form_validation_bloc/barrel.dart';
+import 'package:form_bloc/barrel.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
 
-class BookingFormBloc extends FormBloc<Booking> {
-  final EmailValidationBloc emailBloc;
-  final DateValidationBloc dateBloc;
-  final NonEmptyValidationBloc nameBloc;
-  final NumberValidationBloc guestBloc;
-  final CheckboxValidationBloc termsBloc;
+class BookingFormBloc extends FormBaseBloc<Booking> {
+  final EmailFieldBloc emailBloc;
+  final DateFieldBloc dateBloc;
+  final NonEmptyFieldBloc nameBloc;
+  final NumberFieldBloc guestBloc;
+  final CheckboxFieldBloc termsBloc;
 
   BookingFormBloc(
       {@required this.emailBloc,

@@ -1,11 +1,11 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_validation_bloc/barrel.dart';
+import 'package:form_bloc/barrel.dart';
 import 'package:intl/intl.dart';
 
 class BlocDatePicker extends StatelessWidget {
-  final FormFieldValidationBloc validationBloc;
+  final FieldBloc formFieldBloc;
   final TextEditingController controller;
   final DateFormat format;
   final String lable;
@@ -13,7 +13,7 @@ class BlocDatePicker extends StatelessWidget {
 
   const BlocDatePicker({
     Key key,
-    @required this.validationBloc,
+    @required this.formFieldBloc,
     @required this.format,
     @required this.lable,
     @required this.errorHint,
@@ -22,8 +22,8 @@ class BlocDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormFieldValidationBloc, ValidationState>(
-      bloc: validationBloc,
+    return BlocBuilder<FieldBloc, ValidationState>(
+      bloc: formFieldBloc,
       builder: (context, ValidationState state) {
         return DateTimeField(
           readOnly: true,
@@ -34,7 +34,7 @@ class BlocDatePicker extends StatelessWidget {
             errorText: validate(state),
           ),
           onChanged: (DateTime input) {
-            validationBloc.dispatch(input != null ? format.format(input) : "");
+            formFieldBloc.dispatch(input != null ? format.format(input) : "");
           },
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),

@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_form_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/features/booking/models/booking.dart';
-import 'package:form_validation_bloc/barrel.dart';
+import 'package:form_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/features/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
@@ -21,11 +21,11 @@ class BookingForm extends StatefulWidget {
 
 class _BookingFormState extends State<BookingForm> {
   //Validation
-  EmailValidationBloc _emailBloc = EmailValidationBloc();
-  DateValidationBloc _dateBloc = DateValidationBloc(Booking.dateFormat);
-  NonEmptyValidationBloc _nameBloc = NonEmptyValidationBloc();
-  NumberValidationBloc _guestBloc = NumberValidationBloc();
-  CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
+  EmailFieldBloc _emailBloc = EmailFieldBloc();
+  DateFieldBloc _dateBloc = DateFieldBloc(Booking.dateFormat);
+  NonEmptyFieldBloc _nameBloc = NonEmptyFieldBloc();
+  NumberFieldBloc _guestBloc = NumberFieldBloc();
+  CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
   BookingFormBloc _formBloc;
 
   //TextEditController
@@ -71,27 +71,27 @@ class _BookingFormState extends State<BookingForm> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           BlocDatePicker(
-            validationBloc: _dateBloc,
+            formFieldBloc: _dateBloc,
             lable: 'Date and Time',
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
             controller: _dateController,
           ),
           BlocFormField(
-            validationBloc: _nameBloc,
+            formFieldBloc: _nameBloc,
             label: "Name",
             errorHint: 'Please enter your Name.',
             controller: _nameController,
           ),
           BlocFormField(
-            validationBloc: _emailBloc,
+            formFieldBloc: _emailBloc,
             label: "Email",
             errorHint: "Enter valid Email",
             keyboardType: TextInputType.emailAddress,
             controller: _emailController,
           ),
           BlocFormField(
-            validationBloc: _guestBloc,
+            formFieldBloc: _guestBloc,
             label: 'Table Guests',
             errorHint: 'Please enter the Number of Guests.',
             inputFormatters: <TextInputFormatter>[
@@ -100,7 +100,7 @@ class _BookingFormState extends State<BookingForm> {
             keyboardType: TextInputType.number,
             controller: _guestController,
           ),
-          BlocBuilder<CheckboxValidationBloc, ValidationState>(
+          BlocBuilder<CheckboxFieldBloc, ValidationState>(
             bloc: _termsBloc,
             builder: (context, ValidationState state) => _TermsCheckbox(
               state: state,
@@ -143,13 +143,13 @@ class _BookingFormState extends State<BookingForm> {
 class _TermsCheckbox extends StatelessWidget {
   const _TermsCheckbox({
     Key key,
-    @required CheckboxValidationBloc termsBloc,
+    @required CheckboxFieldBloc termsBloc,
     @required ValidationState state,
   })  : _termsBloc = termsBloc,
         _state = state,
         super(key: key);
 
-  final CheckboxValidationBloc _termsBloc;
+  final CheckboxFieldBloc _termsBloc;
   final ValidationState _state;
 
   @override

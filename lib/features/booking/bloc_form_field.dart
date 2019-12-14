@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_validation_bloc/barrel.dart';
+import 'package:form_bloc/barrel.dart';
 
 typedef StringCallback = void Function(String);
 
 class BlocFormField extends StatelessWidget {
-  final FormFieldValidationBloc validationBloc;
+  final FieldBloc formFieldBloc;
   final String label;
   final String errorHint;
 
@@ -17,7 +17,7 @@ class BlocFormField extends StatelessWidget {
 
   const BlocFormField({
     Key key,
-    @required this.validationBloc,
+    @required this.formFieldBloc,
     @required this.label,
     @required this.errorHint,
     this.keyboardType,
@@ -27,8 +27,8 @@ class BlocFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormFieldValidationBloc, ValidationState>(
-      bloc: validationBloc,
+    return BlocBuilder<FieldBloc, ValidationState>(
+      bloc: formFieldBloc,
       builder: (context, ValidationState state) {
         return TextFormField(
           decoration: InputDecoration(
@@ -36,7 +36,7 @@ class BlocFormField extends StatelessWidget {
             errorText: validate(state),
           ),
           keyboardType: keyboardType,
-          onChanged: (String input) => validationBloc.dispatch(input),
+          onChanged: (String input) => formFieldBloc.dispatch(input),
           inputFormatters: inputFormatters,
           controller: controller,
         );

@@ -1,14 +1,15 @@
 import 'package:bloc/bloc.dart';
-import 'package:form_validation_bloc/src/validation_state.dart';
+import 'package:form_bloc/src/field_blocs/field_bloc.dart';
+import 'package:form_bloc/src/validation_state.dart';
 
-import 'form_field_validation_bloc.dart';
+
 
 enum FormEvent { notify }
 
-abstract class FormBloc<T> extends Bloc<FormEvent, ValidationState<T>> {
-  final List<FormFieldValidationBloc> fieldBlocs;
+abstract class FormBaseBloc<T> extends Bloc<FormEvent, ValidationState<T>> {
+  final List<FieldBloc> fieldBlocs;
 
-  FormBloc(this.fieldBlocs) {
+  FormBaseBloc(this.fieldBlocs) {
     fieldBlocs.forEach((bloc) {
       bloc.state.listen((_) {
         dispatch(FormEvent.notify);
@@ -24,4 +25,5 @@ abstract class FormBloc<T> extends Bloc<FormEvent, ValidationState<T>> {
 
     return formIsValid;
   }
+
 }

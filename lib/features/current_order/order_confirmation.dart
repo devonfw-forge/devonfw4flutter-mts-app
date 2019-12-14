@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_validation_bloc/barrel.dart';
+import 'package:form_bloc/barrel.dart';
 import 'package:my_thai_star_flutter/features/booking/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/features/booking/blocs/booking_state.dart';
@@ -23,8 +23,8 @@ class OrderConfirmation extends StatefulWidget {
 class _OrderConfirmationState extends State<OrderConfirmation> {
   OrderBloc orderBloc;
   FormValidationBloc _formValidationBloc;
-  CheckboxValidationBloc _termsBloc = CheckboxValidationBloc();
-  NonEmptyValidationBloc _bookingIdBloc = NonEmptyValidationBloc();
+  CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
+  NonEmptyFieldBloc _bookingIdBloc = NonEmptyFieldBloc();
   TextEditingController _bookingIdController = TextEditingController();
 
   @override
@@ -72,7 +72,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        BlocBuilder<NonEmptyValidationBloc, ValidationState>(
+        BlocBuilder<NonEmptyFieldBloc, ValidationState>(
           bloc: _bookingIdBloc,
           builder: (context, ValidationState state) =>
               state is ValidState ? SizedBox() : AlertCard(),
@@ -85,11 +85,11 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
           child: BlocFormField(
             label: "Booking ID",
             errorHint: "Please enter a Booking ID",
-            validationBloc: _bookingIdBloc,
+            formFieldBloc: _bookingIdBloc,
             controller: _bookingIdController,
           ),
         ),
-        BlocBuilder<CheckboxValidationBloc, ValidationState>(
+        BlocBuilder<CheckboxFieldBloc, ValidationState>(
           bloc: _termsBloc,
           builder: (context, ValidationState state) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,

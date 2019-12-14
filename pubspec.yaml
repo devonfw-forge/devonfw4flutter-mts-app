@@ -17,8 +17,8 @@ dependencies:
   # Own Packages
   bool_bloc:
     path: ./packages/bool_bloc
-  form_validation_bloc:
-    path: ./packages/form_validation_bloc
+  form_bloc:
+    path: ./packages/form_bloc
   # SDK
   flutter:
     sdk: flutter

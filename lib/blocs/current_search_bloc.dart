@@ -13,14 +13,11 @@ class CurrentSearchBloc extends Bloc<CurrentSearchEvent, Search> {
 
     if (event is SetQueryEvent) {
       newSearch = currentState.copyWith(query: event.query);
-    }
-    if (event is SetSortEvent) {
+    } else if (event is SetSortEvent) {
       newSearch = currentState.copyWith(sortBy: event.sortBy);
-    }
-    if (event is FlipDirectionEvent) {
+    } else if (event is FlipDirectionEvent) {
       newSearch = currentState.copyWith(descending: !currentState.descending);
-    }
-    if (event is ClearSearchEvent) {
+    } else if (event is ClearSearchEvent) {
       newSearch = Search();
     }
 

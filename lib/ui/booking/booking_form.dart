@@ -28,12 +28,6 @@ class _BookingFormState extends State<BookingForm> {
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
   BookingFormBloc _formBloc;
 
-  //TextEditController
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _dateController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _guestController = TextEditingController();
-
   @override
   void initState() {
     _formBloc = BookingFormBloc(
@@ -75,20 +69,17 @@ class _BookingFormState extends State<BookingForm> {
             lable: 'Date and Time',
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
-            controller: _dateController,
           ),
           BlocFormField(
             formFieldBloc: _nameBloc,
             label: "Name",
             errorHint: 'Please enter your Name.',
-            controller: _nameController,
           ),
           BlocFormField(
             formFieldBloc: _emailBloc,
             label: "Email",
             errorHint: "Enter valid Email",
             keyboardType: TextInputType.emailAddress,
-            controller: _emailController,
           ),
           BlocFormField(
             formFieldBloc: _guestBloc,
@@ -98,7 +89,6 @@ class _BookingFormState extends State<BookingForm> {
               WhitelistingTextInputFormatter.digitsOnly
             ],
             keyboardType: TextInputType.number,
-            controller: _guestController,
           ),
           BlocBuilder<CheckboxFieldBloc, ValidationState>(
             bloc: _termsBloc,
@@ -130,11 +120,6 @@ class _BookingFormState extends State<BookingForm> {
     _termsBloc.dispose();
 
     _formBloc.dispose();
-
-    _emailController.dispose();
-    _dateController.dispose();
-    _nameController.dispose();
-    _guestController.dispose();
 
     super.dispose();
   }

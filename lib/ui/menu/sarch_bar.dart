@@ -18,10 +18,10 @@ class _SearchBarState extends State<SearchBar> {
   void initState() {
     String currentQuery =
         BlocProvider.of<CurrentSearchBloc>(context).currentState.query;
-    if (currentQuery != null) {
-      _queryController.text = currentQuery;
-    }
-    
+
+    //if(currentQuery != null) do this ?? else
+    _queryController.text = currentQuery ?? "";
+
     super.initState();
   }
 

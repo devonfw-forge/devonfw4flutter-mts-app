@@ -8,7 +8,6 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -105,10 +104,10 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
           builder: (context, ValidationState state) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              LabeledCheckBox(
-                label: "Accept Terms",
-                state: state is ValidState,
-                onStateChange: (bool val) => _termsBloc.dispatch(val),
+              CheckboxListTile(
+                title: Text("Accept Terms"),
+                value: state is ValidState,
+                onChanged: (bool val) => _termsBloc.dispatch(val),
               ),
             ],
           ),

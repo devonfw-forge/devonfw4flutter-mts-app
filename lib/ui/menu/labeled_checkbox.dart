@@ -12,7 +12,7 @@ class LabeledCheckBox extends StatelessWidget {
     @required this.onStateChange,
   }) : super(key: key);
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -21,7 +21,7 @@ class LabeledCheckBox extends StatelessWidget {
           value: state,
           onChanged: (bool state) => onStateChange(state),
         ),
-        Text(label)
+        Text(label),
       ],
     );
   }

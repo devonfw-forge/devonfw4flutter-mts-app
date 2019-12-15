@@ -36,29 +36,49 @@ class ResponseDialoge extends StatelessWidget {
             Text(body),
             SizedBox(height: UiHelper.standard_padding),
             copyableText != null
-                ? Wrap(
-                    alignment: WrapAlignment.end,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(textBackgroundPadding),
-                        child: SelectableText(copyableText),
-                        decoration: new BoxDecoration(
-                            color: textBackgroundColor,
-                            borderRadius:
-                                BorderRadius.all(const Radius.circular(borderRadius))),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.content_copy),
-                        onPressed: () => Clipboard.setData(
-                          ClipboardData(text: copyableText),
-                        ),
-                      )
-                    ],
+                ? _CopyableText(
+                    textBackgroundPadding: textBackgroundPadding,
+                    copyableText: copyableText,
+                    textBackgroundColor: textBackgroundColor,
                   )
                 : null,
           ].where(notNull).toList(),
         ),
       ),
+    );
+  }
+}
+
+class _CopyableText extends StatelessWidget {
+  const _CopyableText({
+    Key key,
+    @required this.textBackgroundPadding,
+    @required this.copyableText,
+    @required this.textBackgroundColor,
+  }) : super(key: key);
+
+  final double textBackgroundPadding;
+  final String copyableText;
+  final Color textBackgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.end,
+      children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(textBackgroundPadding),
+          child: SelectableText(copyableText),
+          decoration: new BoxDecoration(
+              color: textBackgroundColor,
+              borderRadius: BorderRadius.all(
+                  const Radius.circular(ResponseDialoge.borderRadius))),
+        ),
+        IconButton(
+          icon: Icon(Icons.content_copy),
+          onPressed: () => Clipboard.setData(ClipboardData(text: copyableText)),
+        )
+      ],
     );
   }
 }

@@ -49,21 +49,21 @@ class _Buttons extends StatelessWidget {
         FlatButton(
             child: Text(
               "CLEAR FILTERS",
-              style: Theme.of(context).textTheme.button.copyWith(
-                    color: Colors.grey,
-                  ),
+              style: Theme.of(context)
+                  .textTheme
+                  .button
+                  .copyWith(color: Colors.grey),
             ),
             onPressed: () {
               BlocProvider.of<CurrentSearchBloc>(context)
                   .dispatch(ClearSearchEvent());
             }),
         FlatButton(
-          child: Text(
-            "APPLY FILTERS",
-            style: Theme.of(context).textTheme.button.copyWith(
-                  color: Theme.of(context).accentColor,
-                ),
-          ),
+          child: Text("APPLY FILTERS",
+              style: Theme.of(context)
+                  .textTheme
+                  .button
+                  .copyWith(color: Theme.of(context).accentColor)),
           onPressed: () =>
               BlocProvider.of<DishBloc>(context).dispatch(DishEvents.request),
         ),
@@ -86,30 +86,15 @@ class _Sort extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(iconPadding),
-            child: Icon(
-              Icons.sort,
-              color: Colors.grey,
-            ),
+            child: Icon(Icons.sort, color: Colors.grey),
           ),
-          Text(
-            "Sort by",
-            style: Theme.of(context).textTheme.subhead,
-          ),
-          SizedBox(
-            width: dropDownPadding,
-          ),
+          Text("Sort by", style: Theme.of(context).textTheme.subhead),
+          SizedBox(width: dropDownPadding),
           Expanded(
             child: DropdownButton<String>(
               isExpanded: true,
               value: state.sortBy,
-              items: Search.sortCriteria.map(
-                (String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                },
-              ).toList(),
+              items: _mapDropDownItems(),
               onChanged: (String sortBy) =>
                   BlocProvider.of<CurrentSearchBloc>(context)
                       .dispatch(SetSortEvent(sortBy)),
@@ -128,5 +113,14 @@ class _Sort extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<DropdownMenuItem<String>> _mapDropDownItems() {
+    return Search.sortCriteria
+        .map((String value) => DropdownMenuItem<String>(
+              value: value,
+              child: new Text(value),
+            ))
+        .toList();
   }
 }

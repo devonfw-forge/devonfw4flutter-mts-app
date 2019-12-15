@@ -1,0 +1,203 @@
+{
+  "buttons": {
+    "cancel": "Abbrechen",
+    "apply": "Bestätigen",
+    "close": "Schließen",
+    "send": "Senden",
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "bookTable": "Tisch buchen",
+    "inviteFriends": "Freunde einladen",
+    "viewMenu": "Menü ansehen",
+    "addToOrder": "Zur Bestellung hinzufügen",
+    "clearFilters": "Filter zurücksetzen",
+    "applyFilters": "Filter anwenden",
+    "removeComment": "Kommentar entfernen",
+    "addComment": "Kommentar hinzufügen"
+  },
+  "table": {
+    "rowsPage": "Zeilen pro Seite",
+    "of": "von",
+    "noResults": "Keine Ergebnisse"
+  },
+  "alerts": {
+    "accessError": "Zugang verweigert, bitte erst einloggen",
+    "genericError":
+      "Ein Fehler ist aufgetreten, bitte versuche es später noch einmal",
+    "urlError": "Url nicht gefunden, bitte versuche es noch einmal",
+    "email confirmations": {
+      "invitationAccept": "Einladung erfolgreich angenommen",
+      "invitationReject": "Einladung erfolgreich abgelehnt",
+      "bookingCancel": "Buchung erfolgreich abgebrochen",
+      "orderCancel": "Bestellung erfolgreich abgebrochen"
+    },
+    "orderID":
+      "Zum Bestellen ist eine Buchungs-ID notwendig. Gib entweder eine bereits bestehende Buchungs-ID ein oder buch einen Tisch.",
+    "passwordError": "Die Passwörter stimmen nicht überein",
+    "authAlerts": {
+      "loginSuccess": "Anmeldung erfolgreich",
+      "registerSuccess": "Registrierung erfolgreich",
+      "registerFail":
+        "Registrierung fehlgeschlagen, Benutzername bereits in Verwendung",
+      "logoutSuccess": "Abmeldung erfolgreich, komme bald wieder!"
+    }
+  },
+  "formFields": {
+    "username": "Benutzername",
+    "password": "Passwort",
+    "token": "Einmalpasswort",
+    "confirmPassword": "Passwort bestätigen",
+    "date": "Datum",
+    "name": "Name",
+    "email": "Email",
+    "assistants": "Tischgäste",
+    "friends": "Freunde",
+    "terms": "Bedingungen akzeptieren",
+    "dateTime": "Datum und Uhrzeit",
+    "guests": "Gäste",
+    "guestsPH": "Gib die Einladungs-Email ein",
+    "comment": "Kommentar",
+    "total": "Gesamt",
+    "referenceNumber": "Referenznummer"
+  },
+  "bookTable": {
+    "title":
+      "Du kannst deine Freunde zum Mittagessen einladen oder einen Tisch buchen",
+    "bookingTab": "Tisch buchen",
+    "reservationTab": "Freunde einladen",
+    "bookingTitle": "Buche deinen Tisch",
+    "bookingSubtitle": "Du kannst einen Tisch buchen und ein Menü bestellen",
+    "reservationTitle": "Füge deine Details und Freunde hinzu",
+    "dialog": {
+      "title": "Tisch buchen",
+      "bookingSuccess": "Tisch erfolgreich gebucht",
+      "bookingError": "Buchungsfehler, bitter versuche es später erneut"
+    },
+    "formErrors": {
+      "nameRequired":
+        "Pflichtfeld. Bitte gib ein Namen ein, um den Tisch zu buchen",
+      "emailRequired":
+        "Pflichtfeld. Bitte gib eine Email ein, um den Tisch zu buchen",
+      "emailPattern":
+        "Gib eine gültige Emailadresse ein um die Reservierung abzuschicken z.B. email@email.com.",
+      "emailFormat": "Emailformat nicht gültig",
+      "assistantsRequired": "Pflichtfeld. Bitte gib die Teilnehmeranzahl ein",
+      "assistantsMax":
+        "Du kannst nicht für mehr Teilnehmer buchen als für die groesste Tischgroesse (8), wenn du mehrere Tische brauchst, buche mehrmals.",
+      "assistantsMin":
+        "Du kannst nicht für eine leere oder negative Teilnehmeranzahl buchen"
+    }
+  },
+  "main": {
+    "home": "Startseite",
+    "menu": "Menü",
+    "book": "Tisch buchen",
+    "orders": "Bestellungen",
+    "reservations": "Reservierungen",
+    "userActions": {
+      "user": "Benutzer",
+      "pairing": "Zwei-Faktor-Authentifizierung einstellen",
+      "logout": "Abmelden",
+      "changePassword": "Passwort ändern",
+      "twitterAccount": "Twitteraccount",
+      "signOut": "Abmelden",
+      "orders": "Bestellungen"
+    }
+  },
+  "home": {
+    "subtitle": "Mehr als nur leckeres Essen",
+    "restaurantTitle": "Unser Restaurant",
+    "restaurantContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "menuTitle": "Unser Menü",
+    "menuContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+  },
+  "menu": {
+    "filterTitle": "FILTER",
+    "filter": {
+      "search": "Durchsuche unsere Gerichte",
+      "sort": "Sortieren nach",
+      "price": "Preis",
+      "likes": "Likes",
+      "name": "Name",
+      "mainDishes": "Hauptgerichte",
+      "starters": "Vorspeisen",
+      "desserts": "Desserts",
+      "noodle": "Nudeln",
+      "rice": "Reis",
+      "curry": "Curry",
+      "vegan": "Vegan",
+      "vegetarian": "Vegetarisch",
+      "favourites": "Favouriten"
+    }
+  },
+  "sidenav": {
+    "title": "Buchung abschließen",
+    "header": "Bestellmenü",
+    "bookingId": "Buchungs-ID",
+    "noSelection": "Du hast keine Bestellung ausgewählt",
+    "dialog": {
+      "title": "Füge einen Kommentar hinzu",
+      "content":
+        "Hier kannst du unseren Köchen einen kurzen Kommentar hinterlassen, wie sie dein Gericht zubereiten sollen"
+    }
+  },
+  "userArea": {
+    "loginTitle": "ANMELDEN",
+    "signupTitle": "REGISTRIEREN",
+    "emailError": "Bitte gib eine gültige Emailadresse ein",
+    "passwordDialog": {
+      "title": "Neues Passwort",
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "verifyPassword": "Passwort bestätigen"
+    },
+    "twitterDialog": {
+      "title": "Verknüpfe deinen Twitteraccount",
+      "twitterUsernamePH": "Twitter Benutzername",
+      "twitterPasswordPH": "Twitter Passwort",
+      "loginbutton": "In Twitter anmelden"
+    },
+    "qrcodeDialog": {
+      "twofactorNotFound": "Zwei-Faktor-Authentifizierung wurde noch nicht aktiviert",
+      "twofactorTitle": "Einstellungen für Zwei-Faktor-Authentifizierung",
+      "twofactorStatus": "Status der Zwei-Faktor-Authentifizierung",
+      "twofactorDescription": "Bitte scannen Sie den QR Code mit dem Google Authenticator ein oder nutzen Sie den geheimen Schlüssel",
+      "twofactorclose": "Schließen",
+      "qrSwitchText": "QR Code",
+      "secretSwitchText": "Geheimer Schlüssel"
+    }
+  },
+  "cockpit": {
+    "filter": "Filter",
+    "orders": {
+      "title": "Bestellungen",
+      "dialogTitle": "BESTELLDETAILS - REFERENZNUMMER",
+      "dialogTable": {
+        "dishH": "Gericht",
+        "commentsH": "Kommentare",
+        "extrasH": "Extra",
+        "quantityH": "Anzahl",
+        "priceH": "Preis"
+      }
+    },
+    "reservations": {
+      "title": "Reservierungen",
+      "dialogTitle": "RESERVIERUNGSDETAILS - REFERENZNUMMER",
+      "dialogTable": {
+        "guestEmailH": "Gäste email",
+        "acceptanceH": "Zusagen und Absagen",
+        "assistantsH": "Teilnehmer"
+      }
+    },
+    "table": {
+      "reservationDateH": "Reservierungsdatum",
+      "emailH": "Email",
+      "bookingTokenH": "Referenznummer",
+      "ownerH": "Eigentümer",
+      "tableH": "Tisch",
+      "creationDateH": "Erstelldatum"
+    }
+  }
+}

@@ -1,0 +1,200 @@
+﻿{
+  "buttons": {
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "send": "Envoyer",
+    "login": "Accès",
+    "register": "Inscription",
+    "bookTable": "Réserver une table",
+    "inviteFriends": "Inviter des amis",
+    "viewMenu": "Voir le menu",
+    "addToOrder": "Ajouter à la commande",
+    "clearFilters": "Nettoyer les filtres",
+    "applyFilters": "Appliquer les filtres",
+    "removeComment": "Supprimer un commentaire",
+    "addComment": "Ajouter un commentaire"
+  },
+  "table": {
+    "rowsPage": "Lignes par page",
+    "of": "de",
+    "noResults": "Aucun résultat à afficher"
+  },
+  "alerts": {
+    "accessError": "L'accès interdit, veuillez d'abord vous identifier",
+    "genericError": "Une erreur s'est produite, veuillez réessayer plus tard",
+    "urlError": "Url introuvable, veuillez réessayer",
+    "email confirmations": {
+      "invitationAccept": "Invitation acceptée avec succès",
+      "invitationReject": "Invitation annulée avec succès",
+      "bookingCancel": "Réservation annulée avec succès",
+      "orderCancel": "Commande annulée avec succès"
+    },
+    "orderID":
+      "Pour passer une commande, il est nécessaire d'avoir un numéro de réservation. Saisissez votre nméro ou réservez une table maintenant.",
+    "passwordError": "Le mot de passe ne correspond pas.",
+    "authAlerts": {
+      "loginSuccess": "Accès correct",
+      "registerSuccess": "Inscription correcte",
+      "registerFail":
+        "L'enregistrement a échoué, nom d'utilisateur déjà utilisé",
+      "logoutSuccess": "Session clôturée avec succès, revenez bientôt!"
+    }
+  },
+  "formFields": {
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "date": "Date",
+    "name": "Nom",
+    "email": "Email",
+    "assistants": "Assistants",
+    "friends": "Amis",
+    "terms": "Accepter les termes",
+    "dateTime": "Date et heure",
+    "guests": "Invités",
+    "guestsPH": "Email des invités",
+    "comment": "Commentaire",
+    "total": "Total",
+    "referenceNumber": "Numéro de référence"
+  },
+  "bookTable": {
+    "title": "Vous pouvez inviter vos amis à dîner ou réserver une table.",
+    "bookingTab": "Réservez une table",
+    "reservationTab": "Inviter des amis",
+    "bookingTitle": "Réserver une table",
+    "bookingSubtitle": "Vous pouvez réserver une table et passer des commandes",
+    "reservationTitle": "Ajouter vos informations et amis",
+    "dialog": {
+      "title": "Réservez une table",
+      "bookingSuccess": "Table réservée avec succès",
+      "bookingError": "Erreur de réservation, réessayez plus tard"
+    },
+    "formErrors": {
+      "nameRequired":
+        "Champ obligatoire. Veuillez inscrire votre nom pour réserver la table",
+      "emailRequired":
+        "Champ obligatoire. Veuillez entrer votre adresse email pour réserver la table",
+      "emailPattern":
+        "Insérez un email valide pour envoyer les informations de réservation, par exemple: email@email.com",
+      "emailFormat": "Le format de l'email n'est pas valide.",
+      "assistantsRequired":
+        "Champ obligatoire. Veuillez indiquer le nombre de participants.",
+      "assistantsMax":
+        "Le nombre de participants ne peut pas surpasser la taille maximale d'une table (8), si vous avez besoin de plus de tables, réservez-les séparément.",
+      "assistantsMin":
+        "On ne peut pas réserver de tables sans participants ou avec un nombre de participants négatif."
+    }
+  },
+  "main": {
+    "home": "Home",
+    "menu": "Menu",
+    "book": "Réserver une table",
+    "orders": "Ordres",
+    "reservations": "Réservations",
+    "userActions": {
+      "user": "Utilisateur",
+      "pairing": "Définir une authentification à deux facteurs",
+      "logout": "Déconnexion",
+      "changePassword": "Modifier le mot de passe",
+      "twitterAccount": "Compte Twitter",
+      "signOut": "Déconnexion",
+      "orders": "Ordres"
+    }
+  },
+  "home": {
+    "subtitle": "Plus qu'une nourriture délicieuse",
+    "restaurantTitle": "Notre restaurant",
+    "restaurantContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "menuTitle": "Notre menu",
+    "menuContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+  },
+  "menu": {
+    "filterTitle": "FILTRES",
+    "filter": {
+      "search": "Recherchez nos plats",
+      "sort": "Ranger par",
+      "price": "Prix",
+      "likes": "J'aime ça",
+      "name": "Nom",
+      "mainDishes": "Plats principaux",
+      "starters": "Entrées",
+      "desserts": "Desserts",
+      "noodle": "Nouilles",
+      "rice": "Riz",
+      "curry": "Curry",
+      "vegan": "Vegan",
+      "vegetarian": "Végétariens",
+      "favourites": "Favoris"
+    }
+  },
+  "sidenav": {
+    "title": "Résumé des réservations",
+    "header": "Votre commande",
+    "bookingId": "ID de réservation",
+    "noSelection": "Aucune commande",
+    "dialog": {
+      "title": "Ajouter un commentaire",
+      "content":
+        "Ici vous pouvez ajouter un petit commentaire pour nos cuisiniers sur la façon de préparer votre plat."
+    }
+  },
+  "userArea": {
+    "loginTitle": "ACCESS",
+    "signupTitle": "INSCRIPTION",
+    "emailError": "Veuillez entrer une adresse email valide",
+    "passwordDialog": {
+      "title": "Définir un nouveau mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "verifyPassword": "Vérifier le mot de passe"
+    },
+    "twitterDialog": {
+      "title": "Compte Twitter associé",
+      "twitterUsernamePH": "Utilisateur Twitter",
+      "twitterPasswordPH": "Mot de passe Twitter",
+      "loginbutton": "Connectez-vous à Twitter"
+    },
+    "qrcodeDialog": {
+      "twofactorNotFound": "L'authentification à deux facteurs n'a pas encore été activée",
+      "twofactorTitle": "Paramètres pour l'authentification à deux facteurs",
+      "twofactorStatus": "Statut de l'authentification à deux facteurs",
+      "twofactorDescription": "Veuillez scanner le code QR avec Google Authenticator ou utiliser la clé secrète",
+      "twofactorclose": "Près",
+      "qrSwitchText": "Code QR",
+      "secretSwitchText": "Clé secrète"
+    }
+  },
+  "cockpit": {
+    "filter": "Filtre",
+    "orders": {
+      "title": "Commandes",
+      "dialogTitle": "Détails de la commande - NUMÉRO DE RÉFÉRENCE",
+      "dialogTable": {
+        "dishH": "Plat",
+        "commentsH": "Commentaires",
+        "extrasH": "Extras",
+        "quantityH": "Quantité",
+        "priceH": "Prix"
+      }
+    },
+    "reservations": {
+      "title": "Réservations",
+      "dialogTitle": "Détails de la réservation - NUMÉRO DE RÉFÉRENCE",
+      "dialogTable": {
+        "guestEmailH": "Emails des invités",
+        "acceptanceH": "Accepté et rejeté",
+        "assistantsH": "Assistants"
+      }
+    },
+    "table": {
+      "reservationDateH": "Date de réservation",
+      "emailH": "Email",
+      "bookingTokenH": "Numéro de référence",
+      "ownerH": "Responsable",
+      "tableH": "Tableau",
+      "creationDateH": "Date de création"
+    }
+  }
+}

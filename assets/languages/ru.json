@@ -1,0 +1,189 @@
+{
+    "buttons": {
+        "cancel": "Отмена",
+        "close": "Закрыть",
+        "send": "Послать",
+        "login": "Войти",
+        "register": "Регистрация",
+        "bookTable": "Заказать стол",
+        "inviteFriends": "Пригласить друзей",
+        "viewMenu": "Увидеть меню",
+        "addToOrder": "Добавить в заказ",
+        "clearFilters": "Очистить фильтры",
+        "applyFilters": "Применить фильтры",
+        "removeComment": "Удалить комментарий",
+        "addComment": "Добавить комментарий"
+    },
+    "table": {
+        "rowsPage": "Строк на страницу",
+        "of": "из",
+        "noResults": "Без результатов"
+    },
+    "alerts": {
+        "accessError": "Доступ запрещен, сначала войдите в систему",
+        "genericError": "Произошла ошибка, повторите попытку позже",
+        "urlError": "Страница не найдена, пожалуйста попробуйте еще раз",
+        "email confirmations": {
+            "invitationAccept": "Приглашение успешно принято",
+            "invitationReject": "Приглашение успешно отклонено",
+            "bookingCancel": "Бронирование успешно отменено",
+            "orderCancel": "Заказ успешно отменен"
+        },
+        "orderID": "Чтобы заказать меню, необходимо получить номер заказа стола. Введите ваш номер заказа или закажите стол прямо сейчас.",
+        "passwordError": "Пароли не совпадают",
+        "authAlerts": {
+            "loginSuccess": "Авторизация успешна",
+            "registerSuccess": "Регистрация успешна",
+            "registerFail": "Ошибка регистрации, имя пользователя уже используется",
+            "logoutSuccess": "Выход успешен, возвращайтесь скоро!"
+        }
+    },
+    "formFields": {
+        "username": "Пользовател",
+        "password": "Пароль",
+        "confirmPassword": "Подтвердить пароль",
+        "date": "Число",
+        "name": "Имя",
+        "email": "Эл. адрес",
+        "assistants": "Посетители",
+        "friends": "Друзья",
+        "terms": "Принять условия",
+        "dateTime": "Число и время",
+        "guests": "Гости",
+        "guestsPH": "Введите адрес электронной почты приглашения",
+        "comment": "Комментарий",
+        "total": "Всë",
+        "referenceNumber": "Номер ссылки"
+    },
+    "bookTable": {
+        "title": "Вы можете пригласить своих друзей на обед или заказать стол",
+        "bookingTab": "Заказать стол",
+        "reservationTab": "Пригласить друзей",
+        "bookingTitle": "Заказать ваш стол",
+        "bookingSubtitle": "Вы можете заказать стол и меню",
+        "reservationTitle": "Добавьте свои данные и друзей",
+        "dialog": {
+            "title": "Заказать стол",
+            "bookingSuccess": "Стол успешно заказан",
+            "bookingError": "Ошибка при заказе, повторите попытку позже"
+        },
+        "formErrors": {
+            "nameRequired": "Необходимo. Введите имя, чтобы заказать стол",
+            "emailRequired": "Необходимo. Введите эл. адрес, чтобы заказать стол",
+            "emailPattern": "Вставьте действительный адрес эл. почты, чтобы отправить данные заказa. например email@email.com.",
+            "emailFormat": "Недействительный формат эл. почты",
+            "assistantsRequired": "Необходимо. Введите количество посетителей.",
+            "assistantsMax": "Нельзя заказать больше посетителей, чем размер самово большовa столa (8), если вам нужно больше столoв, сделайте больше заказов.",
+            "assistantsMin": "Нельзя заказать пустые или отрицательные число посетителей."
+        }
+    },
+    "main": {
+        "home": "Главная",
+        "menu": "Меню",
+        "book": "Заказать стол",
+        "orders": "Заказы",
+        "reservations": "Бронирование",
+        "userActions": {
+            "user": "Пользовател",
+            "pairing": "Установить двухфакторную аутентификацию",
+            "logout": "Выйти",
+            "changePassword": "Поменять пароль",
+            "twitterAccount": "Аккаунт Твиттер",
+            "signOut": "Выход",
+            "orders": "Заказы"
+        }
+    },
+    "home": {
+        "subtitle": "Больше чем просто вкусная еда",
+        "restaurantTitle": "Наш ресторан",
+        "restaurantContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+        "menuTitle": "Наше меню",
+        "menuContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+    },
+    "menu": {
+        "filterTitle": "ФИЛЬТРЫ",
+        "filter": {
+            "search": "Поиск наших блюд",
+            "sort": "Сортировать по",
+            "price": "Цена",
+            "likes": "Нравится",
+            "name": "Имя",
+            "mainDishes": "Основные блюда",
+            "starters": "Закуска",
+            "desserts": "Десерты",
+            "noodle": "Лапша",
+            "rice": "Рис",
+            "curry": "Карри",
+            "vegan": "Веганский",
+            "vegetarian": "Вегетарианский",
+            "favourites": "Избранные"
+        }
+    },
+    "sidenav": {
+        "title": "Итог заказа",
+        "header": "Заказать меню",
+        "bookingId": "Номер заказа",
+        "noSelection": "Вы не выбрали ни одного заказа",
+        "dialog": {
+            "title": "Добавить комментарий",
+            "content": "Здесь вы можете добавить короткий комментарий нашим поварам о том, как подготовить ваше блюдо"
+        }
+    },
+    "userArea": {
+        "loginTitle": "АВТОРИЗОВАТЬСЯ",
+        "signupTitle": "ЗАРЕГИСТРИРОВАТЬСЯ",
+        "emailError": "Пожалуйста, введите действительный адрес эл. почты",
+        "passwordDialog": {
+            "title": "Введите новый пароль",
+            "currentPassword": "Текущий пароль",
+            "newPassword": "Новый пароль",
+            "verifyPassword": "Подтвердите пароль"
+        },
+        "twitterDialog": {
+            "title": "Связать Аккаунт Твиттер",
+            "twitterUsernamePH": "Имя пользователя в Твиттере",
+            "twitterPasswordPH": "Пароль в Твиттере",
+            "loginbutton": "Войти в Твиттер"
+        },
+        "qrcodeDialog": {
+        "twofactorNotFound": "Двухфакторная аутентификация еще не активирована",
+        "twofactorTitle": "Настройки для двухфакторной аутентификации",
+        "twofactorStatus": "Состояние двухфакторной аутентификации",
+        "twofactorDescription": "Просканируйте QR-код с помощью Google Authenticator или используйте секретный ключ",
+        "twofactorclose": "Закрыть окно",
+        "qrSwitchText": "QR код",
+        "secretSwitchText": "Секретный ключ"
+        }
+    },
+    "cockpit": {
+        "filter": "Фильтр",
+        "orders": {
+            "title": "Заказы",
+            "dialogTitle": "ДЕТАЛИ ЗАКАЗА - СПРАВОЧНЫЙ НОМЕР",
+            "dialogTable": {
+                "dishH": "Блюдо",
+                "commentsH": "Комментарии",
+                "extrasH": "Дополнительный",
+                "quantityH": "Количество",
+                "priceH": "Цена"
+            }
+        },
+        "reservations": {
+            "title": "Бронирование",
+            "dialogTitle": "ДЕТАЛИ БРОНИРОВАНИЯ - СПРАВОЧНЫЙ НОМЕР",
+            "dialogTable": {
+                "guestEmailH": "Гостевая эл. почта",
+                "acceptanceH": "Подтверждение и отказы",
+                "assistantsH": "Посетители"
+            }
+        },
+        "table": {
+            "reservationDateH": "Число бронирования",
+            "emailH": "Эл. почта",
+            "bookingTokenH": "Номер ссылки",
+            "ownerH": "Владелец",
+            "tableH": "Стол",
+            "creationDateH": "Число создания"
+        }
+    }
+}

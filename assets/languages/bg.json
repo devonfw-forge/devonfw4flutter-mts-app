@@ -1,0 +1,197 @@
+{
+  "buttons": {
+    "cancel": "Отмени",
+    "close": "Затвори",
+    "send": "Изпрати",
+    "login": "Вход",
+    "register": "Регистрация",
+    "bookTable": "Запази маса",
+    "inviteFriends": "Покани приятели",
+    "viewMenu": "Виж меню",
+    "addToOrder": "Добави към поръчка",
+    "clearFilters": "Изчисти филтри",
+    "applyFilters": "Приложи филтри",
+    "removeComment": "Изтрий коментар",
+    "addComment": "Добави коментар"
+  },
+  "table": {
+    "rowsPage": "Редове на страница",
+    "of": "на/от",
+    "noResults": "Няма намерени резултати"
+  },
+  "alerts": {
+    "accessError":
+      "Достъп отказан, моля първо влез с потребителско име и парола",
+    "genericError": "Грешка, моля опитай по-късно",
+    "urlError": "Не е намерен Url, моля опитай отново",
+    "email confirmations": {
+      "invitationAccept": "Поканата е приета усрешно",
+      "invitationReject": " Поканата е отхвърлена усрешно ",
+      "bookingCancel": " Резервацията е отменена усрешно ",
+      "orderCancel": "Поръчката е отменена усрешно "
+    },
+    "orderID":
+      "За да поръчаш меню е необходимо да получиш номер на резервация. Или въведи номера на съществуваща резервация или запази маса",
+    "passwordError": "Грешна парола",
+    "authAlerts": {
+      "loginSuccess": "Успешно влизане",
+      "registerSuccess": "Успешна регистрация",
+      "registerFail": " Неуспешна регистрация, потребителското име съществува",
+      "logoutSuccess": "Успешно излизане от профила, до скоро!"
+    }
+  },
+  "formFields": {
+    "username": "Потребителско име",
+    "password": "Парола",
+    "confirmPassword": "Потвърди парола",
+    "date": "Дата",
+    "name": "Име",
+    "email": "Email",
+    "assistants": "Присъстващи",
+    "friends": "Приятели",
+    "terms": "Приеми условията",
+    "dateTime": "Дата и час",
+    "guests": "Гости",
+    "guestsPH": "Въведи email покана",
+    "comment": "Коментар",
+    "total": "Общо",
+    "referenceNumber": "Номер за справка"
+  },
+  "bookTable": {
+    "title": "Можеш да поканиш твоите приятели на обяд или да запазиш маса",
+    "bookingTab": "Запази маса",
+    "reservationTab": "Покани приятели",
+    "bookingTitle": "Запази твоята маса",
+    "bookingSubtitle": "Можеш да запазиш маса и да поръчаш меню",
+    "reservationTitle": "Добави твоята информация и приятели",
+    "dialog": {
+      "title": "Запази маса",
+      "bookingSuccess": "Масата е запазена успешно",
+      "bookingError": "Грешка при резервацията, моля опитай по-късно"
+    },
+    "formErrors": {
+      "nameRequired": "Задължително. Моля въведи име, за да запазиш маса",
+      "emailRequired": " Задължително. Моля въведи email, за да запазиш маса ",
+      "emailPattern":
+        "Въведи валиден email адреср за да изпратиш информация за резезервацията. Например email@email.com.",
+      "emailFormat": "Невалиден Email формат",
+      "assistantsRequired": " Задължително. Моля въведи брой на присъстващи.",
+      "assistantsMax":
+        "Не можеш да въведеш повече присъстващи от максималният брой на най–голямата маса (8), ако имаш нужда от повече маси, направи повече резервации.",
+      "assistantsMin":
+        "Не можеш да резервираш без да въведеш или ако  въведеш отрицателен брой присъстващи"
+    }
+  },
+  "main": {
+    "home": "Начало",
+    "menu": "Меню",
+    "book": "Запази маса",
+    "orders": "Поръчки",
+    "reservations": "Резервации",
+    "userActions": {
+      "user": "Потребител",
+      "pairing": "Задайте двуфакторно удостоверяване",
+      "logout": "Изход",
+      "changePassword": "Смени парола",
+      "twitterAccount": "Twitter акаунт",
+      "signOut": "Изход",
+      "orders": "Поръчки"
+    }
+  },
+  "home": {
+    "subtitle": "Повече от просто вкусна храна",
+    "restaurantTitle": "Нашият ресторрант",
+    "restaurantContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "menuTitle": "Нашето меню",
+    "menuContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+  },
+  "menu": {
+    "filterTitle": "ФИЛТРИ",
+    "filter": {
+      "search": "Разгледай нашите ястия",
+      "sort": "Подреди по",
+      "price": "Цена",
+      "likes": "Харесвания",
+      "name": "Име",
+      "mainDishes": "Основни ястия",
+      "starters": "Предястия",
+      "desserts": "Десерти",
+      "noodle": "Нудълс",
+      "rice": "Ориз",
+      "curry": "Къри",
+      "vegan": "Веган",
+      "vegetarian": "Вегетарянски",
+      "favourites": "Фаворити"
+    }
+  },
+  "sidenav": {
+    "title": "Продължи резервацията",
+    "header": "Поръчай меню",
+    "bookingId": "Номер на резервация",
+    "noSelection": "Няма избрана поръчка",
+    "dialog": {
+      "title": "Добави коментар",
+      "content":
+        "Тук можеш да добавиш кратък коментар към нашите готвачи относно как да приготвят твоето ястие"
+    }
+  },
+  "userArea": {
+    "loginTitle": "РЕГИСТРАЦИЯ",
+    "signupTitle": "ЗАПИСВАНЕ",
+    "emailError": "Моля, въведи валиден email адрес",
+    "passwordDialog": {
+      "title": "Създай нова Парола",
+      "currentPassword": "Актуална Парола",
+      "newPassword": "Нова парола",
+      "verifyPassword": "Провери парола"
+    },
+    "twitterDialog": {
+      "title": "Свържи Twitter акаунт",
+      "twitterUsernamePH": "Twitter потребителско име",
+      "twitterPasswordPH": "Twitter парола",
+      "loginbutton": "Влез в Twitter"
+    },
+    "qrcodeDialog": {
+      "twofactorNotFound": "Двуфакторното удостоверяване все още не е активирано",
+      "twofactorTitle": "Настройки за двуфакторно удостоверяване",
+      "twofactorStatus": "Състояние на двуфакторното удостоверяване",
+      "twofactorDescription": "Моля, сканирайте QR кода с Google Authenticator или използвайте тайния ключ",
+      "twofactorclose": "Затворете прозореца",
+      "qrSwitchText": "QR код",
+      "secretSwitchText": "Тайният ключ"
+    }
+  },
+  "cockpit": {
+    "filter": "Филтър",
+    "orders": {
+      "title": "Поръчки",
+      "dialogTitle": " ДЕТАЙЛИ НА ПОРЪЧКАТА - НОМЕР НА ПОРЪЧКА",
+      "dialogTable": {
+        "dishH": "Ястие",
+        "commentsH": "Коментари",
+        "extrasH": "Допълнително",
+        "quantityH": "Количество",
+        "priceH": "Цена"
+      }
+    },
+    "reservations": {
+      "title": "Резервации",
+      "dialogTitle": "ДЕТАЙЛИ НА РЕЗЕРВАЦИЯТА – НОМЕР НА РЕЗЕРВАЦИЯ",
+      "dialogTable": {
+        "guestEmailH": "Еmail на госта",
+        "acceptanceH": "Потвърждения и откази",
+        "assistantsH": "Присъстващи"
+      }
+    },
+    "table": {
+      "reservationDateH": "Дата на резервация",
+      "emailH": "Email",
+      "bookingTokenH": "Номер на резервация",
+      "ownerH": "Създател",
+      "tableH": "Маса",
+      "creationDateH": "Дата на създаване"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "buttons": {
+    "cancel": "Usun",
+    "close": "Zamknij",
+    "send": "Wyslij",
+    "login": "Logowanie",
+    "register": "Zarejestruj",
+    "bookTable": "Zarezerwuj stolik",
+    "inviteFriends": "Zapros znajomych",
+    "viewMenu": "Pokaz menu",
+    "addToOrder": "Dodaj do zamówienia",
+    "clearFilters": "Wyczysc filtry",
+    "applyFilters": "Zastosuj filtry",
+    "removeComment": "Usun komentarz",
+    "addComment": "Dodaj komentarz"
+  },
+  "table": {
+    "rowsPage": "Ilosc rzedów na stronie",
+    "of": "z",
+    "noResults": "Brak wyników"
+  },
+  "alerts": {
+    "accessError": "Odmowa dostepu, zaloguj sie",
+    "genericError": "Wystapil blad, spróbuj ponownie",
+    "urlError": "Strona nieznaleziona, spróbuj ponownie",
+    "email confirmations": {
+      "invitationAccept": "Zaproszenie przyjete",
+      "invitationReject": "Zaproszenie odrzucone",
+      "bookingCancel": "Rezerwacja anulowana",
+      "orderCancel": "Zamówienie anulowane"
+    },
+    "orderID":
+      "Kod rezerwacji jest konieczny do zlozenia zamówienia. Wprowadz swój kod lub zarezerwuj stolik.",
+    "passwordError": "Haslo nieprawidlowe",
+    "authAlerts": {
+      "loginSuccess": "Jestes zalogowany",
+      "registerSuccess": "Rejestracja udana",
+      "registerFail": "Rejestracja nieudana, nazwa uzytkownika juz istnieje.",
+      "logoutSuccess": "Jestes wylogowany. Do zobaczenia wkrótce!"
+    }
+  },
+  "formFields": {
+    "username": "Nazwa uzytkownika",
+    "password": "Haslo",
+    "confirmPassword": "Potwierdz haslo",
+    "date": "Data",
+    "name": "Imie",
+    "email": "Email",
+    "assistants": "Uczestnicy",
+    "friends": "Znajomi",
+    "terms": "Zaakceptuj warunki",
+    "dateTime": "Data i godzina",
+    "guests": "Goscie",
+    "guestsPH": "Wprowadz adresy email gosci",
+    "comment": "Komentarz",
+    "total": "Suma",
+    "referenceNumber": "Numer referencyjny"
+  },
+  "bookTable": {
+    "title": "Mozesz zaprosic znajomych na lunch lub zarezerwowac stolik",
+    "bookingTab": "Zarezerwuj stolik",
+    "reservationTab": "Zapros znajomych",
+    "bookingTitle": "Zarezerwuj stolik",
+    "bookingSubtitle": "Mozesz zarezerwowac stolik i zlozyc zamówienie",
+    "reservationTitle": "Dodaj twoje dane i znajomych",
+    "dialog": {
+      "title": "Zarezerwuj stolik",
+      "bookingSuccess": "Stolik zarezerwowany",
+      "bookingError": "Rezerwacja nieudana, spróbuj ponownie"
+    },
+    "formErrors": {
+      "nameRequired":
+        "Pole obowiazkowe. Podaj imie, aby móc zarezerwowac stolik.",
+      "emailRequired":
+        "Pole obowiazkowe. Podaj email, aby móc zarezerwowac stolik.",
+      "emailPattern":
+        "Podaj poprawny adres email, aby otrzymac szczególy rezerwacji, np. email@email.com.",
+      "emailFormat": "Niepoprawny format adresu email",
+      "assistantsRequired": "Pole obowiazkowe. Podaj liczbe uczestników.",
+      "assistantsMax":
+        "Nie mozesz zaprosic wiecej gosci niz zmiesci sie przy najwiekszym stoliku (8). Jesli potrzebujesz wiecej stolików, zrób wiecej rezerwacji.",
+      "assistantsMin":
+        "Nie mozesz zrobic rezerwacji dla liczby uczestników równej zero ani ujemnej"
+    }
+  },
+  "main": {
+    "home": "Strona glówna",
+    "menu": "Menu",
+    "book": "Zarezerwuj stolik",
+    "orders": "Zamówienia",
+    "reservations": "Rezerwacje",
+    "userActions": {
+      "user": "Uzytkownik",
+      "pairing": "Ustaw uwierzytelnianie dwuskładnikowe",
+      "logout": "Logout",
+      "changePassword": "Zmien haslo",
+      "twitterAccount": "Konto Twitter",
+      "signOut": "Wyrejestruj sie",
+      "orders": "Zamówienia"
+    }
+  },
+  "home": {
+    "subtitle": "Wiecej niz pyszne jedzenie",
+    "restaurantTitle": "Nasza restauracja",
+    "restaurantContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "menuTitle": "Nasza karta",
+    "menuContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+  },
+  "menu": {
+    "filterTitle": "FILTRY",
+    "filter": {
+      "search": "Zobacz dania",
+      "sort": "Segreguj wedlug",
+      "price": "Cena",
+      "likes": "Polubienia",
+      "name": "Nazwa",
+      "mainDishes": "Dania glówne",
+      "starters": "Przystawki",
+      "desserts": "Desery",
+      "noodle": "Nudle",
+      "rice": "Ryz",
+      "curry": "Curry",
+      "vegan": "Weganskie",
+      "vegetarian": "Wegetarianskie",
+      "favourites": "Ulubione"
+    }
+  },
+  "sidenav": {
+    "title": "Podsumowanie rezerwacji",
+    "header": "Zamówienie",
+    "bookingId": "Kod rezerwacji",
+    "noSelection": "Brak zamówien",
+    "dialog": {
+      "title": "Dodaj komentarz",
+      "content":
+        "Tutaj mozesz przekazac naszym kucharzom krótkie wskazówki odnosnie sposobu przyrzadzenia twojego dania."
+    }
+  },
+  "userArea": {
+    "loginTitle": "LOGIN",
+    "signupTitle": "ZALóZ KONTO",
+    "emailError": "Podaj poprawny adres email",
+    "passwordDialog": {
+      "title": "Podaj nowe haslo",
+      "currentPassword": "Obecne haslo",
+      "newPassword": "Nowe haslo",
+      "verifyPassword": "Sprawdz haslo"
+    },
+    "twitterDialog": {
+      "title": "Polacz z kontem Twitter",
+      "twitterUsernamePH": "Nazwa uzytkownika na Twitterze",
+      "twitterPasswordPH": "Haslo do Twittera",
+      "loginbutton": "Zaloguj sie na Twittera"
+    },
+    "qrcodeDialog": {
+      "twofactorNotFound": "Uwierzytelnianie dwuskładnikowe nie zostało jeszcze aktywowane",
+      "twofactorTitle": "Ustawienia uwierzytelniania dwuskładnikowego",
+      "twofactorStatus": "Stan uwierzytelniania dwuskładnikowego",
+      "twofactorDescription": "Zeskanuj kod QR za pomocą Google Authenticator lub użyj tajnego klucza",
+      "twofactorclose": "Blisko",
+      "qrSwitchText": "Kod QR",
+      "secretSwitchText": "Tajny klucz"
+    }
+  },
+  "cockpit": {
+    "filter": "Filtr",
+    "orders": {
+      "title": "Zamówienia",
+      "dialogTitle": "SZCZEGóLY ZAMóWIENIA - NUMER REFERENCYJNY",
+      "dialogTable": {
+        "dishH": "Danie",
+        "commentsH": "Komentarze",
+        "extrasH": "Dodatkowe",
+        "quantityH": "Ilosc",
+        "priceH": "Cena"
+      }
+    },
+    "reservations": {
+      "title": "Rezerwacje",
+      "dialogTitle": "SZCZEGóLY REZERWACJI - NUMER REFERENCYJNY",
+      "dialogTable": {
+        "guestEmailH": "Email goscia",
+        "acceptanceH": "Przyjete i odrzucone",
+        "assistantsH": "Uczestnicy"
+      }
+    },
+    "table": {
+      "reservationDateH": "Data rezerwacji",
+      "emailH": "Email",
+      "bookingTokenH": "Numer referencyjny",
+      "ownerH": "Wlasciciel",
+      "tableH": "Stolik",
+      "creationDateH": "Data utworzenia"
+    }
+  }
+}

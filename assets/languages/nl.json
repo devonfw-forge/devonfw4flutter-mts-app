@@ -1,0 +1,199 @@
+{
+  "buttons": {
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "send": "Zenden",
+    "login": "Login",
+    "register": "Registeren",
+    "bookTable": "Reserveer een tafel",
+    "inviteFriends": "Vrienden uitnodigen",
+    "viewMenu": "Toon menu",
+    "addToOrder": "Voeg aan bestelling toe",
+    "clearFilters": "Verwijder filters",
+    "applyFilters": "Voeg filters toe",
+    "removeComment": "Verwijder commentaar",
+    "addComment": "Voeg commentaar toe"
+  },
+  "table": {
+    "rowsPage": "Rijen per pagina",
+    "of": "van",
+    "noResults": "Geen resultaten"
+  },
+  "alerts": {
+    "accessError": "Geen toegang. U dient in te loggen",
+    "genericError":
+      "Er heeft zich een fout voorgedaan. Probeer het later nog een keer",
+    "urlError": "Url niet gevonden, probeer het nog een keer",
+    "email confirmations": {
+      "invitationAccept": "Uitnodiging geaccepteerd",
+      "invitationReject": "Uitnodiging geweigerd",
+      "bookingCancel": "Boeking geannuleerd",
+      "orderCancel": "Bestelling geannuleerd"
+    },
+    "orderID":
+      "Om een menu te bestellen is een bestellingsnummer nodig. U kunt een bestaand bestellingsnummer invoeren of een tafel boeken",
+    "passwordError": "Wachtwoorden niet gelijk",
+    "authAlerts": {
+      "loginSuccess": "Inloggen geslaagd",
+      "registerSuccess": "Succesvol geregistreerd",
+      "registerFail": "Niet geregistreerd omdat de gebruikernsaam al bestaat",
+      "logoutSuccess": "Afmelden geslaagd, keer snel nog eens terug!"
+    }
+  },
+  "formFields": {
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "confirmPassword": "Bevestig wachtwoord",
+    "date": "Datum",
+    "name": "Naam",
+    "email": "Email",
+    "assistants": "Tafelgasten",
+    "friends": "Vrienden",
+    "terms": "Accepteer voorwaard",
+    "dateTime": "Datum en tijd",
+    "guests": "Gasten",
+    "guestsPH": "Voer uitnodiging email in",
+    "comment": "Commentaar",
+    "total": "Totaal",
+    "referenceNumber": "Referentienummer"
+  },
+  "bookTable": {
+    "title":
+      "Je kunt jouw vrienden uitnodigen voor een lunch of een tafel boeken",
+    "bookingTab": "Boek een tafel",
+    "reservationTab": "Nodig vrienden uit",
+    "bookingTitle": "Boek jouw tafel",
+    "bookingSubtitle": "Je kunt een tafel boeken en een menu bestellen",
+    "reservationTitle": "Voeg jouw informatie en vrienden toe",
+    "dialog": {
+      "title": "Boek tafel",
+      "bookingSuccess": "Tafel succesvol geboekt",
+      "bookingError": "Fout tijdens boeking, probeer het later nog een keer"
+    },
+    "formErrors": {
+      "nameRequired": "Verplicht. Voer een naam in om een tafel te reserveren",
+      "emailRequired":
+        "Verplicht. Voer een email adres in om een tafel te reserveren",
+      "emailPattern":
+        "Voer een gelding email adres in waar de reserveer gegevens toe te verzenden. Zoals email@email.com",
+      "emailFormat": "Email adres is niet gelding",
+      "assistantsRequired": "Verplicht. Voer het aantal tafelgasten in",
+      "assistantsMax":
+        "Er kan niet voor meer tafelgasten worden gereserveerd dan de grootte van de grootste tafel (8). Indien meer tafels nodig zijn, doe dan verschillende boekingen.",
+      "assistantsMin":
+        "Er kan niet 0 of een negatief nummer van assistenten worden gebekt."
+    }
+  },
+  "main": {
+    "home": "Begin",
+    "menu": "Menu",
+    "book": "Boek tafel",
+    "orders": "Bestellingen",
+    "reservations": "Reserveringen",
+    "userActions": {
+      "user": "Gebruiker",
+      "pairing": "Definieer een two-factor authenticatie",
+      "logout": "Uitloggen",
+      "changePassword": "Wijzig wachtwoord",
+      "twitterAccount": "Twitter account",
+      "signOut": "Uitloggen",
+      "orders": "Bestellingen"
+    }
+  },
+  "home": {
+    "subtitle": "Meer dan heerlijk eten alleen",
+    "restaurantTitle": "Ons restaurant",
+    "restaurantContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "menuTitle": "Our menu",
+    "menuContent":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+  },
+  "menu": {
+    "filterTitle": "FILTERS",
+    "filter": {
+      "search": "Zoek door onze gerechten",
+      "sort": "Sorteer bij",
+      "price": "Prijs",
+      "likes": "'Likes'",
+      "name": "Naam",
+      "mainDishes": "Hoofdgerechten",
+      "starters": "Voorgerechten",
+      "desserts": "Nagerechten",
+      "noodle": "Noodle",
+      "rice": "Rijst",
+      "curry": "Curry",
+      "vegan": "Veganistisch",
+      "vegetarian": "Vegetarisch",
+      "favourites": "Favorieten"
+    }
+  },
+  "sidenav": {
+    "title": "Doorgaan met boeken",
+    "header": "Bestel menu",
+    "bookingId": "Boekingsnummer",
+    "noSelection": "Er is geen bestelling geselecteerd",
+    "dialog": {
+      "title": "Voeg commentaar toe",
+      "content":
+        "Hier kan een kort commentaaar worden gegeven aan onze koks over hoe het bestelde menu voor te bereiden"
+    }
+  },
+  "userArea": {
+    "loginTitle": "INLOGGEN",
+    "signupTitle": "AANMELDEN",
+    "emailError": "Voer aub een geldig email adres in",
+    "passwordDialog": {
+      "title": "Voer een nieuw wachtwoord in",
+      "currentPassword": "Huidige wachtwoord",
+      "newPassword": "Nieuw wachtwoord",
+      "verifyPassword": "Bevestig wachtwoord"
+    },
+    "twitterDialog": {
+      "title": "Koppel twitter account",
+      "twitterUsernamePH": "Twitter gebruikersnaam",
+      "twitterPasswordPH": "Twitter wachtwoord",
+      "loginbutton": "Inloggen Twitter"
+    },
+    "qrcodeDialog": {
+      "twofactorNotFound": "Twee-factor-authenticatie is nog niet geactiveerd",
+      "twofactorTitle": "Einstellungen für Zwei-Faktor-Authentifizierung",
+      "twofactorStatus": "Instellingen voor two-factor authenticatie",
+      "twofactorDescription": "Scan de QR-code met de Google Authenticator of gebruik de geheime sleutel",
+      "twofactorclose": "Sluit venster",
+      "qrSwitchText": "QR-code",
+      "secretSwitchText": "Geheime sleutel"
+    }
+  },
+  "cockpit": {
+    "filter": "Filter",
+    "orders": {
+      "title": "Bestellingen",
+      "dialogTitle": "BESTELLING DETAILS - BESTELNUMMER",
+      "dialogTable": {
+        "dishH": "Gerecht",
+        "commentsH": "Commentaar",
+        "extrasH": "Extra",
+        "quantityH": "Hoeveelheid",
+        "priceH": "Prijs"
+      }
+    },
+    "reservations": {
+      "title": "Reserveringen",
+      "dialogTitle": "RESERVERING DETAILS - RESERVERINGNUMMER",
+      "dialogTable": {
+        "guestEmailH": "Gast email",
+        "acceptanceH": "Acceptaties en wijgeringen",
+        "assistantsH": "tafelgasten"
+      }
+    },
+    "table": {
+      "reservationDateH": "Reserveer datum",
+      "emailH": "Email",
+      "bookingTokenH": "Boekingsnummer",
+      "ownerH": "Eigenaar",
+      "tableH": "Tafel",
+      "creationDateH": "Aanmaakdatum"
+    }
+  }
+}

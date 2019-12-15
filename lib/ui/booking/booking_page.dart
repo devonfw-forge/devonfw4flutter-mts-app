@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/booking/custom_form_card.dart';
-import 'package:my_thai_star_flutter/ui/booking/invite_form.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 
@@ -41,7 +40,7 @@ class BookingPage extends StatelessWidget {
               CustomFormCard(
                 title: "ADD YOUR INFORMATION AND FRIENDS",
                 headerImageLocation: inviteImage,
-                form: InviteForm(),
+                form: BookingForm(),
               ),
             ],
           )),

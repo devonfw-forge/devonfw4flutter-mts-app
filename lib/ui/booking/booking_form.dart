@@ -10,6 +10,7 @@ import 'package:form_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/ui/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class BookingForm extends StatefulWidget {
@@ -41,16 +42,25 @@ class _BookingFormState extends State<BookingForm> {
     BlocProvider.of<BookingBloc>(context).state.listen(
       (BookingState state) {
         if (state is ConfirmedBookingState) {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            duration: Duration(seconds: 3),
-            content: Text(
-                "Booking Confirmed!\n" + "Booking Number: " + state.bookingId),
-          ));
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Booking Confirmed!",
+              body: "This is your booking ID, " +
+                  "you will need it to add dishes to your Booking:",
+              copyableText: state.bookingId,
+            ),
+          );
         } else if (state is DeclinedBookingState) {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            duration: Duration(seconds: 3),
-            content: Text("Booking Declined\nReason: " + state.reason),
-          ));
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Booking Declined",
+              body: "Your booking could not be placed because " +
+                  "of the following reason:\n\n" +
+                  state.reason,
+            ),
+          );
         }
       },
     );

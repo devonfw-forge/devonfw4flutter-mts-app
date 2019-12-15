@@ -9,6 +9,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/labeled_checkbox.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/current_order/alert_card.dart';
@@ -50,16 +51,26 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
           BlocProvider.of<CurrentOrderBloc>(context)
               .dispatch(ClearOrderEvent());
 
-          Scaffold.of(context).showSnackBar(SnackBar(
-            duration: Duration(seconds: 3),
-            content:
-                Text("Order Confirmed with following ID:\n${state.bookingId}"),
-          ));
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Order Confirmed!",
+              body: "Your delicious dishes will be waiting " +
+                  "for you when you arrive to your Booking.\n" +
+                  "Your order has teh following ID:",
+              copyableText: state.bookingId.toString(),
+            ),
+          );
         } else if (state is RejectedOrderState) {
-          Scaffold.of(context).showSnackBar(SnackBar(
-            duration: Duration(seconds: 3),
-            content: Text("Order Declined:\n${state.reason}"),
-          ));
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Order Denied",
+              body: "Your order could not be processed " +
+                  "for for the following reason:\n\n" +
+                  state.reason,
+            ),
+          );
         }
       },
     );

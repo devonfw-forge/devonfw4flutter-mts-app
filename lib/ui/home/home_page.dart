@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/header/header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 
 import 'package:my_thai_star_flutter/ui/home/card_display.dart';
 import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: Header(),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Stack(

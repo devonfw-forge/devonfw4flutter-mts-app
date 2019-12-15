@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/asset_container.dart';
+import 'package:my_thai_star_flutter/ui/home/asset_container.dart';
 
 ///The Banner at the very top of the [home]-page
 class ImageBanner extends StatelessWidget {

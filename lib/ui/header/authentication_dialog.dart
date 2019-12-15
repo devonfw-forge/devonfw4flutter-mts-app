@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AuthenticationAlert extends StatelessWidget {
+class AuthenticationDialog extends StatelessWidget {
   static const double width = 800;
   static const double height = 200;
   static const double padding = 20;
@@ -9,7 +9,7 @@ class AuthenticationAlert extends StatelessWidget {
     Tab(text: 'SIGN UP'),
   ];
 
-  const AuthenticationAlert({Key key}) : super(key: key);
+  const AuthenticationDialog({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

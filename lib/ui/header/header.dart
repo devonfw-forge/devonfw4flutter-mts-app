@@ -6,16 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/authentication_alert.dart';
+import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 
 ///common [AppBar] throughout the App
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class Header extends StatelessWidget implements PreferredSizeWidget {
   static const String title = "My Thai Star";
   static const double elevation = 20;
   final double height;
   final Widget bottom;
 
-  const CustomAppBar({
+  const Header({
     Key key,
     this.height = 50,
     this.bottom,
@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (BuildContext context) => AuthenticationAlert(),
+                builder: (BuildContext context) => AuthenticationDialog(),
               );
             }),
         BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(

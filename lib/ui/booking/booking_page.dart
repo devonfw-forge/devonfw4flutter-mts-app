@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/booking/custom_form_card.dart';
+import 'package:my_thai_star_flutter/ui/header/header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
-import 'package:my_thai_star_flutter/ui/shared_widgets/custom_app_bar.dart';
 
 class BookingPage extends StatelessWidget {
   static const bookingImage = "assets/images/slider-1.jpg";
@@ -20,7 +20,7 @@ class BookingPage extends StatelessWidget {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-          appBar: CustomAppBar(
+          appBar: Header(
             height: appBarHeight,
             bottom: TabBar(
               tabs: tabs,

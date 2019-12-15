@@ -24,20 +24,20 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
   OrderBloc _orderBloc;
   FormValidationBloc _formValidationBloc;
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
-  NonEmptyFieldBloc _bookingIdBloc = NonEmptyFieldBloc();
-  TextEditingController _bookingIdController = TextEditingController();
+  NonEmptyFieldBloc _bookingTokeBloc = NonEmptyFieldBloc();
+  TextEditingController _bookingTokenController = TextEditingController();
 
   @override
   void initState() {
     _orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
-    _formValidationBloc = FormValidationBloc([_termsBloc, _bookingIdBloc]);
+    _formValidationBloc = FormValidationBloc([_termsBloc, _bookingTokeBloc]);
 
     BookingState currentBookingState =
         BlocProvider.of<BookingBloc>(context).currentState;
 
     if (currentBookingState is ConfirmedBookingState) {
-      _bookingIdController.text = currentBookingState.bookingId;
-      _bookingIdBloc.dispatch(currentBookingState.bookingId);
+      _bookingTokenController.text = currentBookingState.token;
+      _bookingTokeBloc.dispatch(currentBookingState.token);
     }
 
     _setUpOrderResponses();
@@ -51,19 +51,19 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         BlocBuilder<NonEmptyFieldBloc, ValidationState>(
-          bloc: _bookingIdBloc,
+          bloc: _bookingTokeBloc,
           builder: (context, ValidationState state) =>
               state is ValidState ? SizedBox() : AlertCard(),
         ),
-        _BookingId(
-          bookingIdBloc: _bookingIdBloc,
-          bookingIdController: _bookingIdController,
+        _BookingTokenField(
+          bookingTokenBloc: _bookingTokeBloc,
+          bookingTokenController: _bookingTokenController,
         ),
         _Terms(termsBloc: _termsBloc),
         _Buttons(
           formValidationBloc: _formValidationBloc,
           orderBloc: _orderBloc,
-          bookingIdController: _bookingIdController,
+          bookingTokenController: _bookingTokenController,
         ),
       ],
     );
@@ -74,7 +74,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
     _orderBloc.dispose();
     _termsBloc.dispose();
     _formValidationBloc.dispose();
-    _bookingIdBloc.dispose();
+    _bookingTokeBloc.dispose();
 
     super.dispose();
   }
@@ -90,8 +90,8 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
             headline: "Order Confirmed!",
             body: "Your delicious dishes will be waiting " +
                 "for you when you arrive to your Booking.\n" +
-                "Your order has teh following ID:",
-            copyableText: state.bookingId.toString(),
+                "Your order has the following ID:",
+            copyableText: state.orderId.toString(),
           ),
         );
       } else if (state is RejectedOrderState) {
@@ -114,15 +114,15 @@ class _Buttons extends StatelessWidget {
     Key key,
     @required FormValidationBloc formValidationBloc,
     @required OrderBloc orderBloc,
-    @required TextEditingController bookingIdController,
+    @required TextEditingController bookingTokenController,
   })  : _formValidationBloc = formValidationBloc,
         _orderBloc = orderBloc,
-        _bookingIdController = bookingIdController,
+        _bookingTokenController = bookingTokenController,
         super(key: key);
 
   final FormValidationBloc _formValidationBloc;
   final OrderBloc _orderBloc;
-  final TextEditingController _bookingIdController;
+  final TextEditingController _bookingTokenController;
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +149,7 @@ class _Buttons extends StatelessWidget {
               style: Theme.of(context).textTheme.button,
             ),
             onPressed: state is ValidState
-                ? () => _orderBloc.dispatch(_bookingIdController.text)
+                ? () => _orderBloc.dispatch(_bookingTokenController.text)
                 : null,
           ),
         ),
@@ -186,17 +186,17 @@ class _Terms extends StatelessWidget {
   }
 }
 
-class _BookingId extends StatelessWidget {
-  const _BookingId({
+class _BookingTokenField extends StatelessWidget {
+  const _BookingTokenField({
     Key key,
-    @required NonEmptyFieldBloc bookingIdBloc,
-    @required TextEditingController bookingIdController,
-  })  : _bookingIdBloc = bookingIdBloc,
-        _bookingIdController = bookingIdController,
+    @required NonEmptyFieldBloc bookingTokenBloc,
+    @required TextEditingController bookingTokenController,
+  })  : _bookingTokenBloc = bookingTokenBloc,
+        _bookingTokenController = bookingTokenController,
         super(key: key);
 
-  final NonEmptyFieldBloc _bookingIdBloc;
-  final TextEditingController _bookingIdController;
+  final NonEmptyFieldBloc _bookingTokenBloc;
+  final TextEditingController _bookingTokenController;
 
   @override
   Widget build(BuildContext context) {
@@ -206,10 +206,10 @@ class _BookingId extends StatelessWidget {
         left: UiHelper.standard_padding,
       ),
       child: BlocFormField(
-        label: "Booking ID",
-        errorHint: "Please enter a Booking ID",
-        formFieldBloc: _bookingIdBloc,
-        controller: _bookingIdController,
+        label: "Booking Token",
+        errorHint: "Please enter a Booking Token",
+        formFieldBloc: _bookingTokenBloc,
+        controller: _bookingTokenController,
       ),
     );
   }

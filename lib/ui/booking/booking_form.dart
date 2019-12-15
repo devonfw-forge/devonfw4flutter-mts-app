@@ -118,9 +118,9 @@ class _BookingFormState extends State<BookingForm> {
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
               headline: "Booking Confirmed!",
-              body: "This is your booking ID, " +
+              body: "This is your booking Token, " +
                   "you will need it to add dishes to your Booking:",
-              copyableText: state.bookingId,
+              copyableText: state.token,
             ),
           );
         } else if (state is DeclinedBookingState) {

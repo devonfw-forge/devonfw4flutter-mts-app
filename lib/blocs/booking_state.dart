@@ -13,12 +13,12 @@ class InitialBookingState extends BookingState {
 
 @immutable
 class ConfirmedBookingState extends BookingState {
-  final String bookingId;
+  final String token;
 
-  ConfirmedBookingState(this.bookingId);
+  ConfirmedBookingState(this.token);
 
   @override
-  List<Object> get props => [bookingId];
+  List<Object> get props => [token];
 }
 
 @immutable

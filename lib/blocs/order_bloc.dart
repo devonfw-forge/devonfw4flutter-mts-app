@@ -21,15 +21,15 @@ class OrderBloc extends Bloc<String, OrderState> {
       yield RejectedOrderState("Please enter a booking ID");
     } else {
       try {
-        int bookingId = await orderService.post(Order(
+        int orderId = await orderService.post(Order(
           bookingCode: event,
           dishes: currentOrderBloc.currentState,
         ));
 
-        if (bookingId == 0 || bookingId == null) {
+        if (orderId == 0 || orderId == null) {
           yield RejectedOrderState("Your booking was Denied");
         } else {
-          yield ConfirmedOrderState(bookingId);
+          yield ConfirmedOrderState(orderId);
         }
       } catch (e) {
         yield RejectedOrderState("Error connecting to the service");

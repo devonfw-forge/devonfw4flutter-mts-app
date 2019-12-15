@@ -22,10 +22,10 @@ class RejectedOrderState extends OrderState {
 
 @immutable
 class ConfirmedOrderState extends OrderState {
-  final int bookingId;
+  final int orderId;
 
-  ConfirmedOrderState(this.bookingId);
+  ConfirmedOrderState(this.orderId);
   
   @override
-  List<Object> get props => [bookingId];
+  List<Object> get props => [orderId];
 }

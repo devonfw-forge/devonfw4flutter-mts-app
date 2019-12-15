@@ -15,12 +15,12 @@ class BookingBloc extends Bloc<Booking, BookingState> {
   Stream<BookingState> mapEventToState(Booking event) async* {
     yield LoadingBookingState();
 
-    String bookingNumber;
+    String bookingToken;
     try {
-      bookingNumber = await _exchangePoint.post(event);
+      bookingToken = await _exchangePoint.post(event);
 
-      if (bookingNumber != null) {
-        yield ConfirmedBookingState(bookingNumber);
+      if (bookingToken != null) {
+        yield ConfirmedBookingState(bookingToken);
       } else {
         yield DeclinedBookingState("Did not receive a valid booking ID");
       }

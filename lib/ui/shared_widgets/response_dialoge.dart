@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class ResponseDialoge extends StatelessWidget {
+  static const double borderRadius = 2;
+  static const double textBackgroundPadding = UiHelper.standard_padding / 2;
+  static final Color textBackgroundColor = Colors.grey[300];
+
   final String headline;
   final String body;
   final String copyableText;
@@ -36,12 +40,12 @@ class ResponseDialoge extends StatelessWidget {
                     alignment: WrapAlignment.end,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.all(UiHelper.standard_padding / 2),
+                        padding: EdgeInsets.all(textBackgroundPadding),
                         child: SelectableText(copyableText),
                         decoration: new BoxDecoration(
-                            color: Colors.grey[300],
+                            color: textBackgroundColor,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(2))),
+                                BorderRadius.all(const Radius.circular(borderRadius))),
                       ),
                       IconButton(
                         icon: Icon(Icons.content_copy),

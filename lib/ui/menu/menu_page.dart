@@ -82,11 +82,9 @@ class _MenuPageState extends State<MenuPage> {
   Widget _list(ReceivedDishState state) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          return DishCard(
-            dish: state.dishes[index],
-          );
-        },
+        (BuildContext context, int index) => DishCard(
+          dish: state.dishes[index],
+        ),
         childCount: state.dishes.length,
       ),
     );

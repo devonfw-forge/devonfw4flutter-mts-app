@@ -21,16 +21,16 @@ class DishCard extends StatefulWidget {
 }
 
 class _DishCardState extends State<DishCard> {
-  Dish dish;
   Map<int, BoolBloc> checkboxBlocs = Map();
+  Dish dish;
 
   _DishCardState(this.dish);
 
   @override
   void initState() {
-    dish.extras.forEach((Extra extra, bool picked) {
-      checkboxBlocs[extra.id] = BoolBloc();
-    });
+    dish.extras.forEach(
+      (Extra extra, bool picked) => checkboxBlocs[extra.id] = BoolBloc(),
+    );
 
     super.initState();
   }
@@ -38,7 +38,7 @@ class _DishCardState extends State<DishCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         top: UiHelper.standard_padding,
         right: UiHelper.standard_padding,
         left: UiHelper.standard_padding,
@@ -53,7 +53,7 @@ class _DishCardState extends State<DishCard> {
               imageHeight: DishCard.imageHeight,
             ),
             Padding(
-              padding: const EdgeInsets.all(UiHelper.card_margin),
+              padding: EdgeInsets.all(UiHelper.card_margin),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -74,31 +74,7 @@ class _DishCardState extends State<DishCard> {
                             fontWeight: FontWeight.normal,
                           )),
                   SizedBox(height: UiHelper.standard_padding),
-                  Wrap(
-                    children: dish.extras.keys
-                        .map(
-                          (extra) => BlocBuilder<BoolBloc, bool>(
-                            bloc: checkboxBlocs[extra.id],
-                            builder: (context, state) {
-                              return LabeledCheckBox(
-                                label: extra.name,
-                                state: state,
-                                onStateChange: (bool b) {
-                                  checkboxBlocs[extra.id]
-                                      .dispatch(BoolBlocEvent.swap);
-
-                                  Map<Extra, bool> newExtras =
-                                      Map.from(dish.extras);
-                                  newExtras[extra] = b;
-
-                                  dish = dish.copyWith(extras: newExtras);
-                                },
-                              );
-                            },
-                          ),
-                        )
-                        .toList(),
-                  ),
+                  Wrap(children: mapExtras()),
                   SizedBox(height: UiHelper.standard_padding),
                   RaisedButton(
                     color: Theme.of(context).accentColor,
@@ -122,5 +98,29 @@ class _DishCardState extends State<DishCard> {
   void dispose() {
     checkboxBlocs.forEach((id, bloc) => bloc.dispose());
     super.dispose();
+  }
+
+  List<Widget> mapExtras() {
+    return dish.extras.keys
+        .map(
+          (Extra extra) => BlocBuilder<BoolBloc, bool>(
+            bloc: checkboxBlocs[extra.id],
+            builder: (context, state) => LabeledCheckBox(
+              label: extra.name,
+              state: state,
+              onStateChange: (bool b) => onCheckboxStateChange(b, extra),
+            ),
+          ),
+        )
+        .toList();
+  }
+
+  void onCheckboxStateChange(bool b, Extra extra) {
+    checkboxBlocs[extra.id].dispatch(BoolBlocEvent.swap);
+
+    Map<Extra, bool> newExtras = Map.from(dish.extras);
+    newExtras[extra] = b;
+
+    dish = dish.copyWith(extras: newExtras);
   }
 }

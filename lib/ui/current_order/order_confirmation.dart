@@ -21,15 +21,6 @@ class OrderConfirmation extends StatefulWidget {
 }
 
 class _OrderConfirmationState extends State<OrderConfirmation> {
-  static const String confirmationHeadline = "Order Confirmed!";
-  static const String confirmationBody =
-      "Your delicious dishes will be waiting " +
-          "for you when you arrive to your Booking.\n" +
-          "Your order has teh following ID:";
-  static const String deniedHeadline = "Order Denied";
-  static const String deniedBody = "Your order could not be processed " +
-      "for for the following reason:\n\n";
-
   OrderBloc _orderBloc;
   FormValidationBloc _formValidationBloc;
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
@@ -96,8 +87,10 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
         showDialog(
           context: context,
           builder: (BuildContext context) => ResponseDialoge(
-            headline: confirmationHeadline,
-            body: confirmationBody,
+            headline: "Order Confirmed!",
+            body: "Your delicious dishes will be waiting " +
+                "for you when you arrive to your Booking.\n" +
+                "Your order has teh following ID:",
             copyableText: state.bookingId.toString(),
           ),
         );
@@ -105,8 +98,10 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
         showDialog(
           context: context,
           builder: (BuildContext context) => ResponseDialoge(
-            headline: deniedHeadline,
-            body: deniedBody + state.reason,
+            headline: "Order Denied",
+            body: "Your order could not be processed " +
+                "for for the following reason:\n\n" +
+                state.reason,
           ),
         );
       }

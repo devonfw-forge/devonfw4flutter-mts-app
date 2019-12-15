@@ -20,30 +20,31 @@ class BookingPage extends StatelessWidget {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-          appBar: Header(
-            height: appBarHeight,
-            bottom: TabBar(
-              tabs: tabs,
-              indicatorColor: Colors.white,
-              labelStyle: Theme.of(context).textTheme.title,
-            ),
+        appBar: Header(
+          height: appBarHeight,
+          bottom: TabBar(
+            tabs: tabs,
+            indicatorColor: Colors.white,
+            labelStyle: Theme.of(context).textTheme.title,
           ),
-          drawer: AppDrawer(),
-          body: TabBarView(
-            children: <Widget>[
-              CustomFormCard(
-                title: "BOOK YOUR TABLE",
-                subTitle: "You can book a table and an order menu",
-                headerImageLocation: bookingImage,
-                form: BookingForm(),
-              ),
-              CustomFormCard(
-                title: "ADD YOUR INFORMATION AND FRIENDS",
-                headerImageLocation: inviteImage,
-                form: BookingForm(),
-              ),
-            ],
-          )),
+        ),
+        drawer: AppDrawer(),
+        body: TabBarView(
+          children: <Widget>[
+            CustomFormCard(
+              title: "BOOK YOUR TABLE",
+              subTitle: "You can book a table and an order menu",
+              headerImageLocation: bookingImage,
+              form: BookingForm(),
+            ),
+            CustomFormCard(
+              title: "ADD YOUR INFORMATION AND FRIENDS",
+              headerImageLocation: inviteImage,
+              form: BookingForm(),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

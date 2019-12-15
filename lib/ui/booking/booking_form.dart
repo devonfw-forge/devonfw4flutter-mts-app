@@ -39,31 +39,7 @@ class _BookingFormState extends State<BookingForm> {
       termsBloc: _termsBloc,
     );
 
-    BlocProvider.of<BookingBloc>(context).state.listen(
-      (BookingState state) {
-        if (state is ConfirmedBookingState) {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => ResponseDialoge(
-              headline: "Booking Confirmed!",
-              body: "This is your booking ID, " +
-                  "you will need it to add dishes to your Booking:",
-              copyableText: state.bookingId,
-            ),
-          );
-        } else if (state is DeclinedBookingState) {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => ResponseDialoge(
-              headline: "Booking Declined",
-              body: "Your booking could not be placed because " +
-                  "of the following reason:\n\n" +
-                  state.reason,
-            ),
-          );
-        }
-      },
-    );
+    _setUpBookingResponses();
 
     super.initState();
   }
@@ -133,6 +109,34 @@ class _BookingFormState extends State<BookingForm> {
 
     super.dispose();
   }
+
+  void _setUpBookingResponses() {
+    BlocProvider.of<BookingBloc>(context).state.listen(
+      (BookingState state) {
+        if (state is ConfirmedBookingState) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Booking Confirmed!",
+              body: "This is your booking ID, " +
+                  "you will need it to add dishes to your Booking:",
+              copyableText: state.bookingId,
+            ),
+          );
+        } else if (state is DeclinedBookingState) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => ResponseDialoge(
+              headline: "Booking Declined",
+              body: "Your booking could not be placed because " +
+                  "of the following reason:\n\n" +
+                  state.reason,
+            ),
+          );
+        }
+      },
+    );
+  }
 }
 
 class _TermsCheckbox extends StatelessWidget {
@@ -164,9 +168,7 @@ class _TermsCheckbox extends StatelessWidget {
 }
 
 class _Loading extends StatelessWidget {
-  const _Loading({
-    Key key,
-  }) : super(key: key);
+  const _Loading({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -181,10 +183,8 @@ class _Loading extends StatelessWidget {
 }
 
 class _Button extends StatelessWidget {
-  const _Button({
-    Key key,
-    @required BookingFormBloc formBloc,
-  })  : _formBloc = formBloc,
+  const _Button({Key key, @required BookingFormBloc formBloc})
+      : _formBloc = formBloc,
         super(key: key);
 
   final BookingFormBloc _formBloc;
@@ -193,17 +193,15 @@ class _Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookingFormBloc, ValidationState>(
       bloc: _formBloc,
-      builder: (context, ValidationState state) {
-        return RaisedButton(
-          child: Text("Book Table"),
-          textColor: Colors.white,
-          disabledTextColor: Colors.white,
-          onPressed: state is ValidState
-              ? () => BlocProvider.of<BookingBloc>(context)
-                  .dispatch(_formBloc.currentState.data)
-              : null,
-        );
-      },
+      builder: (context, ValidationState state) => RaisedButton(
+        child: Text("Book Table"),
+        textColor: Colors.white,
+        disabledTextColor: Colors.white,
+        onPressed: state is ValidState
+            ? () => BlocProvider.of<BookingBloc>(context)
+                .dispatch(_formBloc.currentState.data)
+            : null,
+      ),
     );
   }
 }

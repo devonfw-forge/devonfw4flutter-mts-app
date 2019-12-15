@@ -15,46 +15,69 @@ class CustomFormCard extends StatelessWidget {
     @required this.form,
   }) : super(key: key);
 
-  bool notNull(Object o) => o != null;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(UiHelper.standard_padding),
+        padding: EdgeInsets.all(UiHelper.standard_padding),
         child: Card(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              CropImage(
-                assetImage: headerImageLocation,
+              CropImage(assetImage: headerImageLocation),
+              _Titles(
+                title: title,
+                subTitle: subTitle,
+                form: form,
               ),
-              Padding(
-                  padding: EdgeInsets.all(UiHelper.card_margin),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        title,
-                        textAlign: TextAlign.left,
-                        style: Theme.of(context).textTheme.title.copyWith(
-                            color: Colors.black, fontWeight: FontWeight.normal),
-                      ),
-                      (subTitle != null)
-                          ? Text(
-                              subTitle,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle
-                                  .copyWith(color: Colors.grey),
-                            )
-                          : null,
-                      form,
-                    ].where(notNull).toList(),
-                  )),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Titles extends StatelessWidget {
+  const _Titles({
+    Key key,
+    @required this.title,
+    @required this.subTitle,
+    @required this.form,
+  }) : super(key: key);
+
+  final String title;
+  final String subTitle;
+  final Widget form;
+
+  bool notNull(Object o) => o != null;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(UiHelper.card_margin),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            textAlign: TextAlign.left,
+            style: Theme.of(context)
+                .textTheme
+                .title
+                .copyWith(color: Colors.black, fontWeight: FontWeight.normal),
+          ),
+          subTitle != null
+              ? Text(
+                  subTitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle
+                      .copyWith(color: Colors.grey),
+                )
+              : null,
+          form,
+        ].where(notNull).toList(),
       ),
     );
   }

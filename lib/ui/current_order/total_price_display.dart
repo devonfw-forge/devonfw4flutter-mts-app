@@ -14,7 +14,7 @@ class TotalPriceDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(UiHelper.standart_padding),
+      padding: EdgeInsets.all(UiHelper.standard_padding),
       alignment: Alignment.center,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

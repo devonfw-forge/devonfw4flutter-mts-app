@@ -30,13 +30,13 @@ class ResponseDialoge extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(body),
-            SizedBox(height: UiHelper.standart_padding),
+            SizedBox(height: UiHelper.standard_padding),
             copyableText != null
                 ? Wrap(
                     alignment: WrapAlignment.end,
                     children: <Widget>[
                       Container(
-                        padding: EdgeInsets.all(UiHelper.standart_padding / 2),
+                        padding: EdgeInsets.all(UiHelper.standard_padding / 2),
                         child: SelectableText(copyableText),
                         decoration: new BoxDecoration(
                             color: Colors.grey[300],

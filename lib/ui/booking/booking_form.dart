@@ -174,7 +174,7 @@ class _Loading extends StatelessWidget {
       child: CircularProgressIndicator(),
       padding: EdgeInsets.only(
         right: UiHelper.card_margin,
-        top: UiHelper.standart_padding,
+        top: UiHelper.standard_padding,
       ),
     );
   }

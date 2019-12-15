@@ -66,7 +66,7 @@ class _ListEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: EdgeInsets.all(UiHelper.standart_padding),
+        padding: EdgeInsets.all(UiHelper.standard_padding),
         height: height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

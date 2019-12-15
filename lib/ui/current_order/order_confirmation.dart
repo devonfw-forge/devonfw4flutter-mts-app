@@ -90,8 +90,8 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
         ),
         Padding(
           padding: EdgeInsets.only(
-            right: UiHelper.standart_padding,
-            left: UiHelper.standart_padding,
+            right: UiHelper.standard_padding,
+            left: UiHelper.standard_padding,
           ),
           child: BlocFormField(
             label: "Booking ID",
@@ -125,7 +125,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
               ),
               onPressed: () => Navigator.pop(context),
             ),
-            SizedBox(width: UiHelper.standart_padding),
+            SizedBox(width: UiHelper.standard_padding),
             BlocBuilder<FormValidationBloc, ValidationState>(
               bloc: _formValidationBloc,
               builder: (context, ValidationState state) => RaisedButton(
@@ -141,7 +141,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
                     : null,
               ),
             ),
-            SizedBox(width: UiHelper.standart_padding),
+            SizedBox(width: UiHelper.standard_padding),
           ],
         )
       ],

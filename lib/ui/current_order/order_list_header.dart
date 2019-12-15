@@ -11,7 +11,7 @@ class OrderListHeader extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(UiHelper.standart_padding),
+          padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
           child: Text(
             "ORDER MENU",

@@ -78,9 +78,9 @@ class Content {
   }
 
   Dish toDish() {
-    Map<Extra, bool> formatedExtras = Map();
+    Map<Extra, bool> formattedExtras = Map();
     extras.forEach(
-      (extra) => formatedExtras[Extra(
+      (extra) => formattedExtras[Extra(
         name: extra.name,
         id: extra.id,
       )] = false,
@@ -91,7 +91,7 @@ class Content {
       description: dish.description,
       price: dish.price,
       encodedImage: image.content,
-      extras: formatedExtras,
+      extras: formattedExtras,
       id: dish.id,
     );
   }

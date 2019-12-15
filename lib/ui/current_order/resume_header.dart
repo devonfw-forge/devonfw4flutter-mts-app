@@ -9,7 +9,7 @@ class ResumeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(UiHelper.standart_padding),
+      padding: EdgeInsets.all(UiHelper.standard_padding),
       decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
       child: Row(
         children: <Widget>[

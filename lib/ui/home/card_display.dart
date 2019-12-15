@@ -27,7 +27,7 @@ class CardDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.all(UiHelper.standart_padding),
+      margin: EdgeInsets.all(UiHelper.standard_padding),
       decoration: new BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -45,14 +45,14 @@ class CardDisplay extends StatelessWidget {
             imageLocation: restaurantImg,
             text: placeHolderText,
             headline: 'OUR RESTAURANT',
-            buttonLable: 'BOOK TABLE',
+            buttonLabel: 'BOOK TABLE',
             onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
             imageLocation: menuImg,
             text: placeHolderText,
             headline: 'OUR MENU',
-            buttonLable: 'VIEW MENU',
+            buttonLabel: 'VIEW MENU',
             onPressed: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],

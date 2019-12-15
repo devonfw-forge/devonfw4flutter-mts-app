@@ -39,9 +39,9 @@ class _DishCardState extends State<DishCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        top: UiHelper.standart_padding,
-        right: UiHelper.standart_padding,
-        left: UiHelper.standart_padding,
+        top: UiHelper.standard_padding,
+        right: UiHelper.standard_padding,
+        left: UiHelper.standard_padding,
       ),
       child: Card(
         child: Column(
@@ -67,13 +67,13 @@ class _DishCardState extends State<DishCard> {
                   SizedBox(height: UiHelper.card_margin),
                   Text('${dish.name}',
                       style: Theme.of(context).textTheme.title),
-                  SizedBox(height: UiHelper.standart_padding),
+                  SizedBox(height: UiHelper.standard_padding),
                   Text('${dish.description}',
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             color: Colors.grey,
                             fontWeight: FontWeight.normal,
                           )),
-                  SizedBox(height: UiHelper.standart_padding),
+                  SizedBox(height: UiHelper.standard_padding),
                   Wrap(
                     children: dish.extras.keys
                         .map(
@@ -99,7 +99,7 @@ class _DishCardState extends State<DishCard> {
                         )
                         .toList(),
                   ),
-                  SizedBox(height: UiHelper.standart_padding),
+                  SizedBox(height: UiHelper.standard_padding),
                   RaisedButton(
                     color: Theme.of(context).accentColor,
                     child: Text(

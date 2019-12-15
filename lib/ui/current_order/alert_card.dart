@@ -17,17 +17,17 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(UiHelper.standart_padding),
+      padding: const EdgeInsets.all(UiHelper.standard_padding),
       child: Card(
         color: backgroundColor,
         child: Padding(
-          padding: EdgeInsets.all(UiHelper.standart_padding),
+          padding: EdgeInsets.all(UiHelper.standard_padding),
           child: Row(
             children: <Widget>[
               Icon(Icons.report_problem),
-              SizedBox(width: UiHelper.standart_padding),
+              SizedBox(width: UiHelper.standard_padding),
               Expanded(child: Text(message)),
-              SizedBox(width: UiHelper.standart_padding),
+              SizedBox(width: UiHelper.standard_padding),
               FlatButton(
                 child: Text(
                   "Book Table",

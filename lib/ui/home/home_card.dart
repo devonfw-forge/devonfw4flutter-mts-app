@@ -9,21 +9,21 @@ class HomeCard extends StatelessWidget {
   final String headline;
   final String text;
   final String imageLocation;
-  final String buttonLable;
+  final String buttonLabel;
   final VoidCallback onPressed;
 
   const HomeCard({
     @required this.headline,
     @required this.text,
     @required this.imageLocation,
-    @required this.buttonLable,
+    @required this.buttonLabel,
     this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(UiHelper.standart_padding),
+      padding: const EdgeInsets.all(UiHelper.standard_padding),
       child: Card(
         clipBehavior: Clip.antiAlias,
         elevation: UiHelper.elevation,
@@ -39,15 +39,15 @@ class HomeCard extends StatelessWidget {
                     headline,
                     style: Theme.of(context).textTheme.title,
                   ),
-                  SizedBox(height: UiHelper.standart_padding),
+                  SizedBox(height: UiHelper.standard_padding),
                   Text(
                     text,
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: UiHelper.standart_padding),
+                  SizedBox(height: UiHelper.standard_padding),
                   RaisedButton(
                     child: Text(
-                      buttonLable,
+                      buttonLabel,
                       style: Theme.of(context).textTheme.button,
                     ),
                     color: Theme.of(context).accentColor,

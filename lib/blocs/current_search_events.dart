@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:flutter/material.dart';
 
+@immutable
 abstract class CurrentSearchEvent extends Equatable {
   const CurrentSearchEvent();
 }
 
+@immutable
 class SetQueryEvent extends CurrentSearchEvent {
   final String query;
 
@@ -13,6 +15,8 @@ class SetQueryEvent extends CurrentSearchEvent {
   @override
   List<Object> get props => [query];
 }
+
+@immutable
 class SetSortEvent extends CurrentSearchEvent {
   final String sortBy;
 
@@ -21,14 +25,15 @@ class SetSortEvent extends CurrentSearchEvent {
   @override
   List<Object> get props => [sortBy];
 }
-class FlipDirectionEvent extends CurrentSearchEvent {
 
+@immutable
+class FlipDirectionEvent extends CurrentSearchEvent {
   @override
   List<Object> get props => ["flip"];
 }
-class ClearSearchEvent extends CurrentSearchEvent {
 
+@immutable
+class ClearSearchEvent extends CurrentSearchEvent {
   @override
   List<Object> get props => ["clear"];
 }
-

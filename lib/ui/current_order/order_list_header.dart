@@ -13,11 +13,11 @@ class OrderListHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
-          child: Text(
-            "ORDER MENU",
-            style:
-                Theme.of(context).textTheme.title.copyWith(color: Colors.black),
-          ),
+          child: Text("ORDER MENU",
+              style: Theme.of(context)
+                  .textTheme
+                  .title
+                  .copyWith(color: Colors.black)),
         ),
         Divider(color: Colors.grey),
       ],

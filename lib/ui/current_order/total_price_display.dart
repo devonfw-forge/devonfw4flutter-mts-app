@@ -19,21 +19,19 @@ class TotalPriceDisplay extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            "Total",
-            style:
-                Theme.of(context).textTheme.title.copyWith(color: Colors.black),
-          ),
-          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
-              builder: (context, order) {
-            return Text(
-              "${calcPrice(order).toStringAsFixed(2)} €",
+          Text("Total",
               style: Theme.of(context)
                   .textTheme
                   .title
-                  .copyWith(color: Colors.black),
-            );
-          }),
+                  .copyWith(color: Colors.black)),
+          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
+              builder: (context, order) => Text(
+                    "${calcPrice(order).toStringAsFixed(2)} €",
+                    style: Theme.of(context)
+                        .textTheme
+                        .title
+                        .copyWith(color: Colors.black),
+                  )),
         ],
       ),
     );

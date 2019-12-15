@@ -21,7 +21,16 @@ class OrderConfirmation extends StatefulWidget {
 }
 
 class _OrderConfirmationState extends State<OrderConfirmation> {
-  OrderBloc orderBloc;
+  static const String confirmationHeadline = "Order Confirmed!";
+  static const String confirmationBody =
+      "Your delicious dishes will be waiting " +
+          "for you when you arrive to your Booking.\n" +
+          "Your order has teh following ID:";
+  static const String deniedHeadline = "Order Denied";
+  static const String deniedBody = "Your order could not be processed " +
+      "for for the following reason:\n\n";
+
+  OrderBloc _orderBloc;
   FormValidationBloc _formValidationBloc;
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
   NonEmptyFieldBloc _bookingIdBloc = NonEmptyFieldBloc();
@@ -29,50 +38,18 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 
   @override
   void initState() {
-    _formValidationBloc = FormValidationBloc([
-      _termsBloc,
-      _bookingIdBloc,
-    ]);
+    _orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
+    _formValidationBloc = FormValidationBloc([_termsBloc, _bookingIdBloc]);
 
-    BookingState bookingState =
+    BookingState currentBookingState =
         BlocProvider.of<BookingBloc>(context).currentState;
 
-    if (bookingState is ConfirmedBookingState) {
-      _bookingIdController.text = bookingState.bookingId;
-      _bookingIdBloc.dispatch(bookingState.bookingId);
+    if (currentBookingState is ConfirmedBookingState) {
+      _bookingIdController.text = currentBookingState.bookingId;
+      _bookingIdBloc.dispatch(currentBookingState.bookingId);
     }
 
-    orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
-
-    orderBloc.state.listen(
-      (OrderState state) {
-        if (state is ConfirmedOrderState) {
-          BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(ClearOrderEvent());
-
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => ResponseDialoge(
-              headline: "Order Confirmed!",
-              body: "Your delicious dishes will be waiting " +
-                  "for you when you arrive to your Booking.\n" +
-                  "Your order has teh following ID:",
-              copyableText: state.bookingId.toString(),
-            ),
-          );
-        } else if (state is RejectedOrderState) {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => ResponseDialoge(
-              headline: "Order Denied",
-              body: "Your order could not be processed " +
-                  "for for the following reason:\n\n" +
-                  state.reason,
-            ),
-          );
-        }
-      },
-    );
+    _setUpOrderResponses();
 
     super.initState();
   }
@@ -87,73 +64,158 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
           builder: (context, ValidationState state) =>
               state is ValidState ? SizedBox() : AlertCard(),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            right: UiHelper.standard_padding,
-            left: UiHelper.standard_padding,
-          ),
-          child: BlocFormField(
-            label: "Booking ID",
-            errorHint: "Please enter a Booking ID",
-            formFieldBloc: _bookingIdBloc,
-            controller: _bookingIdController,
-          ),
+        _BookingId(
+          bookingIdBloc: _bookingIdBloc,
+          bookingIdController: _bookingIdController,
         ),
-        BlocBuilder<CheckboxFieldBloc, ValidationState>(
-          bloc: _termsBloc,
-          builder: (context, ValidationState state) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              CheckboxListTile(
-                title: Text("Accept Terms"),
-                value: state is ValidState,
-                onChanged: (bool val) => _termsBloc.dispatch(val),
-              ),
-            ],
-          ),
+        _Terms(termsBloc: _termsBloc),
+        _Buttons(
+          formValidationBloc: _formValidationBloc,
+          orderBloc: _orderBloc,
+          bookingIdController: _bookingIdController,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            FlatButton(
-              child: Text(
-                "CANCEL",
-                style: Theme.of(context).textTheme.button.copyWith(
-                      color: Colors.grey,
-                    ),
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
-            SizedBox(width: UiHelper.standard_padding),
-            BlocBuilder<FormValidationBloc, ValidationState>(
-              bloc: _formValidationBloc,
-              builder: (context, ValidationState state) => RaisedButton(
-                color: Theme.of(context).accentColor,
-                disabledColor: Colors.grey,
-                disabledTextColor: Colors.grey,
-                child: Text(
-                  "SEND ORDER",
-                  style: Theme.of(context).textTheme.button,
-                ),
-                onPressed: state is ValidState
-                    ? () => orderBloc.dispatch(_bookingIdController.text)
-                    : null,
-              ),
-            ),
-            SizedBox(width: UiHelper.standard_padding),
-          ],
-        )
       ],
     );
   }
 
   @override
   void dispose() {
-    orderBloc.dispose();
+    _orderBloc.dispose();
     _termsBloc.dispose();
     _formValidationBloc.dispose();
     _bookingIdBloc.dispose();
 
     super.dispose();
+  }
+
+  void _setUpOrderResponses() {
+    _orderBloc.state.listen((OrderState state) {
+      if (state is ConfirmedOrderState) {
+        BlocProvider.of<CurrentOrderBloc>(context).dispatch(ClearOrderEvent());
+
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => ResponseDialoge(
+            headline: confirmationHeadline,
+            body: confirmationBody,
+            copyableText: state.bookingId.toString(),
+          ),
+        );
+      } else if (state is RejectedOrderState) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => ResponseDialoge(
+            headline: deniedHeadline,
+            body: deniedBody + state.reason,
+          ),
+        );
+      }
+    });
+  }
+}
+
+class _Buttons extends StatelessWidget {
+  const _Buttons({
+    Key key,
+    @required FormValidationBloc formValidationBloc,
+    @required OrderBloc orderBloc,
+    @required TextEditingController bookingIdController,
+  })  : _formValidationBloc = formValidationBloc,
+        _orderBloc = orderBloc,
+        _bookingIdController = bookingIdController,
+        super(key: key);
+
+  final FormValidationBloc _formValidationBloc;
+  final OrderBloc _orderBloc;
+  final TextEditingController _bookingIdController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        FlatButton(
+          child: Text(
+            "CANCEL",
+            style:
+                Theme.of(context).textTheme.button.copyWith(color: Colors.grey),
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+        SizedBox(width: UiHelper.standard_padding),
+        BlocBuilder<FormValidationBloc, ValidationState>(
+          bloc: _formValidationBloc,
+          builder: (context, ValidationState state) => RaisedButton(
+            color: Theme.of(context).accentColor,
+            disabledColor: Colors.grey,
+            disabledTextColor: Colors.grey,
+            child: Text(
+              "SEND ORDER",
+              style: Theme.of(context).textTheme.button,
+            ),
+            onPressed: state is ValidState
+                ? () => _orderBloc.dispatch(_bookingIdController.text)
+                : null,
+          ),
+        ),
+        SizedBox(width: UiHelper.standard_padding),
+      ],
+    );
+  }
+}
+
+class _Terms extends StatelessWidget {
+  const _Terms({
+    Key key,
+    @required CheckboxFieldBloc termsBloc,
+  })  : _termsBloc = termsBloc,
+        super(key: key);
+
+  final CheckboxFieldBloc _termsBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CheckboxFieldBloc, ValidationState>(
+      bloc: _termsBloc,
+      builder: (context, ValidationState state) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          CheckboxListTile(
+            title: Text("Accept Terms"),
+            value: state is ValidState,
+            onChanged: (bool val) => _termsBloc.dispatch(val),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BookingId extends StatelessWidget {
+  const _BookingId({
+    Key key,
+    @required NonEmptyFieldBloc bookingIdBloc,
+    @required TextEditingController bookingIdController,
+  })  : _bookingIdBloc = bookingIdBloc,
+        _bookingIdController = bookingIdController,
+        super(key: key);
+
+  final NonEmptyFieldBloc _bookingIdBloc;
+  final TextEditingController _bookingIdController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(
+        right: UiHelper.standard_padding,
+        left: UiHelper.standard_padding,
+      ),
+      child: BlocFormField(
+        label: "Booking ID",
+        errorHint: "Please enter a Booking ID",
+        formFieldBloc: _bookingIdBloc,
+        controller: _bookingIdController,
+      ),
+    );
   }
 }

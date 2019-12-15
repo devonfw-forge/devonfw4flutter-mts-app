@@ -70,15 +70,14 @@ class _ListEmpty extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text(
-              "You did not add any dishes to your order",
-            ),
+            Text("You did not add any dishes to your order"),
             FlatButton(
               child: Text(
                 "Show Menu",
-                style: Theme.of(context).textTheme.button.copyWith(
-                      color: Theme.of(context).accentColor,
-                    ),
+                style: Theme.of(context)
+                    .textTheme
+                    .button
+                    .copyWith(color: Theme.of(context).accentColor),
               ),
               onPressed: () => Navigator.pushNamed(context, Router.menu),
             ),

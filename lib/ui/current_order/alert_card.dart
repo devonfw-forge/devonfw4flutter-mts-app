@@ -31,9 +31,10 @@ class AlertCard extends StatelessWidget {
               FlatButton(
                 child: Text(
                   "Book Table",
-                  style: Theme.of(context).textTheme.button.copyWith(
-                        color: Theme.of(context).accentColor,
-                      ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .button
+                      .copyWith(color: Theme.of(context).accentColor),
                 ),
                 onPressed: () => Navigator.pushNamed(context, Router.booking),
               )

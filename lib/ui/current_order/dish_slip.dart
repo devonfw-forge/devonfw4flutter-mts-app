@@ -30,22 +30,33 @@ class DishSlip extends StatelessWidget {
             onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
                 .dispatch(DeleteOrderPositionEvent(dish)),
           ),
-          _Content(dish: dish, textDistance: textDistance),
+          _Content(
+            dish: dish,
+            textDistance: textDistance,
+          ),
           _Amount(
             amount: amount,
             order: dish,
           ),
-          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
-              builder: (context, order) {
-            return Text(
-              "${calcPrice(dish, order).toStringAsFixed(2)} €",
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle
-                  .copyWith(color: Colors.grey),
-            );
-          }),
+          _Price(dish: dish),
         ],
+      ),
+    );
+  }
+}
+
+class _Price extends StatelessWidget {
+  const _Price({Key key, @required this.dish}) : super(key: key);
+
+  final Dish dish;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
+      builder: (context, order) => Text(
+        "${calcPrice(dish, order).toStringAsFixed(2)} €",
+        style:
+            Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
       ),
     );
   }
@@ -66,19 +77,17 @@ class _Amount extends StatelessWidget {
       children: <Widget>[
         IconButton(
           icon: Icon(Icons.remove),
-          onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(RemoveDishFromOrderEvent(order)),
-        ),
-        Text(
-          "$amount",
-          style:
-              Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
-        ),
-        IconButton(
-          icon: Icon(
-            Icons.add,
-            color: Theme.of(context).accentColor,
+          onPressed: () => BlocProvider.of<CurrentOrderBloc>(context).dispatch(
+            RemoveDishFromOrderEvent(order),
           ),
+        ),
+        Text("$amount",
+            style: Theme.of(context)
+                .textTheme
+                .subtitle
+                .copyWith(color: Colors.grey)),
+        IconButton(
+          icon: Icon(Icons.add, color: Theme.of(context).accentColor),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
               .dispatch(AddDishToOrderEvent(order)),
         ),

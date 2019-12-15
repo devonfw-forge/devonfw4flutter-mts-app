@@ -31,41 +31,35 @@ class AuthenticationDialog extends StatelessWidget {
               width: width,
               child: TabBarView(
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(padding),
-                    child: Column(
-                      children: <Widget>[
-                        TextField(
-                          decoration: InputDecoration(labelText: 'Username *'),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(labelText: 'Password *'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(padding),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          TextField(
-                            decoration:
-                                InputDecoration(labelText: 'Username *'),
-                          ),
-                          TextField(
-                            decoration:
-                                InputDecoration(labelText: 'Password *'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  _AuthenticationTab(padding: padding),
+                  _AuthenticationTab(padding: padding),
                 ],
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _AuthenticationTab extends StatelessWidget {
+  const _AuthenticationTab({
+    Key key,
+    @required this.padding,
+  }) : super(key: key);
+
+  final double padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: Column(
+        children: <Widget>[
+          TextField(decoration: InputDecoration(labelText: 'Username *')),
+          TextField(decoration: InputDecoration(labelText: 'Password *')),
+        ],
       ),
     );
   }

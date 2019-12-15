@@ -29,22 +29,26 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       elevation: elevation,
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.person_outline, color: Colors.white),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => AuthenticationDialog(),
-              );
-            }),
+          icon: Icon(Icons.person_outline, color: Colors.white),
+          onPressed: () => showDialog(
+            context: context,
+            builder: (BuildContext context) => AuthenticationDialog(),
+          ),
+        ),
         BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
           builder: (context, dishes) => _buildBasketIcon(dishes, context),
         ),
         IconButton(
-            icon: Icon(Icons.flag, color: Colors.white), onPressed: () {}),
+          icon: Icon(Icons.flag, color: Colors.white),
+          onPressed: () {},
+        ),
       ],
       bottom: bottom,
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   Widget _buildBasketIcon(Map<Dish, int> dishes, BuildContext context) {
     int amount = getOrderAmount(dishes);
@@ -58,19 +62,13 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       return iconButton;
     } else {
       return Badge(
-        badgeContent: Text(
-          "$amount",
-          style: TextStyle(color: Colors.white),
-        ),
+        badgeContent: Text("$amount", style: TextStyle(color: Colors.white)),
         position: BadgePosition.topRight(top: 1, right: 1),
         badgeColor: Theme.of(context).accentColor,
         child: iconButton,
       );
     }
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
 
   int getOrderAmount(Map<Dish, int> dishes) {
     int amount = 0;

@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
-import 'package:quiver/core.dart';
 
 @immutable
 class Dish extends Equatable{
@@ -27,8 +26,6 @@ class Dish extends Equatable{
 
   @override
   List<Object> get props => [name, selectedExtras()];
-
-  int get hashCode => hash2(name.hashCode, selectedExtras().hashCode);
 
   String selectedExtras() {
     String res = "";
@@ -56,6 +53,4 @@ class Dish extends Equatable{
       assetImage: assetImage ?? this.assetImage,
       id: id ?? this.id,
     );
-
-
 }

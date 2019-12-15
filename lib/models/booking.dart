@@ -1,21 +1,23 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class Booking {
+@immutable
+class Booking extends Equatable {
   static final DateFormat dateFormat = DateFormat("dd-MM-yyyy HH:mm");
 
-  DateTime date;
-  String name;
-  String organizerEmail;
-  int guests;
-  bool termsAccepted;
+  final DateTime date;
+  final String name;
+  final String organizerEmail;
+  final int guests;
+  final bool termsAccepted;
 
-  Booking({
-    this.date,
-    this.name,
-    this.organizerEmail,
-    this.guests,
-    this.termsAccepted
-  });
+  Booking(
+      {this.date,
+      this.name,
+      this.organizerEmail,
+      this.guests,
+      this.termsAccepted});
 
   Booking copyWith({
     DateTime date,
@@ -31,4 +33,7 @@ class Booking {
         guests: guests ?? this.guests,
         termsAccepted: termsAccepted ?? this.termsAccepted,
       );
+
+  @override
+  List<Object> get props => [date, name, organizerEmail, guests, termsAccepted];
 }

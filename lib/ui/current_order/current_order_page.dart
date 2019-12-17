@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/ui/current_order/dish_slip.dart';
 import 'package:my_thai_star_flutter/ui/current_order/order_confirmation.dart';
 import 'package:my_thai_star_flutter/ui/current_order/resume_header.dart';
@@ -33,12 +34,12 @@ class CurrentOrderPage extends StatelessWidget {
               ],
             ),
           ),
-          BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
-              builder: (context, dishes) {
-            if (dishes.isEmpty) {
+          BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
+              builder: (context, state) {
+            if (state.dishMap.isEmpty) {
               return _ListEmpty();
             } else {
-              return _DishList(dishes: dishes);
+              return _DishList(dishes: state.dishMap);
             }
           }),
           SliverList(

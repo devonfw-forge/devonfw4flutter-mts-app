@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -52,9 +53,9 @@ class _Price extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CurrentOrderBloc, LinkedHashMap<Dish, int>>(
-      builder: (context, order) => Text(
-        "${calcPrice(dish, order).toStringAsFixed(2)} €",
+    return BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
+      builder: (context, state) => Text(
+        "${state.formatedPositionPrice(dish)} €",
         style:
             Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
       ),
@@ -134,8 +135,4 @@ class _Content extends StatelessWidget {
       ),
     );
   }
-}
-
-double calcPrice(Dish dish, Map<Dish, int> order) {
-  return order[dish] * dish.price;
 }

@@ -23,7 +23,7 @@ class OrderBloc extends Bloc<String, OrderState> {
       try {
         int orderId = await orderService.post(Order(
           bookingCode: event,
-          dishes: currentOrderBloc.currentState,
+          dishes: currentOrderBloc.currentState.dishMap,
         ));
 
         if (orderId == 0 || orderId == null) {

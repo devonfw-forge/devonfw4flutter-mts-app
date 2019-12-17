@@ -1,49 +1,48 @@
 import 'dart:async';
 import 'dart:collection';
 import 'package:bloc/bloc.dart';
+import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 
-
-class CurrentOrderBloc extends Bloc<CurrentOrderEvent, LinkedHashMap<Dish, int>> {
-  
+class CurrentOrderBloc extends Bloc<CurrentOrderEvent, CurrentOrderState> {
   @override
-  LinkedHashMap<Dish, int> get initialState => LinkedHashMap();
+  CurrentOrderState get initialState => InitialCurrentOrderState();
 
   @override
-  Stream<LinkedHashMap<Dish, int>> mapEventToState(CurrentOrderEvent event) async* {
-    LinkedHashMap<Dish, int> newOrder = LinkedHashMap()..addAll(currentState);
+  Stream<CurrentOrderState> mapEventToState(CurrentOrderEvent event) async* {
+    LinkedHashMap<Dish, int> newDishMap = LinkedHashMap()
+      ..addAll(currentState.dishMap);
 
     if (event is AddDishToOrderEvent) {
-      if (newOrder.containsKey(event.order)) {
-        newOrder[event.order]++;
+      if (newDishMap.containsKey(event.order)) {
+        newDishMap[event.order]++;
       } else {
-        newOrder[event.order] = 1;
+        newDishMap[event.order] = 1;
       }
     }
 
     if (event is RemoveDishFromOrderEvent) {
-      if (newOrder.containsKey(event.order)) {
-        if (newOrder[event.order] > 1) {
-          newOrder[event.order]--;
+      if (newDishMap.containsKey(event.order)) {
+        if (newDishMap[event.order] > 1) {
+          newDishMap[event.order]--;
         } else {
-          newOrder.remove(event.order);
+          newDishMap.remove(event.order);
         }
       }
     }
 
     if (event is DeleteOrderPositionEvent) {
-      if (newOrder.containsKey(event.order)) {
-        newOrder.remove(event.order);
+      if (newDishMap.containsKey(event.order)) {
+        newDishMap.remove(event.order);
       }
     }
 
     if (event is ClearOrderEvent) {
-      newOrder = LinkedHashMap();
+      newDishMap = LinkedHashMap();
     }
 
-    yield newOrder;
+    yield IdleCurrentOrderState(newDishMap);
   }
-
 }

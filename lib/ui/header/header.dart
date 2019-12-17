@@ -7,12 +7,13 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 import 'package:my_thai_star_flutter/ui/mts-localization-delegate.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {
   static const String title = "My Thai Star";
   static const double elevation = 20;
+  static const double paddingRight = 15;
+  static const double distanceOfFlagToOtherIcons = 10;
   final double height;
   final Widget bottom;
 
@@ -42,10 +43,14 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         ),
         BlocBuilder<LocalizationBloc, Locale>(
           builder: (context, locale) => Padding(
-            padding: EdgeInsets.only(right: 15, left: 10),
+            padding: EdgeInsets.only(
+              right: paddingRight,
+              left: distanceOfFlagToOtherIcons,
+            ),
             child: Theme(
-              data: Theme.of(context)
-                  .copyWith(canvasColor: Theme.of(context).backgroundColor),
+              data: Theme.of(context).copyWith(
+                canvasColor: Theme.of(context).backgroundColor,
+              ),
               child: DropdownButton<String>(
                 underline: SizedBox(),
                 iconSize: 0.0,

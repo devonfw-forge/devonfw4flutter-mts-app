@@ -13,6 +13,7 @@ dependencies:
   equatable: ^0.6.1
   http: ^0.12.0+2
   badges: ^1.1.0
+  country_icons: ^1.1.1
   datetime_picker_formfield: any
   # Own Packages
   bool_bloc:

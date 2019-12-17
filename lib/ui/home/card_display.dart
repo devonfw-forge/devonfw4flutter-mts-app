@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/home/home_card.dart';
@@ -39,16 +39,16 @@ class CardDisplay extends StatelessWidget {
         children: <Widget>[
           HomeCard(
             imageLocation: restaurantImg,
-            text: MtsLocalization.of(context).get("home/restaurantContent"),
-            headline: MtsLocalization.of(context).get("home/restaurantTitle"),
-            buttonLabel: MtsLocalization.of(context).get("buttons/bookTable"),
+            text: LocalizationBloc.of(context).get("home/restaurantContent"),
+            headline: LocalizationBloc.of(context).get("home/restaurantTitle"),
+            buttonLabel: LocalizationBloc.of(context).get("buttons/bookTable"),
             onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
             imageLocation: menuImg,
-            text: MtsLocalization.of(context).get("home/menuContent"),
-            headline: MtsLocalization.of(context).get("home/menuTitle"),
-            buttonLabel: MtsLocalization.of(context).get("buttons/viewMenu"),
+            text: LocalizationBloc.of(context).get("home/menuContent"),
+            headline: LocalizationBloc.of(context).get("home/menuTitle"),
+            buttonLabel: LocalizationBloc.of(context).get("buttons/viewMenu"),
             onPressed: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],

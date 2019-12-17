@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/home/asset_container.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
 ///The Banner at the very top of the [home]-page
 class ImageBanner extends StatelessWidget {
@@ -45,7 +45,7 @@ class ImageBanner extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline,
                 ),
                 Text(
-                  MtsLocalization.of(context).get("home/subtitle"),
+                  LocalizationBloc.of(context).get("home/subtitle"),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle,
                 ),

@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/menu/sarch_bar.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
@@ -49,7 +49,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
             child: Text(
-              MtsLocalization.of(context).get("buttons/clearFilters"),
+              LocalizationBloc.of(context).get("buttons/clearFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -61,7 +61,7 @@ class _Buttons extends StatelessWidget {
             }),
         FlatButton(
           child: Text(
-              MtsLocalization.of(context).get("buttons/applyFilters"),
+              LocalizationBloc.of(context).get("buttons/applyFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -91,7 +91,7 @@ class _Sort extends StatelessWidget {
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(
-            MtsLocalization.of(context).get("menu/filter/sort"),
+            LocalizationBloc.of(context).get("menu/filter/sort"),
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(width: dropDownPadding),
@@ -125,7 +125,7 @@ class _Sort extends StatelessWidget {
         .map((String value) => DropdownMenuItem<String>(
               value: value,
               child: Text(
-                MtsLocalization.of(context).get("menu/filter/$value"),
+                LocalizationBloc.of(context).get("menu/filter/$value"),
               ),
             ))
         .toList();

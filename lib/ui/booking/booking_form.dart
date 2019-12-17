@@ -10,7 +10,7 @@ import 'package:form_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/ui/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -53,27 +53,27 @@ class _BookingFormState extends State<BookingForm> {
         children: <Widget>[
           BlocDatePicker(
             formFieldBloc: _dateBloc,
-            lable: MtsLocalization.of(context).get("formFields/dateTime"),
+            lable: LocalizationBloc.of(context).get("formFields/dateTime"),
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
           ),
           BlocFormField(
             formFieldBloc: _nameBloc,
-            label: MtsLocalization.of(context).get("formFields/name"),
-            errorHint: MtsLocalization.of(context)
+            label: LocalizationBloc.of(context).get("formFields/name"),
+            errorHint: LocalizationBloc.of(context)
                 .get("bookTable/formErrors/nameRequired"),
           ),
           BlocFormField(
             formFieldBloc: _emailBloc,
-            label: MtsLocalization.of(context).get("formFields/email"),
-            errorHint: MtsLocalization.of(context)
+            label: LocalizationBloc.of(context).get("formFields/email"),
+            errorHint: LocalizationBloc.of(context)
                 .get("bookTable/formErrors/emailPattern"),
             keyboardType: TextInputType.emailAddress,
           ),
           BlocFormField(
             formFieldBloc: _guestBloc,
-            label: MtsLocalization.of(context).get("formFields/guests"),
-            errorHint: MtsLocalization.of(context)
+            label: LocalizationBloc.of(context).get("formFields/guests"),
+            errorHint: LocalizationBloc.of(context)
                 .get("bookTable/formErrors/assistantsRequired"),
             inputFormatters: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
@@ -121,9 +121,9 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
-              headline: MtsLocalization.of(context)
+              headline: LocalizationBloc.of(context)
                   .get("bookTable/dialog/bookingSuccess"),
-              body: MtsLocalization.of(context).get("formFields/referenceNumber"),
+              body: LocalizationBloc.of(context).get("formFields/referenceNumber"),
               copyableText: state.token,
             ),
           );
@@ -131,7 +131,7 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
-              headline: MtsLocalization.of(context).get("bookTable/dialog/bookingError"),
+              headline: LocalizationBloc.of(context).get("bookTable/dialog/bookingError"),
               body: state.reason,
             ),
           );
@@ -160,7 +160,7 @@ class _TermsCheckbox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         CheckboxListTile(
-          title: Text(MtsLocalization.of(context).get("formFields/terms")),
+          title: Text(LocalizationBloc.of(context).get("formFields/terms")),
           onChanged: (bool value) => _termsBloc.dispatch(value),
           value: _state is ValidState,
         ),
@@ -196,7 +196,7 @@ class _Button extends StatelessWidget {
     return BlocBuilder<BookingFormBloc, ValidationState>(
       bloc: _formBloc,
       builder: (context, ValidationState state) => RaisedButton(
-        child: Text(MtsLocalization.of(context).get("buttons/bookTable")),
+        child: Text(LocalizationBloc.of(context).get("buttons/bookTable")),
         textColor: Colors.white,
         disabledTextColor: Colors.white,
         onPressed: state is ValidState

@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/localization_state.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -41,8 +41,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           builder: (context, state) =>
               _buildBasketIcon(state.numberOfDishes(), context),
         ),
-        BlocBuilder<LocalizationBloc, Locale>(
-          builder: (context, locale) => Padding(
+        BlocBuilder<LocalizationBloc, LocalizationState>(
+          builder: (context, state) => Padding(
             padding: EdgeInsets.only(
               right: paddingRight,
               left: distanceOfFlagToOtherIcons,
@@ -54,7 +54,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               child: DropdownButton<String>(
                 underline: SizedBox(),
                 iconSize: 0.0,
-                value: locale.languageCode,
+                value: state.languageCode,
                 items: _mapDropDownItems(context),
                 onChanged: (String locale) =>
                     BlocProvider.of<LocalizationBloc>(context)
@@ -69,7 +69,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   }
 
   List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
-    return MtsLocalizationDelegate.supportedLanguages
+    return LocalizationBloc.supportedLanguages
         .map<DropdownMenuItem<String>>(
       (String code) {
         String assetName = code;

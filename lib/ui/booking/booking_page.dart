@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/booking/custom_form_card.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 
 class BookingPage extends StatelessWidget {
@@ -15,8 +15,8 @@ class BookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = <Tab>[
-      Tab(text: MtsLocalization.of(context).get("buttons/bookTable")),
-      Tab(text: MtsLocalization.of(context).get("buttons/inviteFriends")),
+      Tab(text: LocalizationBloc.of(context).get("buttons/bookTable")),
+      Tab(text: LocalizationBloc.of(context).get("buttons/inviteFriends")),
     ];
 
     return DefaultTabController(
@@ -34,13 +34,13 @@ class BookingPage extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             CustomFormCard(
-              title: MtsLocalization.of(context).get("bookTable/bookingTitle"),
-              subTitle: MtsLocalization.of(context).get("bookTable/bookingSubtitle"),
+              title: LocalizationBloc.of(context).get("bookTable/bookingTitle"),
+              subTitle: LocalizationBloc.of(context).get("bookTable/bookingSubtitle"),
               headerImageLocation: bookingImage,
               form: BookingForm(),
             ),
             CustomFormCard(
-              title: MtsLocalization.of(context).get("bookTable/reservationTitle"),
+              title: LocalizationBloc.of(context).get("bookTable/reservationTitle"),
               headerImageLocation: inviteImage,
               form: BookingForm(),
             ),

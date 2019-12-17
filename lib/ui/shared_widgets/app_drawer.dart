@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 
 ///Global [Drawer] that helps navigate to the 3 main pages of the App.
 ///
@@ -22,19 +22,19 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: topMargin),
           _DrawerObject(
-            title: MtsLocalization.of(context).get("main/home"),
+            title: LocalizationBloc.of(context).get("main/home"),
             icon: Icons.home,
             selected: currentRoute == homeRoute,
             onTap: () => Navigator.pushNamed(context, homeRoute),
           ),
           _DrawerObject(
-            title: MtsLocalization.of(context).get("main/book"),
+            title: LocalizationBloc.of(context).get("main/book"),
             icon: Icons.bookmark,
             selected: currentRoute == bookRoute,
             onTap: () => Navigator.pushNamed(context, bookRoute),
           ),
           _DrawerObject(
-            title: MtsLocalization.of(context).get("main/menu"),
+            title: LocalizationBloc.of(context).get("main/menu"),
             icon: Icons.restaurant_menu,
             selected: currentRoute == menuRoute,
             onTap: () => Navigator.pushNamed(context, menuRoute),

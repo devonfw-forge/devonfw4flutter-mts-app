@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
 class AuthenticationDialog extends StatelessWidget {
   static const double width = 800;
@@ -11,8 +11,8 @@ class AuthenticationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = <Tab>[
-      Tab(text: MtsLocalization.of(context).get("buttons/login")),
-      Tab(text: MtsLocalization.of(context).get("buttons/register")),
+      Tab(text: LocalizationBloc.of(context).get("buttons/login")),
+      Tab(text: LocalizationBloc.of(context).get("buttons/register")),
     ];
 
     return DefaultTabController(
@@ -62,13 +62,13 @@ class _AuthenticationTab extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    MtsLocalization.of(context).get("formFields/username") +
+                    LocalizationBloc.of(context).get("formFields/username") +
                         ' *'),
           ),
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    MtsLocalization.of(context).get("formFields/password") +
+                    LocalizationBloc.of(context).get("formFields/password") +
                         ' *'),
           ),
         ],

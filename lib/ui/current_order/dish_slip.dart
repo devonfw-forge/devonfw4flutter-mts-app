@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class DishSlip extends StatelessWidget {
@@ -129,7 +129,7 @@ class _Content extends StatelessWidget {
           ),
           SizedBox(height: textDistance),
           Text(
-            MtsLocalization.of(context).get("buttons/addComment"),
+            LocalizationBloc.of(context).get("buttons/addComment"),
             style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],

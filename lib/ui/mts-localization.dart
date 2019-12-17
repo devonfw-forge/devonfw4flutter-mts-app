@@ -14,14 +14,12 @@ class MtsLocalization {
     return MtsLocalization(data);
   }
 
-  @override
   static Future<Map<dynamic, dynamic>> _loadFromAssest(Locale locale) async {
     String jsonContent = await rootBundle
         .loadString("assets/languages/${locale.languageCode}.json");
     return json.decode(jsonContent);
   }
 
-  static MtsLocalization of(BuildContext context) {
-    return Localizations.of<MtsLocalization>(context, MtsLocalization);
-  }
+  static MtsLocalization of(BuildContext context) =>
+      Localizations.of<MtsLocalization>(context, MtsLocalization);
 }

@@ -10,11 +10,11 @@ class MtsLocalization {
   MtsLocalization(Map<dynamic, dynamic> map) : _map = map;
 
   static Future<MtsLocalization> load(Locale locale) async {
-    Map<dynamic, dynamic> data = await _loadFromAssest(locale);
+    Map<dynamic, dynamic> data = await _loadFromAssets(locale);
     return MtsLocalization(data);
   }
 
-  static Future<Map<dynamic, dynamic>> _loadFromAssest(Locale locale) async {
+  static Future<Map<dynamic, dynamic>> _loadFromAssets(Locale locale) async {
     String jsonContent = await rootBundle
         .loadString("assets/languages/${locale.languageCode}.json");
     return json.decode(jsonContent);

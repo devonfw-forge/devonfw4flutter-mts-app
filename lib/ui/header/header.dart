@@ -43,14 +43,18 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         BlocBuilder<LocalizationBloc, Locale>(
           builder: (context, locale) => Padding(
             padding: EdgeInsets.only(right: 15, left: 10),
-            child: DropdownButton<String>(
-              underline: SizedBox(),
-              iconSize: 0.0,
-              value: locale.languageCode,
-              items: _mapDropDownItems(),
-              onChanged: (String locale) =>
-                  BlocProvider.of<LocalizationBloc>(context)
-                      .dispatch(Locale(locale)),
+            child: Theme(
+              data: Theme.of(context)
+                  .copyWith(canvasColor: Theme.of(context).backgroundColor),
+              child: DropdownButton<String>(
+                underline: SizedBox(),
+                iconSize: 0.0,
+                value: locale.languageCode,
+                items: _mapDropDownItems(context),
+                onChanged: (String locale) =>
+                    BlocProvider.of<LocalizationBloc>(context)
+                        .dispatch(Locale(locale)),
+              ),
             ),
           ),
         ),
@@ -59,7 +63,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  List<DropdownMenuItem<String>> _mapDropDownItems() {
+  List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
     return MtsLocalizationDelegate.supportedLanguages
         .map<DropdownMenuItem<String>>(
       (String code) {
@@ -70,7 +74,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           value: code,
           child: Center(
             child: Image.asset(
-                  'icons/flags/png/$assetName.png',
+              'icons/flags/png/$assetName.png',
               package: 'country_icons',
               height: 15,
             ),

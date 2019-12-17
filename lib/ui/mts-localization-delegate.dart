@@ -5,9 +5,9 @@ import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 class MtsLocalizationDelegate extends LocalizationsDelegate<MtsLocalization> {
   static const List<String> supportedLanguages = [
-    "bg",
-    "de",
     "en",
+    "de",
+    "bg",
     "es",
     "fr",
     "nl",

@@ -48,25 +48,27 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        BlocBuilder<NonEmptyFieldBloc, ValidationState>(
-          bloc: _bookingTokeBloc,
-          builder: (context, ValidationState state) =>
-              state is ValidState ? SizedBox() : AlertCard(),
-        ),
-        _BookingTokenField(
-          bookingTokenBloc: _bookingTokeBloc,
-          bookingTokenController: _bookingTokenController,
-        ),
-        _Terms(termsBloc: _termsBloc),
-        _Buttons(
-          formValidationBloc: _formValidationBloc,
-          orderBloc: _orderBloc,
-          bookingTokenController: _bookingTokenController,
-        ),
-      ],
+    return BlocProvider<OrderBloc>(
+      builder: (BuildContext context) => _orderBloc,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          BlocBuilder<NonEmptyFieldBloc, ValidationState>(
+            bloc: _bookingTokeBloc,
+            builder: (context, ValidationState state) =>
+                state is ValidState ? SizedBox() : AlertCard(),
+          ),
+          _BookingTokenField(
+            bookingTokenBloc: _bookingTokeBloc,
+            bookingTokenController: _bookingTokenController,
+          ),
+          _Terms(termsBloc: _termsBloc),
+          _Buttons(
+            formValidationBloc: _formValidationBloc,
+            bookingTokenController: _bookingTokenController,
+          ),
+        ],
+      ),
     );
   }
 
@@ -114,15 +116,12 @@ class _Buttons extends StatelessWidget {
   const _Buttons({
     Key key,
     @required FormValidationBloc formValidationBloc,
-    @required OrderBloc orderBloc,
     @required TextEditingController bookingTokenController,
   })  : _formValidationBloc = formValidationBloc,
-        _orderBloc = orderBloc,
         _bookingTokenController = bookingTokenController,
         super(key: key);
 
   final FormValidationBloc _formValidationBloc;
-  final OrderBloc _orderBloc;
   final TextEditingController _bookingTokenController;
 
   @override
@@ -139,20 +138,17 @@ class _Buttons extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         SizedBox(width: UiHelper.standard_padding),
-        BlocBuilder<FormValidationBloc, ValidationState>(
-          bloc: _formValidationBloc,
-          builder: (context, ValidationState state) => RaisedButton(
-            color: Theme.of(context).accentColor,
-            disabledColor: Colors.grey,
-            disabledTextColor: Colors.grey,
-            child: Text(
-              LocalizationBloc.of(context).get("buttons/send"),
-              style: Theme.of(context).textTheme.button,
-            ),
-            onPressed: state is ValidState
-                ? () => _orderBloc.dispatch(_bookingTokenController.text)
-                : null,
-          ),
+        BlocBuilder<OrderBloc, OrderState>(
+          builder: (context, OrderState state) {
+            if (state is LoadingOrderState) {
+              return _Loading();
+            } else {
+              return _Button(
+                bookingTokenController: _bookingTokenController,
+                formValidationBloc: _formValidationBloc,
+              );
+            }
+          },
         ),
         SizedBox(width: UiHelper.standard_padding),
       ],
@@ -208,9 +204,54 @@ class _BookingTokenField extends StatelessWidget {
       ),
       child: BlocFormField(
         label: LocalizationBloc.of(context).get("formFields/referenceNumber"),
-        errorHint: LocalizationBloc.of(context).get("formFields/referenceNumber"),
+        errorHint:
+            LocalizationBloc.of(context).get("formFields/referenceNumber"),
         formFieldBloc: _bookingTokenBloc,
         controller: _bookingTokenController,
+      ),
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  final FormValidationBloc _formValidationBloc;
+  final TextEditingController _bookingTokenController;
+
+  const _Button({Key key, bookingTokenController, formValidationBloc})
+      : _bookingTokenController = bookingTokenController,
+        _formValidationBloc = formValidationBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FormValidationBloc, ValidationState>(
+      bloc: _formValidationBloc,
+      builder: (context, ValidationState state) => RaisedButton(
+        color: Theme.of(context).accentColor,
+        disabledColor: Colors.grey,
+        disabledTextColor: Colors.grey,
+        child: Text(
+          LocalizationBloc.of(context).get("buttons/send"),
+          style: Theme.of(context).textTheme.button,
+        ),
+        onPressed: state is ValidState
+            ? () => BlocProvider.of<OrderBloc>(context)
+                .dispatch(_bookingTokenController.text)
+            : null,
+      ),
+    );
+  }
+}
+
+class _Loading extends StatelessWidget {
+  const _Loading({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: CircularProgressIndicator(),
+      padding: EdgeInsets.only(
+        right: UiHelper.card_margin,
+        top: UiHelper.standard_padding,
       ),
     );
   }

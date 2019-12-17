@@ -19,11 +19,13 @@ class OrderService extends ExchangePoint<Order, int> {
     OrderRequest requestBody = OrderRequest.fromOrder(input);
     http.Response response;
 
-    response = await http.post(
-      endPoint,
-      headers: requestHeaders,
-      body: jsonEncode(requestBody.toJson()),
-    );
+    response = await http
+        .post(
+          endPoint,
+          headers: requestHeaders,
+          body: jsonEncode(requestBody.toJson()),
+        )
+        .timeout(const Duration(seconds: 4));
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     OrderResponse bookingResponse = OrderResponse.fromJson(respJson);

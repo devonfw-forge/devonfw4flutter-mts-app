@@ -20,6 +20,8 @@ class OrderBloc extends Bloc<String, OrderState> {
     if (event == null || event == "") {
       yield RejectedOrderState("Please enter a booking ID");
     } else {
+      yield LoadingOrderState();
+
       try {
         int orderId = await orderService.post(Order(
           bookingCode: event,

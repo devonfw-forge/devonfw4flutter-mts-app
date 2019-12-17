@@ -25,7 +25,15 @@ class ConfirmedOrderState extends OrderState {
   final int orderId;
 
   ConfirmedOrderState(this.orderId);
-  
+
   @override
   List<Object> get props => [orderId];
+}
+
+@immutable
+class LoadingOrderState extends OrderState {
+  LoadingOrderState();
+
+  @override
+  List<Object> get props => ["loading"];
 }

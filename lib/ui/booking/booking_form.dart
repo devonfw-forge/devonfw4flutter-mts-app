@@ -111,7 +111,7 @@ class _BookingFormState extends State<BookingForm> {
   }
 
   void _setUpBookingResponses() {
-    BlocProvider.of<BookingBloc>(context).state.listen(
+    BlocProvider.of<BookingBloc>(context).state.skip(1).listen(
       (BookingState state) {
         if (state is ConfirmedBookingState) {
           showDialog(

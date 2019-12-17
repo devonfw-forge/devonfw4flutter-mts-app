@@ -6,7 +6,6 @@ abstract class BookingState extends Equatable {}
 
 @immutable
 class InitialBookingState extends BookingState {
-  
   @override
   List<Object> get props => ["initial"];
 }
@@ -23,7 +22,6 @@ class ConfirmedBookingState extends BookingState {
 
 @immutable
 class LoadingBookingState extends BookingState {
-
   @override
   List<Object> get props => ["loading"];
 }

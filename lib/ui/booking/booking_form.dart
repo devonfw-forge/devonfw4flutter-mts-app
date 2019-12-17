@@ -7,10 +7,12 @@ import 'package:my_thai_star_flutter/blocs/booking_form_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
 import 'package:form_bloc/barrel.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
 
-import 'package:my_thai_star_flutter/ui/booking/bloc_date_picker.dart';
-import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_date_picker.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 
@@ -80,19 +82,22 @@ class _BookingFormState extends State<BookingForm> {
             ],
             keyboardType: TextInputType.number,
           ),
-          BlocBuilder<CheckboxFieldBloc, ValidationState>(
-            bloc: _termsBloc,
-            builder: (context, ValidationState state) => _TermsCheckbox(
-              state: state,
-              termsBloc: _termsBloc,
-            ),
+          BlocCheckboxTile(
+            checkboxBloc: _termsBloc,
+            label: LocalizationBloc.of(context).get("formFields/terms"),
           ),
           BlocBuilder<BookingBloc, BookingState>(
             builder: (context, BookingState state) {
               if (state is LoadingBookingState) {
                 return SizedLoading();
               } else {
-                return _Button(formBloc: _formBloc);
+                return BlocValidationButton(
+                  formValidationBloc: _formBloc,
+                  lable: LocalizationBloc.of(context).get("buttons/bookTable"),
+                  onPressedWhenValid: () =>
+                      BlocProvider.of<BookingBloc>(context)
+                          .dispatch(_formBloc.currentState.data),
+                );
               }
             },
           ),
@@ -123,7 +128,8 @@ class _BookingFormState extends State<BookingForm> {
             builder: (BuildContext context) => ResponseDialoge(
               headline: LocalizationBloc.of(context)
                   .get("bookTable/dialog/bookingSuccess"),
-              body: LocalizationBloc.of(context).get("formFields/referenceNumber"),
+              body: LocalizationBloc.of(context)
+                  .get("formFields/referenceNumber"),
               copyableText: state.token,
             ),
           );
@@ -131,65 +137,13 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
-              headline: LocalizationBloc.of(context).get("bookTable/dialog/bookingError"),
+              headline: LocalizationBloc.of(context)
+                  .get("bookTable/dialog/bookingError"),
               body: state.reason,
             ),
           );
         }
       },
-    );
-  }
-}
-
-class _TermsCheckbox extends StatelessWidget {
-  const _TermsCheckbox({
-    Key key,
-    @required CheckboxFieldBloc termsBloc,
-    @required ValidationState state,
-  })  : _termsBloc = termsBloc,
-        _state = state,
-        super(key: key);
-
-  final CheckboxFieldBloc _termsBloc;
-  final ValidationState _state;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        CheckboxListTile(
-          title: Text(LocalizationBloc.of(context).get("formFields/terms")),
-          onChanged: (bool value) => _termsBloc.dispatch(value),
-          value: _state is ValidState,
-        ),
-      ],
-    );
-  }
-}
-
-
-class _Button extends StatelessWidget {
-  const _Button({Key key, @required BookingFormBloc formBloc})
-      : _formBloc = formBloc,
-        super(key: key);
-
-  final BookingFormBloc _formBloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<BookingFormBloc, ValidationState>(
-      bloc: _formBloc,
-      builder: (context, ValidationState state) => RaisedButton(
-        child: Text(LocalizationBloc.of(context).get("buttons/bookTable")),
-        textColor: Colors.white,
-        disabledTextColor: Colors.white,
-        onPressed: state is ValidState
-            ? () => BlocProvider.of<BookingBloc>(context)
-                .dispatch(_formBloc.currentState.data)
-            : null,
-      ),
     );
   }
 }

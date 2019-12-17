@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
-import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
@@ -63,7 +65,10 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
             bookingTokenBloc: _bookingTokeBloc,
             bookingTokenController: _bookingTokenController,
           ),
-          _Terms(termsBloc: _termsBloc),
+          BlocCheckboxTile(
+            checkboxBloc: _termsBloc,
+            label: LocalizationBloc.of(context).get("formFields/terms"),
+          ),
           _Buttons(
             formValidationBloc: _formValidationBloc,
             bookingTokenController: _bookingTokenController,
@@ -144,42 +149,17 @@ class _Buttons extends StatelessWidget {
             if (state is LoadingOrderState) {
               return SizedLoading();
             } else {
-              return _Button(
-                bookingTokenController: _bookingTokenController,
+              return BlocValidationButton(
                 formValidationBloc: _formValidationBloc,
+                lable: LocalizationBloc.of(context).get("buttons/send"),
+                onPressedWhenValid: () => BlocProvider.of<OrderBloc>(context)
+                    .dispatch(_bookingTokenController.text),
               );
             }
           },
         ),
         SizedBox(width: UiHelper.standard_padding),
       ],
-    );
-  }
-}
-
-class _Terms extends StatelessWidget {
-  const _Terms({
-    Key key,
-    @required CheckboxFieldBloc termsBloc,
-  })  : _termsBloc = termsBloc,
-        super(key: key);
-
-  final CheckboxFieldBloc _termsBloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CheckboxFieldBloc, ValidationState>(
-      bloc: _termsBloc,
-      builder: (context, ValidationState state) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          CheckboxListTile(
-            title: Text(LocalizationBloc.of(context).get("formFields/terms")),
-            value: state is ValidState,
-            onChanged: (bool val) => _termsBloc.dispatch(val),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -213,34 +193,3 @@ class _BookingTokenField extends StatelessWidget {
     );
   }
 }
-
-class _Button extends StatelessWidget {
-  final FormValidationBloc _formValidationBloc;
-  final TextEditingController _bookingTokenController;
-
-  const _Button({Key key, bookingTokenController, formValidationBloc})
-      : _bookingTokenController = bookingTokenController,
-        _formValidationBloc = formValidationBloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<FormValidationBloc, ValidationState>(
-      bloc: _formValidationBloc,
-      builder: (context, ValidationState state) => RaisedButton(
-        color: Theme.of(context).accentColor,
-        disabledColor: Colors.grey,
-        disabledTextColor: Colors.grey,
-        child: Text(
-          LocalizationBloc.of(context).get("buttons/send"),
-          style: Theme.of(context).textTheme.button,
-        ),
-        onPressed: state is ValidState
-            ? () => BlocProvider.of<OrderBloc>(context)
-                .dispatch(_bookingTokenController.text)
-            : null,
-      ),
-    );
-  }
-}
-
-

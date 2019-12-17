@@ -20,12 +20,9 @@ class MtsLocalizationDelegate extends LocalizationsDelegate<MtsLocalization> {
       supportedLanguages.contains(locale.languageCode.toLowerCase());
 
   @override
-  Future<MtsLocalization> load(Locale locale) async {
-    return MtsLocalization.load(locale);
-  }
+  Future<MtsLocalization> load(Locale locale) async =>
+      MtsLocalization.load(locale);
 
   @override
-  bool shouldReload(LocalizationsDelegate<MtsLocalization> old) {
-    return false;
-  }
+  bool shouldReload(LocalizationsDelegate<MtsLocalization> old) => false;
 }

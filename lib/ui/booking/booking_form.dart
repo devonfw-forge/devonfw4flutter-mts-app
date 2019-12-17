@@ -12,7 +12,7 @@ import 'package:my_thai_star_flutter/ui/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
-import 'package:my_thai_star_flutter/ui/ui_helper.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 
 class BookingForm extends StatefulWidget {
   const BookingForm({Key key}) : super(key: key);
@@ -90,7 +90,7 @@ class _BookingFormState extends State<BookingForm> {
           BlocBuilder<BookingBloc, BookingState>(
             builder: (context, BookingState state) {
               if (state is LoadingBookingState) {
-                return _Loading();
+                return SizedLoading();
               } else {
                 return _Button(formBloc: _formBloc);
               }
@@ -169,20 +169,6 @@ class _TermsCheckbox extends StatelessWidget {
   }
 }
 
-class _Loading extends StatelessWidget {
-  const _Loading({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: CircularProgressIndicator(),
-      padding: EdgeInsets.only(
-        right: UiHelper.card_margin,
-        top: UiHelper.standard_padding,
-      ),
-    );
-  }
-}
 
 class _Button extends StatelessWidget {
   const _Button({Key key, @required BookingFormBloc formBloc})

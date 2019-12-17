@@ -10,6 +10,7 @@ import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
+import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/current_order/alert_card.dart';
@@ -141,7 +142,7 @@ class _Buttons extends StatelessWidget {
         BlocBuilder<OrderBloc, OrderState>(
           builder: (context, OrderState state) {
             if (state is LoadingOrderState) {
-              return _Loading();
+              return SizedLoading();
             } else {
               return _Button(
                 bookingTokenController: _bookingTokenController,
@@ -242,17 +243,4 @@ class _Button extends StatelessWidget {
   }
 }
 
-class _Loading extends StatelessWidget {
-  const _Loading({Key key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: CircularProgressIndicator(),
-      padding: EdgeInsets.only(
-        right: UiHelper.card_margin,
-        top: UiHelper.standard_padding,
-      ),
-    );
-  }
-}

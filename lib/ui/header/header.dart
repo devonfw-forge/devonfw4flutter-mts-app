@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
+import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {
@@ -22,7 +24,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      titleSpacing: 0.0,
+      titleSpacing: 0,
       title: Text(title),
       elevation: elevation,
       actions: <Widget>[
@@ -34,15 +36,47 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
-          builder: (context, state) => _buildBasketIcon(state.numberOfDishes(), context),
+          builder: (context, state) =>
+              _buildBasketIcon(state.numberOfDishes(), context),
         ),
-        IconButton(
-          icon: Icon(Icons.flag, color: Colors.white),
-          onPressed: () {},
+        BlocBuilder<LocalizationBloc, Locale>(
+          builder: (context, locale) => Padding(
+            padding: EdgeInsets.only(right: 15, left: 10),
+            child: DropdownButton<String>(
+              underline: SizedBox(),
+              iconSize: 0.0,
+              value: locale.languageCode,
+              items: _mapDropDownItems(),
+              onChanged: (String locale) =>
+                  BlocProvider.of<LocalizationBloc>(context)
+                      .dispatch(Locale(locale)),
+            ),
+          ),
         ),
       ],
       bottom: bottom,
     );
+  }
+
+  List<DropdownMenuItem<String>> _mapDropDownItems() {
+    return MtsLocalization.supportedLanguages
+        .map<DropdownMenuItem<String>>(
+      (String code) {
+        String assetName = code;
+        if (code == "en") assetName = "gb";
+
+        return DropdownMenuItem<String>(
+          value: code,
+          child: Center(
+            child: Image.asset(
+                  'icons/flags/png/$assetName.png',
+              package: 'country_icons',
+              height: 15,
+            ),
+          ),
+        );
+      },
+    ).toList();
   }
 
   @override
@@ -65,6 +99,4 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       );
     }
   }
-
- 
 }

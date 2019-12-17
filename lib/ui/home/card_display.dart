@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/router.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/home/home_card.dart';
@@ -9,12 +10,7 @@ class CardDisplay extends StatelessWidget {
   //Content
   static const String restaurantImg = 'assets/images/thai-restaurant.jpg';
   static const String menuImg = 'assets/images/thai-restaurant-dish.jpg';
-  static const String placeHolderText = 'Lorem ipsum dolor sit amet, consectetur ' +
-      'adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque' +
-      ' velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis' +
-      ' dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu' +
-      ' orci. Nam vitae felis ac nisi accumsan faucibus.';
-
+  
   //Drop Shadow
   static const double blur = 6.0;
   static const double spread = 0.1;
@@ -43,16 +39,16 @@ class CardDisplay extends StatelessWidget {
         children: <Widget>[
           HomeCard(
             imageLocation: restaurantImg,
-            text: placeHolderText,
-            headline: 'OUR RESTAURANT',
-            buttonLabel: 'BOOK TABLE',
+            text: MtsLocalization.of(context).map["home"]["restaurantContent"],
+            headline: MtsLocalization.of(context).map["home"]["restaurantTitle"],
+            buttonLabel: MtsLocalization.of(context).map["buttons"]["bookTable"],
             onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
             imageLocation: menuImg,
-            text: placeHolderText,
-            headline: 'OUR MENU',
-            buttonLabel: 'VIEW MENU',
+            text: MtsLocalization.of(context).map["home"]["menuContent"],
+            headline: MtsLocalization.of(context).map["home"]["menuTitle"],
+            buttonLabel: MtsLocalization.of(context).map["buttons"]["viewMenu"],
             onPressed: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],

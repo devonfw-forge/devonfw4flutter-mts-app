@@ -11,6 +11,7 @@ import 'package:my_thai_star_flutter/ui/current_order/total_price_display.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/current_order/order_list_header.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
@@ -74,12 +75,12 @@ class _ListEmpty extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           alignment: WrapAlignment.spaceBetween,
           children: <Widget>[
-            Text("You did not add any dishes to your order"),
+            Text(MtsLocalization.of(context).map["sidenav"]["noSelection"]),
             FlatButton(
               padding: EdgeInsets.all(0),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               child: Text(
-                "Show Menu",
+                MtsLocalization.of(context).map["buttons"]["addToOrder"],
                 style: Theme.of(context)
                     .textTheme
                     .button

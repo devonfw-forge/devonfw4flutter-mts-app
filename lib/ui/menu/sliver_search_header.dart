@@ -5,6 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/menu/sarch_bar.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
@@ -48,7 +49,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
             child: Text(
-              "CLEAR FILTERS",
+              MtsLocalization.of(context).map["buttons"]["clearFilters"],
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -59,7 +60,8 @@ class _Buttons extends StatelessWidget {
                   .dispatch(ClearSearchEvent());
             }),
         FlatButton(
-          child: Text("APPLY FILTERS",
+          child: Text(
+              MtsLocalization.of(context).map["buttons"]["applyFilters"],
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -88,13 +90,16 @@ class _Sort extends StatelessWidget {
             padding: const EdgeInsets.all(iconPadding),
             child: Icon(Icons.sort, color: Colors.grey),
           ),
-          Text("Sort by", style: Theme.of(context).textTheme.subhead),
+          Text(
+            MtsLocalization.of(context).map["menu"]["filter"]["sort"],
+            style: Theme.of(context).textTheme.subhead,
+          ),
           SizedBox(width: dropDownPadding),
           Expanded(
             child: DropdownButton<String>(
               isExpanded: true,
               value: state.sortBy,
-              items: _mapDropDownItems(),
+              items: _mapDropDownItems(context),
               onChanged: (String sortBy) =>
                   BlocProvider.of<CurrentSearchBloc>(context)
                       .dispatch(SetSortEvent(sortBy)),
@@ -115,11 +120,13 @@ class _Sort extends StatelessWidget {
     );
   }
 
-  List<DropdownMenuItem<String>> _mapDropDownItems() {
+  List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
     return Search.sortCriteria
         .map((String value) => DropdownMenuItem<String>(
               value: value,
-              child: new Text(value),
+              child: Text(
+                MtsLocalization.of(context).map["menu"]["filter"][value],
+              ),
             ))
         .toList();
   }

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 class AuthenticationDialog extends StatelessWidget {
   static const double width = 800;
   static const double height = 200;
   static const double padding = 20;
-  static const List<Tab> tabs = <Tab>[
-    Tab(text: 'LOGIN'),
-    Tab(text: 'SIGN UP'),
-  ];
 
   const AuthenticationDialog({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Tab> tabs = <Tab>[
+      Tab(text: MtsLocalization.of(context).map["buttons"]["login"]),
+      Tab(text: MtsLocalization.of(context).map["buttons"]["register"]),
+    ];
+
     return DefaultTabController(
       length: tabs.length,
       child: AlertDialog(
@@ -57,8 +59,18 @@ class _AuthenticationTab extends StatelessWidget {
       padding: EdgeInsets.all(padding),
       child: Column(
         children: <Widget>[
-          TextField(decoration: InputDecoration(labelText: 'Username *')),
-          TextField(decoration: InputDecoration(labelText: 'Password *')),
+          TextField(
+            decoration: InputDecoration(
+                labelText: MtsLocalization.of(context).map["formFields"]
+                        ["username"] +
+                    ' *'),
+          ),
+          TextField(
+            decoration: InputDecoration(
+                labelText: MtsLocalization.of(context).map["formFields"]
+                        ["username"] +
+                    ' *'),
+          ),
         ],
       ),
     );

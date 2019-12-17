@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class OrderListHeader extends StatelessWidget {
@@ -13,7 +14,7 @@ class OrderListHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
-          child: Text("ORDER MENU",
+          child: Text(MtsLocalization.of(context).map["sidenav"]["header"],
               style: Theme.of(context)
                   .textTheme
                   .title

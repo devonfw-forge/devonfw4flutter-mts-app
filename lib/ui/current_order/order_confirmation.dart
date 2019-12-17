@@ -8,6 +8,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -131,7 +132,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           child: Text(
-            "CANCEL",
+            MtsLocalization.of(context).map["buttons"]["cancel"],
             style:
                 Theme.of(context).textTheme.button.copyWith(color: Colors.grey),
           ),
@@ -145,7 +146,7 @@ class _Buttons extends StatelessWidget {
             disabledColor: Colors.grey,
             disabledTextColor: Colors.grey,
             child: Text(
-              "SEND ORDER",
+              MtsLocalization.of(context).map["buttons"]["send"],
               style: Theme.of(context).textTheme.button,
             ),
             onPressed: state is ValidState
@@ -176,7 +177,7 @@ class _Terms extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CheckboxListTile(
-            title: Text("Accept Terms"),
+            title: Text(MtsLocalization.of(context).map["formFields"]["terms"]),
             value: state is ValidState,
             onChanged: (bool val) => _termsBloc.dispatch(val),
           ),
@@ -206,8 +207,8 @@ class _BookingTokenField extends StatelessWidget {
         left: UiHelper.standard_padding,
       ),
       child: BlocFormField(
-        label: "Booking Token",
-        errorHint: "Please enter a Booking Token",
+        label: MtsLocalization.of(context).map["formFields"]["referenceNumber"],
+        errorHint: MtsLocalization.of(context).map["formFields"]["referenceNumber"],
         formFieldBloc: _bookingTokenBloc,
         controller: _bookingTokenController,
       ),

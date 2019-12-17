@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class Search extends Equatable {
-  static const List<String> sortCriteria = ['Name', 'Price', 'Description'];
+  static const List<String> sortCriteria = ['name', 'price', 'likes'];
 
   final String query;
   final String sortBy;
@@ -11,7 +11,7 @@ class Search extends Equatable {
 
   Search({
     this.query,
-    this.sortBy = 'Name',
+    this.sortBy = 'name',
     this.descending = true,
   });
 

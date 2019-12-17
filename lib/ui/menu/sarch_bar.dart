@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key key}) : super(key: key);
@@ -40,7 +41,7 @@ class _SearchBarState extends State<SearchBar> {
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search),
-            labelText: "Search our Dishes",
+            labelText: MtsLocalization.of(context).map["menu"]["filter"]["search"],
           ),
           onChanged: (String query) =>
               BlocProvider.of<CurrentSearchBloc>(context)

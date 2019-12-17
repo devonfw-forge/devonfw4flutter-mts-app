@@ -6,6 +6,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/ui/menu/labeled_checkbox.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
@@ -79,7 +80,7 @@ class _DishCardState extends State<DishCard> {
                   RaisedButton(
                     color: Theme.of(context).accentColor,
                     child: Text(
-                      "ADD TO ORDER",
+                      MtsLocalization.of(context).map["buttons"]["addToOrder"],
                       style: Theme.of(context).textTheme.button,
                     ),
                     onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)

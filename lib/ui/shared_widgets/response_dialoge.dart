@@ -14,7 +14,7 @@ class ResponseDialoge extends StatelessWidget {
   const ResponseDialoge({
     Key key,
     @required this.headline,
-    @required this.body,
+    this.body,
     this.copyableText,
   }) : super(key: key);
 
@@ -33,7 +33,7 @@ class ResponseDialoge extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(body),
+            body != null ? Text(body) : null,
             SizedBox(height: UiHelper.standard_padding),
             copyableText != null
                 ? _CopyableText(

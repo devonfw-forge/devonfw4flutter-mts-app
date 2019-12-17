@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/router.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class AlertCard extends StatelessWidget {
   static const double padding = 20;
   static const Color backgroundColor = Color(0xffffe4c4);
-
-  static const String message =
-      "To order a menu it is necessary to obtain a booking id" +
-          ". Either you enter your already known booking id or you book a table";
 
   const AlertCard({
     Key key,
@@ -26,11 +23,15 @@ class AlertCard extends StatelessWidget {
             children: <Widget>[
               Icon(Icons.report_problem),
               SizedBox(width: UiHelper.standard_padding),
-              Expanded(child: Text(message)),
+              Expanded(
+                child: Text(
+                  MtsLocalization.of(context).map["alerts"]["orderID"],
+                ),
+              ),
               SizedBox(width: UiHelper.standard_padding),
               FlatButton(
                 child: Text(
-                  "Book Table",
+                  MtsLocalization.of(context).map["buttons"]["bookTable"],
                   style: Theme.of(context)
                       .textTheme
                       .button

@@ -4,32 +4,24 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class MtsLocalization
-    extends LocalizationsDelegate<Map<dynamic, dynamic>> {
-  static const List<String> supportedLanguages = [
-    "bg",
-    "de",
-    "en",
-    "es",
-    "fr",
-    "nl",
-    "pl",
-    "ru",
-  ];
+class MtsLocalization {
+  final Map<dynamic, dynamic> map;
+
+  MtsLocalization(this.map);
+
+  static Future<MtsLocalization> load(Locale locale) async {
+    Map<dynamic, dynamic> data = await _loadFromAssest(locale);
+    return MtsLocalization(data);
+  }
 
   @override
-  bool isSupported(Locale locale) =>
-      supportedLanguages.contains(locale.languageCode.toLowerCase());
-
-  @override
-  Future<Map<dynamic, dynamic>> load(Locale locale) async {
+  static Future<Map<dynamic, dynamic>> _loadFromAssest(Locale locale) async {
     String jsonContent = await rootBundle
         .loadString("assets/languages/${locale.languageCode}.json");
     return json.decode(jsonContent);
   }
 
-  @override
-  bool shouldReload(LocalizationsDelegate<Map<dynamic, dynamic>> old) {
-    return false;
+  static MtsLocalization of(BuildContext context) {
+    return Localizations.of<MtsLocalization>(context, MtsLocalization);
   }
 }

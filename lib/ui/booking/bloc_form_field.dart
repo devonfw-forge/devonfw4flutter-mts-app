@@ -33,6 +33,7 @@ class BlocFormField extends StatelessWidget {
         return TextFormField(
           decoration: InputDecoration(
             labelText: label,
+            errorMaxLines: 2,
             errorText: validate(state),
           ),
           keyboardType: keyboardType,

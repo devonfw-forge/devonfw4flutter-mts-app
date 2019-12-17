@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/booking/custom_form_card.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 
 class BookingPage extends StatelessWidget {
   static const bookingImage = "assets/images/slider-1.jpg";
   static const inviteImage = "assets/images/slider-2.jpg";
   static const double appBarHeight = 110;
-  static const List<Tab> tabs = <Tab>[
-    Tab(text: 'Book a Table'),
-    Tab(text: 'Invite Friends'),
-  ];
 
   BookingPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Tab> tabs = <Tab>[
+      Tab(text: MtsLocalization.of(context).map["buttons"]["bookTable"]),
+      Tab(text: MtsLocalization.of(context).map["buttons"]["inviteFriends"]),
+    ];
+
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
@@ -32,13 +34,16 @@ class BookingPage extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             CustomFormCard(
-              title: "BOOK YOUR TABLE",
-              subTitle: "You can book a table and an order menu",
+              title: MtsLocalization.of(context).map["bookTable"]
+                  ["bookingTitle"],
+              subTitle: MtsLocalization.of(context).map["bookTable"]
+                  ["bookingSubtitle"],
               headerImageLocation: bookingImage,
               form: BookingForm(),
             ),
             CustomFormCard(
-              title: "ADD YOUR INFORMATION AND FRIENDS",
+              title: MtsLocalization.of(context).map["bookTable"]
+                  ["reservationTitle"],
               headerImageLocation: inviteImage,
               form: BookingForm(),
             ),

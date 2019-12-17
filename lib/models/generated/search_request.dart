@@ -16,6 +16,13 @@ class SearchRequest {
       this.minLikes});
 
   SearchRequest.fromSearch(Search search) {
+    String sortOrder;
+    if (search.sortBy == "likes") {
+      sortOrder = "description";
+    } else {
+      sortOrder = search.sortBy.toLowerCase();
+    }
+
     categories = [];
     searchBy = search.query;
     pageable = Pageable(
@@ -23,7 +30,7 @@ class SearchRequest {
       pageSize: 8,
       sort: [
         Sort(
-          property: search.sortBy.toLowerCase(),
+          property: sortOrder,
           direction: search.descending ? "DESC" : "ASC",
         )
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class ResumeHeader extends StatelessWidget {
@@ -18,7 +19,7 @@ class ResumeHeader extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           Text(
-            "RESUME BOOKING",
+            MtsLocalization.of(context).map["sidenav"]["title"],
             style: Theme.of(context)
                 .textTheme
                 .subtitle

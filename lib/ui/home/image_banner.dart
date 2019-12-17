@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/home/asset_container.dart';
+import 'package:my_thai_star_flutter/ui/mts-localization.dart';
 
 ///The Banner at the very top of the [home]-page
 class ImageBanner extends StatelessWidget {
@@ -39,12 +40,12 @@ class ImageBanner extends StatelessWidget {
               children: <Widget>[
                 Spacer(),
                 Text(
-                  "MY THAI STAR",
+                  "My Thai Star",
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline,
                 ),
                 Text(
-                  "More then just delicious food",
+                  MtsLocalization.of(context).map["home"]["subtitle"],
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle,
                 ),

@@ -56,7 +56,6 @@ class CurrentOrderPage extends StatelessWidget {
 }
 
 class _ListEmpty extends StatelessWidget {
-  static const double height = 50;
   const _ListEmpty({
     Key key,
   }) : super(key: key);
@@ -65,13 +64,19 @@ class _ListEmpty extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: EdgeInsets.all(UiHelper.standard_padding),
-        height: height,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        padding: EdgeInsets.only(
+          bottom: UiHelper.standard_padding,
+          left: UiHelper.standard_padding,
+          right: UiHelper.standard_padding,
+        ),
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.spaceBetween,
           children: <Widget>[
             Text("You did not add any dishes to your order"),
             FlatButton(
+              padding: EdgeInsets.all(0),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               child: Text(
                 "Show Menu",
                 style: Theme.of(context)

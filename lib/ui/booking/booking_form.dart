@@ -53,28 +53,28 @@ class _BookingFormState extends State<BookingForm> {
         children: <Widget>[
           BlocDatePicker(
             formFieldBloc: _dateBloc,
-            lable: MtsLocalization.of(context).map["formFields"]["dateTime"],
+            lable: MtsLocalization.of(context).get("formFields/dateTime"),
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
           ),
           BlocFormField(
             formFieldBloc: _nameBloc,
-            label: MtsLocalization.of(context).map["formFields"]["name"],
-            errorHint: MtsLocalization.of(context).map["bookTable"]
-                ["formErrors"]["nameRequired"],
+            label: MtsLocalization.of(context).get("formFields/name"),
+            errorHint: MtsLocalization.of(context)
+                .get("bookTable/formErrors/nameRequired"),
           ),
           BlocFormField(
             formFieldBloc: _emailBloc,
-            label: MtsLocalization.of(context).map["formFields"]["email"],
-            errorHint: MtsLocalization.of(context).map["bookTable"]
-                ["formErrors"]["emailPattern"],
+            label: MtsLocalization.of(context).get("formFields/email"),
+            errorHint: MtsLocalization.of(context)
+                .get("bookTable/formErrors/emailPattern"),
             keyboardType: TextInputType.emailAddress,
           ),
           BlocFormField(
             formFieldBloc: _guestBloc,
-            label: MtsLocalization.of(context).map["formFields"]["guests"],
-            errorHint: MtsLocalization.of(context).map["bookTable"]
-                ["formErrors"]["assistantsRequired"],
+            label: MtsLocalization.of(context).get("formFields/guests"),
+            errorHint: MtsLocalization.of(context)
+                .get("bookTable/formErrors/assistantsRequired"),
             inputFormatters: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
             ],
@@ -121,10 +121,9 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
-              headline: MtsLocalization.of(context).map["bookTable"]["dialog"]
-                  ["bookingSuccess"],
-              body: MtsLocalization.of(context).map["formFields"]
-                  ["referenceNumber"],
+              headline: MtsLocalization.of(context)
+                  .get("bookTable/dialog/bookingSuccess"),
+              body: MtsLocalization.of(context).get("formFields/referenceNumber"),
               copyableText: state.token,
             ),
           );
@@ -132,8 +131,7 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialoge(
-              headline: MtsLocalization.of(context).map["bookTable"]["dialog"]
-                  ["bookingError"],
+              headline: MtsLocalization.of(context).get("bookTable/dialog/bookingError"),
               body: state.reason,
             ),
           );
@@ -162,7 +160,7 @@ class _TermsCheckbox extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         CheckboxListTile(
-          title: Text(MtsLocalization.of(context).map["formFields"]["terms"]),
+          title: Text(MtsLocalization.of(context).get("formFields/terms")),
           onChanged: (bool value) => _termsBloc.dispatch(value),
           value: _state is ValidState,
         ),
@@ -198,7 +196,7 @@ class _Button extends StatelessWidget {
     return BlocBuilder<BookingFormBloc, ValidationState>(
       bloc: _formBloc,
       builder: (context, ValidationState state) => RaisedButton(
-        child: Text(MtsLocalization.of(context).map["buttons"]["bookTable"]),
+        child: Text(MtsLocalization.of(context).get("buttons/bookTable")),
         textColor: Colors.white,
         disabledTextColor: Colors.white,
         onPressed: state is ValidState

@@ -45,7 +45,7 @@ class ImageBanner extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline,
                 ),
                 Text(
-                  MtsLocalization.of(context).map["home"]["subtitle"],
+                  MtsLocalization.of(context).get("home/subtitle"),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle,
                 ),

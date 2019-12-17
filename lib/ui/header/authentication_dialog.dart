@@ -11,8 +11,8 @@ class AuthenticationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = <Tab>[
-      Tab(text: MtsLocalization.of(context).map["buttons"]["login"]),
-      Tab(text: MtsLocalization.of(context).map["buttons"]["register"]),
+      Tab(text: MtsLocalization.of(context).get("buttons/login")),
+      Tab(text: MtsLocalization.of(context).get("buttons/register")),
     ];
 
     return DefaultTabController(
@@ -61,15 +61,15 @@ class _AuthenticationTab extends StatelessWidget {
         children: <Widget>[
           TextField(
             decoration: InputDecoration(
-                labelText: MtsLocalization.of(context).map["formFields"]
-                        ["username"] +
-                    ' *'),
+                labelText:
+                    MtsLocalization.of(context).get("formFields/username") +
+                        ' *'),
           ),
           TextField(
             decoration: InputDecoration(
-                labelText: MtsLocalization.of(context).map["formFields"]
-                        ["username"] +
-                    ' *'),
+                labelText:
+                    MtsLocalization.of(context).get("formFields/password") +
+                        ' *'),
           ),
         ],
       ),

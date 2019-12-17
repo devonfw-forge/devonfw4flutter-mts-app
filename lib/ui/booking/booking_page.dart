@@ -15,8 +15,8 @@ class BookingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = <Tab>[
-      Tab(text: MtsLocalization.of(context).map["buttons"]["bookTable"]),
-      Tab(text: MtsLocalization.of(context).map["buttons"]["inviteFriends"]),
+      Tab(text: MtsLocalization.of(context).get("buttons/bookTable")),
+      Tab(text: MtsLocalization.of(context).get("buttons/inviteFriends")),
     ];
 
     return DefaultTabController(
@@ -34,16 +34,13 @@ class BookingPage extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             CustomFormCard(
-              title: MtsLocalization.of(context).map["bookTable"]
-                  ["bookingTitle"],
-              subTitle: MtsLocalization.of(context).map["bookTable"]
-                  ["bookingSubtitle"],
+              title: MtsLocalization.of(context).get("bookTable/bookingTitle"),
+              subTitle: MtsLocalization.of(context).get("bookTable/bookingSubtitle"),
               headerImageLocation: bookingImage,
               form: BookingForm(),
             ),
             CustomFormCard(
-              title: MtsLocalization.of(context).map["bookTable"]
-                  ["reservationTitle"],
+              title: MtsLocalization.of(context).get("bookTable/reservationTitle"),
               headerImageLocation: inviteImage,
               form: BookingForm(),
             ),

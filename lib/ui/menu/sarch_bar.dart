@@ -41,7 +41,7 @@ class _SearchBarState extends State<SearchBar> {
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search),
-            labelText: MtsLocalization.of(context).map["menu"]["filter"]["search"],
+            labelText: MtsLocalization.of(context).get("menu/filter/search"),
           ),
           onChanged: (String query) =>
               BlocProvider.of<CurrentSearchBloc>(context)

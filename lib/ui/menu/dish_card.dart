@@ -80,7 +80,7 @@ class _DishCardState extends State<DishCard> {
                   RaisedButton(
                     color: Theme.of(context).accentColor,
                     child: Text(
-                      MtsLocalization.of(context).map["buttons"]["addToOrder"],
+                      MtsLocalization.of(context).get("buttons/addToOrder"),
                       style: Theme.of(context).textTheme.button,
                     ),
                     onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)

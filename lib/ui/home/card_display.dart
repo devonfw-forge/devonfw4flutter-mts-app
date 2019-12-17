@@ -39,16 +39,16 @@ class CardDisplay extends StatelessWidget {
         children: <Widget>[
           HomeCard(
             imageLocation: restaurantImg,
-            text: MtsLocalization.of(context).map["home"]["restaurantContent"],
-            headline: MtsLocalization.of(context).map["home"]["restaurantTitle"],
-            buttonLabel: MtsLocalization.of(context).map["buttons"]["bookTable"],
+            text: MtsLocalization.of(context).get("home/restaurantContent"),
+            headline: MtsLocalization.of(context).get("home/restaurantTitle"),
+            buttonLabel: MtsLocalization.of(context).get("buttons/bookTable"),
             onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
             imageLocation: menuImg,
-            text: MtsLocalization.of(context).map["home"]["menuContent"],
-            headline: MtsLocalization.of(context).map["home"]["menuTitle"],
-            buttonLabel: MtsLocalization.of(context).map["buttons"]["viewMenu"],
+            text: MtsLocalization.of(context).get("home/menuContent"),
+            headline: MtsLocalization.of(context).get("home/menuTitle"),
+            buttonLabel: MtsLocalization.of(context).get("buttons/viewMenu"),
             onPressed: () => Navigator.pushNamed(context, Router.menu),
           ),
         ],

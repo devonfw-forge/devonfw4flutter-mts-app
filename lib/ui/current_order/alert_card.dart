@@ -24,14 +24,12 @@ class AlertCard extends StatelessWidget {
               Icon(Icons.report_problem),
               SizedBox(width: UiHelper.standard_padding),
               Expanded(
-                child: Text(
-                  MtsLocalization.of(context).map["alerts"]["orderID"],
-                ),
+                child: Text(MtsLocalization.of(context).get("alerts/orderID")),
               ),
               SizedBox(width: UiHelper.standard_padding),
               FlatButton(
                 child: Text(
-                  MtsLocalization.of(context).map["buttons"]["bookTable"],
+                  MtsLocalization.of(context).get("buttons/bookTable"),
                   style: Theme.of(context)
                       .textTheme
                       .button

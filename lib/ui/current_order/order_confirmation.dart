@@ -132,7 +132,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           child: Text(
-            MtsLocalization.of(context).map["buttons"]["cancel"],
+            MtsLocalization.of(context).get("buttons/cancel"),
             style:
                 Theme.of(context).textTheme.button.copyWith(color: Colors.grey),
           ),
@@ -146,7 +146,7 @@ class _Buttons extends StatelessWidget {
             disabledColor: Colors.grey,
             disabledTextColor: Colors.grey,
             child: Text(
-              MtsLocalization.of(context).map["buttons"]["send"],
+              MtsLocalization.of(context).get("buttons/send"),
               style: Theme.of(context).textTheme.button,
             ),
             onPressed: state is ValidState
@@ -177,7 +177,7 @@ class _Terms extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           CheckboxListTile(
-            title: Text(MtsLocalization.of(context).map["formFields"]["terms"]),
+            title: Text(MtsLocalization.of(context).get("formFields/terms")),
             value: state is ValidState,
             onChanged: (bool val) => _termsBloc.dispatch(val),
           ),
@@ -207,8 +207,8 @@ class _BookingTokenField extends StatelessWidget {
         left: UiHelper.standard_padding,
       ),
       child: BlocFormField(
-        label: MtsLocalization.of(context).map["formFields"]["referenceNumber"],
-        errorHint: MtsLocalization.of(context).map["formFields"]["referenceNumber"],
+        label: MtsLocalization.of(context).get("formFields/referenceNumber"),
+        errorHint: MtsLocalization.of(context).get("formFields/referenceNumber"),
         formFieldBloc: _bookingTokenBloc,
         controller: _bookingTokenController,
       ),

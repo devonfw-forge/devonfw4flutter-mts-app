@@ -18,7 +18,7 @@ class TotalPriceDisplay extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(MtsLocalization.of(context).map["formFields"]["total"],
+          Text(MtsLocalization.of(context).get("formFields/total"),
               style: Theme.of(context)
                   .textTheme
                   .title

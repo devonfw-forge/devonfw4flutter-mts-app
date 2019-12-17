@@ -49,7 +49,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
             child: Text(
-              MtsLocalization.of(context).map["buttons"]["clearFilters"],
+              MtsLocalization.of(context).get("buttons/clearFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -61,7 +61,7 @@ class _Buttons extends StatelessWidget {
             }),
         FlatButton(
           child: Text(
-              MtsLocalization.of(context).map["buttons"]["applyFilters"],
+              MtsLocalization.of(context).get("buttons/applyFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -91,7 +91,7 @@ class _Sort extends StatelessWidget {
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(
-            MtsLocalization.of(context).map["menu"]["filter"]["sort"],
+            MtsLocalization.of(context).get("menu/filter/sort"),
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(width: dropDownPadding),
@@ -125,7 +125,7 @@ class _Sort extends StatelessWidget {
         .map((String value) => DropdownMenuItem<String>(
               value: value,
               child: Text(
-                MtsLocalization.of(context).map["menu"]["filter"][value],
+                MtsLocalization.of(context).get("menu/filter/$value"),
               ),
             ))
         .toList();

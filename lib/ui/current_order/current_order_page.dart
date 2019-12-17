@@ -76,12 +76,12 @@ class _ListEmpty extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           alignment: WrapAlignment.spaceBetween,
           children: <Widget>[
-            Text(MtsLocalization.of(context).map["sidenav"]["noSelection"]),
+            Text(MtsLocalization.of(context).get("sidenav/noSelection")),
             FlatButton(
               padding: EdgeInsets.all(0),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               child: Text(
-                MtsLocalization.of(context).map["buttons"]["addToOrder"],
+                MtsLocalization.of(context).get("buttons/addToOrder"),
                 style: Theme.of(context)
                     .textTheme
                     .button

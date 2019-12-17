@@ -14,7 +14,7 @@ class OrderListHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
-          child: Text(MtsLocalization.of(context).map["sidenav"]["header"],
+          child: Text(MtsLocalization.of(context).get("sidenav/header"),
               style: Theme.of(context)
                   .textTheme
                   .title

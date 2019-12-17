@@ -129,7 +129,7 @@ class _Content extends StatelessWidget {
           ),
           SizedBox(height: textDistance),
           Text(
-            MtsLocalization.of(context).map["buttons"]["addComment"],
+            MtsLocalization.of(context).get("buttons/addComment"),
             style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],

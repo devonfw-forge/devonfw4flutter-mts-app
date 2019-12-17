@@ -19,7 +19,7 @@ class ResumeHeader extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           Text(
-            MtsLocalization.of(context).map["sidenav"]["title"],
+            MtsLocalization.of(context).get("sidenav/title"),
             style: Theme.of(context)
                 .textTheme
                 .subtitle

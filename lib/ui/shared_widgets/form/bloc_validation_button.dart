@@ -26,7 +26,7 @@ class BlocValidationButton extends StatelessWidget {
         textColor: Colors.white,
         disabledTextColor: Colors.white,
         child: Text(_lable),
-        onPressed: state is ValidState ? () => _onPressedWhenValid : null,
+        onPressed: state is ValidState ? () => _onPressedWhenValid() : null,
       ),
     );
   }

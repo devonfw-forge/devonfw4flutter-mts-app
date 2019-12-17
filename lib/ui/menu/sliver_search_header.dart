@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/menu/sarch_bar.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {

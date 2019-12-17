@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 
 class AuthenticationDialog extends StatelessWidget {
   static const double width = 800;

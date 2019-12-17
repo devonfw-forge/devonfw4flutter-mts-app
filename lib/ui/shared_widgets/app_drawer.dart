@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 
 ///Global [Drawer] that helps navigate to the 3 main pages of the App.
 ///

@@ -7,7 +7,7 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/blocs/simple_bloc_delegate.dart';
 import 'package:bloc/bloc.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization-delegate.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 import 'package:my_thai_star_flutter/ui/theme.dart';
 
 void main() {

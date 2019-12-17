@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization-delegate.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {

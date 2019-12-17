@@ -10,7 +10,7 @@ import 'package:form_bloc/barrel.dart';
 
 import 'package:my_thai_star_flutter/ui/booking/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/booking/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 

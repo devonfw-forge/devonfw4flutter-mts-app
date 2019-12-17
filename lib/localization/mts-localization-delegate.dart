@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/ui/mts-localization.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization.dart';
 
 class MtsLocalizationDelegate extends LocalizationsDelegate<MtsLocalization> {
   static const List<String> supportedLanguages = [

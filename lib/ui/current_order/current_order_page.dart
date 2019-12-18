@@ -17,8 +17,6 @@ import 'package:my_thai_star_flutter/ui/current_order/order_list_header.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class CurrentOrderPage extends StatelessWidget {
-  CurrentOrderPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +56,6 @@ class CurrentOrderPage extends StatelessWidget {
 }
 
 class _ListEmpty extends StatelessWidget {
-  const _ListEmpty({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -97,24 +91,23 @@ class _ListEmpty extends StatelessWidget {
 }
 
 class _DishList extends StatelessWidget {
-  const _DishList({
-    Key key,
-    this.dishes,
-  }) : super(key: key);
+  final LinkedHashMap<Dish, int> _dishes;
 
-  final LinkedHashMap<Dish, int> dishes;
+  const _DishList({Key key, @required dishes})
+      : _dishes = dishes,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          Dish dish = dishes.keys.toList()[index];
-          int amount = dishes[dish];
+          Dish dish = _dishes.keys.toList()[index];
+          int amount = _dishes[dish];
 
           return DishSlip(dish: dish, amount: amount);
         },
-        childCount: dishes.length,
+        childCount: _dishes.length,
       ),
     );
   }

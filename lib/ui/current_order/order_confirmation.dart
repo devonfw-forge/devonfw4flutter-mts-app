@@ -119,6 +119,9 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 }
 
 class _Buttons extends StatelessWidget {
+  final FormValidationBloc _formValidationBloc;
+  final TextEditingController _bookingTokenController;
+
   const _Buttons({
     Key key,
     @required FormValidationBloc formValidationBloc,
@@ -126,9 +129,6 @@ class _Buttons extends StatelessWidget {
   })  : _formValidationBloc = formValidationBloc,
         _bookingTokenController = bookingTokenController,
         super(key: key);
-
-  final FormValidationBloc _formValidationBloc;
-  final TextEditingController _bookingTokenController;
 
   @override
   Widget build(BuildContext context) {
@@ -165,6 +165,9 @@ class _Buttons extends StatelessWidget {
 }
 
 class _BookingTokenField extends StatelessWidget {
+  final NonEmptyFieldBloc _bookingTokenBloc;
+  final TextEditingController _bookingTokenController;
+
   const _BookingTokenField({
     Key key,
     @required NonEmptyFieldBloc bookingTokenBloc,
@@ -172,9 +175,6 @@ class _BookingTokenField extends StatelessWidget {
   })  : _bookingTokenBloc = bookingTokenBloc,
         _bookingTokenController = bookingTokenController,
         super(key: key);
-
-  final NonEmptyFieldBloc _bookingTokenBloc;
-  final TextEditingController _bookingTokenController;
 
   @override
   Widget build(BuildContext context) {

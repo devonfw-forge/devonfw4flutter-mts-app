@@ -6,9 +6,6 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class TotalPriceDisplay extends StatelessWidget {
-  const TotalPriceDisplay({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +21,14 @@ class TotalPriceDisplay extends StatelessWidget {
                   .title
                   .copyWith(color: Colors.black)),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
-              builder: (context, state) => Text(
-                    "${state.formattedTotalPrice} €",
-                    style: Theme.of(context)
-                        .textTheme
-                        .title
-                        .copyWith(color: Colors.black),
-                  )),
+            builder: (context, state) => Text(
+              "${state.formattedTotalPrice} €",
+              style: Theme.of(context)
+                  .textTheme
+                  .title
+                  .copyWith(color: Colors.black),
+            ),
+          ),
         ],
       ),
     );

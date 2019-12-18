@@ -4,19 +4,14 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class AlertCard extends StatelessWidget {
-  static const double padding = 20;
-  static const Color backgroundColor = Color(0xffffe4c4);
-
-  const AlertCard({
-    Key key,
-  }) : super(key: key);
+  static const Color _backgroundColor = Color(0xffffe4c4);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(UiHelper.standard_padding),
       child: Card(
-        color: backgroundColor,
+        color: _backgroundColor,
         child: Padding(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           child: Row(

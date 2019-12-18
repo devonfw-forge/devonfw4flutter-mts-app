@@ -8,15 +8,13 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class DishSlip extends StatelessWidget {
-  static const double textDistance = 3;
-  final Dish dish;
-  final int amount;
+  final Dish _dish;
+  final int _amount;
 
-  const DishSlip({
-    Key key,
-    @required this.dish,
-    @required this.amount,
-  }) : super(key: key);
+  const DishSlip({Key key, @required dish, @required amount})
+      : _dish = dish,
+        _amount = amount,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +26,11 @@ class DishSlip extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-                .dispatch(DeleteOrderPositionEvent(dish)),
+                .dispatch(DeleteOrderPositionEvent(_dish)),
           ),
-          _TextContent(
-            dish: dish,
-            textDistance: textDistance,
-          ),
-          _Amount(
-            amount: amount,
-            order: dish,
-          ),
-          _Price(dish: dish),
+          _TextContent(dish: _dish),
+          _Amount(amount: _amount, dish: _dish),
+          _Price(dish: _dish),
         ],
       ),
     );
@@ -46,15 +38,17 @@ class DishSlip extends StatelessWidget {
 }
 
 class _Price extends StatelessWidget {
-  const _Price({Key key, @required this.dish}) : super(key: key);
+  final Dish _dish;
 
-  final Dish dish;
+  const _Price({Key key, @required dish})
+      : _dish = dish,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
       builder: (context, state) => Text(
-        "${state.formattedPositionPrice(dish)} €",
+        "${state.formattedPositionPrice(_dish)} €",
         style:
             Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
       ),
@@ -63,13 +57,13 @@ class _Price extends StatelessWidget {
 }
 
 class _Amount extends StatelessWidget {
-  final int amount;
-  final Dish order;
-  const _Amount({
-    Key key,
-    @required this.amount,
-    @required this.order,
-  }) : super(key: key);
+  final int _amount;
+  final Dish _dish;
+
+  const _Amount({Key key, @required amount, @required dish})
+      : _amount = amount,
+        _dish = dish,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,10 +72,10 @@ class _Amount extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.remove),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context).dispatch(
-            RemoveDishFromOrderEvent(order),
+            RemoveDishFromOrderEvent(_dish),
           ),
         ),
-        Text("$amount",
+        Text("$_amount",
             style: Theme.of(context)
                 .textTheme
                 .subtitle
@@ -89,7 +83,7 @@ class _Amount extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.add, color: Theme.of(context).accentColor),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(AddDishToOrderEvent(order)),
+              .dispatch(AddDishToOrderEvent(_dish)),
         ),
       ],
     );
@@ -97,24 +91,24 @@ class _Amount extends StatelessWidget {
 }
 
 class _TextContent extends StatelessWidget {
-  const _TextContent({
-    Key key,
-    @required this.dish,
-    @required this.textDistance,
-  }) : super(key: key);
+  static const double _textDistance = 3;
+  static const int _flex = 2;
 
-  final Dish dish;
-  final double textDistance;
+  final Dish _dish;
+
+  const _TextContent({Key key, @required dish})
+      : _dish = dish,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 2,
+      flex: _flex,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            dish.name,
+            _dish.name,
             style: Theme.of(context)
                 .textTheme
                 .subtitle
@@ -128,12 +122,12 @@ class _TextContent extends StatelessWidget {
   }
 
   Widget _extras(BuildContext context) {
-    if (dish.hasExtras()) {
+    if (_dish.hasExtras()) {
       return Column(
         children: <Widget>[
-          SizedBox(height: textDistance),
+          SizedBox(height: _textDistance),
           Text(
-            "${dish.selectedExtras()}",
+            "${_dish.selectedExtras()}",
             style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],
@@ -146,7 +140,7 @@ class _TextContent extends StatelessWidget {
   Widget _commentButton(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: textDistance),
+        SizedBox(height: _textDistance),
         Text(
           LocalizationBloc.of(context).get("buttons/addComment"),
           style: TextStyle(color: Theme.of(context).accentColor),

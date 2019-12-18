@@ -30,7 +30,7 @@ class DishSlip extends StatelessWidget {
             onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
                 .dispatch(DeleteOrderPositionEvent(dish)),
           ),
-          _Content(
+          _TextContent(
             dish: dish,
             textDistance: textDistance,
           ),
@@ -96,8 +96,8 @@ class _Amount extends StatelessWidget {
   }
 }
 
-class _Content extends StatelessWidget {
-  const _Content({
+class _TextContent extends StatelessWidget {
+  const _TextContent({
     Key key,
     @required this.dish,
     @required this.textDistance,
@@ -120,18 +120,38 @@ class _Content extends StatelessWidget {
                 .subtitle
                 .copyWith(color: Colors.black),
           ),
+          _extras(context),
+          //_commentButton(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _extras(BuildContext context) {
+    if (dish.hasExtras()) {
+      return Column(
+        children: <Widget>[
           SizedBox(height: textDistance),
           Text(
             "${dish.selectedExtras()}",
-            style: TextStyle(color: Colors.grey),
-          ),
-          SizedBox(height: textDistance),
-          Text(
-            LocalizationBloc.of(context).get("buttons/addComment"),
             style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],
-      ),
+      );
+    } else {
+      return SizedBox();
+    }
+  }
+
+  Widget _commentButton(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        SizedBox(height: textDistance),
+        Text(
+          LocalizationBloc.of(context).get("buttons/addComment"),
+          style: TextStyle(color: Theme.of(context).accentColor),
+        ),
+      ],
     );
   }
 }

@@ -15,7 +15,7 @@ class AddDishToOrderEvent extends CurrentOrderEvent {
   List<Object> get props => [dish];
 
   @override
-  String toString() => "Add/Dish: " + dish.name;
+  String toString() => "Add/" + dish.toString();
 }
 
 @immutable
@@ -28,7 +28,7 @@ class RemoveDishFromOrderEvent extends CurrentOrderEvent {
   List<Object> get props => [dish];
 
   @override
-  String toString() => "Remove/Dish: " + dish.name;
+  String toString() => "Remove/" + dish.toString();
 }
 
 @immutable
@@ -41,7 +41,7 @@ class DeleteOrderPositionEvent extends CurrentOrderEvent {
   List<Object> get props => [dish];
 
   @override
-  String toString() => "DeletePos/Dish: " + dish.name;
+  String toString() => "DeletePos/" + dish.toString();
 }
 
 @immutable

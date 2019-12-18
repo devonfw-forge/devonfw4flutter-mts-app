@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/main.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_page.dart';
 import 'package:my_thai_star_flutter/ui/current_order/current_order_page.dart';
 import 'package:my_thai_star_flutter/ui/home/home_page.dart';
@@ -16,7 +17,7 @@ class Router {
     switch (settings.name) {
       case home:
         return PageTransition(
-          child: HomePage(),
+          child: HomePage(title: MyThaiStar.title),
           type: PageTransitionType.fade,
           settings: settings,
         );

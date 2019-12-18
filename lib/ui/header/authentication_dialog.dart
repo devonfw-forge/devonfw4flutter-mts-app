@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
 class AuthenticationDialog extends StatelessWidget {
-  static const double width = 800;
-  static const double height = 200;
-  static const double padding = 20;
-
-  const AuthenticationDialog({Key key}) : super(key: key);
+  static const double _width = 800;
+  static const double _height = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +26,12 @@ class AuthenticationDialog extends StatelessWidget {
               tabs: tabs,
             ),
             Container(
-              height: height,
-              width: width,
+              height: _height,
+              width: _width,
               child: TabBarView(
                 children: <Widget>[
-                  _AuthenticationTab(padding: padding),
-                  _AuthenticationTab(padding: padding),
+                  _AuthenticationTab(),
+                  _AuthenticationTab(),
                 ],
               ),
             )
@@ -46,17 +43,12 @@ class AuthenticationDialog extends StatelessWidget {
 }
 
 class _AuthenticationTab extends StatelessWidget {
-  const _AuthenticationTab({
-    Key key,
-    @required this.padding,
-  }) : super(key: key);
-
-  final double padding;
+  static const double _padding = 20;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(padding),
+      padding: EdgeInsets.all(_padding),
       child: Column(
         children: <Widget>[
           TextField(

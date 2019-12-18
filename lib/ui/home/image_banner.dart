@@ -11,6 +11,12 @@ class ImageBanner extends StatelessWidget {
   static const String _dishImg = "assets/images/background-dish.png";
   static const String _starImg = "assets/images/star.png";
 
+  final String _title;
+
+  const ImageBanner({Key key, @required title})
+      : _title = title,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -36,7 +42,7 @@ class ImageBanner extends StatelessWidget {
               children: <Widget>[
                 Spacer(),
                 Text(
-                  "My Thai Star",
+                  _title,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline,
                 ),

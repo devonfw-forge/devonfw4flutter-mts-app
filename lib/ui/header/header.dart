@@ -10,26 +10,30 @@ import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {
-  static const String title = "My Thai Star";
-  static const double elevation = 20;
-  static const double paddingRight = 15;
-  static const double distanceOfFlagToOtherIcons = 10;
-  static const double flagHight = 15;
-  final double height;
-  final Widget bottom;
+  static const double _elevation = 20;
+  static const double _paddingRight = 15;
+  static const double _distanceOfFlagToOtherIcons = 10;
+  static const double _flagHeight = 15;
 
-  const Header({
-    Key key,
-    this.height = 50,
-    this.bottom,
-  }) : super(key: key);
+  final String _title;
+  final double _height;
+  final Widget _bottom;
+
+  const Header({Key key, @required title, height = 50, bottom})
+      : _title = title,
+        _height = height,
+        _bottom = bottom,
+        super(key: key);
+
+  @override
+  Size get preferredSize => Size.fromHeight(_height);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       titleSpacing: 0,
-      title: Text(title),
-      elevation: elevation,
+      title: Text(_title),
+      elevation: _elevation,
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.person_outline, color: Colors.white),
@@ -45,8 +49,8 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         BlocBuilder<LocalizationBloc, LocalizationState>(
           builder: (context, state) => Padding(
             padding: EdgeInsets.only(
-              right: paddingRight,
-              left: distanceOfFlagToOtherIcons,
+              right: _paddingRight,
+              left: _distanceOfFlagToOtherIcons,
             ),
             child: Theme(
               data: Theme.of(context).copyWith(
@@ -65,13 +69,12 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
-      bottom: bottom,
+      bottom: _bottom,
     );
   }
 
   List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
-    return LocalizationBloc.supportedLanguages
-        .map<DropdownMenuItem<String>>(
+    return LocalizationBloc.supportedLanguages.map<DropdownMenuItem<String>>(
       (String code) {
         String assetName = code;
         if (code == "en") assetName = "gb";
@@ -82,16 +85,13 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             child: Image.asset(
               'icons/flags/png/$assetName.png',
               package: 'country_icons',
-              height: flagHight,
+              height: _flagHeight,
             ),
           ),
         );
       },
     ).toList();
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
 
   Widget _buildBasketIcon(int amount, BuildContext context) {
     Widget iconButton = IconButton(

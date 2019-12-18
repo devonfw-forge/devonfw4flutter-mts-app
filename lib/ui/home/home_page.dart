@@ -10,16 +10,21 @@ import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
 ///Gives navigation to menu and booking-page
 class HomePage extends StatelessWidget {
   static const double _cardDisplayTopPadding = 170;
+  final String _title;
+
+  const HomePage({Key key, @required title})
+      : _title = title,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Header(),
+      appBar: Header(title: _title),
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
-            ImageBanner(),
+            ImageBanner(title: _title),
             Padding(
                 child: CardDisplay(),
                 padding: EdgeInsets.only(top: _cardDisplayTopPadding)),

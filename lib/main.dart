@@ -16,6 +16,8 @@ void main() {
 }
 
 class MyThaiStar extends StatelessWidget {
+  static const String title = 'My Thai Star';
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -34,7 +36,7 @@ class MyThaiStar extends StatelessWidget {
         builder: (context, state) {
           if (state is IdleLocalizationState) {
             return MaterialApp(
-              title: 'My Thai Star',
+              title: title,
               theme: themeData,
               locale: state.locale,
               initialRoute: Router.home,

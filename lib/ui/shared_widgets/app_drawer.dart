@@ -17,29 +17,36 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     String currentRoute = ModalRoute.of(context).settings.name;
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          SizedBox(height: topMargin),
-          _DrawerObject(
-            title: LocalizationBloc.of(context).get("main/home"),
-            icon: Icons.home,
-            selected: currentRoute == homeRoute,
-            onTap: () => Navigator.pushNamed(context, homeRoute),
-          ),
-          _DrawerObject(
-            title: LocalizationBloc.of(context).get("main/book"),
-            icon: Icons.bookmark,
-            selected: currentRoute == bookRoute,
-            onTap: () => Navigator.pushNamed(context, bookRoute),
-          ),
-          _DrawerObject(
-            title: LocalizationBloc.of(context).get("main/menu"),
-            icon: Icons.restaurant_menu,
-            selected: currentRoute == menuRoute,
-            onTap: () => Navigator.pushNamed(context, menuRoute),
-          ),
-        ],
+      child: ListTileTheme(
+        selectedColor: Theme.of(context).accentColor,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            SizedBox(height: topMargin),
+            _DrawerObject(
+              title: LocalizationBloc.of(context).get("main/home"),
+              icon: Icons.home,
+              selected: currentRoute == homeRoute,
+              onTap: () => Navigator.pushNamedAndRemoveUntil(
+                context,
+                homeRoute,
+                (Route<dynamic> route) => false,
+              ),
+            ),
+            _DrawerObject(
+              title: LocalizationBloc.of(context).get("main/book"),
+              icon: Icons.bookmark,
+              selected: currentRoute == bookRoute,
+              onTap: () => Navigator.pushNamed(context, bookRoute),
+            ),
+            _DrawerObject(
+              title: LocalizationBloc.of(context).get("main/menu"),
+              icon: Icons.restaurant_menu,
+              selected: currentRoute == menuRoute,
+              onTap: () => Navigator.pushNamed(context, menuRoute),
+            ),
+          ],
+        ),
       ),
     );
   }

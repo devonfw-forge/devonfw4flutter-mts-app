@@ -43,8 +43,8 @@ class InitialLocalizationState extends LocalizationState {
 }
 
 @immutable
-class IdleLocalizationState extends LocalizationState {
-  IdleLocalizationState(Locale locale, Map translationMap)
+class LoadedLocalizationState extends LocalizationState {
+  LoadedLocalizationState(Locale locale, Map translationMap)
       : super(locale, translationMap);
 
   @override

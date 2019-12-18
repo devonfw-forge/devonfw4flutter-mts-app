@@ -24,10 +24,10 @@ class LocalizationBloc extends Bloc<Locale, LocalizationState> {
 
   @override
   Stream<LocalizationState> mapEventToState(Locale event) async* {
-    if (event == null) event = defaultLocale;
+    if (!supportedLanguages.contains(event.languageCode)) event = defaultLocale;
 
     Map<dynamic, dynamic> newTranslation = await _loadFromAssets(event);
-    yield IdleLocalizationState(event, newTranslation);
+    yield LoadedLocalizationState(event, newTranslation);
   }
 
   static Future<Map<dynamic, dynamic>> _loadFromAssets(Locale locale) async {

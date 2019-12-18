@@ -21,20 +21,10 @@ class MyThaiStar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<CurrentOrderBloc>(
-          builder: (BuildContext context) => CurrentOrderBloc(),
-        ),
-        BlocProvider<BookingBloc>(
-          builder: (BuildContext context) => BookingBloc(),
-        ),
-        BlocProvider<LocalizationBloc>(
-          builder: (BuildContext context) => LocalizationBloc(),
-        ),
-      ],
+      providers: _buildGlobalProvider(),
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
         builder: (context, state) {
-          if (state is IdleLocalizationState) {
+          if (state is LoadedLocalizationState) {
             return MaterialApp(
               title: title,
               theme: themeData,
@@ -52,15 +42,32 @@ class MyThaiStar extends StatelessWidget {
                   .toList(),
             );
           } else {
-            BlocProvider.of<LocalizationBloc>(context).dispatch(Locale("en"));
-            return Container(
-                color: Colors.white,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ));
+            return _loadLocale(context);
           }
         },
       ),
     );
+  }
+
+  List<BlocProvider<Bloc<dynamic, dynamic>>> _buildGlobalProvider() => [
+        BlocProvider<CurrentOrderBloc>(
+          builder: (BuildContext context) => CurrentOrderBloc(),
+        ),
+        BlocProvider<BookingBloc>(
+          builder: (BuildContext context) => BookingBloc(),
+        ),
+        BlocProvider<LocalizationBloc>(
+          builder: (BuildContext context) => LocalizationBloc(),
+        ),
+      ];
+
+  Widget _loadLocale(BuildContext context) {
+    BlocProvider.of<LocalizationBloc>(context).dispatch(Locale("en"));
+
+    return Container(
+        color: Colors.white,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ));
   }
 }

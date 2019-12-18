@@ -11,17 +11,17 @@ import 'package:my_thai_star_flutter/blocs/dish_state.dart';
 enum DishEvents { request }
 
 class DishBloc extends Bloc<DishEvents, DishState> {
-  final CurrentSearchBloc searchBloc;
-  final ExchangePoint dishService = DishService();
+  final CurrentSearchBloc _searchBloc;
+  final ExchangePoint _dishService = DishService();
 
-  DishBloc(this.searchBloc);
+  DishBloc(searchBloc) : _searchBloc = searchBloc;
 
   @override
   DishState get initialState => LoadingDishState();
 
   @override
   Stream<DishState> mapEventToState(DishEvents event) async* {
-    Search currentSearch = searchBloc.currentState;
+    Search currentSearch = _searchBloc.currentState;
 
     yield LoadingDishState();
 
@@ -33,7 +33,7 @@ class DishBloc extends Bloc<DishEvents, DishState> {
   }
 
   Future<DishState> _loadDishes(Search currentSearch) async {
-    List<Dish> newState = await dishService.post(currentSearch);
+    List<Dish> newState = await _dishService.post(currentSearch);
     if (newState == null) {
       return ErrorDishState("The Response was Empty");
     } else {

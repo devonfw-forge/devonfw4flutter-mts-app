@@ -7,10 +7,10 @@ import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
 class OrderBloc extends Bloc<String, OrderState> {
-  final ExchangePoint orderService = OrderService();
-  final CurrentOrderBloc currentOrderBloc;
+  final ExchangePoint _orderService = OrderService();
+  final CurrentOrderBloc _currentOrderBloc;
 
-  OrderBloc(this.currentOrderBloc);
+  OrderBloc(currentOrderBloc) : _currentOrderBloc = currentOrderBloc;
 
   @override
   OrderState get initialState => InitialOrderState();
@@ -23,9 +23,9 @@ class OrderBloc extends Bloc<String, OrderState> {
       yield LoadingOrderState();
 
       try {
-        int orderId = await orderService.post(Order(
+        int orderId = await _orderService.post(Order(
           bookingCode: event,
-          dishes: currentOrderBloc.currentState.dishMap,
+          dishes: _currentOrderBloc.currentState.dishMap,
         ));
 
         if (orderId == 0 || orderId == null) {

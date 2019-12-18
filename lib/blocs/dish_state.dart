@@ -13,6 +13,9 @@ class ReceivedDishState extends DishState {
 
   @override
   List<Object> get props => [dishes];
+
+  @override
+  String toString() => "Received/NumberOfDishes: " + dishes.length.toString();
 }
 
 @immutable
@@ -23,10 +26,16 @@ class ErrorDishState extends DishState {
 
   @override
   List<Object> get props => [errorMessage];
+
+  @override
+  String toString() => "Error/Message: " + errorMessage;
 }
 
 @immutable
 class LoadingDishState extends DishState {
   @override
-  List<Object> get props => ["loading"];
+  List<Object> get props => [toString()];
+
+  @override
+  String toString() => "Loading";
 }

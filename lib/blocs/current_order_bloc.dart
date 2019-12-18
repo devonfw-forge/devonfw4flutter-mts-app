@@ -16,26 +16,26 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, CurrentOrderState> {
       ..addAll(currentState.dishMap);
 
     if (event is AddDishToOrderEvent) {
-      if (newDishMap.containsKey(event.order)) {
-        newDishMap[event.order]++;
+      if (newDishMap.containsKey(event.dish)) {
+        newDishMap[event.dish]++;
       } else {
-        newDishMap[event.order] = 1;
+        newDishMap[event.dish] = 1;
       }
     }
 
     if (event is RemoveDishFromOrderEvent) {
-      if (newDishMap.containsKey(event.order)) {
-        if (newDishMap[event.order] > 1) {
-          newDishMap[event.order]--;
+      if (newDishMap.containsKey(event.dish)) {
+        if (newDishMap[event.dish] > 1) {
+          newDishMap[event.dish]--;
         } else {
-          newDishMap.remove(event.order);
+          newDishMap.remove(event.dish);
         }
       }
     }
 
     if (event is DeleteOrderPositionEvent) {
-      if (newDishMap.containsKey(event.order)) {
-        newDishMap.remove(event.order);
+      if (newDishMap.containsKey(event.dish)) {
+        newDishMap.remove(event.dish);
       }
     }
 

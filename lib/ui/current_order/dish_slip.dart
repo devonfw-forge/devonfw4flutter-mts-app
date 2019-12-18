@@ -54,7 +54,7 @@ class _Price extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
       builder: (context, state) => Text(
-        "${state.formatedPositionPrice(dish)} €",
+        "${state.formattedPositionPrice(dish)} €",
         style:
             Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
       ),

@@ -7,7 +7,10 @@ abstract class OrderState implements Equatable {}
 @immutable
 class InitialOrderState extends OrderState {
   @override
-  List<Object> get props => ["initial"];
+  List<Object> get props => [toString()];
+
+  @override
+  String toString() => "Initial";
 }
 
 @immutable
@@ -18,6 +21,9 @@ class RejectedOrderState extends OrderState {
 
   @override
   List<Object> get props => [reason];
+
+  @override
+  String toString() => "Rejected/Reason: " + reason;
 }
 
 @immutable
@@ -28,6 +34,9 @@ class ConfirmedOrderState extends OrderState {
 
   @override
   List<Object> get props => [orderId];
+
+  @override
+  String toString() => "Confirmed/ID: " + orderId.toString();
 }
 
 @immutable
@@ -35,5 +44,8 @@ class LoadingOrderState extends OrderState {
   LoadingOrderState();
 
   @override
-  List<Object> get props => ["loading"];
+  List<Object> get props => [toString()];
+
+  @override
+  String toString() => "Loading";
 }

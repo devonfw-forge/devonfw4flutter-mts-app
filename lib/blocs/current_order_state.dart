@@ -24,8 +24,8 @@ abstract class CurrentOrderState implements Equatable {
     return p;
   }
 
-  String get formatedTotalPrice => totalPrice().toStringAsFixed(2);
-  String formatedPositionPrice(Dish dish) => positionPrice(dish).toStringAsFixed(2);
+  String get formattedTotalPrice => totalPrice().toStringAsFixed(2);
+  String formattedPositionPrice(Dish dish) => positionPrice(dish).toStringAsFixed(2);
 }
 
 @immutable
@@ -33,7 +33,10 @@ class InitialCurrentOrderState extends CurrentOrderState {
   InitialCurrentOrderState() : super(LinkedHashMap());
 
   @override
-  List<Object> get props => ["initial"];
+  List<Object> get props => [toString()];
+
+  @override
+  String toString() => "Initial";
 }
 
 @immutable
@@ -42,4 +45,7 @@ class IdleCurrentOrderState extends CurrentOrderState {
 
   @override
   List<Object> get props => [dishMap, numberOfDishes(), totalPrice()];
+
+  @override
+  String toString() => "Idle/NumberOfDishes: " + numberOfDishes().toString();
 }

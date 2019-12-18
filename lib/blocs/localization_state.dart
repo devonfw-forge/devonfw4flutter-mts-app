@@ -37,10 +37,16 @@ abstract class LocalizationState extends Equatable {
 @immutable
 class InitialLocalizationState extends LocalizationState {
   InitialLocalizationState(Locale locale) : super(locale, null);
+
+  @override
+  String toString() => "Initial";
 }
 
 @immutable
 class IdleLocalizationState extends LocalizationState {
   IdleLocalizationState(Locale locale, Map translationMap)
       : super(locale, translationMap);
+
+  @override
+  String toString() => "Idle/Language: " + languageCode;
 }

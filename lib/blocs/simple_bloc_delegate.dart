@@ -5,11 +5,11 @@ class SimpleBlocDelegate extends BlocDelegate {
   void onTransition(Bloc bloc, Transition transition) {
     print(bloc.runtimeType.toString() +
         ":\t" +
-        transition.currentState.runtimeType.toString() +
+        transition.currentState.toString() +
         " + " +
-        transition.event.runtimeType.toString() +
+        transition.event.toString() +
         " -> " +
-        transition.nextState.runtimeType.toString());
+        transition.nextState.toString());
     super.onTransition(bloc, transition);
   }
 

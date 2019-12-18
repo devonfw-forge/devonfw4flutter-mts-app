@@ -14,6 +14,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   static const double elevation = 20;
   static const double paddingRight = 15;
   static const double distanceOfFlagToOtherIcons = 10;
+  static const double flagHight = 15;
   final double height;
   final Widget bottom;
 
@@ -81,7 +82,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
             child: Image.asset(
               'icons/flags/png/$assetName.png',
               package: 'country_icons',
-              height: 15,
+              height: flagHight,
             ),
           ),
         );

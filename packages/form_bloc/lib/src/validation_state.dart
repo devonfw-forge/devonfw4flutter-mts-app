@@ -10,19 +10,28 @@ class InitialState<T> extends ValidationState<T> {
   InitialState(data) : super(data);
 
   @override
-  List<Object> get props => [data, "initial"];
+  List<Object> get props => [data, toString()];
+
+  @override
+  String toString() => "Initial";
 }
 
 class InvalidState<T> extends ValidationState<T> {
   InvalidState(data) : super(data);
 
   @override
-  List<Object> get props => [data, "invalid"];
+  List<Object> get props => [data, toString()];
+
+  @override
+  String toString() => "Invalid";
 }
 
 class ValidState<T> extends ValidationState<T> {
   ValidState(data) : super(data);
 
   @override
-  List<Object> get props => [data, "valid"];
+  List<Object> get props => [data, toString()];
+
+  @override
+  String toString() => "Valid";
 }

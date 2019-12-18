@@ -9,16 +9,19 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:http/http.dart' as http;
 
 class NoSuchEntriesException implements Exception {
+  @override
   String toString() => "We did not find any dishes matching your search.";
 }
 
 class DishService extends ExchangePoint<Search, List<Dish>> {
-  Map<String, String> requestHeaders = {
+  static const int _timeOut = 4;
+  static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +
+      'rest/dishmanagement/v1/dish/search';
+
+  static const Map<String, String> _requestHeaders = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
-  static const String endPoint =
-      'http://10.0.2.2:8082/mythaistar/services/rest/dishmanagement/v1/dish/search';
 
   @override
   Future<List<Dish>> post(Search input) async {
@@ -29,11 +32,11 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
     try {
       response = await http
           .post(
-            endPoint,
-            headers: requestHeaders,
+            _endPoint,
+            headers: _requestHeaders,
             body: jsonEncode(requestBody.toJson()),
           )
-          .timeout(const Duration(seconds: 4));
+          .timeout(const Duration(seconds: _timeOut));
     } catch (e) {
       return DummyData.dishes;
     }

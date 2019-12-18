@@ -7,12 +7,14 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:http/http.dart' as http;
 
 class OrderService extends ExchangePoint<Order, int> {
-  Map<String, String> requestHeaders = {
+  static const int _timeOut = 4;
+  static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +
+      'rest/ordermanagement/v1/order';
+
+  static const Map<String, String> _requestHeaders = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
-  static const String endPoint =
-      'http://10.0.2.2:8082/mythaistar/services/rest/ordermanagement/v1/order';
 
   @override
   Future<int> post(Order input) async {
@@ -21,11 +23,11 @@ class OrderService extends ExchangePoint<Order, int> {
 
     response = await http
         .post(
-          endPoint,
-          headers: requestHeaders,
+          _endPoint,
+          headers: _requestHeaders,
           body: jsonEncode(requestBody.toJson()),
         )
-        .timeout(const Duration(seconds: 4));
+        .timeout(const Duration(seconds: _timeOut));
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     OrderResponse bookingResponse = OrderResponse.fromJson(respJson);

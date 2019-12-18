@@ -8,20 +8,23 @@ import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
 import 'package:http/http.dart' as http;
 
 class ServerException implements Exception {
-  final String message;
-  ServerException(this.message);
-  String toString() => message;
+  final String _message;
+  ServerException(message) : _message = message;
+
+  @override
+  String toString() => _message;
 }
 
 class BookingService extends ExchangePoint<Booking, String> {
-  Map<String, String> requestHeaders = {
+  static const int _timeOut = 4;
+  static const String _dummyBookingNumber = "CB_DATE_ThisIsAMockToken";
+  static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +
+      'rest/bookingmanagement/v1/booking';
+
+  static const Map<String, String> _requestHeaders = {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
-  static const String endPoint =
-      'http://10.0.2.2:8082/mythaistar/services/rest/bookingmanagement/v1/booking';
-
-  static String dummyBookingNumber = "CB_DATE_ThisIsAMockToken";
 
   @override
   Future<String> post(Booking input) async {
@@ -31,13 +34,13 @@ class BookingService extends ExchangePoint<Booking, String> {
     try {
       response = await http
           .post(
-            endPoint,
-            headers: requestHeaders,
+            _endPoint,
+            headers: _requestHeaders,
             body: jsonEncode(requestBody.toJson()),
           )
-          .timeout(const Duration(seconds: 4));
+          .timeout(const Duration(seconds: _timeOut));
     } catch (e) {
-      return dummyBookingNumber;
+      return _dummyBookingNumber;
     }
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);

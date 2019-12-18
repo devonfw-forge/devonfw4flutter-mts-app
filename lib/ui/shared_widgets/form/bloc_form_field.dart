@@ -6,40 +6,46 @@ import 'package:form_bloc/barrel.dart';
 typedef StringCallback = void Function(String);
 
 class BlocFormField extends StatelessWidget {
-  final FieldBloc formFieldBloc;
-  final String label;
-  final String errorHint;
+  final FieldBloc _formFieldBloc;
+  final String _label;
+  final String _errorHint;
 
   //Optional
-  final TextInputType keyboardType;
-  final List<TextInputFormatter> inputFormatters;
-  final TextEditingController controller;
+  final TextInputType _keyboardType;
+  final List<TextInputFormatter> _inputFormatter;
+  final TextEditingController _controller;
 
   const BlocFormField({
     Key key,
-    @required this.formFieldBloc,
-    @required this.label,
-    @required this.errorHint,
-    this.keyboardType,
-    this.inputFormatters,
-    this.controller,
-  }) : super(key: key);
+    @required formFieldBloc,
+    @required label,
+    @required errorHint,
+    keyboardType,
+    inputFormatter,
+    controller,
+  })  : _formFieldBloc = formFieldBloc,
+        _label = label,
+        _errorHint = errorHint,
+        _keyboardType = keyboardType,
+        _inputFormatter = inputFormatter,
+        _controller = controller,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FieldBloc, ValidationState>(
-      bloc: formFieldBloc,
+      bloc: _formFieldBloc,
       builder: (context, ValidationState state) {
         return TextFormField(
           decoration: InputDecoration(
-            labelText: label,
+            labelText: _label,
             errorMaxLines: 2,
             errorText: validate(state),
           ),
-          keyboardType: keyboardType,
-          onChanged: (String input) => formFieldBloc.dispatch(input),
-          inputFormatters: inputFormatters,
-          controller: controller,
+          keyboardType: _keyboardType,
+          onChanged: (String input) => _formFieldBloc.dispatch(input),
+          inputFormatters: _inputFormatter,
+          controller: _controller,
         );
       },
     );
@@ -47,7 +53,7 @@ class BlocFormField extends StatelessWidget {
 
   String validate(ValidationState state) {
     if (state is InvalidState)
-      return errorHint;
+      return _errorHint;
     else
       return null;
   }

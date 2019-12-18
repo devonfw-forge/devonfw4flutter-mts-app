@@ -5,13 +5,13 @@ import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_state.dart';
+import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/blocs/simple_bloc_delegate.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/theme.dart';
 
 void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  BlocSupervisor.delegate = LogingBlocDelegate();
   runApp(MyThaiStar());
 }
 

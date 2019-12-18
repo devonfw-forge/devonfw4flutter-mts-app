@@ -14,6 +14,7 @@ dependencies:
   http: ^0.12.0+2
   badges: ^1.1.0
   country_icons: ^1.1.1
+  page_transition: "^1.1.5"
   datetime_picker_formfield: any
   # Own Packages
   bool_bloc:

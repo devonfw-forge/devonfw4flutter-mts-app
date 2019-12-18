@@ -7,7 +7,7 @@ enum FormEvent { notify }
 abstract class FormBaseBloc<T> extends Bloc<FormEvent, ValidationState<T>> {
   final List<FieldBloc> _fieldBlocs;
 
-  FormBaseBloc(fieldBlocs) : _fieldBlocs = fieldBlocs {
+  FormBaseBloc(List<FieldBloc> fieldBlocs) : _fieldBlocs = fieldBlocs {
     fieldBlocs.forEach((bloc) {
       bloc.state.listen((_) {
         dispatch(FormEvent.notify);

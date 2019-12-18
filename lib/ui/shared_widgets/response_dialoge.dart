@@ -15,8 +15,6 @@ class ResponseDialog extends StatelessWidget {
         _copyableText = copyableText,
         super(key: key);
 
-  bool notNull(Object o) => o != null;
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -30,12 +28,12 @@ class ResponseDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            _body != null ? Text(_body) : null,
+            _body != null ? Text(_body) : SizedBox(),
             SizedBox(height: UiHelper.standard_padding),
             _copyableText != null
                 ? _CopyableText(copyableText: _copyableText)
-                : null,
-          ].where(notNull).toList(),
+                : SizedBox(),
+          ],
         ),
       ),
     );

@@ -11,7 +11,7 @@ class CropImage extends StatelessWidget {
 
   const CropImage({
     Key key,
-    imageHeight = 300,
+    imageHeight = 300.0,
     encodedImage,
     assetImage = 'assets/images/thai-restaurant.jpg',
   })  : _imageHeight = imageHeight,

@@ -19,7 +19,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   final double _height;
   final Widget _bottom;
 
-  const Header({Key key, height = 50, bottom})
+  const Header({Key key, height = 50.0, bottom})
       : _height = height,
         _bottom = bottom,
         super(key: key);

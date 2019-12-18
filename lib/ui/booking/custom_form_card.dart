@@ -58,8 +58,6 @@ class _Titles extends StatelessWidget {
         _form = form,
         super(key: key);
 
-  bool notNull(Object o) => o != null;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,9 +81,9 @@ class _Titles extends StatelessWidget {
                       .subtitle
                       .copyWith(color: Colors.grey),
                 )
-              : null,
+              : SizedBox(),
           _form,
-        ].where(notNull).toList(),
+        ],
       ),
     );
   }

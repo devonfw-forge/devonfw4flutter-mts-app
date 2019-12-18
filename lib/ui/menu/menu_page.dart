@@ -17,15 +17,15 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  DishBloc dishBloc;
-  CurrentSearchBloc searchBloc;
+  DishBloc _dishBloc;
+  CurrentSearchBloc _searchBloc;
 
   @override
   void initState() {
-    searchBloc = CurrentSearchBloc();
-    dishBloc = DishBloc(searchBloc);
+    _searchBloc = CurrentSearchBloc();
+    _dishBloc = DishBloc(_searchBloc);
 
-    dishBloc.dispatch(DishEvents.request);
+    _dishBloc.dispatch(DishEvents.request);
     super.initState();
   }
 
@@ -37,17 +37,16 @@ class _MenuPageState extends State<MenuPage> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider<CurrentSearchBloc>(
-            builder: (BuildContext context) => searchBloc,
+            builder: (BuildContext context) => _searchBloc,
           ),
           BlocProvider<DishBloc>(
-            builder: (BuildContext context) => dishBloc,
+            builder: (BuildContext context) => _dishBloc,
           ),
         ],
         child: CustomScrollView(
           slivers: <Widget>[
             SliverSearchHeader(),
-            BlocBuilder(
-              bloc: dishBloc,
+            BlocBuilder<DishBloc, DishState>(
               builder: (context, DishState state) {
                 if (state is ErrorDishState) {
                   return _error(state);
@@ -96,8 +95,8 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   void dispose() {
-    dishBloc.dispose();
-    searchBloc.dispose();
+    _dishBloc.dispose();
+    _searchBloc.dispose();
     super.dispose();
   }
 }

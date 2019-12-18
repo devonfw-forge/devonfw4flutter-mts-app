@@ -9,7 +9,7 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
-  static const double height = 160;
+  static const double _height = 160;
 
   const SliverSearchHeader({
     Key key,
@@ -22,7 +22,7 @@ class SliverSearchHeader extends StatelessWidget {
       floating: true,
       backgroundColor: Colors.white,
       leading: Container(),
-      expandedHeight: height,
+      expandedHeight: _height,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           color: Colors.white,
@@ -75,8 +75,8 @@ class _Buttons extends StatelessWidget {
 }
 
 class _Sort extends StatelessWidget {
-  static const double iconPadding = 12.0;
-  static const double dropDownPadding = 5;
+  static const double _iconPadding = 12.0;
+  static const double _dropDownPadding = 5;
 
   const _Sort({Key key}) : super(key: key);
 
@@ -87,14 +87,14 @@ class _Sort extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(iconPadding),
+            padding: const EdgeInsets.all(_iconPadding),
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(
             LocalizationBloc.of(context).get("menu/filter/sort"),
             style: Theme.of(context).textTheme.subhead,
           ),
-          SizedBox(width: dropDownPadding),
+          SizedBox(width: _dropDownPadding),
           Expanded(
             child: DropdownButton<String>(
               isExpanded: true,

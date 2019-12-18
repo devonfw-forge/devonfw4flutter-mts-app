@@ -5,26 +5,30 @@ import 'dart:convert';
 ///
 ///Default [CropImage.imageHeight] is 400
 class CropImage extends StatelessWidget {
-  final String encodedImage;
-  final String assetImage;
-  final double imageHeight;
+  final String _encodedImage;
+  final String _assetImage;
+  final double _imageHeight;
+
   const CropImage({
     Key key,
-    this.imageHeight = 300,
-    this.encodedImage,
-    this.assetImage = 'assets/images/thai-restaurant.jpg',
-  }) : super(key: key);
+    imageHeight = 300,
+    encodedImage,
+    assetImage = 'assets/images/thai-restaurant.jpg',
+  })  : _imageHeight = imageHeight,
+        _assetImage = assetImage,
+        _encodedImage = encodedImage,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: imageHeight,
+      height: _imageHeight,
       decoration: BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: encodedImage == null
-              ? AssetImage(assetImage)
-              : Image.memory(base64Decode(encodedImage)).image,
+          image: _encodedImage == null
+              ? AssetImage(_assetImage)
+              : Image.memory(base64Decode(_encodedImage)).image,
         ),
       ),
     );

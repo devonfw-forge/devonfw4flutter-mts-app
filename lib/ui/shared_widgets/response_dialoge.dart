@@ -2,21 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-class ResponseDialoge extends StatelessWidget {
-  static const double borderRadius = 2;
-  static const double textBackgroundPadding = UiHelper.standard_padding / 2;
-  static final Color textBackgroundColor = Colors.grey[300];
+class ResponseDialog extends StatelessWidget {
+  static const double _borderRadius = 2;
 
-  final String headline;
-  final String body;
-  final String copyableText;
+  final String _headline;
+  final String _body;
+  final String _copyableText;
 
-  const ResponseDialoge({
-    Key key,
-    @required this.headline,
-    this.body,
-    this.copyableText,
-  }) : super(key: key);
+  const ResponseDialog({Key key, @required headline, body, copyableText})
+      : _headline = headline,
+        _body = body,
+        _copyableText = copyableText,
+        super(key: key);
 
   bool notNull(Object o) => o != null;
 
@@ -24,7 +21,7 @@ class ResponseDialoge extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        headline,
+        _headline,
         textAlign: TextAlign.center,
       ),
       contentPadding: EdgeInsets.zero,
@@ -33,14 +30,10 @@ class ResponseDialoge extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            body != null ? Text(body) : null,
+            _body != null ? Text(_body) : null,
             SizedBox(height: UiHelper.standard_padding),
-            copyableText != null
-                ? _CopyableText(
-                    textBackgroundPadding: textBackgroundPadding,
-                    copyableText: copyableText,
-                    textBackgroundColor: textBackgroundColor,
-                  )
+            _copyableText != null
+                ? _CopyableText(copyableText: _copyableText)
                 : null,
           ].where(notNull).toList(),
         ),
@@ -50,16 +43,14 @@ class ResponseDialoge extends StatelessWidget {
 }
 
 class _CopyableText extends StatelessWidget {
-  const _CopyableText({
-    Key key,
-    @required this.textBackgroundPadding,
-    @required this.copyableText,
-    @required this.textBackgroundColor,
-  }) : super(key: key);
+  static const double _textBackgroundPadding = UiHelper.standard_padding / 2;
+  static final Color _textBackgroundColor = Colors.grey[300];
 
-  final double textBackgroundPadding;
-  final String copyableText;
-  final Color textBackgroundColor;
+  final String _copyableText;
+
+  const _CopyableText({Key key, @required copyableText})
+      : _copyableText = copyableText,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,16 +58,17 @@ class _CopyableText extends StatelessWidget {
       alignment: WrapAlignment.end,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(textBackgroundPadding),
-          child: SelectableText(copyableText),
+          padding: EdgeInsets.all(_textBackgroundPadding),
+          child: SelectableText(_copyableText),
           decoration: new BoxDecoration(
-              color: textBackgroundColor,
+              color: _textBackgroundColor,
               borderRadius: BorderRadius.all(
-                  const Radius.circular(ResponseDialoge.borderRadius))),
+                  const Radius.circular(ResponseDialog._borderRadius))),
         ),
         IconButton(
           icon: Icon(Icons.content_copy),
-          onPressed: () => Clipboard.setData(ClipboardData(text: copyableText)),
+          onPressed: () =>
+              Clipboard.setData(ClipboardData(text: _copyableText)),
         )
       ],
     );

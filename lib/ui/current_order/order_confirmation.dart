@@ -95,7 +95,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
 
         showDialog(
           context: context,
-          builder: (BuildContext context) => ResponseDialoge(
+          builder: (BuildContext context) => ResponseDialog(
             headline: "Order Confirmed!",
             body: "Your delicious dishes will be waiting " +
                 "for you when you arrive to your Booking.\n" +
@@ -106,7 +106,7 @@ class _OrderConfirmationState extends State<OrderConfirmation> {
       } else if (state is RejectedOrderState) {
         showDialog(
           context: context,
-          builder: (BuildContext context) => ResponseDialoge(
+          builder: (BuildContext context) => ResponseDialog(
             headline: "Order Denied",
             body: "Your order could not be processed " +
                 "for for the following reason:\n\n" +

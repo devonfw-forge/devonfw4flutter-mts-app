@@ -5,36 +5,41 @@ import 'package:form_bloc/barrel.dart';
 import 'package:intl/intl.dart';
 
 class BlocDatePicker extends StatelessWidget {
-  final FieldBloc formFieldBloc;
-  final TextEditingController controller;
-  final DateFormat format;
-  final String lable;
-  final String errorHint;
+  final FieldBloc _formFieldBloc;
+  final TextEditingController _controller;
+  final DateFormat _format;
+  final String _lable;
+  final String _errorHint;
 
   const BlocDatePicker({
     Key key,
-    @required this.formFieldBloc,
-    @required this.format,
-    @required this.lable,
-    @required this.errorHint,
-    this.controller,
-  }) : super(key: key);
+    @required formFieldBloc,
+    @required format,
+    @required lable,
+    @required errorHint,
+    controller,
+  })  : _formFieldBloc = formFieldBloc,
+        _format = format,
+        _lable = lable,
+        _errorHint = errorHint,
+        _controller = controller,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FieldBloc, ValidationState>(
-      bloc: formFieldBloc,
+      bloc: _formFieldBloc,
       builder: (context, ValidationState state) {
         return DateTimeField(
           readOnly: true,
-          format: format,
-          controller: controller,
+          format: _format,
+          controller: _controller,
           decoration: InputDecoration(
-            labelText: lable,
+            labelText: _lable,
             errorText: validate(state),
           ),
           onChanged: (DateTime input) =>
-              formFieldBloc.dispatch(input != null ? format.format(input) : ""),
+              _formFieldBloc.dispatch(input != null ? _format.format(input) : ""),
           onShowPicker: (context, currentValue) =>
               onShowPicker(context, currentValue),
         );
@@ -44,7 +49,7 @@ class BlocDatePicker extends StatelessWidget {
 
   String validate(ValidationState state) {
     if (state is InvalidState)
-      return errorHint;
+      return _errorHint;
     else
       return null;
   }

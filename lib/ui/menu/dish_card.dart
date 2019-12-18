@@ -11,26 +11,28 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class DishCard extends StatefulWidget {
-  static const double imageHeight = 200;
-  static const double outerPadding = 8;
-  final Dish dish;
+  final Dish _dish;
 
-  const DishCard({Key key, @required this.dish}) : super(key: key);
+  const DishCard({Key key, @required dish}) :
+        _dish = dish,
+        super(key: key);
 
   @override
-  _DishCardState createState() => _DishCardState(dish);
+  _DishCardState createState() => _DishCardState(_dish);
 }
 
 class _DishCardState extends State<DishCard> {
-  Map<int, BoolBloc> checkboxBlocs = Map();
-  Dish dish;
+  static const double _imageHeight = 200;
 
-  _DishCardState(this.dish);
+  Map<int, BoolBloc> _checkboxBlocs = Map();
+  Dish _dish;
+
+  _DishCardState(dish) : _dish = dish;
 
   @override
   void initState() {
-    dish.extras.forEach(
-      (Extra extra, bool picked) => checkboxBlocs[extra.id] = BoolBloc(),
+    _dish.extras.forEach(
+      (Extra extra, bool picked) => _checkboxBlocs[extra.id] = BoolBloc(),
     );
 
     super.initState();
@@ -49,9 +51,9 @@ class _DishCardState extends State<DishCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             CropImage(
-              encodedImage: dish?.encodedImage,
-              assetImage: dish?.assetImage,
-              imageHeight: DishCard.imageHeight,
+              encodedImage: _dish?.encodedImage,
+              assetImage: _dish?.assetImage,
+              imageHeight: _imageHeight,
             ),
             Padding(
               padding: EdgeInsets.all(UiHelper.card_margin),
@@ -59,23 +61,23 @@ class _DishCardState extends State<DishCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    '${dish.price}',
+                    '${_dish.price}',
                     style: Theme.of(context).textTheme.headline.copyWith(
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
                   SizedBox(height: UiHelper.card_margin),
-                  Text('${dish.name}',
+                  Text('${_dish.name}',
                       style: Theme.of(context).textTheme.title),
                   SizedBox(height: UiHelper.standard_padding),
-                  Text('${dish.description}',
+                  Text('${_dish.description}',
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             color: Colors.grey,
                             fontWeight: FontWeight.normal,
                           )),
                   SizedBox(height: UiHelper.standard_padding),
-                  Wrap(children: mapExtras()),
+                  Wrap(children: _mapExtras()),
                   SizedBox(height: UiHelper.standard_padding),
                   RaisedButton(
                     color: Theme.of(context).accentColor,
@@ -84,7 +86,7 @@ class _DishCardState extends State<DishCard> {
                       style: Theme.of(context).textTheme.button,
                     ),
                     onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-                        .dispatch(AddDishToOrderEvent(dish)),
+                        .dispatch(AddDishToOrderEvent(_dish)),
                   )
                 ],
               ),
@@ -97,31 +99,31 @@ class _DishCardState extends State<DishCard> {
 
   @override
   void dispose() {
-    checkboxBlocs.forEach((id, bloc) => bloc.dispose());
+    _checkboxBlocs.forEach((id, bloc) => bloc.dispose());
     super.dispose();
   }
 
-  List<Widget> mapExtras() {
-    return dish.extras.keys
+  List<Widget> _mapExtras() {
+    return _dish.extras.keys
         .map(
           (Extra extra) => BlocBuilder<BoolBloc, bool>(
-            bloc: checkboxBlocs[extra.id],
+            bloc: _checkboxBlocs[extra.id],
             builder: (context, state) => LabeledCheckBox(
               label: extra.name,
               state: state,
-              onStateChange: (bool b) => onCheckboxStateChange(b, extra),
+              onStateChange: (bool b) => _onCheckboxStateChange(b, extra),
             ),
           ),
         )
         .toList();
   }
 
-  void onCheckboxStateChange(bool b, Extra extra) {
-    checkboxBlocs[extra.id].dispatch(BoolBlocEvent.swap);
+  void _onCheckboxStateChange(bool b, Extra extra) {
+    _checkboxBlocs[extra.id].dispatch(BoolBlocEvent.swap);
 
-    Map<Extra, bool> newExtras = Map.from(dish.extras);
+    Map<Extra, bool> newExtras = Map.from(_dish.extras);
     newExtras[extra] = b;
 
-    dish = dish.copyWith(extras: newExtras);
+    _dish = _dish.copyWith(extras: newExtras);
   }
 }

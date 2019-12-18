@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/main.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_page.dart';
-import 'package:my_thai_star_flutter/ui/current_order/current_order_page.dart';
+import 'package:my_thai_star_flutter/ui/order/order_page.dart';
 import 'package:my_thai_star_flutter/ui/home/home_page.dart';
 import 'package:my_thai_star_flutter/ui/menu/menu_page.dart';
 import 'package:page_transition/page_transition.dart';
@@ -35,7 +34,7 @@ class Router {
         );
       case currentOrder:
         return PageTransition(
-          child: CurrentOrderPage(),
+          child: OrderPage(),
           type: PageTransitionType.rightToLeft,
           settings: settings,
         );

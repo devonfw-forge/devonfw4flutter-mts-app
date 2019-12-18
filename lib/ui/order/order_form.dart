@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
-import 'package:my_thai_star_flutter/ui/current_order/order_form_buttons.dart';
+import 'package:my_thai_star_flutter/ui/order/order_form_buttons.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
@@ -13,7 +13,7 @@ import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
-import 'package:my_thai_star_flutter/ui/current_order/alert_card.dart';
+import 'package:my_thai_star_flutter/ui/order/alert_card.dart';
 
 class OrderForm extends StatefulWidget {
 

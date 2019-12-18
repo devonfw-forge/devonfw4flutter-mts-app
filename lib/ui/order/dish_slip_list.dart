@@ -3,7 +3,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/ui/current_order/dish_slip.dart';
+import 'package:my_thai_star_flutter/ui/order/dish_slip.dart';
 
 class DishSlipList extends StatelessWidget {
   final LinkedHashMap<Dish, int> _dishes;

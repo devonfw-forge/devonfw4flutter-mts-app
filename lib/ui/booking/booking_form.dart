@@ -77,7 +77,7 @@ class _BookingFormState extends State<BookingForm> {
             label: LocalizationBloc.of(context).get("formFields/guests"),
             errorHint: LocalizationBloc.of(context)
                 .get("bookTable/formErrors/assistantsRequired"),
-            inputFormatters: <TextInputFormatter>[
+            inputFormatter: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
             ],
             keyboardType: TextInputType.number,
@@ -125,7 +125,7 @@ class _BookingFormState extends State<BookingForm> {
         if (state is ConfirmedBookingState) {
           showDialog(
             context: context,
-            builder: (BuildContext context) => ResponseDialoge(
+            builder: (BuildContext context) => ResponseDialog(
               headline: LocalizationBloc.of(context)
                   .get("bookTable/dialog/bookingSuccess"),
               body: LocalizationBloc.of(context)
@@ -136,7 +136,7 @@ class _BookingFormState extends State<BookingForm> {
         } else if (state is DeclinedBookingState) {
           showDialog(
             context: context,
-            builder: (BuildContext context) => ResponseDialoge(
+            builder: (BuildContext context) => ResponseDialog(
               headline: LocalizationBloc.of(context)
                   .get("bookTable/dialog/bookingError"),
               body: state.reason,

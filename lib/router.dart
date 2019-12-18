@@ -17,7 +17,7 @@ class Router {
     switch (settings.name) {
       case home:
         return PageTransition(
-          child: HomePage(title: MyThaiStar.title),
+          child: HomePage(),
           type: PageTransitionType.fade,
           settings: settings,
         );

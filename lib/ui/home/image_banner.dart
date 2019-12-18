@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/main.dart';
 import 'package:my_thai_star_flutter/ui/home/asset_container.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
@@ -10,12 +11,6 @@ class ImageBanner extends StatelessWidget {
   static const String _woodImg = "assets/images/Wood2.jpg";
   static const String _dishImg = "assets/images/background-dish.png";
   static const String _starImg = "assets/images/star.png";
-
-  final String _title;
-
-  const ImageBanner({Key key, @required title})
-      : _title = title,
-        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +37,7 @@ class ImageBanner extends StatelessWidget {
               children: <Widget>[
                 Spacer(),
                 Text(
-                  _title,
+                  MyThaiStar.title,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline,
                 ),

@@ -5,6 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_state.dart';
+import 'package:my_thai_star_flutter/main.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 
@@ -15,13 +16,11 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   static const double _distanceOfFlagToOtherIcons = 10;
   static const double _flagHeight = 15;
 
-  final String _title;
   final double _height;
   final Widget _bottom;
 
-  const Header({Key key, @required title, height = 50, bottom})
-      : _title = title,
-        _height = height,
+  const Header({Key key, height = 50, bottom})
+      : _height = height,
         _bottom = bottom,
         super(key: key);
 
@@ -32,7 +31,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       titleSpacing: 0,
-      title: Text(_title),
+      title: Text(MyThaiStar.title),
       elevation: _elevation,
       actions: <Widget>[
         IconButton(

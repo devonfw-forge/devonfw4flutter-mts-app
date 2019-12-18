@@ -38,7 +38,8 @@ class MyThaiStar extends StatelessWidget {
               theme: themeData,
               locale: state.locale,
               initialRoute: Router.home,
-              routes: Router.routeMap,
+              onGenerateRoute: (RouteSettings settings) =>
+                  Router.generateRoute(settings),
               localizationsDelegates: [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
@@ -51,10 +52,10 @@ class MyThaiStar extends StatelessWidget {
           } else {
             BlocProvider.of<LocalizationBloc>(context).dispatch(Locale("en"));
             return Container(
-              color: Colors.white,
+                color: Colors.white,
                 child: Center(
-              child: CircularProgressIndicator(),
-            ));
+                  child: CircularProgressIndicator(),
+                ));
           }
         },
       ),

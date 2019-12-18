@@ -3,18 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/localization_state.dart';
 import 'package:my_thai_star_flutter/main.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
+import 'package:my_thai_star_flutter/ui/header/locale_dropdown.dart';
 
 ///common [AppBar] throughout the App
 class Header extends StatelessWidget implements PreferredSizeWidget {
   static const double _elevation = 20;
-  static const double _paddingRight = 15;
-  static const double _distanceOfFlagToOtherIcons = 10;
-  static const double _flagHeight = 15;
 
   final double _height;
   final Widget _bottom;
@@ -45,51 +41,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           builder: (context, state) =>
               _buildBasketIcon(state.numberOfDishes(), context),
         ),
-        BlocBuilder<LocalizationBloc, LocalizationState>(
-          builder: (context, state) => Padding(
-            padding: EdgeInsets.only(
-              right: _paddingRight,
-              left: _distanceOfFlagToOtherIcons,
-            ),
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: Theme.of(context).backgroundColor,
-              ),
-              child: DropdownButton<String>(
-                underline: SizedBox(),
-                iconSize: 0.0,
-                value: state.languageCode,
-                items: _mapDropDownItems(context),
-                onChanged: (String locale) =>
-                    BlocProvider.of<LocalizationBloc>(context)
-                        .dispatch(Locale(locale)),
-              ),
-            ),
-          ),
-        ),
+        LocaleDropDown(),
       ],
       bottom: _bottom,
     );
-  }
-
-  List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
-    return LocalizationBloc.supportedLanguages.map<DropdownMenuItem<String>>(
-      (String code) {
-        String assetName = code;
-        if (code == "en") assetName = "gb";
-
-        return DropdownMenuItem<String>(
-          value: code,
-          child: Center(
-            child: Image.asset(
-              'icons/flags/png/$assetName.png',
-              package: 'country_icons',
-              height: _flagHeight,
-            ),
-          ),
-        );
-      },
-    ).toList();
   }
 
   Widget _buildBasketIcon(int amount, BuildContext context) {

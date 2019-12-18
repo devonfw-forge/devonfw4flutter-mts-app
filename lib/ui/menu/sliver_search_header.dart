@@ -4,16 +4,12 @@ import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
-import 'package:my_thai_star_flutter/ui/menu/sarch_bar.dart';
+import 'package:my_thai_star_flutter/ui/menu/search_bar.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
   static const double _height = 160;
-
-  const SliverSearchHeader({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +36,6 @@ class SliverSearchHeader extends StatelessWidget {
 }
 
 class _Buttons extends StatelessWidget {
-  const _Buttons({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +73,6 @@ class _Sort extends StatelessWidget {
   static const double _iconPadding = 12.0;
   static const double _dropDownPadding = 5;
 
-  const _Sort({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CurrentSearchBloc, Search>(
@@ -87,7 +80,7 @@ class _Sort extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(_iconPadding),
+            padding: EdgeInsets.all(_iconPadding),
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(

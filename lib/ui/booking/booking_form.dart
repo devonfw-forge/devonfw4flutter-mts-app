@@ -17,7 +17,6 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 
 class BookingForm extends StatefulWidget {
-  const BookingForm({Key key}) : super(key: key);
 
   @override
   _BookingFormState createState() => _BookingFormState();

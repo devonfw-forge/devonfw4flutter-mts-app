@@ -10,7 +10,6 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class MenuPage extends StatefulWidget {
-  MenuPage({Key key}) : super(key: key);
 
   @override
   _MenuPageState createState() => _MenuPageState();

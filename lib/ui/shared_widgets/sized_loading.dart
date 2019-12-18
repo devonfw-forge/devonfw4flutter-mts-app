@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SizedLoading extends StatelessWidget {
-  const SizedLoading({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

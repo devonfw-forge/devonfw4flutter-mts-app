@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-class OrderListHeader extends StatelessWidget {
+class OrderHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

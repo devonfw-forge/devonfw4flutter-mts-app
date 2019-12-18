@@ -1,20 +1,15 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
-import 'package:my_thai_star_flutter/ui/current_order/dish_slip.dart';
-import 'package:my_thai_star_flutter/ui/current_order/order_confirmation.dart';
+import 'package:my_thai_star_flutter/ui/current_order/dish_slip_list.dart';
+import 'package:my_thai_star_flutter/ui/current_order/empty_order.dart';
+import 'package:my_thai_star_flutter/ui/current_order/order_form.dart';
+import 'package:my_thai_star_flutter/ui/current_order/order_header.dart';
 import 'package:my_thai_star_flutter/ui/current_order/resume_header.dart';
 import 'package:my_thai_star_flutter/ui/current_order/total_price_display.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
-import 'package:my_thai_star_flutter/ui/current_order/order_list_header.dart';
-import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class CurrentOrderPage extends StatelessWidget {
   @override
@@ -29,23 +24,23 @@ class CurrentOrderPage extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 ResumeHeader(),
-                OrderListHeader(),
+                OrderHeader(),
               ],
             ),
           ),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
               builder: (context, state) {
             if (state.dishMap.isEmpty) {
-              return _ListEmpty();
+              return EmptyOrder();
             } else {
-              return _DishList(dishes: state.dishMap);
+              return DishSlipList(dishes: state.dishMap);
             }
           }),
           SliverList(
             delegate: SliverChildListDelegate(
               [
                 TotalPriceDisplay(),
-                OrderConfirmation(),
+                OrderForm(),
               ],
             ),
           ),
@@ -55,60 +50,3 @@ class CurrentOrderPage extends StatelessWidget {
   }
 }
 
-class _ListEmpty extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Container(
-        padding: EdgeInsets.only(
-          top: UiHelper.standard_padding,
-          bottom: UiHelper.standard_padding,
-          left: UiHelper.standard_padding,
-          right: UiHelper.standard_padding,
-        ),
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          alignment: WrapAlignment.spaceBetween,
-          children: <Widget>[
-            Text(LocalizationBloc.of(context).get("sidenav/noSelection")),
-            FlatButton(
-              padding: EdgeInsets.all(0),
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              child: Text(
-                LocalizationBloc.of(context).get("buttons/addToOrder"),
-                style: Theme.of(context)
-                    .textTheme
-                    .button
-                    .copyWith(color: Theme.of(context).accentColor),
-              ),
-              onPressed: () => Navigator.pushNamed(context, Router.menu),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DishList extends StatelessWidget {
-  final LinkedHashMap<Dish, int> _dishes;
-
-  const _DishList({Key key, @required dishes})
-      : _dishes = dishes,
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          Dish dish = _dishes.keys.toList()[index];
-          int amount = _dishes[dish];
-
-          return DishSlip(dish: dish, amount: amount);
-        },
-        childCount: _dishes.length,
-      ),
-    );
-  }
-}

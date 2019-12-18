@@ -6,7 +6,6 @@ import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({Key key}) : super(key: key);
 
   @override
   _SearchBarState createState() => _SearchBarState();

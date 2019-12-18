@@ -4,34 +4,30 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 
 ///The Banner at the very top of the [home]-page
 class ImageBanner extends StatelessWidget {
-  static const double full_height = 220;
-  static const double star_height = 80;
-  static const int text_spacer_flex = 2;
-  static const String wood_img = "assets/images/Wood2.jpg";
-  static const String dish_img = "assets/images/background-dish.png";
-  static const String star_img = "assets/images/star.png";
-
-  const ImageBanner({
-    Key key,
-  }) : super(key: key);
+  static const double _fullHeight = 220;
+  static const double _starHeight = 80;
+  static const int _textSpacerFlex = 2;
+  static const String _woodImg = "assets/images/Wood2.jpg";
+  static const String _dishImg = "assets/images/background-dish.png";
+  static const String _starImg = "assets/images/star.png";
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: full_height,
+      height: _fullHeight,
       child: Stack(
         children: <Widget>[
           AssetContainer(
-            assetLocation: wood_img,
+            assetLocation: _woodImg,
             fit: BoxFit.fill,
           ),
           AssetContainer(
-            assetLocation: dish_img,
+            assetLocation: _dishImg,
             fit: BoxFit.fitHeight,
           ),
           AssetContainer(
-            height: star_height,
-            assetLocation: star_img,
+            height: _starHeight,
+            assetLocation: _starImg,
             fit: BoxFit.fitHeight,
           ),
           Container(
@@ -49,7 +45,7 @@ class ImageBanner extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle,
                 ),
-                Spacer(flex: text_spacer_flex),
+                Spacer(flex: _textSpacerFlex),
               ],
             ),
           )

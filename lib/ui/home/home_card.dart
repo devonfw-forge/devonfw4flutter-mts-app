@@ -6,19 +6,23 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///holds and image, title and button that navigates to a
 ///different part of the app
 class HomeCard extends StatelessWidget {
-  final String headline;
-  final String text;
-  final String imageLocation;
-  final String buttonLabel;
-  final VoidCallback onPressed;
+  final String _headline;
+  final String _text;
+  final String _imageLocation;
+  final String _buttonLabel;
+  final VoidCallback _onPressed;
 
   const HomeCard({
-    @required this.headline,
-    @required this.text,
-    @required this.imageLocation,
-    @required this.buttonLabel,
-    this.onPressed,
-  });
+    @required headline,
+    @required text,
+    @required imageLocation,
+    @required buttonLabel,
+    onPressed,
+  }): _headline = headline,
+        _text = text,
+        _imageLocation = imageLocation,
+        _buttonLabel = buttonLabel,
+        _onPressed = onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +34,36 @@ class HomeCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Image(image: AssetImage(imageLocation)),
+            Image(image: AssetImage(_imageLocation)),
             Container(
               margin: EdgeInsets.all(UiHelper.card_margin),
               child: Column(
                 children: <Widget>[
                   Text(
-                    headline,
-                    style: Theme.of(context).textTheme.title,
+                    _headline,
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .title,
                   ),
                   SizedBox(height: UiHelper.standard_padding),
                   Text(
-                    text,
+                    _text,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: UiHelper.standard_padding),
                   RaisedButton(
                     child: Text(
-                      buttonLabel,
-                      style: Theme.of(context).textTheme.button,
+                      _buttonLabel,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .button,
                     ),
-                    color: Theme.of(context).accentColor,
-                    onPressed: onPressed,
+                    color: Theme
+                        .of(context)
+                        .accentColor,
+                    onPressed: _onPressed,
                   )
                 ],
               ),

@@ -9,8 +9,7 @@ import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
 ///
 ///Gives navigation to menu and booking-page
 class HomePage extends StatelessWidget {
-  static const double cardDisplayTopPadding = 170;
-  const HomePage({Key key}) : super(key: key);
+  static const double _cardDisplayTopPadding = 170;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class HomePage extends StatelessWidget {
             ImageBanner(),
             Padding(
                 child: CardDisplay(),
-                padding: EdgeInsets.only(top: cardDisplayTopPadding)),
+                padding: EdgeInsets.only(top: _cardDisplayTopPadding)),
           ],
         ),
       ),

@@ -5,23 +5,23 @@ import 'package:flutter/material.dart';
 ///Removes some of the boilerplate when using multiple
 ///[Container]s in a [Stack].
 class AssetContainer extends StatelessWidget {
-  final double height;
-  final String assetLocation;
-  final BoxFit fit;
-  const AssetContainer({
-    @required this.assetLocation,
-    this.height,
-    @required this.fit,
-  });
+  final String _assetLocation;
+  final BoxFit _fit;
+  final double _height;
+
+  const AssetContainer({@required assetLocation, @required fit, height})
+      : _assetLocation = assetLocation,
+        _fit = fit,
+        _height = height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: _height,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(assetLocation),
-          fit: fit,
+          image: AssetImage(_assetLocation),
+          fit: _fit,
         ),
       ),
     );

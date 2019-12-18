@@ -8,16 +8,13 @@ import 'package:my_thai_star_flutter/ui/home/home_card.dart';
 ///Column that holds 2 [HomeCard]s
 class CardDisplay extends StatelessWidget {
   //Content
-  static const String restaurantImg = 'assets/images/thai-restaurant.jpg';
-  static const String menuImg = 'assets/images/thai-restaurant-dish.jpg';
-  
-  //Drop Shadow
-  static const double blur = 6.0;
-  static const double spread = 0.1;
+  static const String _restaurantImg = 'assets/images/thai-restaurant.jpg';
+  static const String _menuImg = 'assets/images/thai-restaurant-dish.jpg';
 
-  const CardDisplay({
-    Key key,
-  }) : super(key: key);
+  //Drop Shadow
+  static const double _blur = 6.0;
+  static const double _spread = 0.1;
+  static const Color _shadowColor = Colors.black54;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +24,9 @@ class CardDisplay extends StatelessWidget {
       decoration: new BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black54,
-            blurRadius: blur, // has the effect of softening the shadow
-            spreadRadius: spread, // has the effect of extending the shadow
+            color: _shadowColor,
+            blurRadius: _blur, // has the effect of softening the shadow
+            spreadRadius: _spread, // has the effect of extending the shadow
           )
         ],
         color: Colors.white,
@@ -38,14 +35,14 @@ class CardDisplay extends StatelessWidget {
       child: Column(
         children: <Widget>[
           HomeCard(
-            imageLocation: restaurantImg,
+            imageLocation: _restaurantImg,
             text: LocalizationBloc.of(context).get("home/restaurantContent"),
             headline: LocalizationBloc.of(context).get("home/restaurantTitle"),
             buttonLabel: LocalizationBloc.of(context).get("buttons/bookTable"),
             onPressed: () => Navigator.pushNamed(context, Router.booking),
           ),
           HomeCard(
-            imageLocation: menuImg,
+            imageLocation: _menuImg,
             text: LocalizationBloc.of(context).get("home/menuContent"),
             headline: LocalizationBloc.of(context).get("home/menuTitle"),
             buttonLabel: LocalizationBloc.of(context).get("buttons/viewMenu"),

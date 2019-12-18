@@ -5,12 +5,23 @@ import 'package:my_thai_star_flutter/ui/home/home_page.dart';
 import 'package:my_thai_star_flutter/ui/menu/menu_page.dart';
 import 'package:page_transition/page_transition.dart';
 
+///Generates a [List] of named [Route]s & gives access to the names
+///
+///The [Router] has a set of [String] constants that are mapped
+///to the [Route]s of the Application. The [Router] also defines 
+///the [PageTransition]-Animations for each [Route].
+///
+///Use the [Router] to call the [Navigator]:
+///```dart
+///Navigator.pushNamed(context, Router.home)
+///```
 class Router {
   static const String home = '/';
   static const String booking = '/booking';
   static const String menu = '/menu';
   static const String currentOrder = '/currentOrder';
 
+  ///Generates a [List] of named [PageRoute]s
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
@@ -38,6 +49,7 @@ class Router {
           settings: settings,
         );
       default:
+        //Returning null will map to the default PageRoute
         return null;
     }
   }

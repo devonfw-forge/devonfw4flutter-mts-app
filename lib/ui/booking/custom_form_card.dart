@@ -3,17 +3,22 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class CustomFormCard extends StatelessWidget {
-  final String headerImageLocation;
-  final String title;
-  final String subTitle;
-  final Widget form;
+  final String _headerImageLocation;
+  final Widget _form;
+  final String _title;
+  final String _subTitle;
+
   const CustomFormCard({
     Key key,
-    @required this.headerImageLocation,
-    @required this.title,
-    this.subTitle,
-    @required this.form,
-  }) : super(key: key);
+    @required headerImageLocation,
+    @required form,
+    @required title,
+    subTitle,
+  })  : _headerImageLocation = headerImageLocation,
+        _form = form,
+        _title = title,
+        _subTitle = subTitle,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +29,11 @@ class CustomFormCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              CropImage(assetImage: headerImageLocation),
+              CropImage(assetImage: _headerImageLocation),
               _Titles(
-                title: title,
-                subTitle: subTitle,
-                form: form,
+                title: _title,
+                subTitle: _subTitle,
+                form: _form,
               ),
             ],
           ),
@@ -39,16 +44,19 @@ class CustomFormCard extends StatelessWidget {
 }
 
 class _Titles extends StatelessWidget {
+  final String _title;
+  final String _subTitle;
+  final Widget _form;
+
   const _Titles({
     Key key,
-    @required this.title,
-    @required this.subTitle,
-    @required this.form,
-  }) : super(key: key);
-
-  final String title;
-  final String subTitle;
-  final Widget form;
+    @required title,
+    @required subTitle,
+    @required form,
+  })  : _title = title,
+        _subTitle = subTitle,
+        _form = form,
+        super(key: key);
 
   bool notNull(Object o) => o != null;
 
@@ -60,23 +68,23 @@ class _Titles extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            title,
+            _title,
             textAlign: TextAlign.left,
             style: Theme.of(context)
                 .textTheme
                 .title
                 .copyWith(color: Colors.black, fontWeight: FontWeight.normal),
           ),
-          subTitle != null
+          _subTitle != null
               ? Text(
-                  subTitle,
+                  _subTitle,
                   style: Theme.of(context)
                       .textTheme
                       .subtitle
                       .copyWith(color: Colors.grey),
                 )
               : null,
-          form,
+          _form,
         ].where(notNull).toList(),
       ),
     );

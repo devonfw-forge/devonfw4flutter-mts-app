@@ -6,12 +6,7 @@ import 'package:my_thai_star_flutter/router.dart';
 ///
 ///Navigation to: Home, Menu and Book Table - Pages
 class AppDrawer extends StatelessWidget {
-  static const double topMargin = 30;
-  static const String homeRoute = Router.home;
-  static const String bookRoute = Router.booking;
-  static const String menuRoute = Router.menu;
-
-  const AppDrawer();
+  static const double _topMargin = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +17,28 @@ class AppDrawer extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            SizedBox(height: topMargin),
+            SizedBox(height: _topMargin),
             _DrawerObject(
               title: LocalizationBloc.of(context).get("main/home"),
               icon: Icons.home,
-              selected: currentRoute == homeRoute,
+              selected: currentRoute == Router.home,
               onTap: () => Navigator.pushNamedAndRemoveUntil(
                 context,
-                homeRoute,
+                Router.home,
                 (Route<dynamic> route) => false,
               ),
             ),
             _DrawerObject(
               title: LocalizationBloc.of(context).get("main/book"),
               icon: Icons.bookmark,
-              selected: currentRoute == bookRoute,
-              onTap: () => Navigator.pushNamed(context, bookRoute),
+              selected: currentRoute == Router.booking,
+              onTap: () => Navigator.pushNamed(context, Router.booking),
             ),
             _DrawerObject(
               title: LocalizationBloc.of(context).get("main/menu"),
               icon: Icons.restaurant_menu,
-              selected: currentRoute == menuRoute,
-              onTap: () => Navigator.pushNamed(context, menuRoute),
+              selected: currentRoute == Router.menu,
+              onTap: () => Navigator.pushNamed(context, Router.menu),
             ),
           ],
         ),
@@ -54,26 +49,29 @@ class AppDrawer extends StatelessWidget {
 
 ///One item in the [AppDrawer]
 class _DrawerObject extends StatelessWidget {
-  static const double iconSize = 30;
-  final String title;
-  final bool selected;
-  final IconData icon;
-  final VoidCallback onTap;
+  static const double _iconSize = 30;
+  final String _title;
+  final bool _selected;
+  final IconData _icon;
+  final VoidCallback _onTap;
 
   const _DrawerObject({
-    this.title = "EMPTY",
-    this.icon = Icons.error,
-    this.onTap,
-    this.selected = false,
-  });
+    @required title,
+    icon = Icons.error,
+    @required onTap,
+    @required selected,
+  })  : _title = title,
+        _icon = icon,
+        _onTap = onTap,
+        _selected = selected;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      selected: selected,
-      leading: Icon(icon, size: iconSize),
-      title: Text(title, style: Theme.of(context).textTheme.title),
-      onTap: onTap,
+      selected: _selected,
+      leading: Icon(_icon, size: _iconSize),
+      title: Text(_title, style: Theme.of(context).textTheme.title),
+      onTap: _onTap,
     );
   }
 }

@@ -6,8 +6,8 @@ import 'package:form_bloc/barrel.dart';
 ///to determine whether it is enabled or not
 ///
 ///The Button is enabled when the [FormBaseBloc] emits
-///a [ValidState] and is disabled when [FormBaseBloc] 
-///emits a [InvalidState].
+///a [ValidState] and is disabled when the [FormBaseBloc] 
+///emits an [InvalidState].
 class BlocValidationButton extends StatelessWidget {
   final VoidCallback _onPressedWhenValid;
   final FormBaseBloc _formValidationBloc;

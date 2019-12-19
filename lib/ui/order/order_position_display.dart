@@ -7,11 +7,13 @@ import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-class DishSlip extends StatelessWidget {
+///Defines a single order position based on the provided [Dish] and
+///the related amount
+class OrderPositionDisplay extends StatelessWidget {
   final Dish _dish;
   final int _amount;
 
-  const DishSlip({Key key, @required dish, @required amount})
+  const OrderPositionDisplay({Key key, @required dish, @required amount})
       : _dish = dish,
         _amount = amount,
         super(key: key);

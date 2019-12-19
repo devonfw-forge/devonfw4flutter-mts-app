@@ -3,12 +3,13 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/ui/order/dish_slip.dart';
+import 'package:my_thai_star_flutter/ui/order/order_position_display.dart';
 
-class DishSlipList extends StatelessWidget {
+///Defines a [SliverList] of [OrderPositionDisplays]s
+class OrderPositionList extends StatelessWidget {
   final LinkedHashMap<Dish, int> _dishes;
 
-  const DishSlipList({Key key, @required dishes})
+  const OrderPositionList({Key key, @required dishes})
       : _dishes = dishes,
         super(key: key);
 
@@ -20,7 +21,7 @@ class DishSlipList extends StatelessWidget {
           Dish dish = _dishes.keys.toList()[index];
           int amount = _dishes[dish];
 
-          return DishSlip(dish: dish, amount: amount);
+          return OrderPositionDisplay(dish: dish, amount: amount);
         },
         childCount: _dishes.length,
       ),

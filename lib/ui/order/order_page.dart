@@ -30,6 +30,7 @@ class OrderPage extends StatelessWidget {
       appBar: Header(),
       backgroundColor: Colors.white,
       drawer: AppDrawer(),
+      //CustomScrollView because it consists of Widgets with different types
       body: CustomScrollView(
         slivers: <Widget>[
           SliverList(

@@ -14,9 +14,9 @@ import 'package:my_thai_star_flutter/ui/order/alert_card.dart';
 ///setting up it's validation
 ///
 ///The [OrderForm] creates a set of [FieldBloc]s and a
-///[FormValidationBloc] on creation. The [FieldBloc]s 
+///[FormValidationBloc] on creation. The [FieldBloc]s
 ///are then injected into the [FormValidationBloc].
-///[FieldBloc]s are used to validate one filed of a 
+///[FieldBloc]s are used to validate one field of a
 ///from, a [FormValidationBloc] checks if the complete
 ///form is valid.
 class OrderForm extends StatefulWidget {

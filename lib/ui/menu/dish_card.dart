@@ -86,7 +86,7 @@ class _DishCardState extends State<DishCard> {
                       style: Theme.of(context).textTheme.button,
                     ),
                     onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-                        .dispatch(AddDishToOrderEvent(_dish)),
+                        .dispatch(AddDishEvent(_dish)),
                   )
                 ],
               ),

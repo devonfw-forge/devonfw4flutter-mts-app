@@ -1,5 +1,6 @@
 import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/order_position.dart';
 
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class OrderRequest {
@@ -22,11 +23,11 @@ class OrderRequest {
   OrderRequest.fromOrder(Order order) {
     booking = BookingNumber(bookingToken: order.bookingCode);
     orderLines = List();
-    order.dishes.forEach((Dish dish, int amount) {
-      OrderDishData dishData = OrderDishData(amount: amount, dishId: dish.id);
+    order.positions.forEach((OrderPosition position) {
+      OrderDishData dishData = OrderDishData(amount: position.amount, dishId: position.dish.id);
       List<Extras> extras = List();
 
-      dish.extras.forEach((extra, picked) {
+      position.dish.extras.forEach((extra, picked) {
         if (picked) {
           extras.add(Extras(id: extra.id));
         }

@@ -13,7 +13,6 @@ class DummyData {
         Extra(id: 1, name: "Tofu"): false,
         Extra(id: 2, name: "Extra Curry"): false,
       },
-      comment: "",
     ),
     Dish(
       id: 2,
@@ -26,7 +25,6 @@ class DummyData {
         Extra(id: 1, name: "Tofu"): false,
         Extra(id: 2, name: "Extra Curry"): false,
       },
-      comment: "",
     ),
   ];
 }

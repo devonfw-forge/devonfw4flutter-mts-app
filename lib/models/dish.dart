@@ -9,7 +9,6 @@ class Dish extends Equatable {
   final double price;
   final String encodedImage;
   final String assetImage;
-  final String comment;
   final int id;
   final Map<Extra, bool> extras;
 
@@ -21,7 +20,6 @@ class Dish extends Equatable {
     @required this.id,
     this.encodedImage,
     this.assetImage,
-    this.comment,
   });
 
   @override
@@ -49,7 +47,6 @@ class Dish extends Equatable {
     String description,
     double price,
     String encodedImage,
-    String comment,
     String assetImage,
     int id,
     Map<Extra, bool> extras,
@@ -60,7 +57,6 @@ class Dish extends Equatable {
         price: price ?? this.price,
         encodedImage: encodedImage ?? this.encodedImage,
         extras: extras ?? this.extras,
-        comment: comment ?? this.comment,
         assetImage: assetImage ?? this.assetImage,
         id: id ?? this.id,
       );

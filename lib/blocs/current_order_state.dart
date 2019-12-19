@@ -1,36 +1,31 @@
-import 'dart:collection';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
+import 'package:my_thai_star_flutter/models/order_position.dart';
 
 @immutable
 abstract class CurrentOrderState implements Equatable {
-  final LinkedHashMap<Dish, int> dishMap;
+  final List<OrderPosition> positions;
 
-  CurrentOrderState(this.dishMap);
+  CurrentOrderState(this.positions);
 
-  int numberOfDishes() {
+  int get numberOfDishes {
     int amount = 0;
-    dishMap.forEach((d, i) => amount += i);
+    positions.forEach((pos) => amount += pos.amount);
     return amount;
   }
 
-  double positionPrice(Dish dish) => dish.price * dishMap[dish];
-
-  double totalPrice() {
-    double p = 0;
-    dishMap.forEach((dish, amount) => p += positionPrice(dish));
-    return p;
+  double get totalPrice {
+    double price = 0;
+    positions.forEach((position) => price += position.price);
+    return price;
   }
 
-  String get formattedTotalPrice => totalPrice().toStringAsFixed(2);
-  String formattedPositionPrice(Dish dish) => positionPrice(dish).toStringAsFixed(2);
+  String get formattedTotalPrice => totalPrice.toStringAsFixed(2);
 }
 
 @immutable
 class InitialCurrentOrderState extends CurrentOrderState {
-  InitialCurrentOrderState() : super(LinkedHashMap());
+  InitialCurrentOrderState() : super(List());
 
   @override
   List<Object> get props => [toString()];
@@ -41,11 +36,11 @@ class InitialCurrentOrderState extends CurrentOrderState {
 
 @immutable
 class IdleCurrentOrderState extends CurrentOrderState {
-  IdleCurrentOrderState(LinkedHashMap<Dish, int> dishMap) : super(dishMap);
+  IdleCurrentOrderState(List<OrderPosition> positions) : super(positions);
 
   @override
-  List<Object> get props => [dishMap, numberOfDishes(), totalPrice()];
+  List<Object> get props => [positions, numberOfDishes, totalPrice];
 
   @override
-  String toString() => "Idle/NumberOfDishes: " + numberOfDishes().toString();
+  String toString() => "Idle/NumberOfDishes: " + numberOfDishes.toString();
 }

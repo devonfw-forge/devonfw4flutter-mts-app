@@ -30,10 +30,10 @@ class OrderPage extends StatelessWidget {
           ),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
               builder: (context, state) {
-            if (state.dishMap.isEmpty) {
+            if (state.positions.isEmpty) {
               return EmptyOrder();
             } else {
-              return OrderPositionList(dishes: state.dishMap);
+              return OrderPositionList(positions: state.positions);
             }
           }),
           SliverList(
@@ -49,4 +49,3 @@ class OrderPage extends StatelessWidget {
     );
   }
 }
-

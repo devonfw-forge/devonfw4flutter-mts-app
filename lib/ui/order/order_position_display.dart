@@ -5,17 +5,16 @@ import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/models/order_position.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 ///Defines a single order position based on the provided [Dish] and
 ///the related amount
 class OrderPositionDisplay extends StatelessWidget {
-  final Dish _dish;
-  final int _amount;
+  final OrderPosition _position;
 
-  const OrderPositionDisplay({Key key, @required dish, @required amount})
-      : _dish = dish,
-        _amount = amount,
+  const OrderPositionDisplay({Key key, @required position})
+      : _position = position,
         super(key: key);
 
   @override
@@ -28,11 +27,11 @@ class OrderPositionDisplay extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.cancel),
             onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-                .dispatch(DeleteOrderPositionEvent(_dish)),
+                .dispatch(RemoveOrderPositionEvent(_position)),
           ),
-          _TextContent(dish: _dish),
-          _Amount(amount: _amount, dish: _dish),
-          _Price(dish: _dish),
+          _TextContent(dish: _position.dish),
+          _Amount(_position),
+          _Price(_position),
         ],
       ),
     );
@@ -40,32 +39,23 @@ class OrderPositionDisplay extends StatelessWidget {
 }
 
 class _Price extends StatelessWidget {
-  final Dish _dish;
+  final OrderPosition _position;
 
-  const _Price({Key key, @required dish})
-      : _dish = dish,
-        super(key: key);
+  const _Price(this._position);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
-      builder: (context, state) => Text(
-        "${state.formattedPositionPrice(_dish)} €",
-        style:
-            Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
-      ),
+    return Text(
+      "${_position.formattedPrice} €",
+      style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
     );
   }
 }
 
 class _Amount extends StatelessWidget {
-  final int _amount;
-  final Dish _dish;
+  final OrderPosition _position;
 
-  const _Amount({Key key, @required amount, @required dish})
-      : _amount = amount,
-        _dish = dish,
-        super(key: key);
+  const _Amount(this._position);
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +64,10 @@ class _Amount extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.remove),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context).dispatch(
-            RemoveDishFromOrderEvent(_dish),
+            RemoveDishEvent(_position.dish),
           ),
         ),
-        Text("$_amount",
+        Text("${_position.amount}",
             style: Theme.of(context)
                 .textTheme
                 .subtitle
@@ -85,7 +75,7 @@ class _Amount extends StatelessWidget {
         IconButton(
           icon: Icon(Icons.add, color: Theme.of(context).accentColor),
           onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-              .dispatch(AddDishToOrderEvent(_dish)),
+              .dispatch(AddDishEvent(_position.dish)),
         ),
       ],
     );

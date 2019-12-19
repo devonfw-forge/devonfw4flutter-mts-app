@@ -39,7 +39,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         ),
         BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
           builder: (context, state) =>
-              _buildBasketIcon(state.numberOfDishes(), context),
+              _buildBasketIcon(state.numberOfDishes, context),
         ),
         LocaleDropDown(),
       ],

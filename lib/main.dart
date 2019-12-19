@@ -8,14 +8,14 @@ import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:bloc/bloc.dart';
-import 'package:my_thai_star_flutter/ui/theme.dart';
+import 'package:my_thai_star_flutter/ui/mts-theme.dart';
 
 void main() {
   BlocSupervisor.delegate = LogingBlocDelegate();
   runApp(MyThaiStar());
 }
 
-///Globally provides a set of [Bloc]s & Re-builds app when a new
+///Globally provides a set of [Bloc]s, Re-builds app when a new
 ///[Locale] is selected
 ///
 ///Root of the App. This is the only place where [Bloc]s can be
@@ -33,7 +33,7 @@ class MyThaiStar extends StatelessWidget {
       child: BlocBuilder<LocalizationBloc, Locale>(
         builder: (context, locale) => MaterialApp(
           title: title,
-          theme: themeData,
+          theme: MtsTheme.get(),
           locale: locale,
           initialRoute: Router.home,
           onGenerateRoute: (RouteSettings settings) =>

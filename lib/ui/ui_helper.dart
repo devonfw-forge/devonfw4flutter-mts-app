@@ -1,4 +1,4 @@
-///Set of const values to keep the UI consistent within the App
+///Defines a set of const values to keep the UI consistent throughout the App
 class UiHelper {
   static const double borderRadius = 6.0;
   static const double elevation = 2.0;

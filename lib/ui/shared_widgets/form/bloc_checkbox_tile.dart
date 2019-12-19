@@ -6,8 +6,8 @@ import 'package:form_bloc/barrel.dart';
 ///to handle it's State.
 ///
 ///The CheckBox is checked when tapped and makes the 
-///[CheckboxFieldBloc] emit [ValidationState.valid] or 
-///[ValidationState.invalid] based on if the box
+///[CheckboxFieldBloc] emit [ValidState] or 
+///[InvalidState] based on if the box
 ///is checked or not.
 class BlocCheckboxTile extends StatelessWidget {
   const BlocCheckboxTile({

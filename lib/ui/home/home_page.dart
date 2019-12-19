@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/main.dart';
+import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 
 import 'package:my_thai_star_flutter/ui/home/card_display.dart';
 import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
 
-///Landing Page of the App
+///Defines the top-level layout of the Widgets related to the
+///home page
 ///
-///Gives navigation to menu and booking-page
+///The [HomePage] is the first thing a user sees when opening 
+///up MyThaiStar. It provides access to all other pages of the
+///Application.
+///
+///#### Relevant Blocs for this feature
+///[LocalizationBloc]
+@TopLevelRoute("/")
 class HomePage extends StatelessWidget {
   static const double _cardDisplayTopPadding = 170;
 

@@ -3,5 +3,6 @@
 ///Top-level in this context means it defines the
 ///Page layout of a given feature.
 class TopLevelRoute{
-  const TopLevelRoute();
+  final String route;
+  const TopLevelRoute(this.route);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/ui/order/order_position_list.dart';
@@ -14,15 +15,16 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///Defines the layout of the Widgets related to the
 ///order feature
 ///
-///Top-level [Route] ([Router.order]).
-///
+///#### The Order feature from a top-down view
 ///[Order] in the MyThaStar context means selecting
 ///[Dish]s and adding them to a [Booking] / Reservation that
 ///was made. This link happens through a "booking token" that
 ///the user receives once they place a [Booking] on the [BookingPage]
 ///
-///Relevant Blocs: [OrderBloc], [CurrentOrderBloc],
+///#### Relevant Blocs for this feature
+///[OrderBloc], [CurrentOrderBloc],
 ///[BookingBloc], [LocalizationBloc]
+@TopLevelRoute("/order")
 class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

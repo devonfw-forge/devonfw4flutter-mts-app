@@ -11,7 +11,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-///Defines the [Button]s at the bottom of the [OrderForm] & is responsible 
+///Defines the [Button]s at the bottom of the [OrderForm] & is responsible
 ///for emitting the BookingToken to the [OrderBloc]
 ///
 ///The Send-[Button] dispatches the [TextEditingController.text]
@@ -33,22 +33,11 @@ class OrderFormButtons extends StatefulWidget {
         super(key: key);
 
   @override
-  _OrderFormButtonsState createState() => _OrderFormButtonsState(
-        formValidationBloc: _formValidationBloc,
-        bookingTokenController: _bookingTokenController,
-      );
+  State<StatefulWidget> createState() => _OrderFormButtonsState();
 }
 
 class _OrderFormButtonsState extends State<OrderFormButtons> {
-  final FormValidationBloc _formValidationBloc;
-  final TextEditingController _bookingTokenController;
   OrderBloc _orderBloc;
-
-  _OrderFormButtonsState({
-    @required formValidationBloc,
-    @required bookingTokenController,
-  })  : _formValidationBloc = formValidationBloc,
-        _bookingTokenController = bookingTokenController;
 
   @override
   void initState() {
@@ -80,10 +69,10 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
               return SizedLoading();
             } else {
               return BlocValidationButton(
-                formValidationBloc: _formValidationBloc,
+                formValidationBloc: widget._formValidationBloc,
                 lable: Translation.of(context).get("buttons/send"),
                 onPressedWhenValid: () =>
-                    _orderBloc.dispatch(_bookingTokenController.text),
+                    _orderBloc.dispatch(widget._bookingTokenController.text),
               );
             }
           },

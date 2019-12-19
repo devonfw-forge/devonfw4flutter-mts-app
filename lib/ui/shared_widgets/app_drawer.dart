@@ -3,9 +3,10 @@ import 'package:my_thai_star_flutter/localization/translation.dart';
 
 import 'package:my_thai_star_flutter/router.dart';
 
-///Global [Drawer] that helps navigate to the 3 main pages of the App.
+///Defines [Drawer] that enables navigation to the main pages of the App
 ///
-///Navigation to: Home, Menu and Book Table - Pages
+///If the current [PageRoute] matches one of the navigation option,
+///it is highlighted.
 class AppDrawer extends StatelessWidget {
   static const double _topMargin = 30;
 
@@ -23,11 +24,7 @@ class AppDrawer extends StatelessWidget {
               title: Translation.of(context).get("main/home"),
               icon: Icons.home,
               selected: currentRoute == Router.home,
-              onTap: () => Navigator.pushNamedAndRemoveUntil(
-                context,
-                Router.home,
-                (Route<dynamic> route) => false,
-              ),
+              onTap: () => Navigator.pushNamed(context, Router.home),
             ),
             _DrawerObject(
               title: Translation.of(context).get("main/book"),

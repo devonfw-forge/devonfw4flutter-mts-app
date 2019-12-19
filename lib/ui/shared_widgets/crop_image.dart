@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
-///Crops Image from assets to cover a given height
+///Crops provided [Image] to cover a given height
 ///
-///Default [CropImage.imageHeight] is 400
+///The [Image] can be loaded form assets or read
+///form an encoded [String]. If no [Image] is 
+///provided, a default [Image] is loaded from
+///assets.
 class CropImage extends StatelessWidget {
   final String _encodedImage;
   final String _assetImage;

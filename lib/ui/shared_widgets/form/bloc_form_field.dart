@@ -3,9 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
 
-typedef StringCallback = void Function(String);
-
+///Defines a [TextFormField] that uses a [FieldBloc]
+///to handle it's State & validation.
+///
+///Whenever the text in [TextFormField] changes,
+///it is dispatched to the [FieldBloc].
+///The [BlocFormField._errorHint] is displayed based
+///on the [ValidationState] of the [FieldBloc].
 class BlocFormField extends StatelessWidget {
+  static const int _errorMaxLines = 2;
+
   final FieldBloc _formFieldBloc;
   final String _label;
   final String _errorHint;
@@ -39,7 +46,7 @@ class BlocFormField extends StatelessWidget {
         return TextFormField(
           decoration: InputDecoration(
             labelText: _label,
-            errorMaxLines: 2,
+            errorMaxLines: _errorMaxLines,
             errorText: validate(state),
           ),
           keyboardType: _keyboardType,

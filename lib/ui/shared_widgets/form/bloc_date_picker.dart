@@ -4,7 +4,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
 import 'package:intl/intl.dart';
 
+///Defines a [DateTimeField] that uses a [FieldBloc]
+///to handle it's State & validation.
+///
+///When tapped, the [BlocDatePicker] displays a window
+///to select date & time. Once date & time have been selected,
+///they are dispatched to the [FieldBloc] for validation.
+///the [BlocDatePicker._errorHint] is displayed based
+///on the [ValidationState] of the [FieldBloc].
+///The selected [DateTime] is dispatched as a [String]
+///based on the [BlocDatePicker._format].
 class BlocDatePicker extends StatelessWidget {
+  static final _lastDate = DateTime(2100);
+
   final FieldBloc _formFieldBloc;
   final TextEditingController _controller;
   final DateFormat _format;
@@ -36,31 +48,31 @@ class BlocDatePicker extends StatelessWidget {
           controller: _controller,
           decoration: InputDecoration(
             labelText: _lable,
-            errorText: validate(state),
+            errorText: _validate(state),
           ),
-          onChanged: (DateTime input) =>
-              _formFieldBloc.dispatch(input != null ? _format.format(input) : ""),
+          onChanged: (DateTime input) => _formFieldBloc
+              .dispatch(input != null ? _format.format(input) : ""),
           onShowPicker: (context, currentValue) =>
-              onShowPicker(context, currentValue),
+              _onShowPicker(context, currentValue),
         );
       },
     );
   }
 
-  String validate(ValidationState state) {
+  String _validate(ValidationState state) {
     if (state is InvalidState)
       return _errorHint;
     else
       return null;
   }
 
-  Future<DateTime> onShowPicker(
+  Future<DateTime> _onShowPicker(
       BuildContext context, DateTime currentValue) async {
     final date = await showDatePicker(
         context: context,
         firstDate: DateTime.now(),
-        initialDate: getInitialDate(currentValue),
-        lastDate: DateTime(2100));
+        initialDate: _getInitialDate(currentValue),
+        lastDate: _lastDate);
     if (date != null) {
       final time = await showTimePicker(
         context: context,
@@ -72,12 +84,15 @@ class BlocDatePicker extends StatelessWidget {
     }
   }
 
-  getInitialDate(DateTime currentValue) {
-    if (currentValue == null)
+  ///Makes sure that the initial date is not
+  ///before the currentValue
+  _getInitialDate(DateTime currentValue) {
+    if (currentValue == null) {
       return DateTime.now();
-    else if (currentValue.isBefore(DateTime.now()))
+    } else if (currentValue.isBefore(DateTime.now())) {
       return DateTime.now();
-    else
+    } else {
       return currentValue;
+    }
   }
 }

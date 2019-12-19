@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
 
+///Defines a [RaisedButton] that uses a [FormBaseBloc]
+///to determine whether it is enabled or not
+///
+///The Button is enabled when the [FormBaseBloc] emits
+///a [ValidationState.valid] and is disabled when [FormBaseBloc] 
+///emits a [ValidationState.invalid].
 class BlocValidationButton extends StatelessWidget {
   final VoidCallback _onPressedWhenValid;
   final FormBaseBloc _formValidationBloc;
@@ -26,6 +32,7 @@ class BlocValidationButton extends StatelessWidget {
         textColor: Colors.white,
         disabledTextColor: Colors.white,
         child: Text(_lable),
+        //Enable/Disable based in ValidationState
         onPressed: state is ValidState ? () => _onPressedWhenValid() : null,
       ),
     );

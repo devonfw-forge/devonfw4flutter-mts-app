@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
 
+///Defines a [CheckboxListTile] that uses a [CheckboxFieldBloc]
+///to handle it's State.
+///
+///The CheckBox is checked when tapped and makes the 
+///[CheckboxFieldBloc] emit [ValidationState.valid] or 
+///[ValidationState.invalid] based on if the box
+///is checked or not.
 class BlocCheckboxTile extends StatelessWidget {
   const BlocCheckboxTile({
     Key key,

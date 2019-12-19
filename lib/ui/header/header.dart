@@ -50,7 +50,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildBasketIcon(int amount, BuildContext context) {
     Widget iconButton = IconButton(
       icon: Icon(Icons.shopping_basket, color: Colors.white),
-      onPressed: () => Navigator.pushNamed(context, Router.currentOrder),
+      onPressed: () => Navigator.pushNamed(context, Router.order),
     );
 
     if (amount == 0) {

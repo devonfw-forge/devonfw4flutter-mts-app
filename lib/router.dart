@@ -19,7 +19,7 @@ class Router {
   static const String home = '/';
   static const String booking = '/booking';
   static const String menu = '/menu';
-  static const String currentOrder = '/currentOrder';
+  static const String order = '/currentOrder';
 
   ///Generates a [List] of named [PageRoute]s
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -42,7 +42,7 @@ class Router {
           type: PageTransitionType.fade,
           settings: settings,
         );
-      case currentOrder:
+      case order:
         return PageTransition(
           child: OrderPage(),
           type: PageTransitionType.rightToLeft,

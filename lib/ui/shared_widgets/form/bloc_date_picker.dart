@@ -13,7 +13,12 @@ import 'package:intl/intl.dart';
 ///the [BlocDatePicker._errorHint] is displayed based
 ///on the [ValidationState] of the [FieldBloc].
 ///The selected [DateTime] is dispatched as a [String]
-///based on the [BlocDatePicker._format].
+///based on the [BlocDatePicker._format]. We send it as a String
+///because the bloc_package dose not allow events to be null and 
+///[DateTime] can't be initialized without a value. So if we wanted
+///to dispatch events as [DateTime] we can't
+///sent an event when no date is selected. With String events,
+///we can send an empty String
 class BlocDatePicker extends StatelessWidget {
   static final _lastDate = DateTime(2100);
 

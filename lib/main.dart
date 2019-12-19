@@ -57,6 +57,7 @@ class MyThaiStar extends StatelessWidget {
 
   ///Builds the global [BlocProvider]s
   ///
+  ///We need to provide these globally because:
   ///The [CurrentOrderBloc] is needed by the [Header] to display the current amount
   ///of [Dish]es in the order, by the [OrderPage] to display the [Dish]es in the
   ///order & by the [MenuPage] to add new [Dish]es to the order.

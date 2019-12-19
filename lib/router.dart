@@ -10,6 +10,9 @@ import 'package:page_transition/page_transition.dart';
 ///The [Router] has a set of [String] constants that are mapped
 ///to the [Route]s of the Application. The [Router] also defines 
 ///the [PageTransition]-Animations for each [Route].
+///By setting up our routes this way we don't need to define the
+/// Animation every time we transition to
+///a new [Route], but just once.
 ///
 ///Use the [Router] to call the [Navigator]:
 ///```dart

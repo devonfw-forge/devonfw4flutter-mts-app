@@ -3,6 +3,11 @@ import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines a [Card] which informs the user that now booking token
+///has been entered.
+///
+///The [AlertCard] also has a button that navigates the user
+///to the [Router.booking] [Route].
 class AlertCard extends StatelessWidget {
   static const Color _backgroundColor = Color(0xffffe4c4);
 

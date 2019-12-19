@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
-import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 
 class LocaleDropDown extends StatelessWidget {
   static const double _paddingRight = 15;

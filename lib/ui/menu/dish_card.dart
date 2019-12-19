@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/ui/menu/labeled_checkbox.dart';

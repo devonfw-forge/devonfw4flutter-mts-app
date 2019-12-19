@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/router.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/home/home_card.dart';

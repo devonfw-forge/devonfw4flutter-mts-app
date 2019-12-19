@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 
 class AuthenticationDialog extends StatelessWidget {
   static const double _width = 800;

@@ -3,7 +3,7 @@ import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:my_thai_star_flutter/ui/booking/booking_form.dart';
 import 'package:my_thai_star_flutter/ui/booking/custom_form_card.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 
 ///Defines the top-level layout of the Widgets related to the

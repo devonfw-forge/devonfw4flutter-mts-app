@@ -11,7 +11,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.d
 
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
+import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';

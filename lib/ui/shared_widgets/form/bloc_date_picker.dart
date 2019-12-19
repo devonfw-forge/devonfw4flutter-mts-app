@@ -7,8 +7,8 @@ import 'package:intl/intl.dart';
 ///Defines a [DateTimeField] that uses a [FieldBloc]
 ///to handle it's State & validation.
 ///
-///When tapped, the [BlocDatePicker] displays a window
-///to select date & time. Once date & time have been selected,
+///When tapped, the [BlocDatePicker] displays a window to enable the
+///selection of a date & time. Once date & time have been selected,
 ///they are dispatched to the [FieldBloc] for validation.
 ///the [BlocDatePicker._errorHint] is displayed based
 ///on the [ValidationState] of the [FieldBloc].

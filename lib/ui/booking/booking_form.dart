@@ -48,60 +48,58 @@ class _BookingFormState extends State<BookingForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          BlocDatePicker(
-            formFieldBloc: _dateBloc,
-            lable: Translation.of(context).get("formFields/dateTime"),
-            errorHint: "Please select a Date",
-            format: Booking.dateFormat,
-          ),
-          BlocFormField(
-            formFieldBloc: _nameBloc,
-            label: Translation.of(context).get("formFields/name"),
-            errorHint: Translation.of(context)
-                .get("bookTable/formErrors/nameRequired"),
-          ),
-          BlocFormField(
-            formFieldBloc: _emailBloc,
-            label: Translation.of(context).get("formFields/email"),
-            errorHint: Translation.of(context)
-                .get("bookTable/formErrors/emailPattern"),
-            keyboardType: TextInputType.emailAddress,
-          ),
-          BlocFormField(
-            formFieldBloc: _guestBloc,
-            label: Translation.of(context).get("formFields/guests"),
-            errorHint: Translation.of(context)
-                .get("bookTable/formErrors/assistantsRequired"),
-            inputFormatter: <TextInputFormatter>[
-              WhitelistingTextInputFormatter.digitsOnly
-            ],
-            keyboardType: TextInputType.number,
-          ),
-          BlocCheckboxTile(
-            checkboxBloc: _termsBloc,
-            label: Translation.of(context).get("formFields/terms"),
-          ),
-          BlocBuilder<BookingBloc, BookingState>(
-            builder: (context, BookingState state) {
-              if (state is LoadingBookingState) {
-                return SizedLoading();
-              } else {
-                return BlocValidationButton(
-                  formValidationBloc: _formBloc,
-                  lable: Translation.of(context).get("buttons/bookTable"),
-                  onPressedWhenValid: () =>
-                      BlocProvider.of<BookingBloc>(context)
-                          .dispatch(_formBloc.currentState.data),
-                );
-              }
-            },
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: <Widget>[
+        BlocDatePicker(
+          formFieldBloc: _dateBloc,
+          lable: Translation.of(context).get("formFields/dateTime"),
+          errorHint: "Please select a Date",
+          format: Booking.dateFormat,
+        ),
+        BlocFormField(
+          formFieldBloc: _nameBloc,
+          label: Translation.of(context).get("formFields/name"),
+          errorHint: Translation.of(context)
+              .get("bookTable/formErrors/nameRequired"),
+        ),
+        BlocFormField(
+          formFieldBloc: _emailBloc,
+          label: Translation.of(context).get("formFields/email"),
+          errorHint: Translation.of(context)
+              .get("bookTable/formErrors/emailPattern"),
+          keyboardType: TextInputType.emailAddress,
+        ),
+        BlocFormField(
+          formFieldBloc: _guestBloc,
+          label: Translation.of(context).get("formFields/guests"),
+          errorHint: Translation.of(context)
+              .get("bookTable/formErrors/assistantsRequired"),
+          inputFormatter: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
+          keyboardType: TextInputType.number,
+        ),
+        BlocCheckboxTile(
+          checkboxBloc: _termsBloc,
+          label: Translation.of(context).get("formFields/terms"),
+        ),
+        BlocBuilder<BookingBloc, BookingState>(
+          builder: (context, BookingState state) {
+            if (state is LoadingBookingState) {
+              return SizedLoading();
+            } else {
+              return BlocValidationButton(
+                formValidationBloc: _formBloc,
+                lable: Translation.of(context).get("buttons/bookTable"),
+                onPressedWhenValid: () =>
+                    BlocProvider.of<BookingBloc>(context)
+                        .dispatch(_formBloc.currentState.data),
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 

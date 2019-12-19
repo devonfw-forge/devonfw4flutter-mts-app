@@ -11,6 +11,18 @@ import 'package:my_thai_star_flutter/ui/order/total_price_display.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 
+///Defines the layout of the Widgets related to the
+///order feature
+///
+///Top-level [Route] ([Router.order]).
+///
+///[Order] in the MyThaStar context means selecting
+///[Dish]s and adding them to a [Booking] / Reservation that
+///was made. This link happens through a "booking token" that
+///the user receives once they place a [Booking] on the [BookingPage]
+///
+///Relevant Blocs: [OrderBloc], [CurrentOrderBloc],
+///[BookingBloc], [LocalizationBloc]
 class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,6 +42,8 @@ class OrderPage extends StatelessWidget {
           ),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
               builder: (context, state) {
+            //Rebuild the OrderPositionList every
+            //time the CurrentOrderBloc emits a new state
             if (state.positions.isEmpty) {
               return EmptyOrder();
             } else {

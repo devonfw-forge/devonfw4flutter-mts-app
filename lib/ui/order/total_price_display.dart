@@ -5,6 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Displays [CurrentOrderState.formattedTotalPrice]
 class TotalPriceDisplay extends StatelessWidget {
 
   @override

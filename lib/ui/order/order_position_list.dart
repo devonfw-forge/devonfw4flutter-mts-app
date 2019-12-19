@@ -1,11 +1,8 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
 import 'package:my_thai_star_flutter/ui/order/order_position_display.dart';
 
-///Defines a [SliverList] of [OrderPositionDisplays]s
+///Defines a [SliverList] of [OrderPositionDisplays]
 class OrderPositionList extends StatelessWidget {
   final List<OrderPosition> _positions;
 

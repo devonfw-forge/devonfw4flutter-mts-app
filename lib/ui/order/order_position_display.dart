@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
-import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-///Defines a single order position based on the provided [Dish] and
-///the related amount
+///Displays a single [OrderPosition]
+///
+///The [OrderPositionDisplay] provides the options to add/subtract
+///to/from the [OrderPosition.amount], and remove an
+///[OrderPosition] from the current order. The communication
+///with the current order happens through the globally 
+///provided [CurrentOrderBloc]. [CurrentOrderEvent]s are
+///dispatched to the [CurrentOrderBloc] to modify it's
+///State.
 class OrderPositionDisplay extends StatelessWidget {
   final OrderPosition _position;
 
@@ -29,29 +35,32 @@ class OrderPositionDisplay extends StatelessWidget {
             onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
                 .dispatch(RemoveOrderPositionEvent(_position)),
           ),
-          _TextContent(dish: _position.dish),
+          _TextContent(_position.dish),
           _Amount(_position),
-          _Price(_position),
+          _Price(_position.formattedPrice),
         ],
       ),
     );
   }
 }
 
+///Displays the given price
 class _Price extends StatelessWidget {
-  final OrderPosition _position;
+  final String _price;
 
-  const _Price(this._position);
+  const _Price(this._price);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      "${_position.formattedPrice} €",
+      _price + " €",
       style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
     );
   }
 }
 
+///Displays [OrderPosition.amount] & gives the option to modify
+///the amount
 class _Amount extends StatelessWidget {
   final OrderPosition _position;
 
@@ -82,15 +91,14 @@ class _Amount extends StatelessWidget {
   }
 }
 
+///Displays [Dish.name] & [Dish.selectedExtras()]
 class _TextContent extends StatelessWidget {
   static const double _textDistance = 3;
   static const int _flex = 2;
 
   final Dish _dish;
 
-  const _TextContent({Key key, @required dish})
-      : _dish = dish,
-        super(key: key);
+  const _TextContent(this._dish);
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +121,10 @@ class _TextContent extends StatelessWidget {
     );
   }
 
+  ///Displays the selected [Extra]s of a Dish
+  ///
+  ///When no [Extra] is selected, this function
+  ///Returns an empty [SizedBox].
   Widget _extras(BuildContext context) {
     if (_dish.hasExtras()) {
       return Column(
@@ -129,6 +141,7 @@ class _TextContent extends StatelessWidget {
     }
   }
 
+  ///The comment feature was scratched due to time constraints
   Widget _commentButton(BuildContext context) {
     return Column(
       children: <Widget>[

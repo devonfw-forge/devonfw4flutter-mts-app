@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines the header of the [OrderPage]
 class OrderHeader extends StatelessWidget {
 
   @override

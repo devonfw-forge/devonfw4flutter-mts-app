@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines a part of the [OrderPage] that let's the user
+///navigate to the previous [Route]
 class ResumeHeader extends StatelessWidget {
 
   @override

@@ -11,7 +11,15 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-
+///Defines the [Button]s at the bottom of the [OrderForm] & is responsible 
+///for emitting the BookingToken to the [OrderBloc]
+///
+///The Send-[Button] dispatches the [TextEditingController.text]
+///to the [OrderBloc] when pressed. The Send-[Button] can
+///only be pressed when the state of the [FormValidationBloc]
+///is [ValidState]. Or in other words, The bookingToken can only be
+///dispatched to the [OrderBloc] when the terms are
+///accepted a bookingToken has been entered.
 class OrderFormButtons extends StatefulWidget {
   final FormValidationBloc _formValidationBloc;
   final TextEditingController _bookingTokenController;
@@ -44,6 +52,7 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
 
   @override
   void initState() {
+    //Build OrderBloc and inject dependency on CurrentOrderBloc
     _orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
     _setUpOrderResponses(_orderBloc);
     super.initState();
@@ -67,6 +76,7 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
           bloc: _orderBloc,
           builder: (context, OrderState state) {
             if (state is LoadingOrderState) {
+              //Loading Animation while waiting for response
               return SizedLoading();
             } else {
               return BlocValidationButton(
@@ -83,6 +93,11 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
     );
   }
 
+  ///Define [ResponseDialog]s that are displayed on order
+  ///confirmation and order rejection
+  ///
+  ///These [String]s are not localized, because this functionality was
+  ///not part of the original MyThaStar Angular front-end.
   _setUpOrderResponses(OrderBloc orderBloc) {
     orderBloc.state.listen((OrderState state) {
       if (state is ConfirmedOrderState) {

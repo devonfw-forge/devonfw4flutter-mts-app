@@ -3,6 +3,11 @@ import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines a Message which informs the user that the 
+///[OrderPositionList] is empty
+///
+///The Message is Wrapped in a [SliverToBoxAdapter]
+///so it can be displayed in a [CustomScrollView].
 class EmptyOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

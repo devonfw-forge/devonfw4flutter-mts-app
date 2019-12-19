@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_state.dart';
@@ -9,21 +10,43 @@ import 'package:my_thai_star_flutter/ui/menu/sliver_search_header.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines the top-level layout of the Widgets related to the
+///menu feature 
+///
+///#### The Menu feature from a top-down view
+///A list of [Dish]es which are fetched form an external API.
+///These dishes can be queried, sorted and added to the current
+///order. 
+///
+///#### Provided Blocs
+///[MenuPage] is responsible for providing the [CurrentSearchBloc] &
+///[DishBloc] to it's descendants. The [CurrentSearchBloc] is 
+///provided here because it is needed by the [SliverSearchHeader]
+///to edit the current search and it needs to be 
+///injected into the [DishBloc] on creation.
+///The [DishBloc] is provided here because it is needed by 
+///[SliverSearchHeader] to request more [Dish]es & by this Widget 
+///to generate the list of [Dish]es.
+///
+///#### Relevant Blocs for this feature
+///[DishBloc], [CurrentOrderBloc],
+///[CurrentSearchBloc], [CurrentSearchBloc], [LocalizationBloc]
+@TopLevelRoute()
 class MenuPage extends StatefulWidget {
-
   @override
   _MenuPageState createState() => _MenuPageState();
 }
 
 class _MenuPageState extends State<MenuPage> {
+  CurrentSearchBloc _searchBloc = CurrentSearchBloc();
   DishBloc _dishBloc;
-  CurrentSearchBloc _searchBloc;
 
   @override
   void initState() {
-    _searchBloc = CurrentSearchBloc();
+    //Injecting dependency
     _dishBloc = DishBloc(_searchBloc);
 
+    //Dispatching initial event
     _dishBloc.dispatch(DishEvents.request);
     super.initState();
   }
@@ -34,6 +57,7 @@ class _MenuPageState extends State<MenuPage> {
       appBar: Header(),
       drawer: AppDrawer(),
       body: MultiBlocProvider(
+        //providing Blocs to descendants
         providers: [
           BlocProvider<CurrentSearchBloc>(
             builder: (BuildContext context) => _searchBloc,
@@ -43,10 +67,12 @@ class _MenuPageState extends State<MenuPage> {
           ),
         ],
         child: CustomScrollView(
+          //CustomScrollView because it contains Widgets of different types
           slivers: <Widget>[
             SliverSearchHeader(),
             BlocBuilder<DishBloc, DishState>(
               builder: (context, DishState state) {
+                //Display List based on state
                 if (state is ErrorDishState) {
                   return _error(state);
                 } else if (state is ReceivedDishState) {
@@ -65,6 +91,7 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 
+  ///Displays a loading animation wrapped in [SliverFillRemaining]
   Widget _loading() {
     return SliverFillRemaining(
       child: Center(
@@ -73,6 +100,7 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 
+  ///Displays an error message wrapped in [SliverFillRemaining]
   Widget _error(ErrorDishState state) {
     return SliverFillRemaining(
       child: Center(
@@ -81,6 +109,7 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 
+  ///Displays a [SliverList] of [DishCard]s
   Widget _list(ReceivedDishState state) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
-import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/ui/menu/filter_buttons.dart';
 import 'package:my_thai_star_flutter/ui/menu/search_bar.dart';
-import 'package:my_thai_star_flutter/localization/translation.dart';
-import 'package:my_thai_star_flutter/ui/menu/sort_drop_down.dart';
+import 'package:my_thai_star_flutter/ui/menu/sort_dropdown.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Defines the [SliverAppBar] at the top of the [MenuPage]
+///
+///[SliverSearchHeader] will disappear when scrolling down
+///and reappear when scrolling up.
 class SliverSearchHeader extends StatelessWidget {
   static const double _height = 160;
 
@@ -26,7 +25,7 @@ class SliverSearchHeader extends StatelessWidget {
           child: Column(
             children: <Widget>[
               SearchBar(),
-              SortDropDown(),
+              SortDropdown(),
               FilterButtons(),
             ],
           ),

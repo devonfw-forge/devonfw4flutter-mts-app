@@ -10,11 +10,19 @@ import 'package:my_thai_star_flutter/ui/menu/labeled_checkbox.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
+///Displays one [Dish] & gives the option to add it
+///to the current order.
+///
+///The [Extra]s of the [Dish] can be modified.
+///The State of to the [Extra]s is handled with
+///a [Map<Extra, BoolBloc>]. This way each [Extra]
+///has a dedicated Bloc no matter how many [Extra]s 
+///a given [Dish] has.
 class DishCard extends StatefulWidget {
   final Dish _dish;
 
-  const DishCard({Key key, @required dish}) :
-        _dish = dish,
+  const DishCard({Key key, @required dish})
+      : _dish = dish,
         super(key: key);
 
   @override
@@ -24,7 +32,8 @@ class DishCard extends StatefulWidget {
 class _DishCardState extends State<DishCard> {
   static const double _imageHeight = 200;
 
-  Map<int, BoolBloc> _checkboxBlocs = Map();
+  ///One [BoolBloc] for each [Extra] CheckBox
+  Map<Extra, BoolBloc> _checkboxBlocs = Map();
   Dish _dish;
 
   _DishCardState(dish) : _dish = dish;
@@ -32,7 +41,7 @@ class _DishCardState extends State<DishCard> {
   @override
   void initState() {
     _dish.extras.forEach(
-      (Extra extra, bool picked) => _checkboxBlocs[extra.id] = BoolBloc(),
+      (Extra extra, bool picked) => _checkboxBlocs[extra] = BoolBloc(),
     );
 
     super.initState();
@@ -85,6 +94,7 @@ class _DishCardState extends State<DishCard> {
                       Translation.of(context).get("buttons/addToOrder"),
                       style: Theme.of(context).textTheme.button,
                     ),
+                    //Dispatch current version of the Dish
                     onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
                         .dispatch(AddDishEvent(_dish)),
                   )
@@ -99,15 +109,19 @@ class _DishCardState extends State<DishCard> {
 
   @override
   void dispose() {
-    _checkboxBlocs.forEach((id, bloc) => bloc.dispose());
+    _checkboxBlocs.forEach((extra, bloc) => bloc.dispose());
     super.dispose();
   }
 
+  ///Maps each [Extra] of the [Dish] to a [LabeledCheckBox]
+  ///
+  ///The state of each [LabeledCheckBox] is handled with the 
+  ///[BoolBloc] that was mapped to the [Extra] in [DishCard._checkboxBlocs]
   List<Widget> _mapExtras() {
     return _dish.extras.keys
         .map(
           (Extra extra) => BlocBuilder<BoolBloc, bool>(
-            bloc: _checkboxBlocs[extra.id],
+            bloc: _checkboxBlocs[extra],
             builder: (context, state) => LabeledCheckBox(
               label: extra.name,
               state: state,
@@ -118,8 +132,10 @@ class _DishCardState extends State<DishCard> {
         .toList();
   }
 
+  ///Updates the [Dish]es [Extra]s & changes the State of the
+  ///relevant [BoolBloc]
   void _onCheckboxStateChange(bool b, Extra extra) {
-    _checkboxBlocs[extra.id].dispatch(BoolBlocEvent.swap);
+    _checkboxBlocs[extra].dispatch(BoolBlocEvent.swap);
 
     Map<Extra, bool> newExtras = Map.from(_dish.extras);
     newExtras[extra] = b;

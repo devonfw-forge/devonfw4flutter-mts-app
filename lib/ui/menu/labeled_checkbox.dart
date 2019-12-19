@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///Defines a [Checkbox] with a lable and styling
 class LabeledCheckBox extends StatelessWidget {
   final String _label;
   final bool _state;

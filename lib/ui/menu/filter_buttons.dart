@@ -5,6 +5,13 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 
+///Defines the [Row] of [FlatButton]s at the 
+///bottom of the [SliverSearchHeader]
+///
+///Responsible for Dispatching [ClearSearchEvent]s 
+///to the [CurrentSearchBloc]. Responsible for 
+///Applying the current search by dispatching 
+///[DishEvents.request]s to the [DishBloc].
 class FilterButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

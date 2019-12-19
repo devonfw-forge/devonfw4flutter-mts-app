@@ -5,7 +5,14 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 
-class SortDropDown extends StatelessWidget {
+///Defines a [Widget] which enables the user to select a sort
+///criteria and a sort direction.
+///
+///The [SortDropdown] dispatches [SetSortEvent]s to the 
+///[CurrentSearchBloc] to modify the current sort criteria.
+///The [SortDropdown] dispatches [FlipDirectionEvent]s to the 
+///[CurrentSearchBloc] to modify the current sort direction.
+class SortDropdown extends StatelessWidget {
   static const double _iconPadding = 12.0;
   static const double _dropDownPadding = 5;
 
@@ -49,6 +56,7 @@ class SortDropDown extends StatelessWidget {
     );
   }
 
+  ///Maps each [Search.sortCriteria] to a [DropdownMenuItem]
   List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
     return Search.sortCriteria
         .map((String value) => DropdownMenuItem<String>(

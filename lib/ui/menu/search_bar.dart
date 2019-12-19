@@ -5,6 +5,10 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/localization/translation.dart';
 
+///Defines a [TextField] that acts as the search bar for the [MenuPage] 
+///
+///The [SearchBar] dispatched [SetQueryEvent]s to the [CurrentSearchBloc]
+///whenever it's text it changed. 
 class SearchBar extends StatefulWidget {
 
   @override
@@ -19,7 +23,7 @@ class _SearchBarState extends State<SearchBar> {
     String currentQuery =
         BlocProvider.of<CurrentSearchBloc>(context).currentState.query;
 
-    //if(currentQuery != null) do this ?? else
+    //load the current query into the TextField if it is not null
     _queryController.text = currentQuery ?? "";
 
     super.initState();
@@ -28,12 +32,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CurrentSearchBloc, Search>(
-      condition: (_, state) {
-        //Only re-build if the query of the emitted State is null
-        return state.query == null;
-      },
       builder: (context, state) {
-        if (state.query == null) _queryController.text = "";
+        //Forces the text field to empty when a ClearSearchEvent has
+        //been dispatched to the CurrentSearchBloc
+        if (state.query == "") _queryController.text = "";
 
         return TextField(
           controller: _queryController,

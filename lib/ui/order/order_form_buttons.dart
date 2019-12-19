@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
@@ -27,7 +27,7 @@ class OrderFormButtons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
           child: Text(
-            LocalizationBloc.of(context).get("buttons/cancel"),
+            Translation.of(context).get("buttons/cancel"),
             style:
                 Theme.of(context).textTheme.button.copyWith(color: Colors.grey),
           ),
@@ -41,7 +41,7 @@ class OrderFormButtons extends StatelessWidget {
             } else {
               return BlocValidationButton(
                 formValidationBloc: _formValidationBloc,
-                lable: LocalizationBloc.of(context).get("buttons/send"),
+                lable: Translation.of(context).get("buttons/send"),
                 onPressedWhenValid: () => BlocProvider.of<OrderBloc>(context)
                     .dispatch(_bookingTokenController.text),
               );

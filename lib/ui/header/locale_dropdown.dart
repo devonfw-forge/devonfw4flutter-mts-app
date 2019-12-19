@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/localization_state.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 
 class LocaleDropDown extends StatelessWidget {
   static const double _paddingRight = 15;
@@ -10,8 +10,8 @@ class LocaleDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocalizationBloc, LocalizationState>(
-      builder: (context, state) => Padding(
+    return BlocBuilder<LocalizationBloc, Locale>(
+      builder: (context, currentLocale) => Padding(
         padding: EdgeInsets.only(right: _paddingRight, left: _paddingLeft),
         child: Theme(
           data: Theme.of(context).copyWith(
@@ -20,7 +20,7 @@ class LocaleDropDown extends StatelessWidget {
           child: DropdownButton<String>(
             underline: SizedBox(),
             iconSize: 0.0,
-            value: state.languageCode,
+            value: currentLocale.languageCode,
             items: _mapDropDownItems(context),
             onChanged: (String locale) =>
                 BlocProvider.of<LocalizationBloc>(context)
@@ -32,7 +32,8 @@ class LocaleDropDown extends StatelessWidget {
   }
 
   List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
-    return LocalizationBloc.supportedLanguages.map<DropdownMenuItem<String>>(
+    return MtsLocalizationDelegate.supportedLanguages
+        .map<DropdownMenuItem<String>>(
       (String code) {
         String assetName = code;
         if (code == "en") assetName = "gb";

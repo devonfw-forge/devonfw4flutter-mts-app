@@ -10,7 +10,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 import 'package:my_thai_star_flutter/ui/order/alert_card.dart';
@@ -64,7 +64,7 @@ class _OrderFormState extends State<OrderForm> {
           ),
           BlocCheckboxTile(
             checkboxBloc: _termsBloc,
-            label: LocalizationBloc.of(context).get("formFields/terms"),
+            label: Translation.of(context).get("formFields/terms"),
           ),
           OrderFormButtons(
             formValidationBloc: _formValidationBloc,
@@ -135,9 +135,9 @@ class _BookingTokenField extends StatelessWidget {
         left: UiHelper.standard_padding,
       ),
       child: BlocFormField(
-        label: LocalizationBloc.of(context).get("formFields/referenceNumber"),
+        label: Translation.of(context).get("formFields/referenceNumber"),
         errorHint:
-            LocalizationBloc.of(context).get("formFields/referenceNumber"),
+            Translation.of(context).get("formFields/referenceNumber"),
         formFieldBloc: _bookingTokenBloc,
         controller: _bookingTokenController,
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class OrderHeader extends StatelessWidget {
@@ -11,7 +11,7 @@ class OrderHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
-          child: Text(LocalizationBloc.of(context).get("sidenav/header"),
+          child: Text(Translation.of(context).get("sidenav/header"),
               style: Theme.of(context)
                   .textTheme
                   .title

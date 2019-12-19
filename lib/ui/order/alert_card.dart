@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/router.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class AlertCard extends StatelessWidget {
@@ -19,12 +19,12 @@ class AlertCard extends StatelessWidget {
               Icon(Icons.report_problem),
               SizedBox(width: UiHelper.standard_padding),
               Expanded(
-                child: Text(LocalizationBloc.of(context).get("alerts/orderID")),
+                child: Text(Translation.of(context).get("alerts/orderID")),
               ),
               SizedBox(width: UiHelper.standard_padding),
               FlatButton(
                 child: Text(
-                  LocalizationBloc.of(context).get("buttons/bookTable"),
+                  Translation.of(context).get("buttons/bookTable"),
                   style: Theme.of(context)
                       .textTheme
                       .button

@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/ui/menu/search_bar.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 class SliverSearchHeader extends StatelessWidget {
@@ -44,7 +44,7 @@ class _Buttons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
             child: Text(
-              LocalizationBloc.of(context).get("buttons/clearFilters"),
+              Translation.of(context).get("buttons/clearFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -56,7 +56,7 @@ class _Buttons extends StatelessWidget {
             }),
         FlatButton(
           child: Text(
-              LocalizationBloc.of(context).get("buttons/applyFilters"),
+              Translation.of(context).get("buttons/applyFilters"),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -84,7 +84,7 @@ class _Sort extends StatelessWidget {
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(
-            LocalizationBloc.of(context).get("menu/filter/sort"),
+            Translation.of(context).get("menu/filter/sort"),
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(width: _dropDownPadding),
@@ -118,7 +118,7 @@ class _Sort extends StatelessWidget {
         .map((String value) => DropdownMenuItem<String>(
               value: value,
               child: Text(
-                LocalizationBloc.of(context).get("menu/filter/$value"),
+                Translation.of(context).get("menu/filter/$value"),
               ),
             ))
         .toList();

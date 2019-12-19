@@ -11,7 +11,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.d
 
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
@@ -54,27 +54,27 @@ class _BookingFormState extends State<BookingForm> {
         children: <Widget>[
           BlocDatePicker(
             formFieldBloc: _dateBloc,
-            lable: LocalizationBloc.of(context).get("formFields/dateTime"),
+            lable: Translation.of(context).get("formFields/dateTime"),
             errorHint: "Please select a Date",
             format: Booking.dateFormat,
           ),
           BlocFormField(
             formFieldBloc: _nameBloc,
-            label: LocalizationBloc.of(context).get("formFields/name"),
-            errorHint: LocalizationBloc.of(context)
+            label: Translation.of(context).get("formFields/name"),
+            errorHint: Translation.of(context)
                 .get("bookTable/formErrors/nameRequired"),
           ),
           BlocFormField(
             formFieldBloc: _emailBloc,
-            label: LocalizationBloc.of(context).get("formFields/email"),
-            errorHint: LocalizationBloc.of(context)
+            label: Translation.of(context).get("formFields/email"),
+            errorHint: Translation.of(context)
                 .get("bookTable/formErrors/emailPattern"),
             keyboardType: TextInputType.emailAddress,
           ),
           BlocFormField(
             formFieldBloc: _guestBloc,
-            label: LocalizationBloc.of(context).get("formFields/guests"),
-            errorHint: LocalizationBloc.of(context)
+            label: Translation.of(context).get("formFields/guests"),
+            errorHint: Translation.of(context)
                 .get("bookTable/formErrors/assistantsRequired"),
             inputFormatter: <TextInputFormatter>[
               WhitelistingTextInputFormatter.digitsOnly
@@ -83,7 +83,7 @@ class _BookingFormState extends State<BookingForm> {
           ),
           BlocCheckboxTile(
             checkboxBloc: _termsBloc,
-            label: LocalizationBloc.of(context).get("formFields/terms"),
+            label: Translation.of(context).get("formFields/terms"),
           ),
           BlocBuilder<BookingBloc, BookingState>(
             builder: (context, BookingState state) {
@@ -92,7 +92,7 @@ class _BookingFormState extends State<BookingForm> {
               } else {
                 return BlocValidationButton(
                   formValidationBloc: _formBloc,
-                  lable: LocalizationBloc.of(context).get("buttons/bookTable"),
+                  lable: Translation.of(context).get("buttons/bookTable"),
                   onPressedWhenValid: () =>
                       BlocProvider.of<BookingBloc>(context)
                           .dispatch(_formBloc.currentState.data),
@@ -125,9 +125,9 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialog(
-              headline: LocalizationBloc.of(context)
+              headline: Translation.of(context)
                   .get("bookTable/dialog/bookingSuccess"),
-              body: LocalizationBloc.of(context)
+              body: Translation.of(context)
                   .get("formFields/referenceNumber"),
               copyableText: state.token,
             ),
@@ -136,7 +136,7 @@ class _BookingFormState extends State<BookingForm> {
           showDialog(
             context: context,
             builder: (BuildContext context) => ResponseDialog(
-              headline: LocalizationBloc.of(context)
+              headline: Translation.of(context)
                   .get("bookTable/dialog/bookingError"),
               body: state.reason,
             ),

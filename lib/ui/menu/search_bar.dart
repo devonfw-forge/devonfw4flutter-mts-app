@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
-import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
+import 'package:my_thai_star_flutter/localization/translation.dart';
 
 class SearchBar extends StatefulWidget {
 
@@ -40,7 +40,7 @@ class _SearchBarState extends State<SearchBar> {
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search),
-            labelText: LocalizationBloc.of(context).get("menu/filter/search"),
+            labelText: Translation.of(context).get("menu/filter/search"),
           ),
           onChanged: (String query) =>
               BlocProvider.of<CurrentSearchBloc>(context)

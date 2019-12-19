@@ -4,8 +4,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
-import 'package:my_thai_star_flutter/blocs/localization_state.dart';
 import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
+import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
 import 'package:my_thai_star_flutter/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/theme.dart';
@@ -15,17 +15,14 @@ void main() {
   runApp(MyThaiStar());
 }
 
-///Globally provides a set of [Bloc]s & Re-builds app when a new 
+///Globally provides a set of [Bloc]s & Re-builds app when a new
 ///[Locale] is selected
 ///
 ///Root of the App. This is the only place where [Bloc]s can be
-///provided to multiple pages. 
-///When the [LocalizationBloc] emits a new [Locale], the entire app 
-///will be rebuilt. This ensures that all [Widget]s that receive State 
-///from the [LocalizationBloc] rebuild. This approach was chosen to 
-///prevent wrapping every Widget dependant on the [LocalizationBloc] 
-///in a [BlocBuilder]. So in other words, better code readability 
-///was traded for worse performance.
+///provided to multiple pages.
+///When the [LocalizationBloc] emits a new [Locale], the application-
+///wide [Locale] is set in the [MaterialApp] & all localized texts
+///are updated.
 class MyThaiStar extends StatelessWidget {
   static const String title = 'My Thai Star';
 
@@ -33,36 +30,27 @@ class MyThaiStar extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: _buildGlobalProvider(),
-      child: BlocBuilder<LocalizationBloc, LocalizationState>(
-        builder: (context, state) {
-          //Called whenever the LocalizationBloc emits a new Locale I.E.
-          //When the user selects a new language.
-          if (state is LoadedLocalizationState) {
-            return MaterialApp(
-              title: title,
-              theme: themeData,
-              locale: state.locale,
-              initialRoute: Router.home,
-              onGenerateRoute: (RouteSettings settings) =>
-                  Router.generateRoute(settings),
-              localizationsDelegates: [
-                //Flutter ships with Localized versions of their Widgets.
-                //This is where we define that they should change based on
-                //the [MaterialApp.locale] value we set.
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: LocalizationBloc.supportedLanguages
-                  .map((code) => Locale(code))
-                  .toList(),
-            );
-          } else {
-            //When the app first starts, and the LocalizationBloc is in it's
-            //Initial State, this methode is called
-            return _loadLocale(context);
-          }
-        },
+      child: BlocBuilder<LocalizationBloc, Locale>(
+        builder: (context, locale) => MaterialApp(
+          title: title,
+          theme: themeData,
+          locale: locale,
+          initialRoute: Router.home,
+          onGenerateRoute: (RouteSettings settings) =>
+              Router.generateRoute(settings),
+          localizationsDelegates: [
+            //Flutter ships with Localized versions of their Widgets.
+            //This is where we define that they should change based on
+            //the [MaterialApp.locale] value we set.
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            //This is our own Delegate for handeling localized text
+            MtsLocalizationDelegate(),
+          ],
+          supportedLocales: MtsLocalizationDelegate.supportedLanguages
+              .map((code) => Locale(code))
+              .toList(),
+        ),
       ),
     );
   }
@@ -76,8 +64,8 @@ class MyThaiStar extends StatelessWidget {
   ///The [BookingBloc] is needed by the [BookingPage] to place a new booking &
   ///by the [OrderPage] to auto fill-in the booking token.
   ///
-  ///The [LocalizationBloc] is needed by any Widget displaying localized text,
-  ///which is almost all of them.
+  ///The [LocalizationBloc] is needed by the [Header] to set a new [Locale] &
+  ///by the [MaterialApp] to update the current [Locale].
   List<BlocProvider<Bloc<dynamic, dynamic>>> _buildGlobalProvider() => [
         BlocProvider<CurrentOrderBloc>(
           builder: (BuildContext context) => CurrentOrderBloc(),
@@ -89,16 +77,4 @@ class MyThaiStar extends StatelessWidget {
           builder: (BuildContext context) => LocalizationBloc(),
         ),
       ];
-
-  ///Dispatches an initial Locale to the LocalizationBloc &
-  ///displays a loading animation.
-  Widget _loadLocale(BuildContext context) {
-    BlocProvider.of<LocalizationBloc>(context).dispatch(Locale("en"));
-
-    return Container(
-        color: Colors.white,
-        child: Center(
-          child: CircularProgressIndicator(),
-        ));
-  }
 }

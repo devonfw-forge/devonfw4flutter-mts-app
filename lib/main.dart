@@ -6,9 +6,9 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/localization/mts-localization-delegate.dart';
-import 'package:my_thai_star_flutter/router.dart';
+import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
-import 'package:my_thai_star_flutter/ui/mts-theme.dart';
+import 'package:my_thai_star_flutter/ui/mts_theme.dart';
 
 void main() {
   BlocSupervisor.delegate = LogingBlocDelegate();
@@ -16,7 +16,7 @@ void main() {
 }
 
 ///Globally provides a set of [Bloc]s, Re-builds app when a new
-///[Locale] is selected
+///[Locale] is selected 
 ///
 ///Root of the App. This is the only place where [Bloc]s can be
 ///provided to multiple pages.

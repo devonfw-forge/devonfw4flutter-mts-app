@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/crop_image.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-class CustomFormCard extends StatelessWidget {
+///Defines a [Card] with an [AssetImage] header and a [Form] body
+class FormCard extends StatelessWidget {
   final String _headerImageLocation;
   final Widget _form;
   final String _title;
   final String _subTitle;
 
-  const CustomFormCard({
+  const FormCard({
     Key key,
     @required headerImageLocation,
     @required form,
@@ -43,6 +44,10 @@ class CustomFormCard extends StatelessWidget {
   }
 }
 
+///Defines the text area of the [FormCard]
+///
+///If no [_subTitle] is provided, it's area is replaces with an 
+///empty [SizedBox] which is equivalent to not displaying anything.
 class _Titles extends StatelessWidget {
   final String _title;
   final String _subTitle;

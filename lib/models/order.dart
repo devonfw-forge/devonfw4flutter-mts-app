@@ -15,6 +15,8 @@ import 'package:my_thai_star_flutter/models/order_position.dart';
 ///to the front-end representation in the [OrderPage]. If we had a [List<Dish>]
 ///we would need to do a lot of formatting in the UI which is against
 ///th Bloc-pattern
+///
+///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
 @immutable
 class Order extends Equatable {
   final List<OrderPosition> positions;

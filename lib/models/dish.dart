@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 
 ///Defines a dish offered by the fictional MyThaiStar restaurant
+///
+///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
 @immutable
 class Dish extends Equatable {
   final String name;

@@ -9,7 +9,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///Defines the top-level layout of the Widgets related to the
 ///booking feature 
 ///
-///#### The Booking feature from a top-down view
+///#### The Booking feature from a top-down view:
 ///Users can book tables at the My Thai Star restaurant.
 ///A given [Booking] requires a set of authentication information and a Date.
 ///Once all required information is collected, the booking 
@@ -17,11 +17,11 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///a booking token is returned that can be used to [Order] dishes for
 ///that [Booking].
 ///
-///#### Limitations
+///#### Limitations:
 ///The "Invite a Friend" Use-case has not been implemented, so
 ///for now that form is just a copy of the [BookingForm]
 ///
-///#### Relevant Blocs for this feature
+///#### Relevant Blocs for this feature:
 ///[BookingBloc], [BookingFormBloc], [LocalizationBloc]
 @TopLevelRoute("/booking") 
 @NotFullyImplemented()

@@ -13,12 +13,12 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///Defines the top-level layout of the Widgets related to the
 ///menu feature 
 ///
-///#### The Menu feature from a top-down view
+///#### The Menu feature from a top-down view:
 ///The menu is a list of [Dish]es that are fetched form an external API.
 ///These dishes can be queried, sorted and added to the current
 ///order. 
 ///
-///#### Provided Blocs
+///#### Provided Blocs:
 ///The [MenuPage] is responsible for providing the [CurrentSearchBloc] &
 ///[DishBloc] to it's descendants. The [CurrentSearchBloc] is 
 ///provided here because it is needed by the [SliverSearchHeader]
@@ -28,7 +28,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///[SliverSearchHeader] to request more [Dish]es & by this Widget 
 ///to generate the list of [Dish]es.
 ///
-///#### Relevant Blocs for this feature
+///#### Relevant Blocs for this feature:
 ///[DishBloc], [CurrentOrderBloc],
 ///[CurrentSearchBloc], [CurrentSearchBloc], [LocalizationBloc]
 @TopLevelRoute("/menu")

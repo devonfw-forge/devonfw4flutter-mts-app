@@ -13,7 +13,7 @@ import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
 ///up MyThaiStar. It provides access to all other pages of the
 ///Application.
 ///
-///#### Relevant Blocs for this feature
+///#### Relevant Blocs for this feature:
 ///[LocalizationBloc]
 @TopLevelRoute("/")
 class HomePage extends StatelessWidget {

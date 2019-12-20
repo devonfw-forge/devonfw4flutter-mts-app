@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-///Defines a reservation placed in the fictional MyThaiStar restornat
+///Defines a reservation placed in the fictional MyThaiStar restaurant
 ///
 ///#### Why Equatable?
 ///Extends [Equatable] to overwrite it's comparison behavior. 

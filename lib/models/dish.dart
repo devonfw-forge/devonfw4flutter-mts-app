@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 
-///Defines a dish offered by the fictional MyThaiStar restornat
+///Defines a dish offered by the fictional MyThaiStar restaurant
 ///
 ///#### Why Equatable?
 ///Extends [Equatable] to overwrite it's comparison behavior. 

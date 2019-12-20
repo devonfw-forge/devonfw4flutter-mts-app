@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
@@ -12,7 +13,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///The [OrderPositionDisplay] provides the options to add/subtract
 ///to/from the [OrderPosition.amount], and remove an
 ///[OrderPosition] from the current order. The communication
-///with the current order happens through the globally 
+///with the current order happens through the globally
 ///provided [CurrentOrderBloc]. [CurrentOrderEvent]s are
 ///dispatched to the [CurrentOrderBloc] to modify it's
 ///state. By handling modifications to the [OrderPosition]
@@ -143,6 +144,7 @@ class _TextContent extends StatelessWidget {
   }
 
   ///The comment feature was scratched due to time constraints
+  @NotFullyImplemented()
   Widget _commentButton(BuildContext context) {
     return Column(
       children: <Widget>[

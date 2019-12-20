@@ -23,7 +23,8 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///
 ///#### Relevant Blocs for this feature
 ///[BookingBloc], [BookingFormBloc], [LocalizationBloc]
-@TopLevelRoute("/booking")
+@TopLevelRoute("/booking") 
+@NotFullyImplemented()
 class BookingPage extends StatelessWidget {
   static const _bookingImage = "assets/images/slider-1.jpg";
   static const _inviteImage = "assets/images/slider-2.jpg";

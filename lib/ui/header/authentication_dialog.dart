@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/annotations.dart';
 
+@NotFullyImplemented()
 class AuthenticationDialog extends StatelessWidget {
   static const double _width = 800;
   static const double _height = 200;

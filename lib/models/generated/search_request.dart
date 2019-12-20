@@ -1,5 +1,12 @@
 import 'package:my_thai_star_flutter/models/search.dart';
 
+///Defines one request that can be send as a json to the MyThaiStar Api.
+///
+///The request defines a search query and will return a [SearchResponse]
+///with dishes matching that query.
+///Can be generated from a [Search].
+///The dependency goes from generated class to domain class
+///to keep the domain class as clean as possible.
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class SearchRequest {
   List<Categories> categories;

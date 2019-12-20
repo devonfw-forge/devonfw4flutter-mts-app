@@ -1,3 +1,7 @@
+///Defines one error that can be received as a json from the MyThaiStar Api.
+///
+///Error can accrue when sending a [BookingRequest]
+///Generated with https://javiercbk.github.io/json_to_dart/
 class BookingError {
   String code;
   String message;

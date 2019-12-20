@@ -1,7 +1,12 @@
 import 'package:my_thai_star_flutter/models/order.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
 
+///Defines one request that can be send as a json to the MyThaiStar Api.
+///
+///The request places one order.
+///Can be generated from a [Order].
+///The dependency goes from generated class to domain class
+///to keep the domain class as clean as possible.
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class OrderRequest {
   BookingNumber booking;

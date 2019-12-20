@@ -2,6 +2,12 @@ import 'package:my_thai_star_flutter/models/booking.dart';
 
 import 'package:intl/intl.dart';
 
+///Defines one request that can be send as a json to the MyThaiStar Api.
+///
+///The request places one booking.
+///Can be generated from a [Booking].
+///The dependency goes from generated class to domain class
+///to keep the domain class as clean as possible.
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class BookingRequest {
   BookingRequestPayload booking;

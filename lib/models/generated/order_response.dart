@@ -1,3 +1,7 @@
+///Defines one response that can be received as a json from the MyThaiStar Api.
+///
+///The response can be received after sending a [OrderRequest]
+///This Response confirms the order.
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class OrderResponse {
   int id;

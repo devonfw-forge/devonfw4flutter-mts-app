@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
-import 'package:my_thai_star_flutter/models/dish.dart';
 
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
@@ -26,13 +25,19 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, CurrentOrderState> {
   Stream<CurrentOrderState> _addDish(AddDishEvent event) async* {
     List<OrderPosition> newPositions = List()..addAll(currentState.positions);
 
-    int index = _getIndex(newPositions, event.dish);
+    int index = newPositions.indexWhere(
+      (OrderPosition pos) => pos.dish == event.dish,
+    );
 
-    if (index != null) {
-      OrderPosition position = newPositions[index];
-      newPositions[index] = position.copyWith(amount: position.amount + 1);
+    if (index != -1) {
+      newPositions[index] = newPositions[index].copyWith(
+        amount: newPositions[index].amount + 1,
+      );
     } else {
-      newPositions.add(OrderPosition(dish: event.dish, amount: 1));
+      newPositions.add(OrderPosition(
+        dish: event.dish,
+        amount: 1,
+      ));
     }
     yield IdleCurrentOrderState(newPositions);
   }
@@ -40,12 +45,15 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, CurrentOrderState> {
   Stream<CurrentOrderState> _removeDish(RemoveDishEvent event) async* {
     List<OrderPosition> newPositions = List()..addAll(currentState.positions);
 
-    int index = _getIndex(newPositions, event.dish);
+    int index = newPositions.indexWhere(
+      (OrderPosition pos) => pos.dish == event.dish,
+    );
 
-    if (index != null) {
-      OrderPosition position = newPositions[index];
-      if (position.amount > 1) {
-        newPositions[index] = position.copyWith(amount: position.amount - 1);
+    if (index != -1) {
+      if (newPositions[index].amount > 1) {
+        newPositions[index] = newPositions[index].copyWith(
+          amount: newPositions[index].amount - 1,
+        );
       } else {
         newPositions.removeAt(index);
       }
@@ -61,15 +69,5 @@ class CurrentOrderBloc extends Bloc<CurrentOrderEvent, CurrentOrderState> {
       newPositions.remove(event.position);
     }
     yield IdleCurrentOrderState(newPositions);
-  }
-
-  int _getIndex(List<OrderPosition> positions, Dish dish) {
-    int index;
-    for (int i = 0; i < positions.length; i++) {
-      if (positions[i].dish == dish) {
-        index = i;
-      }
-    }
-    return index;
   }
 }

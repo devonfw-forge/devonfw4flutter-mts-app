@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';

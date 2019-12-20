@@ -1,6 +1,6 @@
 # Models of My Thai Star
 
-This some documentaion that is generally true for all non-generated models. Instead of having the same text in ever class doc-comment, I put it here.
+This is some documentaion that is true for all non-generated models. Instead of having the same text in ever class doc-comment, I put it here.
 
 #### Why Equatable?
 All models extends [Equatable] to overwrite their comparison behavior. A model will be compared based on it's [props] instead of it's reference. This way we can easily compare if 2 models are the same, based on their values and not based on their location in memory.

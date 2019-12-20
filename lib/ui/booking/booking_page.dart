@@ -14,7 +14,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///A given [Booking] requires a set of authentication information and a Date.
 ///Once all required information is collected, the booking
 ///Request can be send to an external API. If everything is in order,
-///a booking token is returned that can be used to [Order] dishes for
+///a booking token is returned that can be used to order dishes for
 ///that [Booking].
 ///
 ///#### Limitations:

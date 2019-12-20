@@ -16,7 +16,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///order feature
 ///
 ///#### The Order feature from a top-down view:
-///[Order] in the MyThaStar context means selecting
+///Ordering in the MyThaStar context means selecting
 ///[Dish]s and adding them to a [Booking] / Reservation that
 ///was made. This link happens through a 'booking token' that
 ///the user receives once they place a [Booking] on the [BookingPage]

@@ -16,8 +16,8 @@ class TopLevelRoute{
 ///
 ///This annotation makes un-implemented parts of the App
 ///easy to find incase the project will be further developed in the future
-class NotFullyImplemented{
-  const NotFullyImplemented();
+class _NotFullyImplemented{
+  const _NotFullyImplemented();
 }
 
 ///Marks a class that is related to not fully implemented feature
@@ -32,4 +32,4 @@ class NotFullyImplemented{
 ///@NotFullyImplemented()
 ///class Name{}
 ///````
-const NotFullyImplemented notFullyImplemented = const NotFullyImplemented();
+const _NotFullyImplemented notFullyImplemented = const _NotFullyImplemented();

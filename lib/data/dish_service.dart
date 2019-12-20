@@ -8,11 +8,6 @@ import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:http/http.dart' as http;
 
-class NoSuchEntriesException implements Exception {
-  @override
-  String toString() => 'We did not find any dishes matching your search.';
-}
-
 class DishService extends ExchangePoint<Search, List<Dish>> {
   static const int _timeOut = 4;
   static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +
@@ -52,4 +47,9 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
 
     return dishes;
   }
+}
+
+class NoSuchEntriesException implements Exception {
+  @override
+  String toString() => 'We did not find any dishes matching your search.';
 }

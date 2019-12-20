@@ -7,14 +7,6 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
 import 'package:http/http.dart' as http;
 
-class ServerException implements Exception {
-  final String _message;
-  ServerException(message) : _message = message;
-
-  @override
-  String toString() => _message;
-}
-
 class BookingService extends ExchangePoint<Booking, String> {
   static const int _timeOut = 4;
   static const String _dummyBookingNumber = 'CB_DATE_ThisIsAMockToken';
@@ -54,4 +46,12 @@ class BookingService extends ExchangePoint<Booking, String> {
 
     return bookingResponse.bookingToken;
   }
+}
+
+class ServerException implements Exception {
+  final String _message;
+  ServerException(message) : _message = message;
+
+  @override
+  String toString() => _message;
 }

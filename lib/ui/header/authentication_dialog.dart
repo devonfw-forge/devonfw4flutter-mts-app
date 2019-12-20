@@ -47,8 +47,8 @@ class AuthenticationDialog extends StatelessWidget {
 }
 
 List<Tab> _buildTabs(BuildContext context) => <Tab>[
-      Tab(text: Translation.of(context).get("buttons/login")),
-      Tab(text: Translation.of(context).get("buttons/register")),
+      Tab(text: Translation.of(context).get('buttons/login')),
+      Tab(text: Translation.of(context).get('buttons/register')),
     ];
 
 ///Defines a single [Tab] of the [AuthenticationDialog]
@@ -64,12 +64,12 @@ class _AuthenticationTab extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    Translation.of(context).get("formFields/username") + ' *'),
+                    Translation.of(context).get('formFields/username') + ' *'),
           ),
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    Translation.of(context).get("formFields/password") + ' *'),
+                    Translation.of(context).get('formFields/password') + ' *'),
           ),
         ],
       ),

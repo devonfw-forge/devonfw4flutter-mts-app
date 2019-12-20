@@ -13,7 +13,7 @@ class OrderPosition extends Equatable {
   @override
   List<Object> get props => [dish, amount];
 
-  @override String toString() => "${amount.toString()} ${dish.name}";
+  @override String toString() => '${amount.toString()} ${dish.name}';
 
   static double _getPrice(Dish dish, int amount) => dish.price * amount;
 

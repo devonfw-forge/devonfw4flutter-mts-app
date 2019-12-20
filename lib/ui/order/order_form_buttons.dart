@@ -51,7 +51,7 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
       children: <Widget>[
         FlatButton(
           child: Text(
-            Translation.of(context).get("buttons/cancel"),
+            Translation.of(context).get('buttons/cancel'),
             style:
                 Theme.of(context).textTheme.button.copyWith(color: Colors.grey),
           ),
@@ -67,7 +67,7 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
             } else {
               return BlocValidationButton(
                 formValidationBloc: widget._formBloc,
-                lable: Translation.of(context).get("buttons/send"),
+                lable: Translation.of(context).get('buttons/send'),
                 onPressedWhenValid: () =>
                     _orderBloc.dispatch(widget._formBloc.currentState.data),
               );
@@ -92,10 +92,10 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
         showDialog(
           context: context,
           builder: (BuildContext context) => ResponseDialog(
-            headline: "Order Confirmed!",
-            body: "Your delicious dishes will be waiting " +
-                "for you when you arrive to your Booking.\n" +
-                "Your order has the following ID:",
+            headline: 'Order Confirmed!',
+            body: 'Your delicious dishes will be waiting ' +
+                'for you when you arrive to your Booking.\n' +
+                'Your order has the following ID:',
             copyableText: state.orderId.toString(),
           ),
         );
@@ -103,9 +103,9 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
         showDialog(
           context: context,
           builder: (BuildContext context) => ResponseDialog(
-            headline: "Order Denied",
-            body: "Your order could not be processed " +
-                "for for the following reason:\n\n" +
+            headline: 'Order Denied',
+            body: 'Your order could not be processed ' +
+                'for for the following reason:\n\n' +
                 state.reason,
           ),
         );

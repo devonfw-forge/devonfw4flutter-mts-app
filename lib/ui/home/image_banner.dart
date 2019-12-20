@@ -12,9 +12,9 @@ class ImageBanner extends StatelessWidget {
   static const double _starHeight = 80;
 
   //Content
-  static const String _woodImg = "assets/images/Wood2.jpg";
-  static const String _dishImg = "assets/images/background-dish.png";
-  static const String _starImg = "assets/images/star.png";
+  static const String _woodImg = 'assets/images/Wood2.jpg';
+  static const String _dishImg = 'assets/images/background-dish.png';
+  static const String _starImg = 'assets/images/star.png';
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _TextBanner extends StatelessWidget {
             style: Theme.of(context).textTheme.headline,
           ),
           Text(
-            Translation.of(context).get("home/subtitle"),
+            Translation.of(context).get('home/subtitle'),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.subtitle,
           ),

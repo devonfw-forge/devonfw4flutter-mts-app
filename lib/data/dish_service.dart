@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 class NoSuchEntriesException implements Exception {
   @override
-  String toString() => "We did not find any dishes matching your search.";
+  String toString() => 'We did not find any dishes matching your search.';
 }
 
 class DishService extends ExchangePoint<Search, List<Dish>> {
@@ -41,7 +41,7 @@ class DishService extends ExchangePoint<Search, List<Dish>> {
       return DummyData.dishes;
     }
 
-    if (response.body == "") throw NoSuchEntriesException();
+    if (response.body == '') throw NoSuchEntriesException();
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     SearchResponse searchResponse = SearchResponse.fromJson(respJson);

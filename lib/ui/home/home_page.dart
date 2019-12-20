@@ -15,7 +15,7 @@ import 'package:my_thai_star_flutter/ui/home/image_banner.dart';
 ///
 ///#### Relevant Blocs for this feature:
 ///[LocalizationBloc]
-@TopLevelRoute("/")
+@TopLevelRoute('/')
 class HomePage extends StatelessWidget {
   static const double _cardDisplayTopPadding = 170;
 

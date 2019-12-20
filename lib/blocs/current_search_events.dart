@@ -14,7 +14,7 @@ class SetQueryEvent extends CurrentSearchEvent {
   List<Object> get props => [query];
 
   @override
-  String toString() => "Query/" + query;
+  String toString() => 'Query/' + query;
 }
 
 @immutable
@@ -27,7 +27,7 @@ class SetSortEvent extends CurrentSearchEvent {
   List<Object> get props => [sortBy];
 
   @override
-  String toString() => "SortBy/" + sortBy;
+  String toString() => 'SortBy/' + sortBy;
 }
 
 @immutable
@@ -36,7 +36,7 @@ class FlipDirectionEvent extends CurrentSearchEvent {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Flip";
+  String toString() => 'Flip';
 }
 
 @immutable
@@ -45,5 +45,5 @@ class ClearSearchEvent extends CurrentSearchEvent {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Clear";
+  String toString() => 'Clear';
 }

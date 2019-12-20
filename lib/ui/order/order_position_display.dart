@@ -55,7 +55,7 @@ class _Price extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      _price + " €",
+      _price + ' €',
       style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
     );
   }
@@ -78,7 +78,7 @@ class _Amount extends StatelessWidget {
             RemoveDishEvent(_position.dish),
           ),
         ),
-        Text("${_position.amount}",
+        Text('${_position.amount}',
             style: Theme.of(context)
                 .textTheme
                 .subtitle
@@ -133,7 +133,7 @@ class _TextContent extends StatelessWidget {
         children: <Widget>[
           SizedBox(height: _textDistance),
           Text(
-            "${_dish.selectedExtras()}",
+            '${_dish.selectedExtras()}',
             style: TextStyle(color: Theme.of(context).accentColor),
           ),
         ],
@@ -150,7 +150,7 @@ class _TextContent extends StatelessWidget {
       children: <Widget>[
         SizedBox(height: _textDistance),
         Text(
-          Translation.of(context).get("buttons/addComment"),
+          Translation.of(context).get('buttons/addComment'),
           style: TextStyle(color: Theme.of(context).accentColor),
         ),
       ],

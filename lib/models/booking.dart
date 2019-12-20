@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 @immutable
 class Booking extends Equatable {
-  static final DateFormat dateFormat = DateFormat("dd-MM-yyyy HH:mm");
+  static final DateFormat dateFormat = DateFormat('dd-MM-yyyy HH:mm');
 
   final DateTime date;
   final String name;

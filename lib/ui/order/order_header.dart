@@ -12,7 +12,7 @@ class OrderHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(UiHelper.standard_padding),
           alignment: Alignment.topLeft,
-          child: Text(Translation.of(context).get("sidenav/header"),
+          child: Text(Translation.of(context).get('sidenav/header'),
               style: Theme.of(context)
                   .textTheme
                   .title

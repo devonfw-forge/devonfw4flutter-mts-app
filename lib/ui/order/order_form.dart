@@ -76,7 +76,7 @@ class _OrderFormState extends State<OrderForm> {
         ),
         BlocCheckboxTile(
           checkboxBloc: _termsBloc,
-          label: Translation.of(context).get("formFields/terms"),
+          label: Translation.of(context).get('formFields/terms'),
         ),
         OrderFormButtons(formBloc: _formBloc),
       ],
@@ -113,8 +113,8 @@ class _BookingTokenField extends StatelessWidget {
         left: UiHelper.standard_padding,
       ),
       child: BlocFormField(
-        label: Translation.of(context).get("formFields/referenceNumber"),
-        errorHint: Translation.of(context).get("formFields/referenceNumber"),
+        label: Translation.of(context).get('formFields/referenceNumber'),
+        errorHint: Translation.of(context).get('formFields/referenceNumber'),
         formFieldBloc: _bookingTokenBloc,
         controller: _bookingTokenController,
       ),

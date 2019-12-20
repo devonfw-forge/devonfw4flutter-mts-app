@@ -10,7 +10,7 @@ class InitialOrderState extends OrderState {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Initial";
+  String toString() => 'Initial';
 }
 
 @immutable
@@ -23,7 +23,7 @@ class RejectedOrderState extends OrderState {
   List<Object> get props => [reason];
 
   @override
-  String toString() => "Rejected/Reason: " + reason;
+  String toString() => 'Rejected/Reason: ' + reason;
 }
 
 @immutable
@@ -36,7 +36,7 @@ class ConfirmedOrderState extends OrderState {
   List<Object> get props => [orderId];
 
   @override
-  String toString() => "Confirmed/ID: " + orderId.toString();
+  String toString() => 'Confirmed/ID: ' + orderId.toString();
 }
 
 @immutable
@@ -47,5 +47,5 @@ class LoadingOrderState extends OrderState {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Loading";
+  String toString() => 'Loading';
 }

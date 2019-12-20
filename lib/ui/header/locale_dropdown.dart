@@ -35,15 +35,15 @@ class LocaleDropDown extends StatelessWidget {
   ///Generates the [DropdownMenuItem]s base on
   ///[MtsLocalizationDelegate.supportedLanguages].
   ///
-  ///Country flags are provided by the "country_icons" package.
+  ///Country flags are provided by the 'country_icons' package.
   List<DropdownMenuItem<String>> _mapDropDownItems(BuildContext context) {
     return MtsLocalizationDelegate.supportedLanguages
         .map<DropdownMenuItem<String>>(
       (String code) {
-        //"en" is not defined as an Icon be the country_icons package,
+        //'en' is not defined as an Icon be the country_icons package,
         //So we overwrite it here
         String assetName = code;
-        if (code == "en") assetName = "gb";
+        if (code == 'en') assetName = 'gb';
 
         return DropdownMenuItem<String>(
           value: code,

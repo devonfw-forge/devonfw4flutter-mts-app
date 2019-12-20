@@ -7,7 +7,7 @@ import 'package:form_bloc/src/field_blocs/field_bloc.dart';
 class NonEmptyFieldBloc extends FieldBloc<String> {
  
   @override
-  ValidationState<String> get initialState => InitialState("");
+  ValidationState<String> get initialState => InitialState('');
  
   @override
   Stream<ValidationState<String>> mapEventToState(String event) async* {

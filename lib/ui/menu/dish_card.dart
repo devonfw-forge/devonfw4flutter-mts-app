@@ -91,7 +91,7 @@ class _DishCardState extends State<DishCard> {
                   RaisedButton(
                     color: Theme.of(context).accentColor,
                     child: Text(
-                      Translation.of(context).get("buttons/addToOrder"),
+                      Translation.of(context).get('buttons/addToOrder'),
                       style: Theme.of(context).textTheme.button,
                     ),
                     //Dispatch current version of the Dish

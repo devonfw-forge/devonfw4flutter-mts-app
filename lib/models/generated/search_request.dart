@@ -24,8 +24,8 @@ class SearchRequest {
 
   SearchRequest.fromSearch(Search search) {
     String sortOrder;
-    if (search.sortBy == "likes") {
-      sortOrder = "description";
+    if (search.sortBy == 'likes') {
+      sortOrder = 'description';
     } else {
       sortOrder = search.sortBy.toLowerCase();
     }
@@ -38,7 +38,7 @@ class SearchRequest {
       sort: [
         Sort(
           property: sortOrder,
-          direction: search.descending ? "DESC" : "ASC",
+          direction: search.descending ? 'DESC' : 'ASC',
         )
       ],
     );

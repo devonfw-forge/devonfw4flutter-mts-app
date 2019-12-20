@@ -17,8 +17,8 @@ class OrderBloc extends Bloc<String, OrderState> {
 
   @override
   Stream<OrderState> mapEventToState(String event) async* {
-    if (event == null || event == "") {
-      yield RejectedOrderState("Please enter a booking ID");
+    if (event == null || event == '') {
+      yield RejectedOrderState('Please enter a booking ID');
     } else {
       yield LoadingOrderState();
 
@@ -29,12 +29,12 @@ class OrderBloc extends Bloc<String, OrderState> {
         ));
 
         if (orderId == 0 || orderId == null) {
-          yield RejectedOrderState("Your booking was Denied");
+          yield RejectedOrderState('Your booking was Denied');
         } else {
           yield ConfirmedOrderState(orderId);
         }
       } catch (e) {
-        yield RejectedOrderState("Error connecting to the service");
+        yield RejectedOrderState('Error connecting to the service');
       }
     }
   }

@@ -67,7 +67,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
       return iconButton;
     } else {
       return Badge(
-        badgeContent: Text("$amount", style: TextStyle(color: Colors.white)),
+        badgeContent: Text('$amount', style: TextStyle(color: Colors.white)),
         position: BadgePosition.topRight(top: 1, right: 1),
         badgeColor: Theme.of(context).accentColor,
         child: iconButton,

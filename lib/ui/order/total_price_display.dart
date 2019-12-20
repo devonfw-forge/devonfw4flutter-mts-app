@@ -16,14 +16,14 @@ class TotalPriceDisplay extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(Translation.of(context).get("formFields/total"),
+          Text(Translation.of(context).get('formFields/total'),
               style: Theme.of(context)
                   .textTheme
                   .title
                   .copyWith(color: Colors.black)),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
             builder: (context, state) => Text(
-              "${state.formattedTotalPrice} €",
+              '${state.formattedTotalPrice} €',
               style: Theme.of(context)
                   .textTheme
                   .title

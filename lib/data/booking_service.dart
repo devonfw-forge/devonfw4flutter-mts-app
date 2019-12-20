@@ -17,7 +17,7 @@ class ServerException implements Exception {
 
 class BookingService extends ExchangePoint<Booking, String> {
   static const int _timeOut = 4;
-  static const String _dummyBookingNumber = "CB_DATE_ThisIsAMockToken";
+  static const String _dummyBookingNumber = 'CB_DATE_ThisIsAMockToken';
   static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +
       'rest/bookingmanagement/v1/booking';
 

@@ -16,7 +16,7 @@ class OrderFormBloc extends FormBaseBloc<String> {
         ]);
 
   @override
-  ValidationState<String> get initialState => InitialState("");
+  ValidationState<String> get initialState => InitialState('');
 
   @override
   Stream<ValidationState<String>> mapEventToState(FormEvent event) async* {

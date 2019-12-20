@@ -18,13 +18,13 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///#### The Order feature from a top-down view:
 ///[Order] in the MyThaStar context means selecting
 ///[Dish]s and adding them to a [Booking] / Reservation that
-///was made. This link happens through a "booking token" that
+///was made. This link happens through a 'booking token' that
 ///the user receives once they place a [Booking] on the [BookingPage]
 ///
 ///#### Relevant Blocs for this feature:
 ///[OrderBloc], [CurrentOrderBloc], [OrderFormBloc]
 ///[BookingBloc], [LocalizationBloc]
-@TopLevelRoute("/order")
+@TopLevelRoute('/order')
 class OrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

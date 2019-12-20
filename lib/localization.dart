@@ -6,14 +6,14 @@ import 'package:flutter/services.dart' show rootBundle;
 
 class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
   static const List<String> supportedLanguages = [
-    "en",
-    "de",
-    "bg",
-    "es",
-    "fr",
-    "nl",
-    "pl",
-    "ru",
+    'en',
+    'de',
+    'bg',
+    'es',
+    'fr',
+    'nl',
+    'pl',
+    'ru',
   ];
 
   @override
@@ -31,7 +31,7 @@ class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
 
   static Future<Map<dynamic, dynamic>> _loadFromAssets(Locale locale) async {
     String jsonContent = await rootBundle
-        .loadString("assets/languages/${locale.languageCode}.json");
+        .loadString('assets/languages/${locale.languageCode}.json');
 
     return json.decode(jsonContent);
   }
@@ -52,9 +52,9 @@ class Translation {
       List<String> query = path.split('/');
       result = _findInMap(_translationMap, query);
     } catch (e) {
-      result = "Did not find \"$path\"";
+      result = 'Did not find \'$path\'';
     }
-    if (result == null) result = "Did not find \"$path\"";
+    if (result == null) result = 'Did not find \'$path\'';
     return result;
   }
 

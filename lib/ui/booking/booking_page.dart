@@ -18,19 +18,19 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///that [Booking].
 ///
 ///#### Limitations:
-///The "Invite a Friend" use-case has not been implemented, so
+///The 'Invite a Friend' use-case has not been implemented, so
 ///for now that form is just a copy of the [BookingForm].
 ///
 ///#### Relevant Blocs for this feature:
 ///[BookingBloc], [BookingFormBloc], [LocalizationBloc]
-@TopLevelRoute("/booking")
+@TopLevelRoute('/booking')
 @NotFullyImplemented()
 class BookingPage extends StatelessWidget {
   static const double _appBarHeight = 110;
 
   //Content
-  static const _bookingImage = "assets/images/slider-1.jpg";
-  static const _inviteImage = "assets/images/slider-2.jpg";
+  static const _bookingImage = 'assets/images/slider-1.jpg';
+  static const _inviteImage = 'assets/images/slider-2.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +52,14 @@ class BookingPage extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             FormCard(
-              title: Translation.of(context).get("bookTable/bookingTitle"),
+              title: Translation.of(context).get('bookTable/bookingTitle'),
               subTitle:
-                  Translation.of(context).get("bookTable/bookingSubtitle"),
+                  Translation.of(context).get('bookTable/bookingSubtitle'),
               headerImageLocation: _bookingImage,
               form: BookingForm(),
             ),
             FormCard(
-              title: Translation.of(context).get("bookTable/reservationTitle"),
+              title: Translation.of(context).get('bookTable/reservationTitle'),
               headerImageLocation: _inviteImage,
               form: BookingForm(),
             ),
@@ -70,7 +70,7 @@ class BookingPage extends StatelessWidget {
   }
 
   List<Tab> _buildTabs(BuildContext context) => [
-        Tab(text: Translation.of(context).get("buttons/bookTable")),
-        Tab(text: Translation.of(context).get("buttons/inviteFriends")),
+        Tab(text: Translation.of(context).get('buttons/bookTable')),
+        Tab(text: Translation.of(context).get('buttons/inviteFriends')),
       ];
 }

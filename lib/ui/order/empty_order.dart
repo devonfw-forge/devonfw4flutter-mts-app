@@ -23,12 +23,12 @@ class EmptyOrder extends StatelessWidget {
           crossAxisAlignment: WrapCrossAlignment.center,
           alignment: WrapAlignment.spaceBetween,
           children: <Widget>[
-            Text(Translation.of(context).get("sidenav/noSelection")),
+            Text(Translation.of(context).get('sidenav/noSelection')),
             FlatButton(
               padding: EdgeInsets.all(0),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               child: Text(
-                Translation.of(context).get("buttons/addToOrder"),
+                Translation.of(context).get('buttons/addToOrder'),
                 style: Theme.of(context)
                     .textTheme
                     .button

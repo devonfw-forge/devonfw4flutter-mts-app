@@ -31,7 +31,7 @@ class InitialCurrentOrderState extends CurrentOrderState {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Initial";
+  String toString() => 'Initial';
 }
 
 @immutable
@@ -42,5 +42,5 @@ class IdleCurrentOrderState extends CurrentOrderState {
   List<Object> get props => [positions, numberOfDishes, totalPrice];
 
   @override
-  String toString() => "Idle/NumberOfDishes: " + numberOfDishes.toString();
+  String toString() => 'Idle/NumberOfDishes: ' + numberOfDishes.toString();
 }

@@ -56,7 +56,7 @@ class BlocDatePicker extends StatelessWidget {
             errorText: _validate(state),
           ),
           onChanged: (DateTime input) => _formFieldBloc
-              .dispatch(input != null ? _format.format(input) : ""),
+              .dispatch(input != null ? _format.format(input) : ''),
           onShowPicker: (context, currentValue) =>
               _onShowPicker(context, currentValue),
         );

@@ -27,8 +27,8 @@ class Dish extends Equatable {
 
   @override
   toString() {
-    String res = "\"$name\"";
-    res += hasExtras() ? " with " + selectedExtras() : "";
+    String res = '\'$name\'';
+    res += hasExtras() ? ' with ' + selectedExtras() : '';
     return res;
   } 
 
@@ -37,9 +37,9 @@ class Dish extends Equatable {
   String selectedExtras() {
     if (!hasExtras()) return null;
 
-    String res = "";
-    extras.forEach((extra, picked) => res += picked ? extra.name + ", " : "");
-    return res.replaceRange(res.length - 2, res.length - 1, "");
+    String res = '';
+    extras.forEach((extra, picked) => res += picked ? extra.name + ', ' : '');
+    return res.replaceRange(res.length - 2, res.length - 1, '');
   }
 
   Dish copyWith({

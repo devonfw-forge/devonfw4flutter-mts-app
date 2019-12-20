@@ -19,7 +19,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 ///Defines the form that is responsible for handleing the booking process
 ///
 ///The [BookingForm] was not implemented using Flutters in-built [Form].
-///Instead a costume solution was built in the form of the "form_bloc" package.
+///Instead a costume solution was built in the form of the 'form_bloc' package.
 ///This application follows the bloc-pattern for (almost) every  feature
 ///(except localization). Flutters standart [Form]s do not follow the bloc-
 ///pattern. Validation happens through functions in the interface and the state
@@ -69,28 +69,28 @@ class _BookingFormState extends State<BookingForm> {
       children: <Widget>[
         BlocDatePicker(
           formFieldBloc: _dateBloc,
-          lable: Translation.of(context).get("formFields/dateTime"),
-          errorHint: "Please select a Date",
+          lable: Translation.of(context).get('formFields/dateTime'),
+          errorHint: 'Please select a Date',
           format: Booking.dateFormat,
         ),
         BlocFormField(
           formFieldBloc: _nameBloc,
-          label: Translation.of(context).get("formFields/name"),
+          label: Translation.of(context).get('formFields/name'),
           errorHint:
-              Translation.of(context).get("bookTable/formErrors/nameRequired"),
+              Translation.of(context).get('bookTable/formErrors/nameRequired'),
         ),
         BlocFormField(
           formFieldBloc: _emailBloc,
-          label: Translation.of(context).get("formFields/email"),
+          label: Translation.of(context).get('formFields/email'),
           errorHint:
-              Translation.of(context).get("bookTable/formErrors/emailPattern"),
+              Translation.of(context).get('bookTable/formErrors/emailPattern'),
           keyboardType: TextInputType.emailAddress,
         ),
         BlocFormField(
           formFieldBloc: _guestBloc,
-          label: Translation.of(context).get("formFields/guests"),
+          label: Translation.of(context).get('formFields/guests'),
           errorHint: Translation.of(context)
-              .get("bookTable/formErrors/assistantsRequired"),
+              .get('bookTable/formErrors/assistantsRequired'),
           inputFormatter: <TextInputFormatter>[
             WhitelistingTextInputFormatter.digitsOnly
           ],
@@ -98,7 +98,7 @@ class _BookingFormState extends State<BookingForm> {
         ),
         BlocCheckboxTile(
           checkboxBloc: _termsBloc,
-          label: Translation.of(context).get("formFields/terms"),
+          label: Translation.of(context).get('formFields/terms'),
         ),
         BlocBuilder<BookingBloc, BookingState>(
           builder: (context, BookingState state) {
@@ -109,7 +109,7 @@ class _BookingFormState extends State<BookingForm> {
               //the [BookingBloc] is not loading
               return BlocValidationButton(
                 formValidationBloc: _formBloc,
-                lable: Translation.of(context).get("buttons/bookTable"),
+                lable: Translation.of(context).get('buttons/bookTable'),
                 onPressedWhenValid: () => BlocProvider.of<BookingBloc>(context)
                     .dispatch(_formBloc.currentState.data),
               );
@@ -149,8 +149,8 @@ class _BookingFormState extends State<BookingForm> {
             context: context,
             builder: (BuildContext context) => ResponseDialog(
               headline: Translation.of(context)
-                  .get("bookTable/dialog/bookingSuccess"),
-              body: Translation.of(context).get("formFields/referenceNumber"),
+                  .get('bookTable/dialog/bookingSuccess'),
+              body: Translation.of(context).get('formFields/referenceNumber'),
               copyableText: state.token,
             ),
           );
@@ -159,7 +159,7 @@ class _BookingFormState extends State<BookingForm> {
             context: context,
             builder: (BuildContext context) => ResponseDialog(
               headline:
-                  Translation.of(context).get("bookTable/dialog/bookingError"),
+                  Translation.of(context).get('bookTable/dialog/bookingError'),
               body: state.reason,
             ),
           );

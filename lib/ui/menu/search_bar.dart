@@ -24,7 +24,7 @@ class _SearchBarState extends State<SearchBar> {
         BlocProvider.of<CurrentSearchBloc>(context).currentState.query;
 
     //load the current query into the TextField if it is not null
-    _queryController.text = currentQuery ?? "";
+    _queryController.text = currentQuery ?? '';
 
     super.initState();
   }
@@ -35,14 +35,14 @@ class _SearchBarState extends State<SearchBar> {
       builder: (context, state) {
         //Forces the text field to empty when a ClearSearchEvent has
         //been dispatched to the CurrentSearchBloc
-        if (state.query == "") _queryController.text = "";
+        if (state.query == '') _queryController.text = '';
 
         return TextField(
           controller: _queryController,
           decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(Icons.search),
-            labelText: Translation.of(context).get("menu/filter/search"),
+            labelText: Translation.of(context).get('menu/filter/search'),
           ),
           onChanged: (String query) =>
               BlocProvider.of<CurrentSearchBloc>(context)

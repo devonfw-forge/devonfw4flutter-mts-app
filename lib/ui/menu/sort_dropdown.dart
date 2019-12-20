@@ -27,7 +27,7 @@ class SortDropdown extends StatelessWidget {
             child: Icon(Icons.sort, color: Colors.grey),
           ),
           Text(
-            Translation.of(context).get("menu/filter/sort"),
+            Translation.of(context).get('menu/filter/sort'),
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(width: _dropDownPadding),
@@ -62,7 +62,7 @@ class SortDropdown extends StatelessWidget {
         .map((String value) => DropdownMenuItem<String>(
               value: value,
               child: Text(
-                Translation.of(context).get("menu/filter/$value"),
+                Translation.of(context).get('menu/filter/$value'),
               ),
             ))
         .toList();

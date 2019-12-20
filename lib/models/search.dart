@@ -10,7 +10,7 @@ class Search extends Equatable {
   final bool descending;
 
   Search({
-    this.query = "",
+    this.query = '',
     this.sortBy = 'name',
     this.descending = true,
   });

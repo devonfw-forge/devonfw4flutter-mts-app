@@ -21,19 +21,19 @@ class AppDrawer extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: _topMargin),
             _DrawerObject(
-              title: Translation.of(context).get("main/home"),
+              title: Translation.of(context).get('main/home'),
               icon: Icons.home,
               selected: currentRoute == Router.home,
               onTap: () => Navigator.pushNamed(context, Router.home),
             ),
             _DrawerObject(
-              title: Translation.of(context).get("main/book"),
+              title: Translation.of(context).get('main/book'),
               icon: Icons.bookmark,
               selected: currentRoute == Router.booking,
               onTap: () => Navigator.pushNamed(context, Router.booking),
             ),
             _DrawerObject(
-              title: Translation.of(context).get("main/menu"),
+              title: Translation.of(context).get('main/menu'),
               icon: Icons.restaurant_menu,
               selected: currentRoute == Router.menu,
               onTap: () => Navigator.pushNamed(context, Router.menu),

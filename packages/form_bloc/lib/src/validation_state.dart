@@ -13,7 +13,7 @@ class InitialState<T> extends ValidationState<T> {
   List<Object> get props => [data, toString()];
 
   @override
-  String toString() => "Initial";
+  String toString() => 'Initial';
 }
 
 class InvalidState<T> extends ValidationState<T> {
@@ -23,7 +23,7 @@ class InvalidState<T> extends ValidationState<T> {
   List<Object> get props => [data, toString()];
 
   @override
-  String toString() => "Invalid";
+  String toString() => 'Invalid';
 }
 
 class ValidState<T> extends ValidationState<T> {
@@ -33,5 +33,5 @@ class ValidState<T> extends ValidationState<T> {
   List<Object> get props => [data, toString()];
 
   @override
-  String toString() => "Valid";
+  String toString() => 'Valid';
 }

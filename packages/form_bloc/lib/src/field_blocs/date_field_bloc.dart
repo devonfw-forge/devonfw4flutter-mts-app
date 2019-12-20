@@ -12,7 +12,7 @@ class DateFieldBloc extends FieldBloc<String> {
   DateFieldBloc(this.format);
 
   @override
-  ValidationState<String> get initialState => InitialState("");
+  ValidationState<String> get initialState => InitialState('');
 
   @override
   Stream<ValidationState<String>> mapEventToState(String event) async* {

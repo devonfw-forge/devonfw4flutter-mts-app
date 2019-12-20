@@ -22,7 +22,7 @@ class BookingBloc extends Bloc<Booking, BookingState> {
       if (bookingToken != null) {
         yield ConfirmedBookingState(bookingToken);
       } else {
-        yield DeclinedBookingState("Did not receive a valid booking ID");
+        yield DeclinedBookingState('Did not receive a valid booking ID');
       }
     } catch (e) {
       yield DeclinedBookingState(e.toString());

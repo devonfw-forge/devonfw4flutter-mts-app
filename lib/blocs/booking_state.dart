@@ -10,7 +10,7 @@ class InitialBookingState extends BookingState {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Initial";
+  String toString() => 'Initial';
 }
 
 @immutable
@@ -23,7 +23,7 @@ class ConfirmedBookingState extends BookingState {
   List<Object> get props => [token];
 
   @override
-  String toString() => "Confirmed/Token: " + token;
+  String toString() => 'Confirmed/Token: ' + token;
 }
 
 @immutable
@@ -32,7 +32,7 @@ class LoadingBookingState extends BookingState {
   List<Object> get props => [toString()];
 
   @override
-  String toString() => "Loading";
+  String toString() => 'Loading';
 }
 
 @immutable
@@ -45,5 +45,5 @@ class DeclinedBookingState extends BookingState {
   List<Object> get props => [reason];
 
   @override
-  String toString() => "Declined/Reason: " + reason;
+  String toString() => 'Declined/Reason: ' + reason;
 }

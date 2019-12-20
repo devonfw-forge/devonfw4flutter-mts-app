@@ -20,7 +20,7 @@ class FilterButtons extends StatelessWidget {
       children: <Widget>[
         FlatButton(
             child: Text(
-              Translation.of(context).get("buttons/clearFilters"),
+              Translation.of(context).get('buttons/clearFilters'),
               style: Theme.of(context)
                   .textTheme
                   .button
@@ -31,7 +31,7 @@ class FilterButtons extends StatelessWidget {
                   .dispatch(ClearSearchEvent());
             }),
         FlatButton(
-          child: Text(Translation.of(context).get("buttons/applyFilters"),
+          child: Text(Translation.of(context).get('buttons/applyFilters'),
               style: Theme.of(context)
                   .textTheme
                   .button

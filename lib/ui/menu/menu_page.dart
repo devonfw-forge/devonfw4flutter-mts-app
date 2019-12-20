@@ -31,7 +31,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///#### Relevant Blocs for this feature:
 ///[DishBloc], [CurrentOrderBloc],
 ///[CurrentSearchBloc], [CurrentSearchBloc], [LocalizationBloc]
-@TopLevelRoute("/menu")
+@TopLevelRoute('/menu')
 class MenuPage extends StatefulWidget {
   @override
   _MenuPageState createState() => _MenuPageState();

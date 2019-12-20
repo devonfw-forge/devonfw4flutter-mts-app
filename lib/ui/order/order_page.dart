@@ -22,7 +22,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///the user receives once they place a [Booking] on the [BookingPage]
 ///
 ///#### Relevant Blocs for this feature:
-///[OrderBloc], [CurrentOrderBloc],
+///[OrderBloc], [CurrentOrderBloc], [OrderFormBloc]
 ///[BookingBloc], [LocalizationBloc]
 @TopLevelRoute("/order")
 class OrderPage extends StatelessWidget {

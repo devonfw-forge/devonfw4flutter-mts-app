@@ -11,7 +11,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///and reappear when scrolling up.
 ///The Category selection of the original Angular
 ///version was not implemented.
-@NotFullyImplemented()
+@notFullyImplemented
 class SliverSearchHeader extends StatelessWidget {
   static const double _height = 160;
 

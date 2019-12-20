@@ -144,7 +144,7 @@ class _TextContent extends StatelessWidget {
   }
 
   ///The comment feature was scratched due to time constraints
-  @NotFullyImplemented()
+  @notFullyImplemented
   Widget _commentButton(BuildContext context) {
     return Column(
       children: <Widget>[

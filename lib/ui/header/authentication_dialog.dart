@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/annotations.dart';
 ///
 ///Authentication was out of the scope of this implementation.
 ///So at the moment the [AuthenticationDialog] is just visual.
-@NotFullyImplemented()
+@notFullyImplemented
 class AuthenticationDialog extends StatelessWidget {
   static const double _width = 800;
   static const double _height = 200;

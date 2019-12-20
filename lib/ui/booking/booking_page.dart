@@ -24,7 +24,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 ///#### Relevant Blocs for this feature:
 ///[BookingBloc], [BookingFormBloc], [LocalizationBloc]
 @TopLevelRoute('/booking')
-@NotFullyImplemented()
+@notFullyImplemented
 class BookingPage extends StatelessWidget {
   static const double _appBarHeight = 110;
 

@@ -14,10 +14,7 @@ class AuthenticationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Tabs aren't members, banause they need context fo the localized text
-    List<Tab> tabs = <Tab>[
-      Tab(text: Translation.of(context).get("buttons/login")),
-      Tab(text: Translation.of(context).get("buttons/register")),
-    ];
+    List<Tab> tabs = _buildTabs(context);
 
     return DefaultTabController(
       length: tabs.length,
@@ -48,6 +45,11 @@ class AuthenticationDialog extends StatelessWidget {
     );
   }
 }
+
+List<Tab> _buildTabs(BuildContext context) => <Tab>[
+      Tab(text: Translation.of(context).get("buttons/login")),
+      Tab(text: Translation.of(context).get("buttons/register")),
+    ];
 
 ///Defines a single [Tab] of the [AuthenticationDialog]
 class _AuthenticationTab extends StatelessWidget {

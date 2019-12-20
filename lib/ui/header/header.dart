@@ -8,12 +8,19 @@ import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 import 'package:my_thai_star_flutter/ui/header/locale_dropdown.dart';
 
-///common [AppBar] throughout the App
+///Defines the [AppBar] used by all [Scaffold]s of the app
+///
+///The [AppBar] property of a [Scaffold] requires a [PreferredSizeWidget].
+///That's why we have to implement it here.
 class Header extends StatelessWidget implements PreferredSizeWidget {
   static const double _elevation = 20;
 
-  final double _height;
+  ///This widget appears across the bottom of the app bar.
+  ///
+  ///Typically a [TabBar]. Only widgets that implement
+  ///[PreferredSizeWidget] can be used at the bottom of an app bar.
   final Widget _bottom;
+  final double _height;
 
   const Header({Key key, height = 50.0, bottom})
       : _height = height,
@@ -47,6 +54,9 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
+  ///Generate a [IconButton] with a [Badge] in the top right corner
+  ///
+  ///The badge only appears when the [amount] is > 0
   Widget _buildBasketIcon(int amount, BuildContext context) {
     Widget iconButton = IconButton(
       icon: Icon(Icons.shopping_basket, color: Colors.white),

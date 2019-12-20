@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/annotations.dart';
 
+///Defines [AlertDialog] with 2 [Tab]s: One for login, one for register
+///
+///Authentication was out of the scope of this implementation.
+///So at the moment the [AuthenticationDialog] is just visual.
 @NotFullyImplemented()
 class AuthenticationDialog extends StatelessWidget {
   static const double _width = 800;
@@ -9,6 +13,7 @@ class AuthenticationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Tabs aren't members, banause they need context fo the localized text
     List<Tab> tabs = <Tab>[
       Tab(text: Translation.of(context).get("buttons/login")),
       Tab(text: Translation.of(context).get("buttons/register")),
@@ -44,6 +49,7 @@ class AuthenticationDialog extends StatelessWidget {
   }
 }
 
+///Defines a single [Tab] of the [AuthenticationDialog]
 class _AuthenticationTab extends StatelessWidget {
   static const double _padding = 20;
 
@@ -56,14 +62,12 @@ class _AuthenticationTab extends StatelessWidget {
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    Translation.of(context).get("formFields/username") +
-                        ' *'),
+                    Translation.of(context).get("formFields/username") + ' *'),
           ),
           TextField(
             decoration: InputDecoration(
                 labelText:
-                    Translation.of(context).get("formFields/password") +
-                        ' *'),
+                    Translation.of(context).get("formFields/password") + ' *'),
           ),
         ],
       ),

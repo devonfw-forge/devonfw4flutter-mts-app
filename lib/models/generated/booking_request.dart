@@ -21,7 +21,7 @@ class BookingRequest {
   }
   BookingRequest.fromBooking(Booking b) {
     booking = BookingRequestPayload(
-      bookingDate: formatDate(b.date),
+      bookingDate: _formatDate(b.date),
       name: b.name,
       email: b.organizerEmail,
       assistants: b.guests,
@@ -63,7 +63,9 @@ class BookingRequestPayload {
   }
 }
 
-String formatDate(DateTime original) {
+///Formates a given [DateTime] to the format required by the
+///MyThaiStar Back-end
+String _formatDate(DateTime original) {
   DateFormat newFormat = DateFormat("yyyy-MM-ddTHH:mm:ss.SSS'Z'");
   return newFormat.format(original);
 }

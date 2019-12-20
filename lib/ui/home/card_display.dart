@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 import 'package:my_thai_star_flutter/ui/home/home_card.dart';
 
-///Column that holds 2 [HomeCard]s
+///Defines a [Column] that holds 2 [HomeCard]s
 class CardDisplay extends StatelessWidget {
   //Content
   static const String _restaurantImg = 'assets/images/thai-restaurant.jpg';
@@ -21,7 +21,7 @@ class CardDisplay extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.all(UiHelper.standard_padding),
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: _shadowColor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-///A [Container] with a background Asset
+///Defines a [Container] with a given background [AssetImage]
 ///
 ///Removes some of the boilerplate when using multiple
 ///[Container]s in a [Stack].

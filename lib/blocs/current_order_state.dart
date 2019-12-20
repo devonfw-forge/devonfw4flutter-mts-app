@@ -20,7 +20,7 @@ abstract class CurrentOrderState implements Equatable {
     return price;
   }
 
-  String get formattedTotalPrice => totalPrice.toStringAsFixed(2);
+  String get formattedTotalPrice => totalPrice.toStringAsFixed(2) + ' €';
 }
 
 @immutable

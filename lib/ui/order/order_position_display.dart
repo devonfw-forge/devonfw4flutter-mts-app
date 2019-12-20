@@ -55,7 +55,7 @@ class _Price extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      _price + ' €',
+      _price,
       style: Theme.of(context).textTheme.subtitle.copyWith(color: Colors.grey),
     );
   }

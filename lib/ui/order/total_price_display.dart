@@ -23,7 +23,7 @@ class TotalPriceDisplay extends StatelessWidget {
                   .copyWith(color: Colors.black)),
           BlocBuilder<CurrentOrderBloc, CurrentOrderState>(
             builder: (context, state) => Text(
-              '${state.formattedTotalPrice} €',
+              '${state.formattedTotalPrice}',
               style: Theme.of(context)
                   .textTheme
                   .title

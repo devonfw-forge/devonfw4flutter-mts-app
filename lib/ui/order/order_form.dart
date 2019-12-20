@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
+import 'package:my_thai_star_flutter/blocs/order_form_bloc.dart';
 import 'package:my_thai_star_flutter/ui/order/order_form_buttons.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
@@ -13,11 +14,14 @@ import 'package:my_thai_star_flutter/ui/order/alert_card.dart';
 ///Defines the form part of the [OrderPage] & is responsible for
 ///setting up it's validation
 ///
+///This form is not implemented as one of Flutter standard
+///[Form]s for the same reason described in the [BookingForm].
+///
 ///The [OrderForm] creates a set of [FieldBloc]s and a
-///[FormValidationBloc] on creation. The [FieldBloc]s
-///are then injected into the [FormValidationBloc].
+///[OrderFormBloc] on creation. The [FieldBloc]s
+///are then injected into the [OrderFormBloc].
 ///[FieldBloc]s are used to validate one field of a
-///from, a [FormValidationBloc] checks if the complete
+///from, a [OrderFormBloc] checks if the complete
 ///form is valid.
 class OrderForm extends StatefulWidget {
   @override
@@ -25,17 +29,22 @@ class OrderForm extends StatefulWidget {
 }
 
 class _OrderFormState extends State<OrderForm> {
-  //Validation
-  FormValidationBloc _formValidationBloc;
+  //Validation: FieldBlocs
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
   NonEmptyFieldBloc _bookingTokeBloc = NonEmptyFieldBloc();
+
+  //Validation: FormBloc
+  OrderFormBloc _formBloc;
 
   TextEditingController _bookingTokenController = TextEditingController();
 
   @override
   void initState() {
-    //Inject FieldBlocs into the FormValidationBloc
-    _formValidationBloc = FormValidationBloc([_termsBloc, _bookingTokeBloc]);
+    //Inject FieldBlocs into the OrderFormBloc
+    _formBloc = OrderFormBloc(
+      termsBloc: _termsBloc,
+      tokenBloc: _bookingTokeBloc,
+    );
 
     BookingState currentBookingState =
         BlocProvider.of<BookingBloc>(context).currentState;
@@ -69,10 +78,7 @@ class _OrderFormState extends State<OrderForm> {
           checkboxBloc: _termsBloc,
           label: Translation.of(context).get("formFields/terms"),
         ),
-        OrderFormButtons(
-          formValidationBloc: _formValidationBloc,
-          bookingTokenController: _bookingTokenController,
-        ),
+        OrderFormButtons(formBloc: _formBloc),
       ],
     );
   }
@@ -80,7 +86,6 @@ class _OrderFormState extends State<OrderForm> {
   @override
   void dispose() {
     _termsBloc.dispose();
-    _formValidationBloc.dispose();
     _bookingTokeBloc.dispose();
 
     super.dispose();

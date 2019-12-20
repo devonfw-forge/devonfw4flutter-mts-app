@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_bloc/barrel.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
+import 'package:my_thai_star_flutter/blocs/order_form_bloc.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
@@ -14,22 +15,18 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///Defines the [Button]s at the bottom of the [OrderForm] & is responsible
 ///for emitting the BookingToken to the [OrderBloc]
 ///
-///The Send-[Button] dispatches the [TextEditingController.text]
+///The Send-[Button] dispatches the booking token 
+///stored in the [OrderFormBloc]'s current state
 ///to the [OrderBloc] when pressed. The Send-[Button] can
-///only be pressed when the state of the [FormValidationBloc]
+///only be pressed when the state of the [OrderFormBloc]
 ///is [ValidState]. Or in other words, The bookingToken can only be
 ///dispatched to the [OrderBloc] when the terms are
 ///accepted a bookingToken has been entered.
 class OrderFormButtons extends StatefulWidget {
-  final FormValidationBloc _formValidationBloc;
-  final TextEditingController _bookingTokenController;
+  final OrderFormBloc _formBloc;
 
-  const OrderFormButtons({
-    Key key,
-    @required FormValidationBloc formValidationBloc,
-    @required TextEditingController bookingTokenController,
-  })  : _formValidationBloc = formValidationBloc,
-        _bookingTokenController = bookingTokenController,
+  const OrderFormButtons({Key key, @required OrderFormBloc formBloc})
+      : _formBloc = formBloc,
         super(key: key);
 
   @override
@@ -69,10 +66,10 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
               return SizedLoading();
             } else {
               return BlocValidationButton(
-                formValidationBloc: widget._formValidationBloc,
+                formValidationBloc: widget._formBloc,
                 lable: Translation.of(context).get("buttons/send"),
                 onPressedWhenValid: () =>
-                    _orderBloc.dispatch(widget._bookingTokenController.text),
+                    _orderBloc.dispatch(widget._formBloc.currentState.data),
               );
             }
           },

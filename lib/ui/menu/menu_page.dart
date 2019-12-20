@@ -14,12 +14,12 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///menu feature 
 ///
 ///#### The Menu feature from a top-down view
-///A list of [Dish]es which are fetched form an external API.
+///The menu is a list of [Dish]es that are fetched form an external API.
 ///These dishes can be queried, sorted and added to the current
 ///order. 
 ///
 ///#### Provided Blocs
-///[MenuPage] is responsible for providing the [CurrentSearchBloc] &
+///The [MenuPage] is responsible for providing the [CurrentSearchBloc] &
 ///[DishBloc] to it's descendants. The [CurrentSearchBloc] is 
 ///provided here because it is needed by the [SliverSearchHeader]
 ///to edit the current search and it needs to be 

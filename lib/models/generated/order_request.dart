@@ -4,7 +4,7 @@ import 'package:my_thai_star_flutter/models/order_position.dart';
 ///Defines one request that can be send as a json to the MyThaiStar Api.
 ///
 ///The request places one order.
-///Can be generated from a [Order].
+///Can be generated from an [Order].
 ///The dependency goes from generated class to domain class
 ///to keep the domain class as clean as possible.
 ///Generated with https://javiercbk.github.io/json_to_dart/
@@ -26,7 +26,7 @@ class OrderRequest {
     }
   }
   OrderRequest.fromOrder(Order order) {
-    booking = BookingNumber(bookingToken: order.bookingCode);
+    booking = BookingNumber(bookingToken: order.bookingToken);
     orderLines = List();
     order.positions.forEach((OrderPosition position) {
       OrderDishData dishData = OrderDishData(amount: position.amount, dishId: position.dish.id);

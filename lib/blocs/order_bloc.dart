@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
-import 'package:my_thai_star_flutter/data/order_service.dart';
 import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
 class OrderBloc extends Bloc<String, OrderState> {
-  final ExchangePoint _orderService = OrderService();
+  final Service _orderService;
   final CurrentOrderBloc _currentOrderBloc;
 
-  OrderBloc(currentOrderBloc) : _currentOrderBloc = currentOrderBloc;
+  OrderBloc({@required currentOrderBloc, @required orderService})
+      : _orderService = orderService,
+        _currentOrderBloc = currentOrderBloc;
 
   @override
   OrderState get initialState => InitialOrderState();
@@ -24,7 +26,7 @@ class OrderBloc extends Bloc<String, OrderState> {
 
       try {
         int orderId = await _orderService.post(Order(
-          bookingCode: event,
+          bookingToken: event,
           positions: _currentOrderBloc.currentState.positions,
         ));
 

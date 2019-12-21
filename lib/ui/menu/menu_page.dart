@@ -4,6 +4,7 @@ import 'package:my_thai_star_flutter/annotations.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/dish_state.dart';
+import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
 import 'package:my_thai_star_flutter/ui/header/header.dart';
 import 'package:my_thai_star_flutter/ui/menu/dish_card.dart';
 import 'package:my_thai_star_flutter/ui/menu/sliver_search_header.dart';
@@ -11,21 +12,21 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/app_drawer.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 ///Defines the top-level layout of the Widgets related to the
-///menu feature 
+///menu feature
 ///
 ///#### The Menu feature from a top-down view:
 ///The menu is a list of [Dish]es that are fetched form an external API.
 ///These dishes can be queried, sorted and added to the current
-///order. 
+///order.
 ///
 ///#### Provided Blocs:
 ///The [MenuPage] is responsible for providing the [CurrentSearchBloc] &
-///[DishBloc] to it's descendants. The [CurrentSearchBloc] is 
+///[DishBloc] to it's descendants. The [CurrentSearchBloc] is
 ///provided here because it is needed by the [SliverSearchHeader]
-///to edit the current search and it needs to be 
+///to edit the current search and it needs to be
 ///injected into the [DishBloc] on creation.
-///The [DishBloc] is provided here because it is needed by 
-///[SliverSearchHeader] to request more [Dish]es & by this Widget 
+///The [DishBloc] is provided here because it is needed by
+///[SliverSearchHeader] to request more [Dish]es & by this Widget
 ///to generate the list of [Dish]es.
 ///
 ///#### Relevant Blocs for this feature:
@@ -43,8 +44,11 @@ class _MenuPageState extends State<MenuPage> {
 
   @override
   void initState() {
-    //Injecting dependency
-    _dishBloc = DishBloc(_searchBloc);
+    //Injecting dependencies
+    _dishBloc = DishBloc(
+      searchBloc: _searchBloc,
+      dishService: RepositoryProvider.of<RepositoryBundle>(context).dish,
+    );
 
     //Dispatching initial event
     _dishBloc.dispatch(DishEvents.request);

@@ -6,6 +6,7 @@ import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
 import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';
@@ -15,11 +16,15 @@ void main() {
   runApp(MyThaiStar());
 }
 
-///Globally provides a set of [Bloc]s, Re-builds app when a new
-///[Locale] is selected 
+///Defines the root of the Application and is responsible to set up a few things
+///before the WidgetTree is build
 ///
-///Root of the App. This is the only place where [Bloc]s can be
-///provided to multiple pages.
+///#### Responsibilities:
+/// - Globally provides a set of [Bloc]s
+/// - Re-builds app when a new [Locale] is selected
+/// - Sets up and provides the [RepositoryBundle] to
+///   enable dependency injection
+///
 ///When the [LocalizationBloc] emits a new [Locale], the application-
 ///wide [Locale] is set in the [MaterialApp] & all localized texts
 ///are updated.
@@ -28,28 +33,32 @@ class MyThaiStar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: _buildGlobalProvider(),
-      child: BlocBuilder<LocalizationBloc, Locale>(
-        builder: (context, locale) => MaterialApp(
-          title: title,
-          theme: MtsTheme.get(),
-          locale: locale,
-          initialRoute: Router.home,
-          onGenerateRoute: (RouteSettings settings) =>
-              Router.generateRoute(settings),
-          localizationsDelegates: [
-            //Flutter ships with Localized versions of their Widgets.
-            //This is where we define that they should change based on
-            //the [MaterialApp.locale] value we set.
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            //This is our own Delegate for handeling localized text
-            MtsLocalizationDelegate(),
-          ],
-          supportedLocales: MtsLocalizationDelegate.supportedLanguages
-              .map((code) => Locale(code))
-              .toList(),
+    return RepositoryProvider<RepositoryBundle>(
+      //Provide Repositories Globally
+      builder: (context) => RepositoryBundle(),
+      child: MultiBlocProvider(
+        providers: _buildGlobalProvider(),
+        child: BlocBuilder<LocalizationBloc, Locale>(
+          builder: (context, locale) => MaterialApp(
+            title: title,
+            theme: MtsTheme.get(),
+            locale: locale,
+            initialRoute: Router.home,
+            onGenerateRoute: (RouteSettings settings) =>
+                Router.generateRoute(settings),
+            localizationsDelegates: [
+              //Flutter ships with Localized versions of their Widgets.
+              //This is where we define that they should change based on
+              //the [MaterialApp.locale] value we set.
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              //This is our own Delegate for handeling localized text
+              MtsLocalizationDelegate(),
+            ],
+            supportedLocales: MtsLocalizationDelegate.supportedLanguages
+                .map((code) => Locale(code))
+                .toList(),
+          ),
         ),
       ),
     );
@@ -72,7 +81,10 @@ class MyThaiStar extends StatelessWidget {
           builder: (BuildContext context) => CurrentOrderBloc(),
         ),
         BlocProvider<BookingBloc>(
-          builder: (BuildContext context) => BookingBloc(),
+          builder: (BuildContext context) => BookingBloc(
+            bookingService:
+                RepositoryProvider.of<RepositoryBundle>(context).booking,
+          ),
         ),
         BlocProvider<LocalizationBloc>(
           builder: (BuildContext context) => LocalizationBloc(),

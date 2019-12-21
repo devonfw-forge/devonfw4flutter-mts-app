@@ -7,7 +7,7 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
 import 'package:http/http.dart' as http;
 
-class BookingService extends ExchangePoint<Booking, String> {
+class BookingService extends Service<Booking, String> {
   static const int _timeOut = 4;
   static const String _dummyBookingNumber = 'CB_DATE_ThisIsAMockToken';
   static const String _endPoint = 'http://10.0.2.2:8082/mythaistar/services/' +

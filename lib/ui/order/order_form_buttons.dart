@@ -7,6 +7,7 @@ import 'package:my_thai_star_flutter/blocs/order_form_bloc.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
+import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
@@ -15,7 +16,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///Defines the [Button]s at the bottom of the [OrderForm] & is responsible
 ///for emitting the BookingToken to the [OrderBloc]
 ///
-///The Send-[Button] dispatches the booking token 
+///The Send-[Button] dispatches the booking token
 ///stored in the [OrderFormBloc]'s current state
 ///to the [OrderBloc] when pressed. The Send-[Button] can
 ///only be pressed when the state of the [OrderFormBloc]
@@ -38,8 +39,11 @@ class _OrderFormButtonsState extends State<OrderFormButtons> {
 
   @override
   void initState() {
-    //Build OrderBloc and inject dependency on CurrentOrderBloc
-    _orderBloc = OrderBloc(BlocProvider.of<CurrentOrderBloc>(context));
+    _orderBloc = OrderBloc(
+      currentOrderBloc: BlocProvider.of<CurrentOrderBloc>(context),
+      orderService: RepositoryProvider.of<RepositoryBundle>(context).order,
+    );
+    
     _setUpOrderResponses(_orderBloc);
     super.initState();
   }

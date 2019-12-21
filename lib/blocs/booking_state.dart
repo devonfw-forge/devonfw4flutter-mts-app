@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+///Describes the current state of the booking process
 @immutable
 abstract class BookingState extends Equatable {}
 

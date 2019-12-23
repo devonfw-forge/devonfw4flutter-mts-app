@@ -1,7 +1,7 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 import 'package:intl/intl.dart';
 
 ///Defines a [DateTimeField] that uses a [FieldBloc]

@@ -6,7 +6,7 @@ import 'package:my_thai_star_flutter/blocs/booking_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/booking_form_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
 
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_date_picker.dart';

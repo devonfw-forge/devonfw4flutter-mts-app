@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 
 ///Defines a [RaisedButton] that uses a [FormBaseBloc]
 ///to determine whether it is enabled or not

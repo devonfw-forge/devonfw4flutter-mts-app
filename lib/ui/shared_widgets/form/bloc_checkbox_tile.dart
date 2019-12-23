@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 
 ///Defines a [CheckboxListTile] that uses a [CheckboxFieldBloc]
 ///to handle it's State.

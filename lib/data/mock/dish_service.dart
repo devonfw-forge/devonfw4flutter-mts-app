@@ -1,8 +1,10 @@
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
+import 'package:my_thai_star_flutter/models/search.dart';
+import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
-class DummyData {
-  static final List<Dish> dishes = [
+class DishService extends Service<Search, List<Dish>> {
+  static final List<Dish> _dummyDishes = [
     Dish(
       id: 1,
       name: "MOCK CHICKEN CURRY",
@@ -27,4 +29,9 @@ class DummyData {
       },
     ),
   ];
+
+  @override
+  Future<List<Dish>> post(Search input) async {
+    return _dummyDishes;
+  }
 }

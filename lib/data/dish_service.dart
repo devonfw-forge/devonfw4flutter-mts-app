@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:my_thai_star_flutter/data/dummy_data.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/generated/search_request.dart';
 import 'package:my_thai_star_flutter/models/generated/search_response.dart';
@@ -20,21 +19,16 @@ class DishService extends Service<Search, List<Dish>> {
 
   @override
   Future<List<Dish>> post(Search input) async {
-    //return DummyData.dishes;
     SearchRequest requestBody = SearchRequest.fromSearch(input);
     http.Response response;
 
-    try {
-      response = await http
-          .post(
-            _endPoint,
-            headers: _requestHeaders,
-            body: jsonEncode(requestBody.toJson()),
-          )
-          .timeout(const Duration(seconds: _timeOut));
-    } catch (e) {
-      return DummyData.dishes;
-    }
+    response = await http
+        .post(
+          _endPoint,
+          headers: _requestHeaders,
+          body: jsonEncode(requestBody.toJson()),
+        )
+        .timeout(const Duration(seconds: _timeOut));
 
     if (response.body == '') throw NoSuchEntriesException();
 

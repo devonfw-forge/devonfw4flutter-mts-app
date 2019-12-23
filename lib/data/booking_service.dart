@@ -20,7 +20,7 @@ class BookingService extends Service<Booking, String> {
   @override
   Future<String> post(Booking input) async {
     BookingRequest requestBody = BookingRequest.fromBooking(input);
-    
+
     http.Response response = await http
         .post(
           _endPoint,
@@ -31,14 +31,15 @@ class BookingService extends Service<Booking, String> {
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
 
+    //Check if response contained an error
     BookingError bookingError = BookingError.fromJson(respJson);
     if (bookingError.message != null) {
       throw ServerException(bookingError.message);
+    } else {
+      //If it doesn't, return the bookingToken
+      BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
+      return bookingResponse.bookingToken;
     }
-
-    BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
-
-    return bookingResponse.bookingToken;
   }
 }
 

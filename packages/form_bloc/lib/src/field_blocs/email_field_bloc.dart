@@ -4,6 +4,7 @@ import 'package:form_bloc/src/validation_state.dart';
 
 import 'package:form_bloc/src/field_blocs/field_bloc.dart';
 
+///Responsible for checking if a given string is a valid email adress
 class EmailFieldBloc extends FieldBloc<String> {
   static final RegExp _emailPattern = RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');

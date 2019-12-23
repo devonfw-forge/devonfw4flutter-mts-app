@@ -1,11 +1,13 @@
 import 'dart:async';
 
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 import 'package:form_bloc/src/validation_state.dart';
 import 'package:intl/intl.dart';
 
 import 'field_bloc.dart';
 
+///Responsible for checking if a given String matches the  
+///defines [DateFormat]
 class DateFieldBloc extends FieldBloc<String> {
   final DateFormat format;
 

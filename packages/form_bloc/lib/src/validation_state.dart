@@ -1,5 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+///Describes the current state of a FormBloc or FieldBloc
+///
+///Validation is tracked though class type and date is
+///carried as a member.
 abstract class ValidationState<T> extends Equatable {
   final T data;
 

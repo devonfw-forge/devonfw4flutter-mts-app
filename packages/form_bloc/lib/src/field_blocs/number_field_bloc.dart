@@ -4,6 +4,8 @@ import 'package:form_bloc/src/validation_state.dart';
 
 import 'package:form_bloc/src/field_blocs/field_bloc.dart';
 
+///Responsible for checking if a given String consist of numbers
+///greater then 0
 class NumberFieldBloc extends FieldBloc<String> {
   @override
   ValidationState<String> get initialState => InitialState(null);

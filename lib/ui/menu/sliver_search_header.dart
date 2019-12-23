@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/annotations.dart';
+import 'package:my_thai_star_flutter/annotation.dart';
 import 'package:my_thai_star_flutter/ui/menu/filter_buttons.dart';
 import 'package:my_thai_star_flutter/ui/menu/search_bar.dart';
 import 'package:my_thai_star_flutter/ui/menu/sort_dropdown.dart';

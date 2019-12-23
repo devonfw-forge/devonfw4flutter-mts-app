@@ -1,7 +1,7 @@
 import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
-class OrderService extends Service<Order, int> {
+class MockOrderService extends Service<Order, int> {
   static const int _dummyNumber = 1;
 
   @override

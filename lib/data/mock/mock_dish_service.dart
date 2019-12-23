@@ -3,7 +3,7 @@ import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
-class DishService extends Service<Search, List<Dish>> {
+class MockDishService extends Service<Search, List<Dish>> {
   static final List<Dish> _dummyDishes = [
     Dish(
       id: 1,

@@ -70,7 +70,7 @@ Once you have a list of FiledBlocs that make up your Form, you need a FormBloc t
 ````dart
 //Validation: FieldBlocs
   EmailFieldBloc _emailBloc = EmailFieldBloc();
-  DateFieldBloc _dateBloc = DateFieldBloc(Booking.dateFormat);
+  DateFieldBloc _dateBloc = DateFieldBloc(DateFormat('dd-MM-yyyy HH:mm'));
   NonEmptyFieldBloc _nameBloc = NonEmptyFieldBloc();
   NumberFieldBloc _guestBloc = NumberFieldBloc();
   CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
@@ -87,8 +87,6 @@ Once you have a list of FiledBlocs that make up your Form, you need a FormBloc t
       guestBloc: _guestBloc,
       termsBloc: _termsBloc,
     );
-
-    _setUpBookingResponses();
 
     super.initState();
   }

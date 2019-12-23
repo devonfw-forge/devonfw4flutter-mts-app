@@ -40,6 +40,15 @@ class SearchResponse {
     data['totalElements'] = this.totalElements;
     return data;
   }
+
+  List<Dish> toDishList() {
+    List<Dish> dishes = List();
+    content.forEach((content) {
+      dishes.add(content.toDish());
+    });
+
+    return dishes;
+  }
 }
 
 class Content {

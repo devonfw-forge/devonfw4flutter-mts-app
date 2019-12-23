@@ -19,9 +19,7 @@ class OrderService extends Service<Order, int> {
   @override
   Future<int> post(Order input) async {
     OrderRequest requestBody = OrderRequest.fromOrder(input);
-    http.Response response;
-
-    response = await http
+    http.Response response = await http
         .post(
           _endPoint,
           headers: _requestHeaders,

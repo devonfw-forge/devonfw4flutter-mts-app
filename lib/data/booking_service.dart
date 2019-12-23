@@ -20,9 +20,8 @@ class BookingService extends Service<Booking, String> {
   @override
   Future<String> post(Booking input) async {
     BookingRequest requestBody = BookingRequest.fromBooking(input);
-    http.Response response;
-
-    response = await http
+    
+    http.Response response = await http
         .post(
           _endPoint,
           headers: _requestHeaders,

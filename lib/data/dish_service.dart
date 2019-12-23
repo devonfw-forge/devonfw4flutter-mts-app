@@ -20,9 +20,7 @@ class DishService extends Service<Search, List<Dish>> {
   @override
   Future<List<Dish>> post(Search input) async {
     SearchRequest requestBody = SearchRequest.fromSearch(input);
-    http.Response response;
-
-    response = await http
+    http.Response response = await http
         .post(
           _endPoint,
           headers: _requestHeaders,
@@ -34,12 +32,8 @@ class DishService extends Service<Search, List<Dish>> {
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     SearchResponse searchResponse = SearchResponse.fromJson(respJson);
-    List<Dish> dishes = List();
-    searchResponse.content.forEach((content) {
-      dishes.add(content.toDish());
-    });
 
-    return dishes;
+    return searchResponse.toDishList();
   }
 }
 

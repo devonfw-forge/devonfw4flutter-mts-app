@@ -16,12 +16,12 @@ void main() {
   runApp(MyThaiStar());
 }
 
-///Defines the root of the Application and is responsible to set up a few things
+///Defines the root of the Application and is responsible for setting up a few things
 ///before the WidgetTree is build
 ///
 ///#### Responsibilities:
 /// - Globally provides a set of [Bloc]s
-/// - Re-builds app when a new [Locale] is selected
+/// - Re-builds the app when a new [Locale] is selected
 /// - Sets up and provides the [RepositoryBundle] to
 ///   enable dependency injection
 ///
@@ -30,12 +30,13 @@ void main() {
 ///are updated.
 class MyThaiStar extends StatelessWidget {
   static const String title = 'My Thai Star';
+  static const bool _runningMockRepositories = true;
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<RepositoryBundle>(
       //Provide Repositories Globally
-      builder: (context) => RepositoryBundle(),
+      builder: (context) => RepositoryBundle(_runningMockRepositories),
       child: MultiBlocProvider(
         providers: _buildGlobalProvider(),
         child: BlocBuilder<LocalizationBloc, Locale>(

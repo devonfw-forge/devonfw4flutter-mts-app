@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 
+///Describes how the process of fetching [Dish]es is going
 @immutable
 abstract class DishState extends Equatable {}
 

@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:form_bloc/barrel.dart';
+import 'package:form_bloc/form_bloc.dart';
 
+///Handles the current state of the [OrderForm]
+///
+///When the [Bloc.currentState] of both the [termsBloc] and the [_tokenBloc] are
+///[ValidState], the [OrderFormBloc] will emit a [ValidState] carrying the current
+///booking token. 
+///If any of the [Bloc.currentState] of the [termsBloc] and the [_tokenBloc]
+///is [InvalidSate], [OrderFormBloc] will emit a [InvalidState].
 class OrderFormBloc extends FormBaseBloc<String> {
   final NonEmptyFieldBloc _tokenBloc;
-  final CheckboxFieldBloc _termsBloc;
 
   OrderFormBloc({
     @required tokenBloc,
     @required termsBloc,
   })  : _tokenBloc = tokenBloc,
-        _termsBloc = termsBloc,
         super([
           tokenBloc,
-          termsBloc,
+          termsBloc
         ]);
 
   @override
   ValidationState<String> get initialState => InitialState('');
 
+  ///Called every time one of the [FieldBloc]s of [FormBaseBloc] changes state
   @override
   Stream<ValidationState<String>> mapEventToState(FormEvent event) async* {
     if (isFormValid()) {

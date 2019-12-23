@@ -2,19 +2,21 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
-import 'package:my_thai_star_flutter/data/booking_service.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
 
 ///Handles the placing of [Booking]s
 ///
 ///Consumes [Booking]s as events and sends them to
-///it's [BookingService].
+///it's [_bookingService].
 ///Emits [BookingState] describing the state of that
 ///process. (Confirmed, Declined, Loading etc.)
 class BookingBloc extends Bloc<Booking, BookingState> {
   final Service _bookingService;
 
+  ///Creates one [BookingBloc]
+  ///
+  ///The dependency on the the [_bookingService] is injected.
   BookingBloc({@required bookingService}) : _bookingService = bookingService;
 
   @override

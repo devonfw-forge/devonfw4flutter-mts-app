@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+///Describes the current state of the order process
 @immutable
 abstract class OrderState implements Equatable {}
 

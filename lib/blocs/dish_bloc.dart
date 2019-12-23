@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
-import 'package:my_thai_star_flutter/data/dish_service.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
@@ -32,6 +31,10 @@ class DishBloc extends Bloc<DishEvents, DishState> {
   final CurrentSearchBloc _searchBloc;
   final Service _dishService;
 
+  ///Creates one [DishBloc]
+  ///
+  ///The dependency on the the [_dishService] &
+  ///[CurrentSearchBloc] are injected.
   DishBloc({@required searchBloc, @required dishService})
       : _searchBloc = searchBloc,
         _dishService = dishService;

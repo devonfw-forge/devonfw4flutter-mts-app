@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 
+///Logs all state transitions and errors of [Bloc]s
 class LogingBlocDelegate extends BlocDelegate {
   @override
   void onTransition(Bloc bloc, Transition transition) {

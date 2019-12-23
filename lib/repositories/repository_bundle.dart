@@ -22,32 +22,32 @@ class RepositoryBundle {
   final Service booking;
   final Service order;
 
-  RepositoryBundle(bool mock)
-      : dish = _buildDishRepository(mock),
-        booking = _buildBookingRepository(mock),
-        order = _buildOrderRepository(mock);
+  RepositoryBundle({@required bool mock, @required String baseUrl})
+      : dish = _buildDishRepository(mock, baseUrl),
+        booking = _buildBookingRepository(mock, baseUrl),
+        order = _buildOrderRepository(mock, baseUrl);
 
-  static Service _buildDishRepository(bool mock) {
+  static Service _buildDishRepository(bool mock, String baseUrl) {
     if (mock) {
       return MockDishService();
     } else {
-      return DishService();
+      return DishService(baseUrl: baseUrl);
     }
   }
 
-  static Service _buildBookingRepository(bool mock) {
+  static Service _buildBookingRepository(bool mock, String baseUrl) {
     if (mock) {
       return MockBookingService();
     } else {
-      return BookingService();
+      return BookingService(baseUrl: baseUrl);
     }
   }
 
-  static Service _buildOrderRepository(bool mock) {
+  static Service _buildOrderRepository(bool mock, String baseUrl) {
     if (mock) {
       return MockOrderService();
     } else {
-      return OrderService();
+      return OrderService(baseUrl: baseUrl);
     }
   }
 }

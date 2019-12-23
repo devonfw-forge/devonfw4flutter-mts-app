@@ -10,9 +10,25 @@ import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
 import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';
+import 'package:yaml/yaml.dart';
+import 'dart:io';
 
-void main() {
+Map<dynamic, dynamic> _config;
+
+///Runs the application, set's up logging and loads the configurations
+///
+///Responsible for setting up logging for our [Bloc]s &
+///for loading the configurations form the `/config.yaml`.
+///These 2 things need to happen **before** we load application,
+///that's why we are doing them here.
+void main() async {
+  //Logging
   BlocSupervisor.delegate = LogingBlocDelegate();
+
+  //Config
+  String configString = await File("../config.yaml").readAsString();
+  _config = loadYaml(configString);
+
   runApp(MyThaiStar());
 }
 
@@ -30,13 +46,15 @@ void main() {
 ///are updated.
 class MyThaiStar extends StatelessWidget {
   static const String title = 'My Thai Star';
-  static const bool _runningMockRepositories = true;
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<RepositoryBundle>(
       //Provide Repositories Globally
-      builder: (context) => RepositoryBundle(_runningMockRepositories),
+      builder: (context) => RepositoryBundle(
+        mock: _config["use_mock_data"],
+        baseUrl: _config["service_base_url"],
+      ),
       child: MultiBlocProvider(
         providers: _buildGlobalProvider(),
         child: BlocBuilder<LocalizationBloc, Locale>(
@@ -47,15 +65,7 @@ class MyThaiStar extends StatelessWidget {
             initialRoute: Router.home,
             onGenerateRoute: (RouteSettings settings) =>
                 Router.generateRoute(settings),
-            localizationsDelegates: [
-              //Flutter ships with Localized versions of their Widgets.
-              //This is where we define that they should change based on
-              //the [MaterialApp.locale] value we set.
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              //This is our own Delegate for handeling localized text
-              MtsLocalizationDelegate(),
-            ],
+            localizationsDelegates: _buildLocalizationDelegates(),
             supportedLocales: MtsLocalizationDelegate.supportedLanguages
                 .map((code) => Locale(code))
                 .toList(),
@@ -90,5 +100,16 @@ class MyThaiStar extends StatelessWidget {
         BlocProvider<LocalizationBloc>(
           builder: (BuildContext context) => LocalizationBloc(),
         ),
+      ];
+
+  ///Build a set of [LocalizationsDelegate]
+  ///
+  ///The list contains both Flutters own [LocalizationsDelegate] for
+  ///Widgets etc. and out own [MtsLocalizationDelegate].
+  Iterable<LocalizationsDelegate<dynamic>> _buildLocalizationDelegates() => [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        //This is our own Delegate for handeling localized text
+        MtsLocalizationDelegate(),
       ];
 }

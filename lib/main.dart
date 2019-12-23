@@ -48,7 +48,7 @@ class MyThaiStar extends StatelessWidget {
         child: BlocBuilder<LocalizationBloc, Locale>(
           builder: (context, locale) => MaterialApp(
             title: title,
-            theme: MtsTheme.get(),
+            theme: MtsTheme.data,
             locale: locale,
             initialRoute: Router.home,
             onGenerateRoute: (RouteSettings settings) =>

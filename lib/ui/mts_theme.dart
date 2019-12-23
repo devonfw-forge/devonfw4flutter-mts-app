@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ///Defines the global [Theme] of the App
 ///
 ///Will only be accessed once on initialization
-///of the [MaterialApp]. Because we define a global theme once, 
+///of the [MaterialApp]. Because we define a global theme once,
 ///we don't need to set the style of every Widget in the app
 ///manually.
 class MtsTheme {
@@ -11,7 +11,7 @@ class MtsTheme {
   static const Color _accent = Color.fromRGBO(0, 102, 51, 1);
   static const Color _lightGray = Color.fromRGBO(224, 224, 224, 1);
 
-  static ThemeData get() {
+  static ThemeData get data {
     return ThemeData(
       //Text
       textTheme: _buildDefaultTextTheme(),

@@ -7,7 +7,6 @@ class BookingFormBloc extends FormBaseBloc<Booking> {
   final DateFieldBloc _dateBloc;
   final NonEmptyFieldBloc _nameBloc;
   final NumberFieldBloc _guestBloc;
-  final CheckboxFieldBloc _termsBloc;
 
   BookingFormBloc({
     @required emailBloc,
@@ -19,7 +18,6 @@ class BookingFormBloc extends FormBaseBloc<Booking> {
         _dateBloc = dateBloc,
         _nameBloc = nameBloc,
         _guestBloc = guestBloc,
-        _termsBloc = termsBloc,
         super([
           emailBloc,
           dateBloc,
@@ -52,7 +50,6 @@ class BookingFormBloc extends FormBaseBloc<Booking> {
         organizerEmail: _emailBloc.currentState.data,
         date: date,
         guests: guests,
-        termsAccepted: _termsBloc.currentState.data,
       ));
     } else {
       yield InvalidState(Booking(
@@ -60,7 +57,6 @@ class BookingFormBloc extends FormBaseBloc<Booking> {
         organizerEmail: _emailBloc.currentState.data,
         date: date,
         guests: guests,
-        termsAccepted: _termsBloc.currentState.data,
       ));
     }
   }

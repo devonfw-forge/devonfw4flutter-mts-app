@@ -13,14 +13,12 @@ class Booking extends Equatable {
   final String name;
   final String organizerEmail;
   final int guests;
-  final bool termsAccepted;
 
   Booking(
       {this.date,
       this.name,
       this.organizerEmail,
-      this.guests,
-      this.termsAccepted});
+      this.guests,});
 
   Booking copyWith({
     DateTime date,
@@ -34,9 +32,8 @@ class Booking extends Equatable {
         name: name ?? this.name,
         organizerEmail: organizerEmail ?? this.organizerEmail,
         guests: guests ?? this.guests,
-        termsAccepted: termsAccepted ?? this.termsAccepted,
       );
 
   @override
-  List<Object> get props => [date, name, organizerEmail, guests, termsAccepted];
+  List<Object> get props => [date, name, organizerEmail, guests];
 }

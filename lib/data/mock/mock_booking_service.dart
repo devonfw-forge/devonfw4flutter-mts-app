@@ -5,7 +5,5 @@ class MockBookingService extends Service<Booking, String> {
   static const String _dummyToken = 'CB_DATE_ThisIsAMockToken';
 
   @override
-  Future<String> post(Booking input) async {
-    return _dummyToken;
-  }
+  Future<String> post(Booking input) async => _dummyToken;
 }

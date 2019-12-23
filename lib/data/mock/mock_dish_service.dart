@@ -31,7 +31,5 @@ class MockDishService extends Service<Search, List<Dish>> {
   ];
 
   @override
-  Future<List<Dish>> post(Search input) async {
-    return _dummyDishes;
-  }
+  Future<List<Dish>> post(Search input) async => _dummyDishes;
 }

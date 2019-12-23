@@ -7,27 +7,15 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
+import 'package:my_thai_star_flutter/ui/configuration.dart';
 import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';
-import 'package:yaml/yaml.dart';
-import 'dart:io';
 
-Map<dynamic, dynamic> _config;
-
-///Runs the application, set's up logging and loads the configurations
-///
-///Responsible for setting up logging for our [Bloc]s &
-///for loading the configurations form the `/config.yaml`.
-///These 2 things need to happen **before** we load application,
-///that's why we are doing them here.
+///Runs the application & set's up logging
 void main() async {
   //Logging
   BlocSupervisor.delegate = LogingBlocDelegate();
-
-  //Config
-  String configString = await File("../config.yaml").readAsString();
-  _config = loadYaml(configString);
 
   runApp(MyThaiStar());
 }
@@ -52,8 +40,8 @@ class MyThaiStar extends StatelessWidget {
     return RepositoryProvider<RepositoryBundle>(
       //Provide Repositories Globally
       builder: (context) => RepositoryBundle(
-        mock: _config["use_mock_data"],
-        baseUrl: _config["service_base_url"],
+        mock: Configuration.useMockData,
+        baseUrl: Configuration.baseUrl,
       ),
       child: MultiBlocProvider(
         providers: _buildGlobalProvider(),

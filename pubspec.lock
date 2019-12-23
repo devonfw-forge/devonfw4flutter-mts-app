@@ -302,7 +302,7 @@ packages:
     source: hosted
     version: "3.5.0"
   yaml:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: yaml
       url: "https://pub.dartlang.org"

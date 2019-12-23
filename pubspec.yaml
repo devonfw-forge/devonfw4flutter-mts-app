@@ -9,7 +9,6 @@ environment:
 
 dependencies:
   flutter_launcher_icons: ^0.7.4
-  yaml: ^2.2.0
   flutter_bloc: ^0.21.0
   equatable: ^0.6.1
   http: ^0.12.0+2
@@ -43,6 +42,5 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-    - assets/
     - assets/images/
     - assets/languages/

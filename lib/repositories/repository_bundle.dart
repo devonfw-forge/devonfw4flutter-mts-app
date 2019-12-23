@@ -10,8 +10,7 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 ///Generates and hold all repositories of the Application
 ///
 ///The [RepositoryBundle] will generate all relevant repositories once on
-///creation and then hold them in it's member variables. Based on the [mock]
-///boolean, the [RepositoryBundle] will either generate mock or real repositories.
+///creation and then hold them in it's member variables. 
 ///
 ///The [RepositoryBundle] exists to have all repository generation in once central location.
 ///It will be provided globally using a [RepositoryProvider] so it can easily be used

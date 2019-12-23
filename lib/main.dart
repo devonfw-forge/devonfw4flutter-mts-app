@@ -7,7 +7,7 @@ import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/loging_bloc_delegate.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';
-import 'package:my_thai_star_flutter/ui/configuration.dart';
+import 'package:my_thai_star_flutter/configuration.dart';
 import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';

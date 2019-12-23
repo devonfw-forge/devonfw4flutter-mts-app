@@ -11,7 +11,7 @@ import 'package:form_bloc/form_bloc.dart';
 ///The [BlocFormField._errorHint] is displayed based
 ///on the [ValidationState] of the [FieldBloc].
 class BlocFormField extends StatelessWidget {
-  static const int _errorMaxLines = 2;
+  static const int _errorMaxLines = 4;
 
   final FieldBloc _formFieldBloc;
   final String _label;

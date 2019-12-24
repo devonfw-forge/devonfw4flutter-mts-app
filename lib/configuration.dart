@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 ///Provides a set of constant values that are used for configuration

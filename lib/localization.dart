@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-///Generates and then provides a set [Translation] objects to the WidgetTree
+///Generates and then provides a set of [Translation] objects to the WidgetTree
 ///
 ///Flutters in-build way of handling Localization is through [LocalizationsDelegate]s.
 ///We can create a custom one for out localized texts.

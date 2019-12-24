@@ -6,7 +6,7 @@
 class OrderResponse {
   int id;
   int modificationCounter;
-  int bookingId;
+  int orderId;
   int invitedGuestId;
   String bookingToken;
   int hostId;
@@ -14,7 +14,7 @@ class OrderResponse {
   OrderResponse(
       {this.id,
       this.modificationCounter,
-      this.bookingId,
+      this.orderId,
       this.invitedGuestId,
       this.bookingToken,
       this.hostId});
@@ -22,7 +22,7 @@ class OrderResponse {
   OrderResponse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     modificationCounter = json['modificationCounter'];
-    bookingId = json['bookingId'];
+    orderId = json['orderId'];
     invitedGuestId = json['invitedGuestId'];
     bookingToken = json['bookingToken'];
     hostId = json['hostId'];
@@ -32,7 +32,7 @@ class OrderResponse {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['modificationCounter'] = this.modificationCounter;
-    data['bookingId'] = this.bookingId;
+    data['orderId'] = this.orderId;
     data['invitedGuestId'] = this.invitedGuestId;
     data['bookingToken'] = this.bookingToken;
     data['hostId'] = this.hostId;

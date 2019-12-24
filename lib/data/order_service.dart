@@ -7,6 +7,7 @@ import 'package:my_thai_star_flutter/models/generated/order_response.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:http/http.dart' as http;
 
+
 class OrderService extends Service<Order, int> {
   static const int _timeOut = 4;
   static const String _route = 'mythaistar/services/rest/ordermanagement/v1/order';
@@ -19,6 +20,7 @@ class OrderService extends Service<Order, int> {
 
   OrderService({@required String baseUrl}) : _baseUrl = baseUrl;
 
+ 
   @override
   Future<int> post(Order input) async {
     OrderRequest requestBody = OrderRequest.fromOrder(input);
@@ -31,8 +33,8 @@ class OrderService extends Service<Order, int> {
         .timeout(const Duration(seconds: _timeOut));
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
-    OrderResponse bookingResponse = OrderResponse.fromJson(respJson);
+    OrderResponse orderResponse = OrderResponse.fromJson(respJson);
 
-    return bookingResponse.bookingId;
+    return orderResponse.orderId;
   }
 }

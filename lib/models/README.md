@@ -9,7 +9,7 @@ All models extends [Equatable] to overwrite their comparison behavior. A model w
 All model classes are [immutable] for 2 reasons: 
 
 ##### Bloc Package
-All models are or are part of event and state classes. event and state classes are required to be [immutable] by the bloc package for the following reasons _(1)_:
+All models are or are part of event and/or state classes. Event and state classes are required to be [immutable] by the bloc package for the following reasons _(1)_:
  - It allows the library to detect state changes efficiently
  - It makes handling data safer (no side-effects or mutations)
  - It makes state management predictable because we're using static snapshots of our state instead of state which can change at any point in time leading to strange/unpredictable behavior.

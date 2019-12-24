@@ -22,7 +22,7 @@ class OrderPosition extends Equatable {
   static double _getPrice(Dish dish, int amount) => dish.price * amount;
 
   ///Provides a formatted String that displays the total
-  ///price of  [OrderPosition] 
+  ///price of the [OrderPosition] 
   ///
   ///Example: '12,60 €'
   String get formattedPrice => price.toStringAsFixed(2) + ' €';

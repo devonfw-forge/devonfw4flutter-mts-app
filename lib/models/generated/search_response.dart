@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/models/extra.dart';
 ///
 ///The response can be received after sending a [SearchRequest].
 ///Holds the a list of dishes that match the query defined in the [SearchRequest].
-///[Content] can be turned into a [Dish].
+///Can be turned into a List of [Dish]es.
 ///The dependency goes from generated class to domain class
 ///to keep the domain class as clean as possible.
 ///Generated with https://javiercbk.github.io/json_to_dart/

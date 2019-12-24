@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-///Defines a reservation placed in the fictional MyThaiStar restaurant
+///Defines a reservation made in the fictional MyThaiStar restaurant
 ///
 ///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
 @immutable

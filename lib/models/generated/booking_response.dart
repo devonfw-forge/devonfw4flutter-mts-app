@@ -1,7 +1,7 @@
 ///Defines one response that can be received as a json from the MyThaiStar Api.
 ///
 ///The response can be received after sending a [BookingRequest]
-///Holds the [bookingToken].
+///Holds the booking token.
 ///Generated with https://javiercbk.github.io/json_to_dart/
 class BookingResponse {
   int id;

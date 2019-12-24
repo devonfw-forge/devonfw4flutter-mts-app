@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 ///Defines a search query that describes a list [Dish]es and how they should
-///be sorted.
+///be sorted
 ///
 ///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
 @immutable

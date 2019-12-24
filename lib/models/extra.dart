@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-///Defines an addition to a Dish offered by the fictional MyThaiStar restaurant
+///Defines an addition to a [Dish] offered by the fictional MyThaiStar restaurant
 ///
 ///Examples: 'Extra Curry', 'Tofu'
 ///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md

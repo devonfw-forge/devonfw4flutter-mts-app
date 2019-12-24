@@ -57,10 +57,6 @@ class DishBloc extends Bloc<DishEvents, DishState> {
 
   Future<DishState> _loadDishes(Search currentSearch) async {
     List<Dish> newState = await _dishService.post(currentSearch);
-    if (newState == null) {
-      return ErrorDishState('The Response was Empty');
-    } else {
-      return ReceivedDishState(newState);
-    }
+    return ReceivedDishState(newState);
   }
 }

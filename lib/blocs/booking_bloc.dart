@@ -30,11 +30,7 @@ class BookingBloc extends Bloc<Booking, BookingState> {
     try {
       bookingToken = await _bookingService.post(event);
 
-      if (bookingToken != null) {
-        yield ConfirmedBookingState(bookingToken);
-      } else {
-        yield DeclinedBookingState('Did not receive a valid booking ID');
-      }
+      yield ConfirmedBookingState(bookingToken);
     } catch (e) {
       yield DeclinedBookingState(e.toString());
     }

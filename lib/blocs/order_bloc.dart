@@ -9,7 +9,7 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 ///Handles the placing of new [Order]s
 ///
 ///When receiving a booking token as [String], the [OrderBloc] uses the
-///current state of the [CurrentOrderBloc] to place a new [Order] with 
+///current state of the [CurrentOrderBloc] to place a new [Order] with
 ///it's [Service]. The [OrderBloc] then emits new [OrderState] reflecting
 ///the result of that communication.
 ///
@@ -44,13 +44,9 @@ class OrderBloc extends Bloc<String, OrderState> {
           positions: _currentOrderBloc.currentState.positions,
         ));
 
-        if (orderId == 0 || orderId == null) {
-          yield RejectedOrderState('Your booking was Denied');
-        } else {
-          yield ConfirmedOrderState(orderId);
-        }
+        yield ConfirmedOrderState(orderId);
       } catch (e) {
-        yield RejectedOrderState('Error connecting to the service');
+        yield RejectedOrderState(e.toString());
       }
     }
   }

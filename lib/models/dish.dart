@@ -31,16 +31,16 @@ class Dish extends Equatable {
   @override
   toString() {
     String res = '\'$name\'';
-    res += hasExtras() ? ' with ' + selectedExtras() : '';
+    res += hasSelectedExtras() ? ' with ' + selectedExtras() : '';
     return res;
   } 
 
-  bool hasExtras() => extras.values.contains(true);
+  bool hasSelectedExtras() => extras.values.contains(true);
 
   ///Provides formatted [String] containing the selected [Extra]s
   ///with comma separation
   String selectedExtras() {
-    if (!hasExtras()) return null;
+    if (!hasSelectedExtras()) return null;
 
     String res = '';
     extras.forEach((extra, picked) => res += picked ? extra.name + ', ' : '');

@@ -8,10 +8,17 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
 import 'package:http/http.dart' as http;
 
+///Handles communication with the My Thai Star booking Api
+///
+///A [Booking], in the My Thai Star context, is a reservation made
+///at the fictional My Thai Star restaurant. Once a [Booking] is placed,
+///the returned booking token can be used to [Order] [Dish]es for that
+///[Booking].
 class BookingService extends Service<Booking, String> {
   static const int _timeOut = 4;
-  static const String _route = 'mythaistar/services/rest/bookingmanagement/v1/booking';
-   final String _baseUrl;
+  static const String _route =
+      'mythaistar/services/rest/bookingmanagement/v1/booking';
+  final String _baseUrl;
 
   static const Map<String, String> _requestHeaders = {
     'Content-type': 'application/json',
@@ -20,6 +27,10 @@ class BookingService extends Service<Booking, String> {
 
   BookingService({@required String baseUrl}) : _baseUrl = baseUrl;
 
+  ///Posts one [Booking] to the Api and returns the related booking token
+  ///
+  ///Will throw [Exception]s if the communication with the APi fails or
+  ///if the [Booking] could not be placed.
   @override
   Future<String> post(Booking input) async {
     BookingRequest requestBody = BookingRequest.fromBooking(input);
@@ -36,20 +47,11 @@ class BookingService extends Service<Booking, String> {
 
     //Check if response contained an error
     BookingError bookingError = BookingError.fromJson(respJson);
-    if (bookingError.message != null) {
-      throw ServerException(bookingError.message);
-    } else {
-      //If it doesn't, return the bookingToken
-      BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
-      return bookingResponse.bookingToken;
-    }
+    if (bookingError.message != null) throw Exception(bookingError.message);
+
+    BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
+    if (bookingResponse.bookingToken == null) throw Exception("Booking could not be placed");
+
+    return bookingResponse.bookingToken;
   }
-}
-
-class ServerException implements Exception {
-  final String _message;
-  ServerException(message) : _message = message;
-
-  @override
-  String toString() => _message;
 }

@@ -3,6 +3,7 @@ import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 
+///Defines a mock [DishService], that's meant for testing
 class MockDishService extends Service<Search, List<Dish>> {
   static final List<Dish> _dummyDishes = [
     Dish(
@@ -30,6 +31,7 @@ class MockDishService extends Service<Search, List<Dish>> {
     ),
   ];
 
+  ///Will always return a fixed list of [Dish]es no matter the input
   @override
   Future<List<Dish>> post(Search input) async => _dummyDishes;
 }

@@ -9,7 +9,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///
 ///[SliverSearchHeader] will disappear when scrolling down
 ///and reappear when scrolling up.
-///The Category selection of the original Angular
+///The category selection of the original Angular
 ///version was not implemented.
 @notFullyImplemented
 class SliverSearchHeader extends StatelessWidget {

@@ -20,9 +20,6 @@ import 'package:my_thai_star_flutter/ui/order/alert_card.dart';
 ///The [OrderForm] creates a set of [FieldBloc]s and a
 ///[OrderFormBloc] on creation. The [FieldBloc]s
 ///are then injected into the [OrderFormBloc].
-///[FieldBloc]s are used to validate one field of a
-///from, a [OrderFormBloc] checks if the complete
-///form is valid.
 class OrderForm extends StatefulWidget {
   @override
   _OrderFormState createState() => _OrderFormState();
@@ -67,7 +64,7 @@ class _OrderFormState extends State<OrderForm> {
         BlocBuilder<NonEmptyFieldBloc, ValidationState>(
           bloc: _bookingTokeBloc,
           builder: (context, ValidationState state) =>
-              //Display the AlertCard if the _BookingTokenField is empty
+              //Display the [AlertCard] if the [_BookingTokenField] is invalid
               state is ValidState ? SizedBox() : AlertCard(),
         ),
         _BookingTokenField(

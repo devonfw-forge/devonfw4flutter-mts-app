@@ -25,7 +25,7 @@ import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';
 ///pattern. Validation happens through functions in the interface and the state
 ///of the Form is tracked internally by the framework. It was decided to built a
 ///custom solution using bloc to keep the app consistent. There are other bloc based
-///form packages out there but none of theme are consistently maintained, so I wrote
+///form packages out there but none of them are consistently maintained, so I wrote
 ///my own. How it functions exactly is described in the package documention.
 ///
 ///The [BookingForm] initializes all [FieldBloc]s and the related [BookingFormBloc].

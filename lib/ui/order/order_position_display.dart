@@ -16,8 +16,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///with the current order happens through the globally
 ///provided [CurrentOrderBloc]. [CurrentOrderEvent]s are
 ///dispatched to the [CurrentOrderBloc] to modify it's
-///state. By handling modifications to the [OrderPosition]
-///trough a BLoC, we separate that business logic from the Ui.
+///state.
 class OrderPositionDisplay extends StatelessWidget {
   final OrderPosition _position;
 
@@ -128,7 +127,7 @@ class _TextContent extends StatelessWidget {
   ///When no [Extra] is selected, this function
   ///Returns an empty [SizedBox].
   Widget _extras(BuildContext context) {
-    if (_dish.hasExtras()) {
+    if (_dish.hasSelectedExtras()) {
       return Column(
         children: <Widget>[
           SizedBox(height: _textDistance),

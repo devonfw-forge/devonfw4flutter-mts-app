@@ -3,7 +3,7 @@ import 'package:my_thai_star_flutter/localization.dart';
 
 import 'package:my_thai_star_flutter/ui/router.dart';
 
-///Defines [Drawer] that enables navigation to the main pages of the App
+///Defines a [Drawer] that enables navigation to the main pages of the App
 ///
 ///If the current [PageRoute] matches one of the navigation option,
 ///it is highlighted.

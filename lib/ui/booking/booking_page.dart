@@ -34,7 +34,7 @@ class BookingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Tabs aren't members, banause they need context fo the localized text
+    //Tabs aren't members, because they need context fo the localized text
     List<Tab> tabs = _buildTabs(context);
 
     return DefaultTabController(

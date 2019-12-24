@@ -3,8 +3,8 @@ import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
-///Defines a [Card] which informs the user that now booking token
-///has been entered.
+///Defines a [Card] which informs the user that no booking token
+///has been entered
 ///
 ///The [AlertCard] also has a button that navigates the user
 ///to the [Router.booking] [Route].

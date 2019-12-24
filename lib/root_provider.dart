@@ -21,7 +21,7 @@ class RootProvider extends StatelessWidget {
         baseUrl: Configuration.baseUrl,
       ),
       child: MultiBlocProvider(
-        providers: _buildGlobalProvider(),
+        providers: _buildBlocProvider(),
         child: child,
       ),
     );
@@ -40,7 +40,7 @@ class RootProvider extends StatelessWidget {
 ///
 ///The [LocalizationBloc] is needed by the [Header] to set a new [Locale] &
 ///by the [MaterialApp] to update the current [Locale].
-List<BlocProvider<Bloc<dynamic, dynamic>>> _buildGlobalProvider() => [
+List<BlocProvider<Bloc<dynamic, dynamic>>> _buildBlocProvider() => [
       BlocProvider<CurrentOrderBloc>(
         builder: (BuildContext context) => CurrentOrderBloc(),
       ),

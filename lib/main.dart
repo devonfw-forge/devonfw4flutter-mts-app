@@ -23,6 +23,8 @@ void main() async {
 ///When the [LocalizationBloc] emits a new [Locale], the application-
 ///wide [Locale] is set in the [MaterialApp] & all localized texts
 ///are updated.
+///Set's up [RootProvider] to globally provide a set of [Bloc]s &
+///the [RepositoryBundle].
 class MyThaiStar extends StatelessWidget {
   static const String title = 'My Thai Star';
 

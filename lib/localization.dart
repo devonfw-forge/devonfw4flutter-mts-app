@@ -35,7 +35,7 @@ class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
   bool shouldReload(LocalizationsDelegate<Translation> old) => false;
 
   ///Loads a translation JSON file of a given [Locale] form the assets
-  ///an parsed it to a [Map<dynamic, dynamic>].
+  ///and parses it to a [Map<dynamic, dynamic>].
   static Future<Map<dynamic, dynamic>> _loadFromAssets(Locale locale) async {
     String jsonContent = await rootBundle
         .loadString('assets/languages/${locale.languageCode}.json');
@@ -53,12 +53,12 @@ class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
 ///Translation.of(context);
 ///````
 ///The current [Translation] is defined by, and can be changed
-///with through the [LocalizationBloc].
+///through the [LocalizationBloc].
 ///Whenever the current [Translation] changes, all Widgets accessing it 
 ///will automatically be rebuilt by the Framework.
 ///
 ///I did not re-implement this behavior with the bloc-pattern, because
-///handleing widget updates manually lead to a lot of boilerplate.
+///handleing widget updates manually led to a lot of boilerplate.
 @immutable
 class Translation {
   ///JSON holding the translation
@@ -91,7 +91,7 @@ class Translation {
     return result;
   }
 
-  ///Gives one translation that matches the given [query]
+  ///Gives one JSON value that matches the given [query]
   ///
   ///Recursively searches through the map
   String _findInMap(Map<dynamic, dynamic> map, List<String> query) {

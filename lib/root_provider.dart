@@ -35,7 +35,7 @@ class RootProvider extends StatelessWidget {
 ///of [Dish]es in the order, by the [OrderPage] to display the [Dish]es in the
 ///order & by the [MenuPage] to add new [Dish]es to the order.
 ///
-///The [BookingBloc] is needed by the [BookingPage] to place a new booking &
+///The [BookingBloc] is needed by the [BookingPage] to place new bookings &
 ///by the [OrderPage] to auto fill-in the booking token.
 ///
 ///The [LocalizationBloc] is needed by the [Header] to set a new [Locale] &

@@ -7,7 +7,7 @@ import 'package:form_bloc/form_bloc.dart';
 ///[ValidState], the [OrderFormBloc] will emit a [ValidState] carrying the current
 ///booking token. 
 ///If any of the [Bloc.currentState] of the [termsBloc] and the [_tokenBloc]
-///is [InvalidSate], [OrderFormBloc] will emit a [InvalidState].
+///is [InvalidSate], [OrderFormBloc] will emit an [InvalidState].
 class OrderFormBloc extends FormBaseBloc<String> {
   final NonEmptyFieldBloc _tokenBloc;
 

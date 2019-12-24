@@ -12,7 +12,7 @@ import 'package:my_thai_star_flutter/models/booking.dart';
 ///Emits [BookingState] describing the state of that
 ///process. (Confirmed, Declined, Loading etc.)
 class BookingBloc extends Bloc<Booking, BookingState> {
-  final Service _bookingService;
+  final Service<Booking, String> _bookingService;
 
   ///Creates one [BookingBloc]
   ///

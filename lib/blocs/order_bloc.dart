@@ -10,14 +10,14 @@ import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
 ///
 ///When receiving a booking token as [String], the [OrderBloc] uses the
 ///current state of the [CurrentOrderBloc] to place a new [Order] with
-///it's [Service]. The [OrderBloc] then emits new [OrderState] reflecting
+///it's [_orderService]. The [OrderBloc] then emits new [OrderState] reflecting
 ///the result of that communication.
 ///
 ///#### Why inject the CurrentOrderBloc?
 ///I did this so that the UI does not need access to 2 blocs every time
 ///it needs to place a new [Order].
 class OrderBloc extends Bloc<String, OrderState> {
-  final Service _orderService;
+  final Service<Order, int> _orderService;
   final CurrentOrderBloc _currentOrderBloc;
 
   ///Creates one [OrderBloc]

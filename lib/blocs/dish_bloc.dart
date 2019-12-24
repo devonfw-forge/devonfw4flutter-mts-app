@@ -21,7 +21,7 @@ enum DishEvents { request }
 ///
 ///When receiving a [DishEvents.request], the [DishBloc] uses the
 ///current state of the [CurrentSearchBloc] to fetch new [Dish]es form
-///it's [Service]. The [DishBloc] then emits new [DishState] reflecting
+///it's [_dishService]. The [DishBloc] then emits new [DishState] reflecting
 ///the result of that communication.
 ///
 ///#### Why inject the CurrentSearchBloc?
@@ -29,7 +29,7 @@ enum DishEvents { request }
 ///it needs to request new [Dish]es.
 class DishBloc extends Bloc<DishEvents, DishState> {
   final CurrentSearchBloc _searchBloc;
-  final Service _dishService;
+  final Service<Search, List<Dish>> _dishService;
 
   ///Creates one [DishBloc]
   ///

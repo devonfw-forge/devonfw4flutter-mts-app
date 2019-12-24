@@ -33,7 +33,7 @@ class SetSortEvent extends CurrentSearchEvent {
   String toString() => 'SortBy/' + sortBy;
 }
 
-///Flips the current sort direction from 
+///Flips the current sort direction 
 ///
 ///````dart
 ///Search.descending = !Search.descending

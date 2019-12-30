@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: Header(),
       drawer: AppDrawer(),
-      body: SingleChildScrollView(
+      body: SingleChildScrollView( //Makes Stack Scrollable
         child: Stack(
           children: <Widget>[
             ImageBanner(),

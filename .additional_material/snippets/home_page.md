@@ -25,12 +25,12 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: Header(),
       drawer: AppDrawer(),
-      body: SingleChildScrollView( //Makes Stack Scrollable
+      body: SingleChildScrollView( //Makes Stack scrollable
         child: Stack(
           children: <Widget>[
             ImageBanner(),
             Padding(
-                child: CardDisplay(),
+                child: CardDisplay(), //Holds 2 HomeCards
                 padding: EdgeInsets.only(top: _cardDisplayTopPadding)),
           ],
         ),

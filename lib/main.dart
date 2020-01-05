@@ -10,7 +10,7 @@ import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';
 
 ///Runs the application & set's up logging
-void main() async {
+void main() {
   //Logging
   BlocSupervisor.delegate = LogingBlocDelegate();
 

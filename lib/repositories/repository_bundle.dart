@@ -5,7 +5,7 @@ import 'package:my_thai_star_flutter/data/order_service.dart';
 import 'package:my_thai_star_flutter/data/mock/mock_booking_service.dart';
 import 'package:my_thai_star_flutter/data/mock/mock_dish_service.dart';
 import 'package:my_thai_star_flutter/data/mock/mock_order_service.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 
 ///Generates and hold all repositories of the Application
 ///

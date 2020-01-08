@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/booking_state.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
 
 ///Handles the placing of [Booking]s

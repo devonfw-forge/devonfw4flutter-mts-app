@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/models/generated/order_request.dart';
 import 'package:my_thai_star_flutter/models/generated/order_response.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 import 'package:http/http.dart' as http;
 
 ///Handles communication with the My Thai Star order Api

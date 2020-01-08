@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 
 import 'package:my_thai_star_flutter/blocs/dish_state.dart';
 

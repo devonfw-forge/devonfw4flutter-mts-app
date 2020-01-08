@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_error.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_request.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,5 +1,5 @@
 import 'package:my_thai_star_flutter/models/booking.dart';
-import 'package:my_thai_star_flutter/repositories/exchange_point.dart';
+import 'package:my_thai_star_flutter/repositories/service.dart';
 
 ///Defines a mock [BookingService], that's meant for testing
 class MockBookingService extends Service<Booking, String> {

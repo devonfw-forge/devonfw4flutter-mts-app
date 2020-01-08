@@ -11,7 +11,7 @@ import 'package:my_thai_star_flutter/localization.dart';
 ///Responsible for Dispatching [ClearSearchEvent]s 
 ///to the [CurrentSearchBloc]. Responsible for 
 ///Applying the current search by dispatching 
-///[DishEvents.request]s to the [DishBloc].
+///[DishEvent.request]s to the [DishBloc].
 class FilterButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class FilterButtons extends StatelessWidget {
                   .button
                   .copyWith(color: Theme.of(context).accentColor)),
           onPressed: () =>
-              BlocProvider.of<DishBloc>(context).dispatch(DishEvents.request),
+              BlocProvider.of<DishBloc>(context).dispatch(DishEvent.request),
         ),
       ],
     );

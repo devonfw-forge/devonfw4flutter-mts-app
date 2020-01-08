@@ -14,12 +14,12 @@ import 'package:my_thai_star_flutter/blocs/dish_state.dart';
 ///Is an enum because it does not need to carry any additional data.
 ///The [DishBloc] already has everything it need because it is injected with
 ///the [CurrentSearchBloc] on creation.
-enum DishEvents { request }
+enum DishEvent { request }
 
 ///Handles the fetching of [Dish]es that match the [Search] defined
 ///by the [CurrentSearchBloc]
 ///
-///When receiving a [DishEvents.request], the [DishBloc] uses the
+///When receiving a [DishEvent.request], the [DishBloc] uses the
 ///current state of the [CurrentSearchBloc] to fetch new [Dish]es form
 ///it's [_dishService]. The [DishBloc] then emits new [DishState] reflecting
 ///the result of that communication.
@@ -27,7 +27,7 @@ enum DishEvents { request }
 ///#### Why inject the CurrentSearchBloc?
 ///I did this so that the UI does not need access to 2 blocs every time
 ///it needs to request new [Dish]es.
-class DishBloc extends Bloc<DishEvents, DishState> {
+class DishBloc extends Bloc<DishEvent, DishState> {
   final CurrentSearchBloc _searchBloc;
   final Service<Search, List<Dish>> _dishService;
 
@@ -43,7 +43,7 @@ class DishBloc extends Bloc<DishEvents, DishState> {
   DishState get initialState => LoadingDishState();
 
   @override
-  Stream<DishState> mapEventToState(DishEvents event) async* {
+  Stream<DishState> mapEventToState(DishEvent event) async* {
     Search currentSearch = _searchBloc.currentState;
 
     yield LoadingDishState();

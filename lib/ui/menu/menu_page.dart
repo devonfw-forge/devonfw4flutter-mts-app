@@ -51,7 +51,7 @@ class _MenuPageState extends State<MenuPage> {
     );
 
     //Dispatching initial event
-    _dishBloc.dispatch(DishEvents.request);
+    _dishBloc.dispatch(DishEvent.request);
     super.initState();
   }
 

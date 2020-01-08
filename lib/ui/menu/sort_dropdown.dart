@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
+import 'package:my_thai_star_flutter/blocs/current_search_state.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 
@@ -18,7 +19,7 @@ class SortDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CurrentSearchBloc, Search>(
+    return BlocBuilder<CurrentSearchBloc, CurrentSearchState>(
       builder: (context, state) => Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -34,7 +35,7 @@ class SortDropdown extends StatelessWidget {
           Expanded(
             child: DropdownButton<String>(
               isExpanded: true,
-              value: state.sortBy,
+              value: state.search.sortBy,
               items: _mapDropDownItems(context),
               onChanged: (String sortBy) =>
                   BlocProvider.of<CurrentSearchBloc>(context)
@@ -43,7 +44,7 @@ class SortDropdown extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(
-              state.descending
+              state.search.descending
                   ? Icons.vertical_align_bottom
                   : Icons.vertical_align_top,
               color: Theme.of(context).accentColor,

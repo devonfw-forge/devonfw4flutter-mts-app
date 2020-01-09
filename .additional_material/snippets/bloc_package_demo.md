@@ -15,11 +15,9 @@ class Page extends StatelessWidget {
           //state is emitted.
           builder: (context, state) {
             //Display UI based on the state of NewBloc
-            if (state is StateA) {
-              return WidgetA();
-            } else if (state is StateB) {
-              return WidgetB();
-            } else {
+            if (state is StateA) return WidgetA();
+            if (state is StateB) return WidgetB();
+            else {
               ///Access newBloc and dispatch a an event
               BlocProvider.of<NewBloc>(context).dispatch(Event());
               return Loading();

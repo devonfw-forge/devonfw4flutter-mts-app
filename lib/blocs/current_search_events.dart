@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 ///Gives the ability to change the current [Search]
 @immutable
-abstract class CurrentSearchEvent extends Equatable {}
+abstract class CurrentSearchEvent {}
 
 ///Sets the current [Search.query]
 @immutable
@@ -11,9 +10,6 @@ class SetQueryEvent extends CurrentSearchEvent {
   final String query;
 
   SetQueryEvent(this.query);
-
-  @override
-  List<Object> get props => [query];
 
   @override
   String toString() => 'Query/' + query;
@@ -27,13 +23,10 @@ class SetSortEvent extends CurrentSearchEvent {
   SetSortEvent(this.sortBy);
 
   @override
-  List<Object> get props => [sortBy];
-
-  @override
   String toString() => 'SortBy/' + sortBy;
 }
 
-///Flips the current sort direction 
+///Flips the current sort direction
 ///
 ///````dart
 ///Search.descending = !Search.descending
@@ -41,17 +34,11 @@ class SetSortEvent extends CurrentSearchEvent {
 @immutable
 class FlipDirectionEvent extends CurrentSearchEvent {
   @override
-  List<Object> get props => [toString()];
-
-  @override
   String toString() => 'Flip';
 }
 
 @immutable
 class ClearSearchEvent extends CurrentSearchEvent {
-  @override
-  List<Object> get props => [toString()];
-
   @override
   String toString() => 'Clear';
 }

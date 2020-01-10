@@ -1,11 +1,10 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
 
 ///Gives the ability to mutate the current order
 @immutable
-abstract class CurrentOrderEvent extends Equatable {}
+abstract class CurrentOrderEvent {}
 
 ///Will add a new [OrderPostion] of the given [Dish] or
 ///increase the amount if a fitting [OrderPostion] already exists
@@ -14,9 +13,6 @@ class AddDishEvent extends CurrentOrderEvent {
   final Dish dish;
 
   AddDishEvent(this.dish);
-
-  @override
-  List<Object> get props => [dish];
 
   @override
   String toString() => 'Add/' + dish.toString();
@@ -31,9 +27,6 @@ class RemoveDishEvent extends CurrentOrderEvent {
   RemoveDishEvent(this.dish);
 
   @override
-  List<Object> get props => [dish];
-
-  @override
   String toString() => 'Remove/' + dish.toString();
 }
 
@@ -45,17 +38,11 @@ class RemoveOrderPositionEvent extends CurrentOrderEvent {
   RemoveOrderPositionEvent(this.position);
 
   @override
-  List<Object> get props => [position];
-
-  @override
   String toString() => 'DeletePos/' + position.toString();
 }
 
 @immutable
 class ClearOrderEvent extends CurrentOrderEvent {
-  @override
-  List<Object> get props => [toString()];
-
   @override
   String toString() => 'Clear';
 }

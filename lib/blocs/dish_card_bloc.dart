@@ -26,6 +26,7 @@ class DishCardBloc extends Bloc<DishCardEvent, Dish> {
   Stream<Dish> mapEventToState(DishCardEvent event) async* {
     if (event is SetExtraEvent) {
 
+      //Hard clone the map so it is recognized as a new entity
       Map<Extra, bool> newExtras = Map.from(currentState.extras);
       newExtras[event.extra] = event.picked;
 

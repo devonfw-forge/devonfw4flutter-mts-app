@@ -14,4 +14,7 @@ class Extra extends Equatable {
 
   @override
   List<Object> get props => [name, id];
+
+  @override
+  String toString() => name;
 }

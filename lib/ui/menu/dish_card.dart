@@ -1,6 +1,7 @@
-import 'package:bool_bloc/bool_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_card_bloc.dart';
+import 'package:my_thai_star_flutter/blocs/dish_card_event.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/localization.dart';
@@ -13,36 +14,33 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///Displays one [Dish] & gives the option to add it
 ///to the current order.
 ///
-///The [Extra]s of the [Dish] can be modified.
-///The State of to the [Extra]s is handled with
-///a [Map<Extra, BoolBloc>]. This way each [Extra]
-///has a dedicated Bloc no matter how many [Extra]s 
-///a given [Dish] has.
+///The original state of [Dish] is set through the [_initialDish]
+///member. From there on out the state of the [Dish] can be modified
+///by selecting and deselecting [Extra]s. These state changes are
+///tracked with a [DishCardBloc].
 class DishCard extends StatefulWidget {
-  final Dish _dish;
+  final Dish _initialDish;
 
-  const DishCard({Key key, @required dish})
-      : _dish = dish,
+  const DishCard({Key key, @required initialDish})
+      : _initialDish = initialDish,
         super(key: key);
 
   @override
-  _DishCardState createState() => _DishCardState(_dish);
+  _DishCardState createState() => _DishCardState(_initialDish);
 }
 
 class _DishCardState extends State<DishCard> {
   static const double _imageHeight = 200;
 
-  ///One [BoolBloc] for each [Extra] CheckBox
-  Map<Extra, BoolBloc> _checkboxBlocs = Map();
-  Dish _dish;
+  final Dish _initialDish;
+  DishCardBloc _dishCardBloc;
 
-  _DishCardState(dish) : _dish = dish;
+  _DishCardState(initialDish) : _initialDish = initialDish;
 
   @override
   void initState() {
-    _dish.extras.forEach(
-      (Extra extra, bool picked) => _checkboxBlocs[extra] = BoolBloc(),
-    );
+    //Inject initial dish state
+    _dishCardBloc = DishCardBloc(_initialDish);
 
     super.initState();
   }
@@ -60,8 +58,8 @@ class _DishCardState extends State<DishCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             CropImage(
-              encodedImage: _dish?.encodedImage,
-              assetImage: _dish?.assetImage,
+              encodedImage: _initialDish?.encodedImage,
+              assetImage: _initialDish?.assetImage,
               imageHeight: _imageHeight,
             ),
             Padding(
@@ -70,34 +68,35 @@ class _DishCardState extends State<DishCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    '${_dish.price}',
+                    '${_initialDish.price}',
                     style: Theme.of(context).textTheme.headline.copyWith(
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
                   SizedBox(height: UiHelper.card_margin),
-                  Text('${_dish.name}',
+                  Text('${_initialDish.name}',
                       style: Theme.of(context).textTheme.title),
                   SizedBox(height: UiHelper.standard_padding),
-                  Text('${_dish.description}',
+                  Text('${_initialDish.description}',
                       style: Theme.of(context).textTheme.subtitle.copyWith(
                             color: Colors.grey,
                             fontWeight: FontWeight.normal,
                           )),
                   SizedBox(height: UiHelper.standard_padding),
-                  Wrap(children: _mapExtras()),
-                  SizedBox(height: UiHelper.standard_padding),
-                  RaisedButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      Translation.of(context).get('buttons/addToOrder'),
-                      style: Theme.of(context).textTheme.button,
+                  BlocBuilder<DishCardBloc, Dish>(
+                    bloc: _dishCardBloc,
+                    builder: (context, dishState) => Column(
+                      //Rebuild checkboxes and pass new dishState to the
+                      //[_AddButton] when new state is emitted.
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _Extras(dishCardBloc: _dishCardBloc),
+                        SizedBox(height: UiHelper.standard_padding),
+                        _AddButton(dish: dishState),
+                      ],
                     ),
-                    //Dispatch current version of the Dish
-                    onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
-                        .dispatch(AddDishEvent(_dish)),
-                  )
+                  ),
                 ],
               ),
             )
@@ -109,37 +108,74 @@ class _DishCardState extends State<DishCard> {
 
   @override
   void dispose() {
-    _checkboxBlocs.forEach((extra, bloc) => bloc.dispose());
+    _dishCardBloc.dispose();
     super.dispose();
   }
+}
 
-  ///Maps each [Extra] of the [Dish] to a [LabeledCheckBox]
+///Adds the given [Dish] to the [CurrentOrderBloc] when pressed.
+class _AddButton extends StatelessWidget {
+  const _AddButton({
+    @required Dish dish,
+    Key key,
+  })  : _dish = dish,
+        super(key: key);
+
+  final Dish _dish;
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      color: Theme.of(context).accentColor,
+      child: Text(
+        Translation.of(context).get('buttons/addToOrder'),
+        style: Theme.of(context).textTheme.button,
+      ),
+      //Dispatch current version of the Dish
+      onPressed: () => BlocProvider.of<CurrentOrderBloc>(context)
+          .dispatch(AddDishEvent(_dish)),
+    );
+  }
+}
+
+///Displays a [LabeledCheckBox] for each [Extra] of the current 
+///state of the [DishCardBloc]
+class _Extras extends StatelessWidget {
+  const _Extras({
+    Key key,
+    @required DishCardBloc dishCardBloc,
+  })  : _dishCardBloc = dishCardBloc,
+        super(key: key);
+
+  final DishCardBloc _dishCardBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      children: _mapExtras(),
+    );
+  }
+
+  ///Maps each [Extra] to a [LabeledCheckBox]
   ///
-  ///The state of each [LabeledCheckBox] is handled with the 
-  ///[BoolBloc] that was mapped to the [Extra] in [DishCard._checkboxBlocs]
+  ///Defines that a [SetExtraEvent] is dispatched to the [DishCardBloc]
+  ///when the [LabeledCheckBox] is pressed.
   List<Widget> _mapExtras() {
-    return _dish.extras.keys
+    Dish dish = _dishCardBloc.currentState;
+
+    return dish.extras.keys
         .map(
-          (Extra extra) => BlocBuilder<BoolBloc, bool>(
-            bloc: _checkboxBlocs[extra],
-            builder: (context, state) => LabeledCheckBox(
-              label: extra.name,
-              state: state,
-              onStateChange: (bool b) => _onCheckboxStateChange(b, extra),
+          (Extra extra) => LabeledCheckBox(
+            label: extra.name,
+            state: dish.extras[extra],
+            onStateChange: (bool picked) => _dishCardBloc.dispatch(
+              SetExtraEvent(
+                extra: extra,
+                picked: picked,
+              ),
             ),
           ),
         )
         .toList();
-  }
-
-  ///Updates the [Dish]es [Extra]s & changes the State of the
-  ///relevant [BoolBloc]
-  void _onCheckboxStateChange(bool b, Extra extra) {
-    _checkboxBlocs[extra].dispatch(BoolBlocEvent.swap);
-
-    Map<Extra, bool> newExtras = Map.from(_dish.extras);
-    newExtras[extra] = b;
-
-    _dish = _dish.copyWith(extras: newExtras);
   }
 }

@@ -30,7 +30,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 ///to generate the list of [Dish]es.
 ///
 ///#### Relevant Blocs for this feature:
-///[DishBloc], [CurrentOrderBloc],
+///[DishBloc], [CurrentOrderBloc], [DishCardBloc],
 ///[CurrentSearchBloc], [CurrentSearchBloc], [LocalizationBloc]
 @TopLevelRoute('/menu')
 class MenuPage extends StatefulWidget {
@@ -118,7 +118,7 @@ class _MenuPageState extends State<MenuPage> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) => DishCard(
-          dish: state.dishes[index],
+          initialDish: state.dishes[index],
         ),
         childCount: state.dishes.length,
       ),

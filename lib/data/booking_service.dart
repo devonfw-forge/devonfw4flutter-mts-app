@@ -14,6 +14,7 @@ import 'package:http/http.dart' as http;
 ///at the fictional My Thai Star restaurant. Once a [Booking] is placed,
 ///the returned booking token can be used to [Order] [Dish]es for that
 ///[Booking].
+@immutable
 class BookingService extends Service<Booking, String> {
   static const int _timeOut = 4;
   static const String _route =

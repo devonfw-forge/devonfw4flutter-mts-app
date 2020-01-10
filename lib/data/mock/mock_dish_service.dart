@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/service.dart';
 
 ///Defines a mock [DishService], that's meant for testing
+@immutable
 class MockDishService extends Service<Search, List<Dish>> {
   static final List<Dish> _dummyDishes = [
     Dish(

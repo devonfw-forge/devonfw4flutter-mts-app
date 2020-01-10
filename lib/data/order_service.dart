@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 ///ordered for a [Booking] made at the fictional My Thai Star restaurant.
 ///An [Order] is linked to a [Booking] through a booking token which will be
 ///obtained after placing a [Booking].
+@immutable
 class OrderService extends Service<Order, int> {
   static const int _timeOut = 4;
   static const String _route = 'mythaistar/services/rest/ordermanagement/v1/order';

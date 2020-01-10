@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 ///
 ///The dish Api is responsible for providing a set of [Dish]es
 ///that match a given [Search]
+@immutable
 class DishService extends Service<Search, List<Dish>> {
   static const int _timeOut = 4;
   static const String _route =

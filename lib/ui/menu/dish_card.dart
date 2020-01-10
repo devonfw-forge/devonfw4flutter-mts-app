@@ -21,7 +21,7 @@ import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 class DishCard extends StatefulWidget {
   final Dish _initialDish;
 
-  const DishCard({Key key, @required initialDish})
+  DishCard({Key key, @required initialDish})
       : _initialDish = initialDish,
         super(key: key);
 

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_state.dart';
-import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 
 ///Defines a [TextField] that acts as the search bar for the [MenuPage] 
@@ -17,7 +16,7 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  TextEditingController _queryController = TextEditingController();
+  final TextEditingController _queryController = TextEditingController();
 
   @override
   void initState() {

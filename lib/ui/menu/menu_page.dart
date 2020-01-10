@@ -39,7 +39,7 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  CurrentSearchBloc _searchBloc = CurrentSearchBloc();
+  final CurrentSearchBloc _searchBloc = CurrentSearchBloc();
   DishBloc _dishBloc;
 
   @override

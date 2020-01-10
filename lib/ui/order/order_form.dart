@@ -27,13 +27,13 @@ class OrderForm extends StatefulWidget {
 
 class _OrderFormState extends State<OrderForm> {
   //Validation: FieldBlocs
-  CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
-  NonEmptyFieldBloc _bookingTokeBloc = NonEmptyFieldBloc();
+  final CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
+  final NonEmptyFieldBloc _bookingTokeBloc = NonEmptyFieldBloc();
 
   //Validation: FormBloc
   OrderFormBloc _formBloc;
 
-  TextEditingController _bookingTokenController = TextEditingController();
+  final TextEditingController _bookingTokenController = TextEditingController();
 
   @override
   void initState() {

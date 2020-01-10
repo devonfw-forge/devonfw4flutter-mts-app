@@ -31,7 +31,7 @@ class OrderFormButtons extends StatefulWidget {
         super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _OrderFormButtonsState();
+  State<OrderFormButtons> createState() => _OrderFormButtonsState();
 }
 
 class _OrderFormButtonsState extends State<OrderFormButtons> {

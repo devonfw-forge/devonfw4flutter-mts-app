@@ -38,11 +38,11 @@ class BookingForm extends StatefulWidget {
 
 class _BookingFormState extends State<BookingForm> {
   //Validation: FieldBlocs
-  EmailFieldBloc _emailBloc = EmailFieldBloc();
-  DateFieldBloc _dateBloc = DateFieldBloc(Booking.dateFormat);
-  NonEmptyFieldBloc _nameBloc = NonEmptyFieldBloc();
-  NumberFieldBloc _guestBloc = NumberFieldBloc();
-  CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
+  final EmailFieldBloc _emailBloc = EmailFieldBloc();
+  final DateFieldBloc _dateBloc = DateFieldBloc(Booking.dateFormat);
+  final NonEmptyFieldBloc _nameBloc = NonEmptyFieldBloc();
+  final NumberFieldBloc _guestBloc = NumberFieldBloc();
+  final CheckboxFieldBloc _termsBloc = CheckboxFieldBloc();
 
   //Validation: FormBloc
   BookingFormBloc _formBloc;

@@ -8,6 +8,7 @@ import 'package:my_thai_star_flutter/configuration.dart';
 import 'package:bloc/bloc.dart';
 
 ///Provides a set of [Bloc]s and the [RepositoryBundle] globally from the root of the app
+@immutable
 class RootProvider extends StatelessWidget {
   final Widget child;
   const RootProvider({Key key, this.child}) : super(key: key);

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart' show rootBundle;
 ///
 ///Flutters in-build way of handling Localization is through [LocalizationsDelegate]s.
 ///We can create a custom one for out localized texts.
+@immutable
 class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
   static const List<String> supportedLanguages = [
     'en',

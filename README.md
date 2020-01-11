@@ -6,20 +6,20 @@ This projects is part of a bachelor thesis written by a student in the Bachelor 
 
 ## Purpose
 1. The thesis itself outlines the creation process of this repository, which desing desicons where made and why. The thesis is not yet published, but it will be linked as soon as it is.
-2. This repository is a fully documented, large-scale flutter application. I did my best to document the reason behind the desing descisions in-code as well, so you can already check that out if you want.
+2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the desing descisions in-code as well, so you can already check that out if you want.
 
 ## Previous Related Work
 - A [guide](https://github.com/Fasust/flutter-guide) on developing large-scale applications using Flutter.
 - A [small-scale application](https://github.com/Fasust/wisgen) to test some of the recommendations made by the guide.
 
 ## Covered Topics
-- Comparing state-management solutions
+- Comparing State-Management Solutions
 - The BLoC Pattern
-  - Recommendations for desinging BLoCs 
+  - Recommendations for Desinging BLoCs 
 - Layered Architecture
 - The Repository Pattern
 - Object Equality in Dart
-- The advantages of Immutability
+- The Advantages of Immutability
 - Dependency Injection
 - Service Locators
 - Project Structure
@@ -40,7 +40,7 @@ This projects is part of a bachelor thesis written by a student in the Bachelor 
 ## Set-Up
 You will need: 
 - Flutter
-- A functional Android virtual device
+- A functional Android Virtual Device (AVD)
 - Docker
 - Git
 
@@ -51,13 +51,13 @@ git clone https://github.com/Fasust/my_thai_star_flutter.git
 ```
 
 #### Step 2
-> I am currently public hosting a version of the My Thai Star application under `http://138.197.218.225:8081/restaurant`. So you can skip step 2, 3 & 4 
+> I am currently publicly hosting a version of the My Thai Star application under `http://138.197.218.225:8081/restaurant`. So you can skip steps 2, 3 & 4 
 
-This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to install a My Thai Star Back-End component for the application to fully work. 
+This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. 
 
 ![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-components.PNG)
 
-The easiest way is to clone this fork where I exposed the Back-End ports:
+The easiest way is to clone this fork were I exposed the Back-End ports:
 
 ```
 git clone https://github.com/Fasust/my-thai-star.git
@@ -85,4 +85,4 @@ class Configuration {
 ```
 
 #### Step 5 
-Boot the Flutter My Thai Star Application in your AVD. It should be able to communicate with the Back-End in the docker container.
+Boot the Flutter My Thai Star Application in your AVD. It should now be able to communicate with the Back-End in the docker container.

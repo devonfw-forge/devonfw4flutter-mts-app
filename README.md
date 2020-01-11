@@ -1,7 +1,5 @@
 ![Angular](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
 
-This is a Flutter Front-End component for DevonFw's [My Thai Star](https://github.com/devonfw/my-thai-star) reference application.
-
 ## Contents
 - [Contents](#contents)
 - [Creation Context](#creation-context)

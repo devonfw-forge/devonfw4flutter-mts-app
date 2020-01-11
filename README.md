@@ -1,7 +1,7 @@
-# My Thai Star [Flutter]
+# My Thai Star Flutter Front-End
 This is a Flutter Front-End component for DevonFw's [My Thai Star](https://github.com/devonfw/my-thai-star) reference application.
 
-## Creation Context
+## Creation Context 
 This projects is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
 
 ## Purpose
@@ -9,7 +9,7 @@ This projects is part of a bachelor thesis written by a student in the Bachelor 
 2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the desing descisions in-code as well, so you can already check that out if you want.
 
 ## Previous Related Work
-- A [guide](https://github.com/Fasust/flutter-guide) on developing large-scale applications using Flutter.
+- A [guide](https://github.com/devonfw-forge/devonfw4flutter) on developing large-scale applications using Flutter.
 - A [small-scale application](https://github.com/Fasust/wisgen) to test some of the recommendations made by the guide.
 
 ## Covered Topics

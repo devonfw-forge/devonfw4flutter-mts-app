@@ -83,6 +83,7 @@ class Configuration {
   static final bool useMockData = false;
 }
 ```
+>If you only wanna check out the Flutter application and don't care about it properly communicating with the Back-End, you can just put `useMockData = true`. It will now load local mock data instead of contacting the Back-End.
 
 #### Step 5 
 Boot the Flutter My Thai Star Application in your AVD. It should now be able to communicate with the Back-End in the docker container.

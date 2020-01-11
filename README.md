@@ -1,23 +1,23 @@
-# My Thai Star Flutter Front-End
+![Angular](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
+
 This is a Flutter Front-End component for DevonFw's [My Thai Star](https://github.com/devonfw/my-thai-star) reference application.
 
 ## Contents
-- [My Thai Star Flutter Front-End](#my-thai-star-flutter-front-end)
-  - [Contents](#contents)
-  - [Creation Context](#creation-context)
-  - [Purpose](#purpose)
-  - [Previous Related Work](#previous-related-work)
-  - [Covered Topics](#covered-topics)
-  - [Architecture](#architecture)
-  - [Screens](#screens)
-    - [Original Angular](#original-angular)
-    - [New Flutter](#new-flutter)
-  - [Set-Up](#set-up)
-      - [Step 1](#step-1)
-      - [Step 2](#step-2)
-      - [Step 3](#step-3)
-      - [Step 4](#step-4)
-      - [Step 5](#step-5)
+- [Contents](#contents)
+- [Creation Context](#creation-context)
+- [Purpose](#purpose)
+- [Previous Related Work](#previous-related-work)
+- [Covered Topics](#covered-topics)
+- [Architecture](#architecture)
+- [Screens](#screens)
+  - [Original Angular](#original-angular)
+  - [New Flutter](#new-flutter)
+- [Set-Up](#set-up)
+    - [Step 1](#step-1)
+    - [Step 2](#step-2)
+    - [Step 3](#step-3)
+    - [Step 4](#step-4)
+    - [Step 5](#step-5)
 
 ## Creation Context 
 This projects is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.

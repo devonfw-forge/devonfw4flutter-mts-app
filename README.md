@@ -1,7 +1,6 @@
 ![Banner](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
 
 ## Contents
-- [Contents](#contents)
 - [Creation Context](#creation-context)
 - [Purpose](#purpose)
 - [Previous Related Work](#previous-related-work)

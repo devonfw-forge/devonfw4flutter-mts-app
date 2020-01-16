@@ -52,7 +52,7 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 
 
 ## Set-Up _(With hosted Back-End)_
-This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://127.0.0.1:8082/restaurant`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
+This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://138.197.218.225:8082/`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
 
 #### You will need
 - Flutter 
@@ -71,7 +71,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082";
+  static final String baseUrl = "http://138.197.218.225:8082/";
   static final bool useMockData = false;
 }
 ```
@@ -100,7 +100,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082"; //Can be anything as it wont be used when mock is true.
+  static final String baseUrl = "http://10.0.2.2:8082/"; //Can be anything as it wont be used when mock is true.
   static final bool useMockData = true;
 }
 ```
@@ -148,7 +148,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082";
+  static final String baseUrl = "http://10.0.2.2:8082/";
   static final bool useMockData = false;
 }
 ```

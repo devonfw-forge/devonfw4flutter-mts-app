@@ -9,10 +9,12 @@ import 'package:my_thai_star_flutter/ui/router.dart';
 import 'package:bloc/bloc.dart';
 import 'package:my_thai_star_flutter/ui/mts_theme.dart';
 
+import 'configuration.dart';
+
 ///Runs the application & set's up logging
 void main() {
   //Logging
-  BlocSupervisor.delegate = LogingBlocDelegate();
+  if (Configuration.logging) BlocSupervisor.delegate = LogingBlocDelegate();
 
   runApp(MyThaiStar());
 }

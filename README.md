@@ -61,7 +61,7 @@ This option will only be available for a limited amount of time. I am currently 
 #### Step 1
 Clone this repository.
 ```
-git clone https://github.com/Fasust/my_thai_star_flutter.git
+git clone https://github.com/devonfw-forge/devonfw4flutter-mts-app.git
 ```
 #### Step 2
 Make sure the `lib/configuration.dart` looks like this:
@@ -89,7 +89,7 @@ The easiest way to set-up the application. It will only have a limited set of fe
 #### Step 1
 Clone this repository.
 ```
-git clone https://github.com/Fasust/my_thai_star_flutter.git
+git clone https://github.com/devonfw-forge/devonfw4flutter-mts-app.git
 ```
 
 #### Step 2
@@ -121,7 +121,7 @@ This repository is only a Front-End component for the existing My Thai Star appl
 #### Step 1
 Clone this repository.
 ```
-git clone https://github.com/Fasust/my_thai_star_flutter.git
+git clone https://github.com/devonfw-forge/devonfw4flutter-mts-app.git
 ```
 
 #### Step 2

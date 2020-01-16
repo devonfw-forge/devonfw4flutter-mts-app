@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 ///Defines a reservation made in the fictional MyThaiStar restaurant
 ///
-///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
+///More info: https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/lib/models/README.md
 @immutable
 class Booking extends Equatable {
   static final DateFormat dateFormat = DateFormat('dd-MM-yyyy HH:mm');

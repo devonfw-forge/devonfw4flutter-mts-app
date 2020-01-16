@@ -1,6 +1,7 @@
-![Banner](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
+![Banner](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/banner.png)
 
 ## Contents
+- [Contents](#contents)
 - [Creation Context](#creation-context)
 - [Purpose](#purpose)
 - [Previous Related Work](#previous-related-work)
@@ -10,8 +11,22 @@
   - [Original Angular](#original-angular)
   - [New Flutter](#new-flutter)
 - [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
+    - [You will need](#you-will-need)
+    - [Step 1](#step-1)
+    - [Step 2](#step-2)
+    - [Step 3](#step-3)
 - [Set-Up _(Test)_](#set-up-test)
+    - [You will need](#you-will-need-1)
+    - [Step 1](#step-1-1)
+    - [Step 2](#step-2-1)
+    - [Step 3](#step-3-1)
 - [Set-Up _(With own Back-End)_](#set-up-with-own-back-end)
+    - [You will need](#you-will-need-2)
+    - [Step 1](#step-1-2)
+    - [Step 2](#step-2-2)
+    - [Step 3](#step-3-2)
+    - [Step 4](#step-4)
+    - [Step 5](#step-5)
 
 ## Creation Context 
 This project is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
@@ -40,14 +55,14 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 - Form Validation
 
 ## Architecture
-![Architecture Image](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-architecture-dependencies-v5.png)
+![Architecture Image](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-architecture-dependencies-v5.png)
 
 ## Screens
 ### Original Angular
-![Angular](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-screens.png)
+![Angular](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-screens.png)
 
 ### New Flutter
-![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-screens.png)
+![Flutter](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-flutter-screens.png)
 
 
 ## Set-Up _(With hosted Back-End)_
@@ -110,7 +125,7 @@ Run the Flutter My Thai Star Application in your AVD.
 ## Set-Up _(With own Back-End)_
 This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. This set-up is the most tedious, but it will enable you to use every feature of the My Thai Star Flutter application.
 
-![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-components.PNG)
+![Flutter](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-flutter-components.PNG)
 
 #### You will need
 - Flutter 

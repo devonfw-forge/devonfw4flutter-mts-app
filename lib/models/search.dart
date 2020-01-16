@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ///Defines a search query that describes a list [Dish]es and how they should
 ///be sorted
 ///
-///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
+///More info: https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/lib/models/README.md
 @immutable
 class Search extends Equatable {
   static const List<String> sortCriteria = ['name', 'price', 'likes'];

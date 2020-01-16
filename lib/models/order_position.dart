@@ -4,7 +4,7 @@ import 'package:my_thai_star_flutter/models/dish.dart';
 
 ///Holds a [Dish] and describes how many times that [Dish] should be ordered
 ///
-///More info: https://github.com/Fasust/my-thai-star-flutter/blob/master/lib/models/README.md
+///More info: https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/lib/models/README.md
 @immutable
 class OrderPosition extends Equatable {
   final Dish dish;

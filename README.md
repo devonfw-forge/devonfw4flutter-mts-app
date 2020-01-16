@@ -10,12 +10,12 @@
 - [Screens](#screens)
   - [Original Angular](#original-angular)
   - [New Flutter](#new-flutter)
-- [Set-Up _(Test)_](#set-up-test)
+- [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
     - [You will need](#you-will-need)
     - [Step 1](#step-1)
     - [Step 2](#step-2)
     - [Step 3](#step-3)
-- [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
+- [Set-Up _(Test)_](#set-up-test)
     - [You will need](#you-will-need-1)
     - [Step 1](#step-1-1)
     - [Step 2](#step-2-1)
@@ -32,8 +32,8 @@
 This project is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
 
 ## Purpose
-1. The thesis itself outlines the creation process of this repository, which designe decisions where made and why. The thesis is not yet published, but it will be linked as soon as it is.
-2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the designe decisions in-code as well, so you can already check that out if you want.
+1. The thesis itself outlines the creation process of this repository, which design decisions where made and why. The thesis is not yet published, but it will be linked as soon as it is.
+2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the design decisions in-code as well, so you can already check that out if you want.
 
 ## Previous Related Work
 - A [guide](https://github.com/devonfw-forge/devonfw4flutter) on developing large-scale applications using Flutter.
@@ -42,7 +42,7 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 ## Covered Topics
 - Comparing State-Management Solutions
 - The BLoC Pattern
-  - Recommendations for Desinging BLoCs 
+  - Recommendations for Designing BLoCs 
 - Layered Architecture
 - The Repository Pattern
 - Object Equality in Dart
@@ -64,8 +64,37 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 ### New Flutter
 ![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-screens.png)
 
+
+## Set-Up _(With hosted Back-End)_
+This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://127.0.0.1:8082/restaurant`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
+
+#### You will need
+- Flutter 
+- Git
+- Android Virtual Device (AVD) 
+
+#### Step 1
+Clone this repository.
+```
+git clone https://github.com/Fasust/my_thai_star_flutter.git
+```
+#### Step 2
+Make sure the `lib/configuration.dart` looks like this:
+
+```dart
+///Provides a set of constant values that are used for configuration
+@immutable
+class Configuration {
+  static final String baseUrl = "http://10.0.2.2:8082";
+  static final bool useMockData = false;
+}
+```
+
+#### Step 3
+Run the Flutter My Thai Star Application in your AVD.
+
 ## Set-Up _(Test)_
-The easiest way to set-up the application. It will only have a limited set of features and use locale mock data. A good option if you only wanna check out the code.
+The easiest way to set-up the application. It will only have a limited set of features and use local mock data. A good option if you only wanna check out the code.
 
 #### You will need
 - Flutter 
@@ -93,35 +122,6 @@ class Configuration {
 #### Step 3
 Run the Flutter My Thai Star Application in your AVD.
 
-## Set-Up _(With hosted Back-End)_
-This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://127.0.0.1:8082/restaurant`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a back-end yourself.
-
-#### You will need
-- Flutter 
-- Git
-- Android Virtual Device (AVD) 
-
-#### Step 1
-Clone this repository.
-```
-git clone https://github.com/Fasust/my_thai_star_flutter.git
-```
-#### Step 2
-Make sure the `lib/configuration.dart` looks like this:
-
-```dart
-///Provides a set of constant values that are used for configuration
-@immutable
-class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082";
-  static final bool useMockData = false;
-}
-```
-
-#### Step 3
-Run the Flutter My Thai Star Application in your AVD.
-
-
 ## Set-Up _(With own Back-End)_
 This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. This set-up is the most tedious, but it will enable you to use every feature of the My Thai Star Flutter application.
 
@@ -140,14 +140,14 @@ git clone https://github.com/Fasust/my_thai_star_flutter.git
 ```
 
 #### Step 2
-Get a My Thai Star Back-End. The easiest way is to clone this fork I made where I already exposed the Back-End ports.
+Get a My Thai Star Back-End. The easiest way is to clone [this fork I made](https://github.com/Fasust/my-thai-star/tree/master) where I already exposed the Back-End ports.
 
 ```
 git clone https://github.com/Fasust/my-thai-star.git
 ```
 
 #### Step 3
-In the My Thai Star project cloned in step 2, run the following command in the root of the repository.
+In the My Thai Star project cloned in step 2, run the following command in the root of the directory. Be sure you are on the master branch of the repository.
 
 ```
 docker-compose up

@@ -1,7 +1,6 @@
 ![Banner](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
 
 ## Contents
-- [Contents](#contents)
 - [Creation Context](#creation-context)
 - [Purpose](#purpose)
 - [Previous Related Work](#previous-related-work)
@@ -11,22 +10,8 @@
   - [Original Angular](#original-angular)
   - [New Flutter](#new-flutter)
 - [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
-    - [You will need](#you-will-need)
-    - [Step 1](#step-1)
-    - [Step 2](#step-2)
-    - [Step 3](#step-3)
 - [Set-Up _(Test)_](#set-up-test)
-    - [You will need](#you-will-need-1)
-    - [Step 1](#step-1-1)
-    - [Step 2](#step-2-1)
-    - [Step 3](#step-3-1)
 - [Set-Up _(With own Back-End)_](#set-up-with-own-back-end)
-    - [You will need](#you-will-need-2)
-    - [Step 1](#step-1-2)
-    - [Step 2](#step-2-2)
-    - [Step 3](#step-3-2)
-    - [Step 4](#step-4)
-    - [Step 5](#step-5)
 
 ## Creation Context 
 This project is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
@@ -66,7 +51,7 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 
 
 ## Set-Up _(With hosted Back-End)_
-This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://127.0.0.1:8082/restaurant`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
+This option will only be available for a limited amount of time. I am currently hosting a Back-End of the My Thai Star application under `http://138.197.218.225:8082/`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
 
 #### You will need
 - Flutter 
@@ -85,7 +70,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082";
+  static final String baseUrl = "http://138.197.218.225:8082/";
   static final bool useMockData = false;
 }
 ```
@@ -114,7 +99,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082"; //Can be anything as it wont be used when mock is true.
+  static final String baseUrl = "http://10.0.2.2:8082/"; //Can be anything as it wont be used when mock is true.
   static final bool useMockData = true;
 }
 ```
@@ -162,7 +147,7 @@ Make sure the `lib/configuration.dart` looks like this:
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {
-  static final String baseUrl = "http://10.0.2.2:8082";
+  static final String baseUrl = "http://10.0.2.2:8082/";
   static final bool useMockData = false;
 }
 ```

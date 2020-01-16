@@ -6,6 +6,7 @@ import 'package:my_thai_star_flutter/models/generated/booking_request.dart';
 import 'package:my_thai_star_flutter/models/booking.dart';
 import 'package:my_thai_star_flutter/repositories/service.dart';
 import 'package:my_thai_star_flutter/models/generated/booking_response.dart';
+import 'package:my_thai_star_flutter/configuration.dart';
 import 'package:http/http.dart' as http;
 
 ///Handles communication with the My Thai Star booking Api
@@ -16,9 +17,7 @@ import 'package:http/http.dart' as http;
 ///[Booking].
 @immutable
 class BookingService extends Service<Booking, String> {
-  static const int _timeOut = 4;
-  static const String _route =
-      'mythaistar/services/rest/bookingmanagement/v1/booking';
+  static const String _route = 'mythaistar/services/rest/bookingmanagement/v1/booking';
   final String _baseUrl;
 
   static const Map<String, String> _requestHeaders = {
@@ -42,7 +41,7 @@ class BookingService extends Service<Booking, String> {
           headers: _requestHeaders,
           body: jsonEncode(requestBody.toJson()),
         )
-        .timeout(const Duration(seconds: _timeOut));
+        .timeout(Duration(seconds: Configuration.defaultTimeOut));
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
 
@@ -51,7 +50,8 @@ class BookingService extends Service<Booking, String> {
     if (bookingError.message != null) throw Exception(bookingError.message);
 
     BookingResponse bookingResponse = BookingResponse.fromJson(respJson);
-    if (bookingResponse.bookingToken == null) throw Exception("Booking could not be placed");
+    if (bookingResponse.bookingToken == null)
+      throw Exception("Booking could not be placed");
 
     return bookingResponse.bookingToken;
   }

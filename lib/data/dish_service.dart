@@ -6,6 +6,7 @@ import 'package:my_thai_star_flutter/models/generated/search_request.dart';
 import 'package:my_thai_star_flutter/models/generated/search_response.dart';
 import 'package:my_thai_star_flutter/models/search.dart';
 import 'package:my_thai_star_flutter/repositories/service.dart';
+import 'package:my_thai_star_flutter/configuration.dart';
 import 'package:http/http.dart' as http;
 
 ///Handles communication with the My Thai Star dish Api
@@ -14,9 +15,7 @@ import 'package:http/http.dart' as http;
 ///that match a given [Search]
 @immutable
 class DishService extends Service<Search, List<Dish>> {
-  static const int _timeOut = 4;
-  static const String _route =
-      'mythaistar/services/rest/dishmanagement/v1/dish/search';
+  static const String _route = 'mythaistar/services/rest/dishmanagement/v1/dish/search';
   final String _baseUrl;
 
   static const Map<String, String> _requestHeaders = {
@@ -39,14 +38,15 @@ class DishService extends Service<Search, List<Dish>> {
           headers: _requestHeaders,
           body: jsonEncode(requestBody.toJson()),
         )
-        .timeout(const Duration(seconds: _timeOut));
+        .timeout(Duration(seconds: Configuration.defaultTimeOut));
 
     if (response.body == '') throw Exception("No dishes match that query");
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     SearchResponse searchResponse = SearchResponse.fromJson(respJson);
 
-    if (searchResponse.content == null) throw Exception("Received invalid response from Server");
+    if (searchResponse.content == null)
+      throw Exception("Received invalid response from Server");
 
     return searchResponse.toDishList();
   }

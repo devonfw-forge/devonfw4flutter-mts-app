@@ -5,6 +5,7 @@ import 'package:my_thai_star_flutter/models/order.dart';
 import 'package:my_thai_star_flutter/models/generated/order_request.dart';
 import 'package:my_thai_star_flutter/models/generated/order_response.dart';
 import 'package:my_thai_star_flutter/repositories/service.dart';
+import 'package:my_thai_star_flutter/configuration.dart';
 import 'package:http/http.dart' as http;
 
 ///Handles communication with the My Thai Star order Api
@@ -15,7 +16,6 @@ import 'package:http/http.dart' as http;
 ///obtained after placing a [Booking].
 @immutable
 class OrderService extends Service<Order, int> {
-  static const int _timeOut = 4;
   static const String _route = 'mythaistar/services/rest/ordermanagement/v1/order';
   final String _baseUrl;
 
@@ -29,7 +29,7 @@ class OrderService extends Service<Order, int> {
   ///Posts one [Order] to the Api and returns the related order id
   ///
   ///Will throw [Exception]s if the communication with the APi fails.
-  ///The order id has no other purpose then uniquely identifying 
+  ///The order id has no other purpose then uniquely identifying
   ///a placed [Order].
   @override
   Future<int> post(Order input) async {
@@ -40,12 +40,13 @@ class OrderService extends Service<Order, int> {
           headers: _requestHeaders,
           body: jsonEncode(requestBody.toJson()),
         )
-        .timeout(const Duration(seconds: _timeOut));
+        .timeout(Duration(seconds: Configuration.defaultTimeOut));
 
     Map<dynamic, dynamic> respJson = json.decode(response.body);
     OrderResponse orderResponse = OrderResponse.fromJson(respJson);
 
-    if(orderResponse.orderId == null) throw Exception("Server did not place the Order");
+    if (orderResponse.orderId == null)
+      throw Exception("Server did not place the Order");
 
     return orderResponse.orderId;
   }

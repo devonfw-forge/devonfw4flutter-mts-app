@@ -51,7 +51,7 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 
 
 ## Set-Up _(With hosted Back-End)_
-This option will only be available for a limited amount of time. I am currently hosting a Back-End of the My Thai Star application under `http://138.197.218.225:8082/`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
+This option will only be available for a limited amount of time. I am currently hosting a Back-End of the My Thai Star application under `http://138.197.218.225:8082/`, but I will have to take it down in March 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a Back-End yourself.
 
 #### You will need
 - Flutter 

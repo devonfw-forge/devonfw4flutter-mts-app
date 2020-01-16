@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/models/extra.dart';
 

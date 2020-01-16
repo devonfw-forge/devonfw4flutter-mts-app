@@ -17,8 +17,6 @@ dependencies:
   page_transition: "^1.1.5"
   datetime_picker_formfield: any
   # Own Packages
-  bool_bloc:
-    path: ./packages/bool_bloc
   form_bloc:
     path: ./packages/form_bloc
 

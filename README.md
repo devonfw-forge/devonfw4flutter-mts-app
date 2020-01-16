@@ -1,20 +1,39 @@
-![Angular](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
+![Banner](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/banner.png)
 
 ## Contents
+- [Contents](#contents)
 - [Creation Context](#creation-context)
 - [Purpose](#purpose)
 - [Previous Related Work](#previous-related-work)
 - [Covered Topics](#covered-topics)
 - [Architecture](#architecture)
 - [Screens](#screens)
-- [Set-Up](#set-up)
+  - [Original Angular](#original-angular)
+  - [New Flutter](#new-flutter)
+- [Set-Up _(Test)_](#set-up-test)
+    - [You will need](#you-will-need)
+    - [Step 1](#step-1)
+    - [Step 2](#step-2)
+    - [Step 3](#step-3)
+- [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
+    - [You will need](#you-will-need-1)
+    - [Step 1](#step-1-1)
+    - [Step 2](#step-2-1)
+    - [Step 3](#step-3-1)
+- [Set-Up _(With own Back-End)_](#set-up-with-own-back-end)
+    - [You will need](#you-will-need-2)
+    - [Step 1](#step-1-2)
+    - [Step 2](#step-2-2)
+    - [Step 3](#step-3-2)
+    - [Step 4](#step-4)
+    - [Step 5](#step-5)
 
 ## Creation Context 
-This projects is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
+This project is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
 
 ## Purpose
-1. The thesis itself outlines the creation process of this repository, which desing desicons where made and why. The thesis is not yet published, but it will be linked as soon as it is.
-2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the desing descisions in-code as well, so you can already check that out if you want.
+1. The thesis itself outlines the creation process of this repository, which designe decisions where made and why. The thesis is not yet published, but it will be linked as soon as it is.
+2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the designe decisions in-code as well, so you can already check that out if you want.
 
 ## Previous Related Work
 - A [guide](https://github.com/devonfw-forge/devonfw4flutter) on developing large-scale applications using Flutter.
@@ -45,12 +64,13 @@ This projects is part of a bachelor thesis written by a student in the Bachelor 
 ### New Flutter
 ![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-screens.png)
 
-## Set-Up
-You will need: 
-- Flutter
-- A functional Android Virtual Device (AVD)
-- Docker
+## Set-Up _(Test)_
+The easiest way to set-up the application. It will only have a limited set of features and use locale mock data. A good option if you only wanna check out the code.
+
+#### You will need
+- Flutter 
 - Git
+- Android Virtual Device (AVD) 
 
 #### Step 1
 Clone this repository.
@@ -59,13 +79,68 @@ git clone https://github.com/Fasust/my_thai_star_flutter.git
 ```
 
 #### Step 2
-> I am currently publicly hosting a version of the My Thai Star application under `http://138.197.218.225:8081/restaurant`. So you can skip steps 2, 3 & 4 
+Make sure the `lib/configuration.dart` looks like this:
 
-This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. 
+```dart
+///Provides a set of constant values that are used for configuration
+@immutable
+class Configuration {
+  static final String baseUrl = "http://10.0.2.2:8082"; //Can be anything as it wont be used when mock is true.
+  static final bool useMockData = true;
+}
+```
+
+#### Step 3
+Run the Flutter My Thai Star Application in your AVD.
+
+## Set-Up _(With hosted Back-End)_
+This option will only be available for a limited amount of time. I am currently hosting a Back-End of the application under `http://127.0.0.1:8082/restaurant`, but I will have to take it down in march 2020. Until I take it down however, this is an easy way to use all the feature of the My Thai Star Flutter application without needing to host a back-end yourself.
+
+#### You will need
+- Flutter 
+- Git
+- Android Virtual Device (AVD) 
+
+#### Step 1
+Clone this repository.
+```
+git clone https://github.com/Fasust/my_thai_star_flutter.git
+```
+#### Step 2
+Make sure the `lib/configuration.dart` looks like this:
+
+```dart
+///Provides a set of constant values that are used for configuration
+@immutable
+class Configuration {
+  static final String baseUrl = "http://10.0.2.2:8082";
+  static final bool useMockData = false;
+}
+```
+
+#### Step 3
+Run the Flutter My Thai Star Application in your AVD.
+
+
+## Set-Up _(With own Back-End)_
+This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. This set-up is the most tedious, but it will enable you to use every feature of the My Thai Star Flutter application.
 
 ![Flutter](https://github.com/Fasust/my-thai-star-flutter/blob/master/.additional_material/graphics/mts-flutter-components.PNG)
 
-The easiest way is to clone this fork were I exposed the Back-End ports:
+#### You will need
+- Flutter 
+- Git
+- Android Virtual Device (AVD) 
+- Docker
+
+#### Step 1
+Clone this repository.
+```
+git clone https://github.com/Fasust/my_thai_star_flutter.git
+```
+
+#### Step 2
+Get a My Thai Star Back-End. The easiest way is to clone this fork I made where I already exposed the Back-End ports.
 
 ```
 git clone https://github.com/Fasust/my-thai-star.git
@@ -91,7 +166,6 @@ class Configuration {
   static final bool useMockData = false;
 }
 ```
->If you only wanna check out the Flutter application and don't care about it properly communicating with the Back-End, you can just put `useMockData = true`. It will now load local mock data instead of contacting the Back-End.
 
 #### Step 5 
-Boot the Flutter My Thai Star Application in your AVD. It should now be able to communicate with the Back-End in the docker container.
+Run the Flutter My Thai Star Application in your AVD. It should now be able to communicate with the Back-End in the docker container.

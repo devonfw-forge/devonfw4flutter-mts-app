@@ -10,16 +10,7 @@ import 'package:flutter/services.dart' show rootBundle;
 ///We can create a custom one for out localized texts.
 @immutable
 class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
-  static const List<String> supportedLanguages = [
-    'en',
-    'de',
-    'bg',
-    'es',
-    'fr',
-    'nl',
-    'pl',
-    'ru',
-  ];
+  static const List<String> supportedLanguages = ['en','de','bg','es','fr','nl','pl','ru'];
 
   @override
   bool isSupported(Locale locale) =>
@@ -55,7 +46,7 @@ class MtsLocalizationDelegate extends LocalizationsDelegate<Translation> {
 ///````
 ///The current [Translation] is defined by, and can be changed
 ///through the [LocalizationBloc].
-///Whenever the current [Translation] changes, all Widgets accessing it 
+///Whenever the current [Translation] changes, all Widgets accessing it
 ///will automatically be rebuilt by the Framework.
 ///
 ///I did not re-implement this behavior with the bloc-pattern, because

@@ -99,4 +99,14 @@ class Translation {
   static Translation of(BuildContext context) =>
       Localizations.of<Translation>(context, Translation);
 }
+
+Localizations.of<Translation>(context, Translation);    //Without "of" in Translation class
+Translation.of(context);                                //With "of" in Translation class
+
+Translation.of(context).map['menu']['header']['title']; //Without "get" in Translation class
+Translation.of(context).get('menu/header/title');       //With "get" in Translation class
+
+//Total space save:
+Localizations.of<Translation>(context, Translation).map['menu']['header']['title'];
+Translation.of(context).get('menu/header/title'); 
 ```

@@ -41,7 +41,7 @@ class DishBloc extends Bloc<DishEvent, DishState> {
         _dishService = dishService;
 
   @override
-  DishState get initialState => LoadingDishState();
+  DishState get initialState => InitialDishState();
 
   @override
   Stream<DishState> mapEventToState(DishEvent event) async* {

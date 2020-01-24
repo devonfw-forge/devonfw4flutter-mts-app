@@ -8,6 +8,15 @@ import 'package:my_thai_star_flutter/models/dish.dart';
 abstract class DishState extends Equatable {}
 
 @immutable
+class InitialDishState extends DishState {
+  @override
+  List<Object> get props => [toString()];
+
+  @override
+  String toString() => 'Initial';
+}
+
+@immutable
 class ReceivedDishState extends DishState {
   final List<Dish> dishes;
 

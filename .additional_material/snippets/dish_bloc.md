@@ -45,6 +45,8 @@ class DishBloc extends Bloc<DishEvent, DishState> {
 
   @override
   Stream<DishState> mapEventToState(DishEvent event) async* {
+    if(currentState is LoadingDishState) return;
+
     Search currentSearch = _searchBloc.currentState.search;
 
     yield LoadingDishState();

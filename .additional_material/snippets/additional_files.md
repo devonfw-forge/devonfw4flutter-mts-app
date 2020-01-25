@@ -13,6 +13,28 @@ class TopLevelRoute{
   const TopLevelRoute(this.route);
 }
 
+///Used to annotate a class that is related to a not fully implemented feature
+///
+///This annotation makes un-implemented parts of the App
+///easy to find incase the project will be further developed in the future
+class _NotFullyImplemented{
+  const _NotFullyImplemented();
+}
+
+///Marks a class that is related to a not fully implemented feature
+///
+///this const enables using the annotation in this style:
+///````dart
+///@notFullyImplemented
+///class Name{}
+///````
+///instead of this style:
+///````dart
+///@NotFullyImplemented()
+///class Name{}
+///````
+const _NotFullyImplemented notFullyImplemented = const _NotFullyImplemented();
+
 ///Provides a set of constant values that are used for configuration
 @immutable
 class Configuration {

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_state.dart';
 import 'package:my_thai_star_flutter/main.dart';
-import 'package:my_thai_star_flutter/ui/router.dart';
+import 'package:my_thai_star_flutter/router.dart';
 import 'package:my_thai_star_flutter/ui/header/authentication_dialog.dart';
 import 'package:my_thai_star_flutter/ui/header/locale_dropdown.dart';
 

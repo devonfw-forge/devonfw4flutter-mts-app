@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_thai_star_flutter/localization.dart';
 
-import 'package:my_thai_star_flutter/ui/router.dart';
+import 'package:my_thai_star_flutter/router.dart';
 
 ///Defines a [Drawer] that enables navigation to the main pages of the App
 ///

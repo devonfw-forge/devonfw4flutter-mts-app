@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/models/dish.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 import 'package:my_thai_star_flutter/models/order_position.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 

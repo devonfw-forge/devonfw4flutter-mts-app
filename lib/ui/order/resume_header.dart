@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 import 'package:my_thai_star_flutter/ui/ui_helper.dart';
 
 ///Defines a part of the [OrderPage] that let's the user

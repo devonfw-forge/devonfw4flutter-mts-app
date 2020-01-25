@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_search_events.dart';
 import 'package:my_thai_star_flutter/blocs/dish_bloc.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 
 ///Defines the [Row] of [FlatButton]s at the 
 ///bottom of the [SliverSearchHeader]

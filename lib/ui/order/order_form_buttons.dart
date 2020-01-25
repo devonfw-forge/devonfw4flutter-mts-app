@@ -4,7 +4,7 @@ import 'package:form_bloc/form_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/current_order_event.dart';
 import 'package:my_thai_star_flutter/blocs/order_form_bloc.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 import 'package:my_thai_star_flutter/blocs/order_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/order_state.dart';
 import 'package:my_thai_star_flutter/repositories/repository_bundle.dart';

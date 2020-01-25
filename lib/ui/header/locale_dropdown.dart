@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_thai_star_flutter/blocs/localization_bloc.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 
 ///Defines the [DropdownButton] that allows the selection of a [Locale]/Language
 class LocaleDropDown extends StatelessWidget {

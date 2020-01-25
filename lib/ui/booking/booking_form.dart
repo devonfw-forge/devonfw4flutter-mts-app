@@ -10,7 +10,7 @@ import 'package:my_thai_star_flutter/models/booking.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_checkbox_tile.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_date_picker.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_form_field.dart';
-import 'package:my_thai_star_flutter/localization.dart';
+import 'package:my_thai_star_flutter/ui/localization.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/form/bloc_validation_button.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/response_dialoge.dart';
 import 'package:my_thai_star_flutter/ui/shared_widgets/sized_loading.dart';

@@ -116,7 +116,7 @@ Run the Flutter My Thai Star Application in your AVD.
 ## Set-Up _(With own Back-End)_
 This repository is only a Front-End component for the existing My Thai Star application. Thus you will need to host a My Thai Star Back-End component for the application to fully work. This set-up is the most tedious, but it will enable you to use every feature of the My Thai Star Flutter application.
 
-![Flutter](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-flutter-components.PNG)
+![Flutter](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-flutter-component.PNG)
 
 #### You will need
 - Flutter 

@@ -3,24 +3,24 @@
 ## Contents
 - [Creation Context](#creation-context)
 - [Purpose](#purpose)
-- [Previous Related Work](#previous-related-work)
+- [Previous Related Work](#related-work)
 - [Covered Topics](#covered-topics)
 - [Architecture](#architecture)
 - [Screens](#screens)
   - [Original Angular](#original-angular)
   - [New Flutter](#new-flutter)
-- [Set-Up _(With hosted Back-End)_](#set-up-with-hosted-back-end)
-- [Set-Up _(Test)_](#set-up-test)
+- [Set-Up _(With Mock Data)_](#set-up-with-mock-data)
 - [Set-Up _(With own Back-End)_](#set-up-with-own-back-end)
 
 ## Creation Context 
-This project is part of a bachelor thesis written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
+This project is part of a [Bachelor Thesis](https://epb.bibl.th-koeln.de/frontdoor/index/index/start/0/rows/10/sortfield/score/sortorder/desc/searchtype/simple/query/flutter/docId/1498) written by a student in the Bachelor of Science Program “Computer Science and Media Technology” at [Technical University Cologne](https://www.th-koeln.de/en/homepage_26.php). The work was executed in collaboration with [Capgemini Cologne](https://www.capgemini.com/us-en/). Capgemini’s [DevonFw open-source initiative](https://devonfw.com/index.html) maintains the [“My Thai Star”](https://github.com/devonfw/my-thai-star) application as a reference project for using a brought range of technologies in a large-scale context. Parts of that application where recreated using Flutter for this thesis.
 
 ## Purpose
-1. The thesis itself outlines the creation process of this repository, which design decisions where made and why. The thesis is not yet published, but it will be linked as soon as it is.
-2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the design decisions in-code as well, so you can already check that out if you want.
+1. [The Thesis](https://epb.bibl.th-koeln.de/frontdoor/index/index/start/0/rows/10/sortfield/score/sortorder/desc/searchtype/simple/query/flutter/docId/1498) itself outlines the creation process of this repository, which design decisions were made and why. [The Thesis](https://epb.bibl.th-koeln.de/frontdoor/index/index/start/0/rows/10/sortfield/score/sortorder/desc/searchtype/simple/query/flutter/docId/1498) is published through the TH Köln digital publishing service and freely available for anyone.
+2. This repository is a fully documented, large-scale Flutter application. I did my best to document the reasons behind the design decisions in-code as well.
 
-## Previous Related Work
+## Related Work
+- The [Thesis](https://epb.bibl.th-koeln.de/frontdoor/index/index/start/0/rows/10/sortfield/score/sortorder/desc/searchtype/simple/query/flutter/docId/1498) documenting the development process in great detail.
 - A [guide](https://github.com/devonfw-forge/devonfw4flutter) on developing large-scale applications using Flutter.
 - A [small-scale application](https://github.com/Fasust/wisgen) to test some of the recommendations made by the guide.
 
@@ -49,32 +49,7 @@ This project is part of a bachelor thesis written by a student in the Bachelor o
 ### New Flutter
 ![Flutter](https://github.com/devonfw-forge/devonfw4flutter-mts-app/blob/master/.additional_material/graphics/mts-flutter-screens.png)
 
-
-## Set-Up _(With hosted Back-End)_
-This option will only be available for a limited amount of time. I am currently hosting a Back-End of the My Thai Star application under `http://138.197.218.225:8082/`, but I will have to take it down in March 2020. Until I take it down however, this is an easy way to use all the features of the My Thai Star Flutter application without needing to host a Back-End yourself.
-
-#### You will need
-- Flutter 
-- Git
-- Android Virtual Device (AVD) 
-
-#### Step 1
-Clone this repository.
-```
-git clone https://github.com/devonfw-forge/devonfw4flutter-mts-app.git
-```
-#### Step 2
-Make sure the `lib/configuration.dart` looks like this:
-
-```dart
-static final String baseUrl = "http://138.197.218.225:8082/";
-static final bool useMockData = false;
-```
-
-#### Step 3
-Run the Flutter My Thai Star Application in your AVD.
-
-## Set-Up _(Test)_
+## Set-Up _(With Mock Data)_
 The easiest way to set-up the application. It will only have a limited set of features and use local mock data. A good option if you only wanna check out the code.
 
 #### You will need

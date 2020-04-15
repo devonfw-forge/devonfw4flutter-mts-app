@@ -35,7 +35,7 @@ This project is part of a [Bachelor Thesis](https://epb.bibl.th-koeln.de/frontdo
 - Dependency Injection
 - Service Locators
 - Project Structure
-- Modularzitation
+- Modularization
 - Localization
 - Form Validation
 
